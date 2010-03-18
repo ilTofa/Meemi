@@ -1,419 +1,0 @@
-TMeemi
-v7
-r0
-t290636113.553913
-cCheck dependencies
-cCpResource build/Debug-iphoneos/Meemi.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist
-cProcessInfoPlistFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Info.plist Meemi-Info.plist
-cCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib
-cCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib
-cCopyPNGFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Icon.png Icon.png
-cCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib
-cProcessPCH /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch.gch Meemi_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/main.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiAppDelegate.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/FirstViewController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiWebAppController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/SettingsController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi normal armv6
-cGenerateDSYMFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app.dSYM /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi
-cProcessProductPackaging "/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision" /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision
-cTouch /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-cProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent
-cCodeSign /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk
-c000000004B69E03C0000000000000110
-t1265229884
-s272
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist
-c000000004A0BA04000000000000000DD
-t1242275904
-s221
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist
-c000000004A0BA04000000000000001E5
-t1242275904
-s485
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c000000004A121EB900000000003D72A0
-t1242701497
-s4027040
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004A121FF90000000000396540
-t1242701817
-s3761472
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
-c000000004A0BAECB0000000000001355
-t1242279627
-s4949
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
-c000000004A0CBEBD000000000000075E
-t1242349245
-s1886
-
-N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c000000004A1221FD00000000019A6110
-t1242702333
-s26894608
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.h
-c000000004BA1669E00000000000000F7
-t1268868766
-s247
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m
-c000000004BA1669E00000000000005BC
-t1268868766
-s1468
-i"FirstViewController.h"
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.h
-c000000004BA1669E00000000000001E2
-t1268868766
-s482
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m
-c000000004BA1669E00000000000004DC
-t1268868766
-s1244
-i"MeemiAppDelegate.h"
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.h
-c000000004BA1669E000000000000026A
-t1268868766
-s618
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m
-c000000004BA288990000000000000FFC
-t1268943001
-s4092
-i"MeemiWebAppController.h"
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.h
-c000000004BA24B19000000000000022F
-t1268927257
-s559
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m
-c000000004BA289CB00000000000009BF
-t1268943307
-s2495
-i"SettingsController.h"
-i"MeemiAppDelegate.h"
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib
-c000000004BA249C8000000000000650F
-t1268926920
-s25871
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Icon.png
-c000000004B9A557D000000000000D9A9
-t1268405629
-s55721
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib
-c000000004BA1163D0000000000008306
-t1268848189
-s33542
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi_Prefix.pch
-c000000004BA10A8B00000000000000B3
-t1268845195
-s179
-i<Foundation/Foundation.h>
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib
-c000000004BA10F2900000000000054CD
-t1268846377
-s21709
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-t1268943309
-s442
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app.dSYM
-t1268943308
-s102
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Icon.png
-t1268943250
-s18227
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Info.plist
-t1268943248
-s612
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/MainWindow.nib
-t1268943250
-s4248
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi
-t1268943308
-s36624
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/PkgInfo
-t1268943248
-s8
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/ResourceRules.plist
-t1268943248
-s485
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/SecondView.nib
-t1268943250
-s1996
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/SettingsController.nib
-t1268943250
-s3980
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision
-t1268943252
-s7165
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent
-t1268943252
-s312
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/FirstViewController.o
-t1268943251
-s29328
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/Meemi.LinkFileList
-c000000004BA2899000000000000002F1
-t1268943248
-s753
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiAppDelegate.o
-t1268943251
-s45280
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiWebAppController.o
-t1268943251
-s54616
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/SettingsController.o
-t1268943308
-s48264
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/main.o
-t1268943251
-s6596
-
-N/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m
-c000000004BA10A8B0000000000000172
-t1268845195
-s370
-i<UIKit/UIKit.h>
-
-N/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision
-c000000004BA2738E0000000000001BFD
-t1268937614
-s7165
-
-N/var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch.gch
-t1268943251
-s7831680
-
-NMeemi-Info.plist
-c000000004BA27551000000000000036B
-t1268938065
-s875
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies290636113#290636113#0(0"0(0#1#0"4300885448#0"0#
-
-CCodeSign /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-s290636108.207830
-e290636109.194919
-r1
-xCodeSign
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-lSLF07#2@39"CodeSign build/Debug-iphoneos/Meemi.app290636108#290636109#0(0"0(0#0#96"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app4300885448#733"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv CODESIGN_ALLOCATE /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/codesign -f -s "iPhone Developer: Giacomo Tufano" --resource-rules=/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/ResourceRules.plist --entitlements /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app0#
-
-CCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/FirstViewController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636051.511199
-e290636051.572493
-r1
-xCompileC
-xbuild/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/FirstViewController.o
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@103"Compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m290636051#290636051#0(0"0(0#0#95"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m4300885448#2019"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -include /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/FirstViewController.m -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/FirstViewController.o0#
-
-CCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiAppDelegate.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636051.361786
-e290636051.512474
-r1
-xCompileC
-xbuild/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiAppDelegate.o
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@100"Compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m290636051#290636051#0(0"0(0#0#92"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m4300885448#2013"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -include /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiAppDelegate.m -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiAppDelegate.o0#
-
-CCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiWebAppController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636051.512538
-e290636051.593911
-r1
-xCompileC
-xbuild/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiWebAppController.o
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@105"Compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m290636051#290636051#0(0"0(0#0#97"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m4300885448#2023"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -include /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/MeemiWebAppController.m -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/MeemiWebAppController.o0#
-
-CCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/SettingsController.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636108.072786
-e290636108.169022
-r1
-xCompileC
-xbuild/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/SettingsController.o
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@102"Compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m290636108#290636108#0(0"0(0#0#94"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m4300885448#2017"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -include /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.m -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/SettingsController.o0#
-
-CCompileC build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/main.o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636051.360742
-e290636051.511086
-r1
-xCompileC
-xbuild/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/main.o
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@80"Compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m290636051#290636051#0(0"0(0#0#72"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m4300885448#1981"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -include /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/main.m -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/main.o0#
-
-CCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib
-s290636050.401230
-e290636050.721669
-r1
-xCompileXIB
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib
-lSLF07#2@41"CompileXIB Classes/SettingsController.xib290636050#290636050#0(0"0(0#0#96"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib4300885448#569"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.0    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/SettingsController.nib /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Classes/SettingsController.xib0#
-
-CCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib
-s290636048.533142
-e290636050.394623
-r1
-xCompileXIB
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib
-lSLF07#2@25"CompileXIB MainWindow.xib290636048#290636050#0(0"0(0#0#80"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib4300885448#545"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.0    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/MainWindow.nib /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/MainWindow.xib0#
-
-CCompileXIB /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib
-s290636048.534005
-e290636050.401174
-r1
-xCompileXIB
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib
-lSLF07#2@25"CompileXIB SecondView.xib290636048#290636050#0(0"0(0#0#80"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib4300885448#545"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.0    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/SecondView.nib /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/SecondView.xib0#
-
-CCopyPNGFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Icon.png Icon.png
-s290636050.394754
-e290636050.595473
-r1
-xCopyPNGFile
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Icon.png
-xIcon.png
-lSLF07#2@60"CopyPNGFile build/Debug-iphoneos/Meemi.app/Icon.png Icon.png290636050#290636050#0(0"0(0#0#74"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Icon.png4300885448#635"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv COPY_COMMAND /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    "/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS Build System Support.xcplugin/Contents/Resources/copypng" -compress "" /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Icon.png /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Icon.png0#
-
-CCpResource build/Debug-iphoneos/Meemi.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist
-s290636048.419104
-e290636048.533052
-r1
-xCpResource
-xbuild/Debug-iphoneos/Meemi.app/ResourceRules.plist
-x/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist
-lSLF07#2@94"Copy /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist290636048#290636048#0(0"0(0#0#89"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist4300885448#532"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/ResourceRules.plist /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app0#
-
-CGenerateDSYMFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app.dSYM /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi
-s290636108.189894
-e290636108.205464
-r1
-xGenerateDSYMFile
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app.dSYM
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi
-lSLF07#2@89"GenerateDSYMFile build/Debug-iphoneos/Meemi.app.dSYM build/Debug-iphoneos/Meemi.app/Meemi290636108#290636108#0(0"0(0#0#102"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi4300885448#437"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app.dSYM0#
-
-CLd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi normal armv6
-s290636108.169116
-e290636108.189802
-r1
-xLd
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi
-xnormal
-xarmv6
-lSLF07#2@107"Link /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi290636108#290636108#0(0"0(0#0#0"4300885448#1014"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv IPHONEOS_DEPLOYMENT_TARGET 3.0    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -arch armv6 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -L/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -filelist /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Objects-normal/armv6/Meemi.LinkFileList -mmacosx-version-min=10.5 -dead_strip -miphoneos-version-min=3.0 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Meemi0#
-
-CProcessInfoPlistFile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Info.plist Meemi-Info.plist
-s290636048.419914
-e290636048.506776
-r1
-xProcessInfoPlistFile
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Info.plist
-xMeemi-Info.plist
-lSLF07#2@24"Process Meemi-Info.plist290636048#290636048#0(0"0(0#0#82"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi-Info.plist4300885448#662"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Meemi-Info.plist -genpkginfo /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/ResourceRules.plist -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/Info.plist0#
-
-CProcessPCH /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch.gch Meemi_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
-s290636050.721788
-e290636051.360621
-r1
-xProcessPCH
-x/var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch.gch
-xMeemi_Prefix.pch
-xnormal
-xarmv6
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@27"Precompile Meemi_Prefix.pch290636050#290636051#0(0"0(0#0#82"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi_Prefix.pch4300885448#1854"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch armv6 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=3.0 -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-generated-files.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-own-target-headers.hmap -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-all-target-headers.hmap -iquote /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi-project-headers.hmap -F/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/include -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources/armv6 -I/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/DerivedSources -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi_Prefix.pch -o /var/folders/28/28SnZ57VHSefd+QnJ5Xt4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Meemi_Prefix-dcacltqktrvwakaenfutdwagjuab/Meemi_Prefix.pch.gch0#
-
-CProcessProductPackaging "/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision" /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision
-s290636052.133858
-e290636052.155529
-r1
-xProcessProductPackaging
-x/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision
-lSLF07#2@192"ProcessProductPackaging "/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision" build/Debug-iphoneos/Meemi.app/embedded.mobileprovision290636052#290636052#0(0"0(0#0#121"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision4300885448#477"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    <com.apple.tools.product-pkg-utility> "/Users/gt86031/Library/MobileDevice/Provisioning Profiles/120C4DAD-3082-48A5-AA57-75F027C92EBA.mobileprovision" -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app/embedded.mobileprovision0#
-
-CProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent
-s290636052.159081
-e290636052.181518
-r1
-xProcessProductPackaging
-x/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent
-lSLF07#2@169"ProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent290636052#290636052#0(0"0(0#0#122"/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent4300885448#480"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    <com.apple.tools.product-pkg-utility> /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/Entitlements.plist -entitlements -format xml -o /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Meemi.build/Debug-iphoneos/Meemi.build/Meemi.xcent0#
-
-CTouch /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-s290636108.205631
-e290636108.207685
-r1
-xTouch
-x/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app
-lSLF07#2@102"Touch /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app290636108#290636108#0(0"0(0#0#0"4300885448#316"    cd /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/build/Debug-iphoneos/Meemi.app0#
-
