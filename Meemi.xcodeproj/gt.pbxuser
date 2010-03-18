@@ -1,0 +1,141 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* Meemi */ = {
+		activeExec = 0;
+		executables = (
+			6453FB9711527D95009F6DBD /* Meemi */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 6453FB9711527D95009F6DBD /* Meemi */;
+		activeSDKPreference = iphonesimulator3.0;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
+		codeSenseManager = 6453FBAB11527DB5009F6DBD /* Code sense */;
+		executables = (
+			6453FB9711527D95009F6DBD /* Meemi */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 290618774;
+			PBXWorkspaceStateSaveDate = 290618774;
+		};
+		perUserProjectItems = {
+			6453FBAD11527FF7009F6DBD /* PBXBookmark */ = 6453FBAD11527FF7009F6DBD /* PBXBookmark */;
+			6453FBD1115282FA009F6DBD /* PBXTextBookmark */ = 6453FBD1115282FA009F6DBD /* PBXTextBookmark */;
+			6453FBD2115282FA009F6DBD /* PBXTextBookmark */ = 6453FBD2115282FA009F6DBD /* PBXTextBookmark */;
+			6453FBD3115282FA009F6DBD /* PBXTextBookmark */ = 6453FBD3115282FA009F6DBD /* PBXTextBookmark */;
+			6453FBD6115282FA009F6DBD /* PBXTextBookmark */ = 6453FBD6115282FA009F6DBD /* PBXTextBookmark */;
+		};
+		sourceControlManager = 6453FBAA11527DB5009F6DBD /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	6453FB9711527D95009F6DBD /* Meemi */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Meemi;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	6453FBAA11527DB5009F6DBD /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	6453FBAB11527DB5009F6DBD /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	6453FBAD11527FF7009F6DBD /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C07ED9311151431800311726 /* MeemiWebAppController.m */;
+	};
+	6453FBD1115282FA009F6DBD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93A1151470A00311726 /* SettingsController.h */;
+		name = "SettingsController.h: 12";
+		rLen = 0;
+		rLoc = 255;
+		rType = 0;
+		vrLen = 559;
+		vrLoc = 0;
+	};
+	6453FBD2115282FA009F6DBD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93B1151470A00311726 /* SettingsController.m */;
+		name = "SettingsController.m: 27";
+		rLen = 0;
+		rLoc = 640;
+		rType = 0;
+		vrLen = 1450;
+		vrLoc = 190;
+	};
+	6453FBD3115282FA009F6DBD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93B1151470A00311726 /* SettingsController.m */;
+		name = "SettingsController.m: 49";
+		rLen = 0;
+		rLoc = 1366;
+		rType = 0;
+		vrLen = 1631;
+		vrLoc = 361;
+	};
+	6453FBD6115282FA009F6DBD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED9311151431800311726 /* MeemiWebAppController.m */;
+		name = "MeemiWebAppController.m: 86";
+		rLen = 179;
+		rLoc = 2585;
+		rType = 0;
+		vrLen = 1871;
+		vrLoc = 1415;
+	};
+	C07ED9311151431800311726 /* MeemiWebAppController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 1534}}";
+			sepNavSelRange = "{2585, 179}";
+			sepNavVisRange = "{1415, 1871}";
+			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
+		};
+	};
+	C07ED93A1151470A00311726 /* SettingsController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {843, 642}}";
+			sepNavSelRange = "{255, 0}";
+			sepNavVisRange = "{0, 559}";
+		};
+	};
+	C07ED93B1151470A00311726 /* SettingsController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 1092}}";
+			sepNavSelRange = "{1366, 0}";
+			sepNavVisRange = "{361, 1631}";
+		};
+	};
+}

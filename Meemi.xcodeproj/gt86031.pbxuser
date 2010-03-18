@@ -1,0 +1,192 @@
+// !$*UTF8*$!
+{
+	1D3623250D0F684500981E51 /* MeemiAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 912}}";
+			sepNavSelRange = "{626, 0}";
+			sepNavVisRange = "{0, 1244}";
+			sepNavWindowFrame = "{{15, 133}, {1225, 1040}}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* Meemi */ = {
+		activeExec = 0;
+		executables = (
+			C01D86FB115141A100608D7E /* Meemi */,
+		);
+	};
+	28216C950DB411BC00E5133A /* FirstViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 912}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 247}";
+		};
+	};
+	28216C960DB411BC00E5133A /* FirstViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 912}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1468}";
+			sepNavWindowFrame = "{{61, 91}, {1225, 1040}}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = C01D86FB115141A100608D7E /* Meemi */;
+		activeSDKPreference = iphoneos3.0;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* Meemi */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = C01D8706115141AA00608D7E /* Code sense */;
+		executables = (
+			C01D86FB115141A100608D7E /* Meemi */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 290635686;
+			PBXWorkspaceStateSaveDate = 290635686;
+		};
+		perUserProjectItems = {
+			C0BEF0351152C01E00755210 /* PBXTextBookmark */ = C0BEF0351152C01E00755210 /* PBXTextBookmark */;
+			C0BEF0361152C01E00755210 /* PBXTextBookmark */ = C0BEF0361152C01E00755210 /* PBXTextBookmark */;
+			C0BEF03D1152C02D00755210 /* PBXTextBookmark */ = C0BEF03D1152C02D00755210 /* PBXTextBookmark */;
+			C0BEF08E1152C19E00755210 /* PBXTextBookmark */ = C0BEF08E1152C19E00755210 /* PBXTextBookmark */;
+			C0BEF08F1152C19E00755210 /* PBXTextBookmark */ = C0BEF08F1152C19E00755210 /* PBXTextBookmark */;
+		};
+		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 133}, {1225, 1040}}";
+		};
+	};
+	C01D86FB115141A100608D7E /* Meemi */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Meemi;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	C01D8705115141AA00608D7E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	C01D8706115141AA00608D7E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	C07ED9301151431800311726 /* MeemiWebAppController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 912}}";
+			sepNavSelRange = "{580, 0}";
+			sepNavVisRange = "{0, 618}";
+		};
+	};
+	C07ED9311151431800311726 /* MeemiWebAppController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 1690}}";
+			sepNavSelRange = "{3441, 0}";
+			sepNavVisRange = "{1285, 2454}";
+			sepNavWindowFrame = "{{38, 112}, {1225, 1040}}";
+		};
+	};
+	C07ED93A1151470A00311726 /* SettingsController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 912}}";
+			sepNavSelRange = "{312, 0}";
+			sepNavVisRange = "{0, 559}";
+		};
+	};
+	C07ED93B1151470A00311726 /* SettingsController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 1105}}";
+			sepNavSelRange = "{1003, 0}";
+			sepNavVisRange = "{0, 2146}";
+			sepNavWindowFrame = "{{84, 70}, {1225, 1040}}";
+		};
+	};
+	C0BEF0351152C01E00755210 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93A1151470A00311726 /* SettingsController.h */;
+		name = "SettingsController.h: 16";
+		rLen = 0;
+		rLoc = 312;
+		rType = 0;
+		vrLen = 559;
+		vrLoc = 0;
+	};
+	C0BEF0361152C01E00755210 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93B1151470A00311726 /* SettingsController.m */;
+		name = "SettingsController.m: 37";
+		rLen = 0;
+		rLoc = 1151;
+		rType = 0;
+		vrLen = 2081;
+		vrLoc = 0;
+	};
+	C0BEF03D1152C02D00755210 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED9311151431800311726 /* MeemiWebAppController.m */;
+		name = "MeemiWebAppController.m: 109";
+		rLen = 0;
+		rLoc = 3441;
+		rType = 0;
+		vrLen = 2452;
+		vrLoc = 1285;
+	};
+	C0BEF08E1152C19E00755210 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED93B1151470A00311726 /* SettingsController.m */;
+		name = "SettingsController.m: 33";
+		rLen = 0;
+		rLoc = 1003;
+		rType = 0;
+		vrLen = 2146;
+		vrLoc = 0;
+	};
+	C0BEF08F1152C19E00755210 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C07ED9311151431800311726 /* MeemiWebAppController.m */;
+		name = "MeemiWebAppController.m: 109";
+		rLen = 0;
+		rLoc = 3441;
+		rType = 0;
+		vrLen = 2454;
+		vrLoc = 1285;
+	};
+}
