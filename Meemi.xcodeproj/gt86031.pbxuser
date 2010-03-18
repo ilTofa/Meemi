@@ -270,7 +270,8 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {689, 2080}}";
 			sepNavSelRange = "{3298, 0}";
-			sepNavVisRange = "{1468, 744}";
+			sepNavVisRange = "{1760, 572}";
+			sepNavWindowFrame = "{{38, 58}, {868, 1094}}";
 		};
 	};
 	C0E620571152E9BA00E6C079 /* XCBuildMessageTextBookmark */ = {
