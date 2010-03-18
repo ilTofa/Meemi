@@ -19,6 +19,18 @@
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
 		C07ED93E1151470A00311726 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07ED93C1151470A00311726 /* SettingsController.xib */; };
+		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
+		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
+		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
+		C0E620291152E12A00E6C079 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201F1152E12A00E6C079 /* ASIInputStream.m */; };
+		C0E6202A1152E12A00E6C079 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620211152E12A00E6C079 /* ASINetworkQueue.m */; };
+		C0E6202B1152E12A00E6C079 /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620231152E12A00E6C079 /* ASINSStringAdditions.m */; };
+		C0E6202C1152E12A00E6C079 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620251152E12A00E6C079 /* Reachability.m */; };
+		C0E6202E1152E13E00E6C079 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6202D1152E13E00E6C079 /* CFNetwork.framework */; };
+		C0E620301152E14300E6C079 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6202F1152E14300E6C079 /* SystemConfiguration.framework */; };
+		C0E620321152E15000E6C079 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620311152E15000E6C079 /* libz.1.2.3.dylib */; };
+		C0E620431152E36800E6C079 /* Meemi.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620421152E36800E6C079 /* Meemi.m */; };
+		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +53,27 @@
 		C07ED93A1151470A00311726 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		C07ED93B1151470A00311726 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		C07ED93C1151470A00311726 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
+		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
+		C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIFormDataRequest.m; path = connections/ASIFormDataRequest.m; sourceTree = "<group>"; };
+		C0E6201B1152E12A00E6C079 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequest.h; path = connections/ASIHTTPRequest.h; sourceTree = "<group>"; };
+		C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIHTTPRequest.m; path = connections/ASIHTTPRequest.m; sourceTree = "<group>"; };
+		C0E6201D1152E12A00E6C079 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequestConfig.h; path = connections/ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		C0E6201E1152E12A00E6C079 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIInputStream.h; path = connections/ASIInputStream.h; sourceTree = "<group>"; };
+		C0E6201F1152E12A00E6C079 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIInputStream.m; path = connections/ASIInputStream.m; sourceTree = "<group>"; };
+		C0E620201152E12A00E6C079 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = connections/ASINetworkQueue.h; sourceTree = "<group>"; };
+		C0E620211152E12A00E6C079 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = connections/ASINetworkQueue.m; sourceTree = "<group>"; };
+		C0E620221152E12A00E6C079 /* ASINSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINSStringAdditions.h; path = connections/ASINSStringAdditions.h; sourceTree = "<group>"; };
+		C0E620231152E12A00E6C079 /* ASINSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINSStringAdditions.m; path = connections/ASINSStringAdditions.m; sourceTree = "<group>"; };
+		C0E620241152E12A00E6C079 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = connections/Reachability.h; sourceTree = "<group>"; };
+		C0E620251152E12A00E6C079 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = connections/Reachability.m; sourceTree = "<group>"; };
+		C0E6202D1152E13E00E6C079 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C0E6202F1152E14300E6C079 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C0E620311152E15000E6C079 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		C0E620411152E36800E6C079 /* Meemi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meemi.h; sourceTree = "<group>"; };
+		C0E620421152E36800E6C079 /* Meemi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meemi.m; sourceTree = "<group>"; };
+		C0E620491152E4E100E6C079 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +84,10 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
+				C0E6202E1152E13E00E6C079 /* CFNetwork.framework in Frameworks */,
+				C0E620301152E14300E6C079 /* SystemConfiguration.framework in Frameworks */,
+				C0E620321152E15000E6C079 /* libz.1.2.3.dylib in Frameworks */,
+				C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +120,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
+				C0E620161152E11A00E6C079 /* Meemi API */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -116,11 +154,39 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0E620491152E4E100E6C079 /* MobileCoreServices.framework */,
+				C0E6202D1152E13E00E6C079 /* CFNetwork.framework */,
+				C0E6202F1152E14300E6C079 /* SystemConfiguration.framework */,
+				C0E620311152E15000E6C079 /* libz.1.2.3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0E620161152E11A00E6C079 /* Meemi API */ = {
+			isa = PBXGroup;
+			children = (
+				C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */,
+				C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */,
+				C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */,
+				C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */,
+				C0E6201B1152E12A00E6C079 /* ASIHTTPRequest.h */,
+				C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */,
+				C0E6201D1152E12A00E6C079 /* ASIHTTPRequestConfig.h */,
+				C0E6201E1152E12A00E6C079 /* ASIInputStream.h */,
+				C0E6201F1152E12A00E6C079 /* ASIInputStream.m */,
+				C0E620201152E12A00E6C079 /* ASINetworkQueue.h */,
+				C0E620211152E12A00E6C079 /* ASINetworkQueue.m */,
+				C0E620221152E12A00E6C079 /* ASINSStringAdditions.h */,
+				C0E620231152E12A00E6C079 /* ASINSStringAdditions.m */,
+				C0E620241152E12A00E6C079 /* Reachability.h */,
+				C0E620251152E12A00E6C079 /* Reachability.m */,
+				C0E620411152E36800E6C079 /* Meemi.h */,
+				C0E620421152E36800E6C079 /* Meemi.m */,
+			);
+			name = "Meemi API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +250,14 @@
 				28216C970DB411BC00E5133A /* FirstViewController.m in Sources */,
 				C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */,
 				C07ED93D1151470A00311726 /* SettingsController.m in Sources */,
+				C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */,
+				C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */,
+				C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */,
+				C0E620291152E12A00E6C079 /* ASIInputStream.m in Sources */,
+				C0E6202A1152E12A00E6C079 /* ASINetworkQueue.m in Sources */,
+				C0E6202B1152E12A00E6C079 /* ASINSStringAdditions.m in Sources */,
+				C0E6202C1152E12A00E6C079 /* Reachability.m in Sources */,
+				C0E620431152E36800E6C079 /* Meemi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
