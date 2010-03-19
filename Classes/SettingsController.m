@@ -13,12 +13,39 @@
 
 @synthesize screenName, password, testLabel;
 
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	NSLog(@"Error: %@", error);
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] autorelease];
+	[theAlert show];
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	// if it was an user validation request and it was OK, save it
+	if(request == MmRValidateUser && result == MmUserExists)
+	{
+		// TODO: check a login and save ONLY if successful
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:self.screenName.text forKey:@"screenName"];
+		[defaults setObject:self.password.text forKey:@"password"];
+		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
+	}
+	else {
+		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
+	}
+
+}
+
 - (IBAction)testLogin:(id)sender
 {
-	// TODO: check a login and save ONLY if successful
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:self.screenName.text forKey:@"screenName"];
-	[defaults setObject:self.password.text forKey:@"password"];
+	// call back us above.
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] validateUser:self.screenName.text usingPassword:self.password.text];
 }
 
 // dismiss keyboard

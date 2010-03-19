@@ -13,30 +13,30 @@
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
 
-static Meemi *sharedMeemi = nil;
+static Meemi *sharedSession = nil;
 
 @implementation Meemi
 
-@synthesize valid, screenName, password;
+@synthesize valid, screenName, password, delegate, currentRequest;
 
 #pragma mark Singleton Class Setup
 
-+(Meemi *)sharedInstance
++(Meemi *)sharedSession
 {
 	@synchronized(self) {
-        if (sharedMeemi == nil) {
+        if (sharedSession == nil) {
             [[self alloc] init]; // assignment not done here
         }
     }
-    return sharedMeemi;
+    return sharedSession;
 }
 
 + (id)allocWithZone:(NSZone *)zone
 {
     @synchronized(self) {
-        if (sharedMeemi == nil) {
-            sharedMeemi = [super allocWithZone:zone];
-            return sharedMeemi;  // assignment and return on first allocation
+        if (sharedSession == nil) {
+            sharedSession = [super allocWithZone:zone];
+            return sharedSession;  // assignment and return on first allocation
         }
     }
     return nil; //on subsequent allocation attempts return nil
@@ -78,37 +78,172 @@ static Meemi *sharedMeemi = nil;
 		return nil;
 }
 
+-(id)initWithDelegate:(id<MeemiDelegate>)d
+{
+	if(self = [super init])
+	{
+		self.valid = NO;
+		self.delegate = d;
+		return self;
+	}
+	else
+		return nil;	
+}
+
 #pragma mark ASIHTTPRequest delegate
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-	NSString *responseString = [request responseString];
+	NSData *responseData = [request responseData];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSLog(@"request sent and answer received\n");
-	
+	NSLog(@"request sent and answer received. Calling parser for processing\n");
+	[self parse:responseData];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	NSError *error = [request error];
-	NSLog(@"Error: %@", error);
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-														message:[error localizedDescription]
-													   delegate:nil
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil] autorelease];
-	[theAlert show];
+	[self.delegate meemi:self.currentRequest didFailWithError:error];
 }
+
+#pragma mark NSXMLParser delegate
+
+// Parse response string
+// returns YES if xml parsing succeeds, NO otherwise
+- (BOOL) parse:(NSData *)responseData
+{
+	NSLog(@"Startig parse of: %@", responseData);
+	NSString *temp = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
+	NSLog(@"As string: \"%@\"", temp);
+    if (addressParser) // addressParser is an NSXMLParser instance variable
+        [addressParser release];
+	addressParser = [[NSXMLParser alloc] initWithData:responseData];
+	[addressParser setDelegate:self];
+    [addressParser setShouldResolveExternalEntities:YES];
+    if([addressParser parse])
+		return YES;
+	else
+		return NO;
+}
+
+// NSXMLParser delegates
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+	// DEBUG: parse attributes
+	NSLog(@"Element Start: <%@>", elementName);
+	NSEnumerator *enumerator = [attributeDict keyEnumerator];
+	id key;
+	while ((key = [enumerator nextObject])) 
+	{
+		NSLog(@"attribute \"%@\" is \"%@\"", key, [attributeDict objectForKey:key]);
+	}
+	if([elementName isEqualToString:@"message"])
+	{
+		// If it was a request for user validation, check return and inform delegate
+		if(self.currentRequest == MmRValidateUser)
+		{
+			NSString *code = [attributeDict objectForKey:@"code"];
+			// Defensive code for the case "code" do not exists
+			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
+			[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
+		}
+	}
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
+{
+	NSLog(@"Data: %@", string);
+    if (!currentStringValue)
+        // currentStringValue is an NSMutableString instance variable
+        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
+    [currentStringValue appendString:string];
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+	NSLog(@"Element End: %@", elementName);
+	NSLog(@"<%@> fully received with value: <%@>", elementName, currentStringValue);
+	
+    // reset currentStringValue for the next cycle
+    [currentStringValue release];
+    currentStringValue = nil;
+}
+
 
 
 #pragma mark API
 
 #define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b"
 
-// Validates user and pwd, write them into appdefaults
--(BOOL)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd
+-(NSString *)getResponseDescription:(MeemiResult)response
 {
+	NSString *ret;
+	switch (response) 
+	{
+		case MmUserExists:
+			ret = NSLocalizedString(@"User valid", @"");
+			break;
+		case MmWrongKey:
+			ret = NSLocalizedString(@"Key not valid", @"");
+			break;
+		case MmWrongPwd:
+			ret = NSLocalizedString(@"meemi_id or pwd not valid.", @"");
+			break;
+		case MmUserNotExists:
+			ret = NSLocalizedString(@"User do not exists or is not active.", @"");
+			break;
+		case MmNoRecipientForPrivateMeme:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmNoReplyAllowed:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmPostOK:
+			ret = NSLocalizedString(@"Post successful", @"");
+			break;
+		case MmNotLoggedIn:
+			ret = NSLocalizedString(@"User not logged", @"");
+			break;
+		case MmMarked:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmAddedToFavs:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmDeletedFromFavs:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmChanged:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmNotYours:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmMemeRemoved:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmMemeDoNotExists:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"Error %d", @""), response];
+			break;
+		case MmUndefinedError:
+			ret = NSLocalizedString(@"Undefined error.", @"");
+			break;
+		default:
+			ret = [NSString stringWithFormat:NSLocalizedString(@"REALLY undefined error: %d", @""), response];
+			break;
+	}
+	return ret;
+}
+
+// Validates user and pwd, write them into appdefaults
+-(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd
+{
+	// Sanity checks
+	NSAssert(delegate, @"delegate not set in Meemi");
+	// Set current request type
+	self.currentRequest = MmRValidateUser;
 	// build the password using SHA-256
 	unsigned char hashedChars[32];
 	CC_SHA256([pwd UTF8String],
@@ -121,7 +256,7 @@ static Meemi *sharedMeemi = nil;
 	
 	// API for user testing
 	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api/p/exists"];
-	ASIFormDataRequest *request = [ASIHTTPRequest requestWithURL:url];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:meemi_id forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
@@ -129,13 +264,13 @@ static Meemi *sharedMeemi = nil;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	[request startAsynchronous];
 
-	// user is OK. Save it.
+	// user is OK. Save it (both class and NSUserDefaults.
 	self.screenName = meemi_id;
 	self.password = pwd;
+	self.valid = YES;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:meemi_id forKey:@"screenName"];
 	[defaults setObject:pwd forKey:@"password"];	
-	return YES;
 }
 
 @end

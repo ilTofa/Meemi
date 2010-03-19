@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Meemi.h"
 
-
-@interface SettingsController : UIViewController <UITextFieldDelegate>
+@interface SettingsController : UIViewController <UITextFieldDelegate, MeemiDelegate>
 {
 	UITextField *screenName;
 	UITextField *password;
