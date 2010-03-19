@@ -13,12 +13,14 @@
 {
 	UITextField *screenName;
 	UITextField *password;
-	UILabel *testLabel;	
+	UILabel *testLabel;
+	UIActivityIndicatorView *laRuota;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *screenName;
 @property (nonatomic, retain) IBOutlet UITextField *password;
 @property (nonatomic, retain) IBOutlet UILabel *testLabel;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laRuota;
 
 - (IBAction)testLogin:(id)sender;
 

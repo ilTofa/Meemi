@@ -14,14 +14,12 @@
 	UIWebView *theView;
 	NSString *screenName;
 	NSString *password;
-	UIToolbar *theToolbar;	
+	UIActivityIndicatorView *laRuota;
 }
 
 @property (retain, nonatomic) IBOutlet UIWebView *theView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
 @property (retain, nonatomic) NSString *screenName;
 @property (retain, nonatomic) NSString *password;
-@property (nonatomic, retain) IBOutlet UIToolbar *theToolbar;
-
--(IBAction)gotoHome:(id)sender;
 
 @end

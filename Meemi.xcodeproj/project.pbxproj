@@ -19,6 +19,13 @@
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
 		C07ED93E1151470A00311726 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07ED93C1151470A00311726 /* SettingsController.xib */; };
+		C091860B11542D0D00C2C5A4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860A11542D0D00C2C5A4 /* logo.png */; };
+		C091860F11542EC400C2C5A4 /* ToolBar-Meemi.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */; };
+		C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918610115431C600C2C5A4 /* 20-gear2.png */; };
+		C0918613115432A500C2C5A4 /* 64-zap.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918612115432A500C2C5A4 /* 64-zap.png */; };
+		C0918615115434EB00C2C5A4 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918614115434EB00C2C5A4 /* Camera.png */; };
+		C09186171154354B00C2C5A4 /* Text.png in Resources */ = {isa = PBXBuildFile; fileRef = C09186161154354B00C2C5A4 /* Text.png */; };
+		C0918626115438A000C2C5A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918625115438A000C2C5A4 /* Default.png */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -53,6 +60,13 @@
 		C07ED93A1151470A00311726 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		C07ED93B1151470A00311726 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		C07ED93C1151470A00311726 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
+		C091860A11542D0D00C2C5A4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolBar-Meemi.png"; sourceTree = "<group>"; };
+		C0918610115431C600C2C5A4 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		C0918612115432A500C2C5A4 /* 64-zap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "64-zap.png"; sourceTree = "<group>"; };
+		C0918614115434EB00C2C5A4 /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
+		C09186161154354B00C2C5A4 /* Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text.png; sourceTree = "<group>"; };
+		C0918625115438A000C2C5A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -142,11 +156,18 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C09186161154354B00C2C5A4 /* Text.png */,
+				C0918614115434EB00C2C5A4 /* Camera.png */,
+				C0918612115432A500C2C5A4 /* 64-zap.png */,
+				C0918610115431C600C2C5A4 /* 20-gear2.png */,
+				C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */,
+				C091860A11542D0D00C2C5A4 /* logo.png */,
 				C07ED92B1151429000311726 /* Icon.png */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
+				C0918625115438A000C2C5A4 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -235,6 +256,13 @@
 				282CCBFE0DB6C98000C4EA27 /* SecondView.xib in Resources */,
 				C07ED92C1151429000311726 /* Icon.png in Resources */,
 				C07ED93E1151470A00311726 /* SettingsController.xib in Resources */,
+				C091860B11542D0D00C2C5A4 /* logo.png in Resources */,
+				C091860F11542EC400C2C5A4 /* ToolBar-Meemi.png in Resources */,
+				C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */,
+				C0918613115432A500C2C5A4 /* 64-zap.png in Resources */,
+				C0918615115434EB00C2C5A4 /* Camera.png in Resources */,
+				C09186171154354B00C2C5A4 /* Text.png in Resources */,
+				C0918626115438A000C2C5A4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

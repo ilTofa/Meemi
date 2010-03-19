@@ -26,6 +26,8 @@
 {    
     // Add the tab bar controller's current view as a subview of the window
     [window addSubview:tabBarController.view];
+	// Start on settings
+	self.tabBarController.selectedIndex = 2;
 }
 
 

@@ -107,7 +107,12 @@ static Meemi *sharedSession = nil;
 	[self.delegate meemi:self.currentRequest didFailWithError:error];
 }
 
-#pragma mark NSXMLParser delegate
+#pragma mark Helpers
+
+-(void)markSessionValid
+{
+	self.valid = YES;
+}
 
 // Parse response string
 // returns YES if xml parsing succeeds, NO otherwise
@@ -126,6 +131,8 @@ static Meemi *sharedSession = nil;
 	else
 		return NO;
 }
+
+#pragma mark NSXMLParser delegate
 
 // NSXMLParser delegates
 
@@ -147,6 +154,11 @@ static Meemi *sharedSession = nil;
 			NSString *code = [attributeDict objectForKey:@"code"];
 			// Defensive code for the case "code" do not exists
 			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
+			// if user is OK. Save it (both class and NSUserDefaults).
+			if([code intValue] == 0)
+				[self markSessionValid];
+			else // mark session not valid
+				self.valid = NO;
 			[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
 		}
 	}
@@ -242,6 +254,9 @@ static Meemi *sharedSession = nil;
 {
 	// Sanity checks
 	NSAssert(delegate, @"delegate not set in Meemi");
+	// Remember user and pwd in our structures
+	self.screenName = meemi_id;
+	self.password = pwd;
 	// Set current request type
 	self.currentRequest = MmRValidateUser;
 	// build the password using SHA-256
@@ -263,14 +278,6 @@ static Meemi *sharedSession = nil;
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	[request startAsynchronous];
-
-	// user is OK. Save it (both class and NSUserDefaults.
-	self.screenName = meemi_id;
-	self.password = pwd;
-	self.valid = YES;
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:meemi_id forKey:@"screenName"];
-	[defaults setObject:pwd forKey:@"password"];	
 }
 
 @end

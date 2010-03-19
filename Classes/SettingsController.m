@@ -11,10 +11,12 @@
 
 @implementation SettingsController
 
-@synthesize screenName, password, testLabel;
+@synthesize screenName, password, testLabel, laRuota;
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
+	if([laRuota isAnimating])
+		[laRuota stopAnimating];
 	NSLog(@"Error: %@", error);
 	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
 														message:[error localizedDescription]
@@ -26,19 +28,20 @@
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
-	// if it was an user validation request and it was OK, save it
-	if(request == MmRValidateUser && result == MmUserExists)
+	// if it was an user validation request (as it should be) set the result
+	if(request == MmRValidateUser)
+		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
+	// If session is valid, save parameters into defaults
+	if([Meemi sharedSession].isValid)
 	{
-		// TODO: check a login and save ONLY if successful
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:self.screenName.text forKey:@"screenName"];
-		[defaults setObject:self.password.text forKey:@"password"];
-		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
+		[defaults setObject:self.screenName forKey:@"screenName"];
+		[defaults setObject:self.password forKey:@"password"];		
 	}
-	else {
-		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
-	}
-
+	else
+		[self.screenName becomeFirstResponder];
+	if([laRuota isAnimating])
+		[laRuota stopAnimating];
 }
 
 - (IBAction)testLogin:(id)sender
@@ -56,9 +59,16 @@
         [self.screenName resignFirstResponder];
     if (theTextField == self.password)
         [self.password resignFirstResponder];
-	// Select POST TAB.
-	((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
-    return YES;
+	// Select POST TAB (only if we have valid user and password)
+	if([Meemi sharedSession].isValid)
+	{
+		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
+		return YES;
+	}
+	// else do not dismiss keyboard (and warn user)
+	self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
+	[theTextField becomeFirstResponder];
+	return NO;
 }
 
 
@@ -82,10 +92,11 @@
 {
 	[super viewDidAppear:animated];
 	// load user defaults
+	[laRuota startAnimating];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	self.screenName.text = [defaults stringForKey:@"screenName"];
-	self.password.text = [defaults stringForKey:@"password"];
-	[self.screenName becomeFirstResponder];
+	self.password.text = [defaults stringForKey:@"password"];;
+	[self testLogin:nil];
 }
 
 /*

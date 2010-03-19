@@ -7,6 +7,8 @@
 //
 
 #import "MeemiWebAppController.h"
+#import "MeemiAppDelegate.h"
+#import "Meemi.h"
 
 // URL definitions (with helpers)
 #define kLoginUrl		@"http://meemi.com/m/p/signin/exec"
@@ -15,7 +17,7 @@
 
 @implementation MeemiWebAppController
 
-@synthesize theView, screenName, password, theToolbar;
+@synthesize theView, screenName, password, laRuota;
 
 #pragma mark UIWebViewDelegate
 
@@ -29,12 +31,14 @@
 {
 	NSLog(@"webViewDidFinishLoad");
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	if([self.laRuota isAnimating])
+		[self.laRuota stopAnimating];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
 	NSLog(@"webViewDidStartLoad");
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -52,6 +56,7 @@
 
 -(IBAction)gotoHome:(id)sender
 {
+	[self.laRuota startAnimating];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kLoginUrl]]; 
 	[request setHTTPMethod:@"POST"];
 	NSString *myRequestString = [NSString stringWithFormat:kLoginFormat, self.screenName, self.password];
@@ -83,30 +88,32 @@
 {
 	[super viewDidLoad];
 	// Init username and password
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName = [defaults stringForKey:@"screenName"];
-	self.password = [defaults stringForKey:@"password"];
+	if([Meemi sharedSession].isValid)
+	{
+		self.screenName = [Meemi sharedSession].screenName;
+		self.password = [Meemi sharedSession].password;
+	}
+	else // the session is invalid, goto setting page!
+		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 2;
 	// Set delegate of web view to us
 	self.theView.delegate = self;
-	// if username and pwd exists, goto homepage
-	if(self.screenName != @"" && self.password != @"")
-		[self gotoHome:nil];
-	else // TODO: goto Settings tab
-		;
+	[self gotoHome:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	// Init username and password
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName = [defaults stringForKey:@"screenName"];
-	self.password = [defaults stringForKey:@"password"];
+	// Init username and password
+	if([Meemi sharedSession].isValid)
+	{
+		self.screenName = [Meemi sharedSession].screenName;
+		self.password = [Meemi sharedSession].password;
+	}
+	else // the session is invalid, goto setting page!
+		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 2;
 	// Set delegate of web view to us
 	self.theView.delegate = self;
-	// if username or pwd do not exists, Do something
-	if(self.screenName == @"" || self.password == @"")
-		;
 }
 /*
 // Override to allow orientations other than the default portrait orientation.
