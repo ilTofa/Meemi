@@ -35,8 +35,8 @@
 	if([Meemi sharedSession].isValid)
 	{
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:self.screenName forKey:@"screenName"];
-		[defaults setObject:self.password forKey:@"password"];		
+		[defaults setObject:self.screenName.text forKey:@"screenName"];
+		[defaults setObject:self.password.text forKey:@"password"];		
 	}
 	else
 		[self.screenName becomeFirstResponder];

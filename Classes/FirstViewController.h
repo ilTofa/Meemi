@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
+#import "MeemiAppDelegate.h"
+#import "Meemi.h"
 
-@interface FirstViewController : UIViewController {
-
+@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate>
+{
+	UIButton *cameraButton;
 }
+
+@property (retain, nonatomic) IBOutlet UIButton *cameraButton;
+
+-(IBAction)sendImage:(id)sender;
+-(IBAction)sendText:(id)sender;
+
+-(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type;
 
 @end

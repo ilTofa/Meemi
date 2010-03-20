@@ -26,6 +26,8 @@
 		C0918615115434EB00C2C5A4 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918614115434EB00C2C5A4 /* Camera.png */; };
 		C09186171154354B00C2C5A4 /* Text.png in Resources */ = {isa = PBXBuildFile; fileRef = C09186161154354B00C2C5A4 /* Text.png */; };
 		C0918626115438A000C2C5A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918625115438A000C2C5A4 /* Default.png */; };
+		C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0918686115442BC00C2C5A4 /* ImageSender.m */; };
+		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -67,6 +69,9 @@
 		C0918614115434EB00C2C5A4 /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
 		C09186161154354B00C2C5A4 /* Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text.png; sourceTree = "<group>"; };
 		C0918625115438A000C2C5A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C0918685115442BC00C2C5A4 /* ImageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSender.h; sourceTree = "<group>"; };
+		C0918686115442BC00C2C5A4 /* ImageSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSender.m; sourceTree = "<group>"; };
+		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -119,6 +124,8 @@
 				C07ED9311151431800311726 /* MeemiWebAppController.m */,
 				C07ED93A1151470A00311726 /* SettingsController.h */,
 				C07ED93B1151470A00311726 /* SettingsController.m */,
+				C0918685115442BC00C2C5A4 /* ImageSender.h */,
+				C0918686115442BC00C2C5A4 /* ImageSender.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -163,11 +170,12 @@
 				C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */,
 				C091860A11542D0D00C2C5A4 /* logo.png */,
 				C07ED92B1151429000311726 /* Icon.png */,
+				C0918625115438A000C2C5A4 /* Default.png */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
+				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
-				C0918625115438A000C2C5A4 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 				C0918615115434EB00C2C5A4 /* Camera.png in Resources */,
 				C09186171154354B00C2C5A4 /* Text.png in Resources */,
 				C0918626115438A000C2C5A4 /* Default.png in Resources */,
+				C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +295,7 @@
 				C0E6202B1152E12A00E6C079 /* ASINSStringAdditions.m in Sources */,
 				C0E6202C1152E12A00E6C079 /* Reachability.m in Sources */,
 				C0E620431152E36800E6C079 /* Meemi.m in Sources */,
+				C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
