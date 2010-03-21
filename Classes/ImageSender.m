@@ -11,7 +11,45 @@
 
 @implementation ImageSender
 
-@synthesize description, theImage, theImageView, laRuota;
+@synthesize description, theImage, theThumbnail, theImageView, laRuota;
+
+// make a scaled copy (constrained to targetSize size) of self.theImage into self.theThumbnail for display purpose
+-(void)createThumbnail;
+{
+	// Calculate new dmension without deforming the image
+	CGFloat targetWidth = 128.0;
+	CGFloat targetHeight = 128.0;
+	CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
+	CGFloat scaleFactor = 0.0;
+	CGFloat scaledWidth = targetWidth;
+	CGFloat scaledHeight = targetHeight;
+	CGSize imageSize = self.theImage.size;
+	
+	if (CGSizeEqualToSize(imageSize, targetSize) == NO) 
+	{
+        CGFloat widthFactor = targetWidth / imageSize.width;
+        CGFloat heightFactor = targetHeight / imageSize.height;
+		
+        if (widthFactor < heightFactor) 
+			scaleFactor = widthFactor; // scale to fit height
+        else 
+			scaleFactor = heightFactor; // scale to fit width
+		
+        scaledWidth  = imageSize.width * scaleFactor;
+        scaledHeight = imageSize.height * scaleFactor;
+	}
+	CGSize newSize = CGSizeMake(scaledWidth, scaledHeight);
+	// Create a graphics image context
+	UIGraphicsBeginImageContext(newSize);
+	// Tell the old image to draw in this new context, with the desired size
+	UIImage *tempImage = [UIImage imageWithCGImage:theImage.CGImage];
+	[tempImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+	// Get the new image from the context
+	self.theThumbnail = UIGraphicsGetImageFromCurrentImageContext();
+	// End the context
+	UIGraphicsEndImageContext();
+}
+
 
 -(IBAction)sendIt:(id)sender
 {
@@ -33,17 +71,13 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	self.theImageView.image = self.theImage;
-}
-
-
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad 
 {
-	[super viewDidAppear:animated];
-	self.theImageView.image = self.theImage;
+    [super viewDidLoad];
+	[self createThumbnail];
+	self.theImageView.image = self.theThumbnail;
 }
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

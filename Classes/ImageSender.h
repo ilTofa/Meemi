@@ -13,13 +13,14 @@
 {
 	UITextField *description;
 	UIImageView *theImageView;
-	UIImage *theImage;
+	UIImage *theImage, *theThumbnail;
 	UIActivityIndicatorView *laRuota;
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *description;
 @property (retain, nonatomic) IBOutlet UIImageView *theImageView;
 @property (retain, nonatomic) IBOutlet UIImage *theImage;
+@property (retain, nonatomic) IBOutlet UIImage *theThumbnail;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
 
 -(IBAction)sendIt:(id)sender;

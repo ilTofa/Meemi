@@ -8,7 +8,7 @@
 	};
 	28216C960DB411BC00E5133A /* FirstViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {843, 2093}}";
+			sepNavIntBoundsRect = "{{0, 0}, {843, 2054}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 1922}";
 			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
@@ -20,27 +20,84 @@
 		activeSDKPreference = iphonesimulator3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
 		breakpoints = (
-			645F65421155552F00396ABE /* ImageSender.m:45 */,
-			645F65601155557600396ABE /* ImageSender.m:38 */,
+			6428BBB511560E8B004EA870 /* ImageSender.m:20 */,
 		);
 		codeSenseManager = 6453FBAB11527DB5009F6DBD /* Code sense */;
 		executables = (
 			6453FB9711527D95009F6DBD /* Meemi */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 290804882;
-			PBXWorkspaceStateSaveDate = 290804882;
+			PBXPerProjectTemplateStateSaveDate = 290850434;
+			PBXWorkspaceStateSaveDate = 290850434;
 		};
 		perUserProjectItems = {
-			645F65401155550400396ABE /* PBXBookmark */ = 645F65401155550400396ABE /* PBXBookmark */;
-			645F65681155731600396ABE /* PBXTextBookmark */ = 645F65681155731600396ABE /* PBXTextBookmark */;
-			645F65691155731600396ABE /* PBXTextBookmark */ = 645F65691155731600396ABE /* PBXTextBookmark */;
-			645F656A1155731600396ABE /* PBXTextBookmark */ = 645F656A1155731600396ABE /* PBXTextBookmark */;
+			6428BB9811560A71004EA870 /* PBXTextBookmark */ = 6428BB9811560A71004EA870 /* PBXTextBookmark */;
+			6428BBB911560E90004EA870 /* PBXTextBookmark */ = 6428BBB911560E90004EA870 /* PBXTextBookmark */;
+			6428BBC411560F34004EA870 /* PBXTextBookmark */ = 6428BBC411560F34004EA870 /* PBXTextBookmark */;
+			6428BBC511560F34004EA870 /* PBXTextBookmark */ = 6428BBC511560F34004EA870 /* PBXTextBookmark */;
 			645F656B1155731600396ABE /* PBXTextBookmark */ = 645F656B1155731600396ABE /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6453FBAA11527DB5009F6DBD /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	6428BB9811560A71004EA870 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0918685115442BC00C2C5A4 /* ImageSender.h */;
+		name = "ImageSender.h: 23";
+		rLen = 0;
+		rLoc = 587;
+		rType = 0;
+		vrLen = 742;
+		vrLoc = 0;
+	};
+	6428BBB511560E8B004EA870 /* ImageSender.m:20 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C0918686115442BC00C2C5A4 /* ImageSender.m */;
+		functionName = "-createThumbnail";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 20;
+		location = Meemi;
+		modificationTime = 290852597.216646;
+		originalNumberOfMultipleMatches = 1;
+		state = 2;
+	};
+	6428BBB911560E90004EA870 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0918686115442BC00C2C5A4 /* ImageSender.m */;
+		name = "ImageSender.m: 19";
+		rLen = 0;
+		rLoc = 421;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 0;
+	};
+	6428BBC411560F34004EA870 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0918686115442BC00C2C5A4 /* ImageSender.m */;
+		name = "ImageSender.m: 33";
+		rLen = 0;
+		rLoc = 951;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 0;
+	};
+	6428BBC511560F34004EA870 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28216C960DB411BC00E5133A /* FirstViewController.m */;
+		name = "FirstViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1922;
+		vrLoc = 0;
 	};
 	6453FB9711527D95009F6DBD /* Meemi */ = {
 		isa = PBXExecutable;
@@ -49,7 +106,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -88,76 +145,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	645F65401155550400396ABE /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 28216C960DB411BC00E5133A /* FirstViewController.m */;
-	};
-	645F65421155552F00396ABE /* ImageSender.m:45 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = C0918686115442BC00C2C5A4 /* ImageSender.m */;
-		functionName = "-viewDidAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 45;
-		location = Meemi;
-		modificationTime = 290805102.035642;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
-	645F65601155557600396ABE /* ImageSender.m:38 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = C0918686115442BC00C2C5A4 /* ImageSender.m */;
-		functionName = "-viewDidLoad";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 38;
-		location = Meemi;
-		modificationTime = 290805115.228074;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
-	645F65681155731600396ABE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0918685115442BC00C2C5A4 /* ImageSender.h */;
-		name = "ImageSender.h: 15";
-		rLen = 0;
-		rLoc = 262;
-		rType = 0;
-		vrLen = 665;
-		vrLoc = 0;
-	};
-	645F65691155731600396ABE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0918686115442BC00C2C5A4 /* ImageSender.m */;
-		name = "ImageSender.m: 39";
-		rLen = 0;
-		rLoc = 906;
-		rType = 0;
-		vrLen = 1353;
-		vrLoc = 266;
-	};
-	645F656A1155731600396ABE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0918686115442BC00C2C5A4 /* ImageSender.m */;
-		name = "ImageSender.m: 39";
-		rLen = 0;
-		rLoc = 906;
-		rType = 0;
-		vrLen = 1353;
-		vrLoc = 266;
-	};
 	645F656B1155731600396ABE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 28216C960DB411BC00E5133A /* FirstViewController.m */;
@@ -193,16 +180,16 @@
 	};
 	C0918685115442BC00C2C5A4 /* ImageSender.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {843, 642}}";
-			sepNavSelRange = "{262, 0}";
-			sepNavVisRange = "{0, 665}";
+			sepNavIntBoundsRect = "{{0, 0}, {843, 619}}";
+			sepNavSelRange = "{587, 0}";
+			sepNavVisRange = "{0, 742}";
 		};
 	};
 	C0918686115442BC00C2C5A4 /* ImageSender.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 923}}";
-			sepNavSelRange = "{906, 0}";
-			sepNavVisRange = "{266, 1353}";
+			sepNavIntBoundsRect = "{{0, 0}, {843, 1404}}";
+			sepNavSelRange = "{951, 0}";
+			sepNavVisRange = "{0, 1703}";
 		};
 	};
 }
