@@ -12,7 +12,8 @@
 
 typedef enum {
 	MmRValidateUser = 1,
-	MmRPostImage
+	MmRPostImage,
+	MmRPostText
 } MeemiRequest;
 
 typedef enum
@@ -60,6 +61,7 @@ typedef enum
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description;
+-(void)postTextAsMeme:(NSString *)description;
 
 -(BOOL)parse:(NSData *)responseData;
 

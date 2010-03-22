@@ -40,6 +40,8 @@
 		C0E620321152E15000E6C079 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620311152E15000E6C079 /* libz.1.2.3.dylib */; };
 		C0E620431152E36800E6C079 /* Meemi.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620421152E36800E6C079 /* Meemi.m */; };
 		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
+		C0FB56851157B5DD003932F3 /* TextSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FB56831157B5DD003932F3 /* TextSender.m */; };
+		C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FB56841157B5DD003932F3 /* TextSender.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,9 @@
 		C0E620411152E36800E6C079 /* Meemi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meemi.h; sourceTree = "<group>"; };
 		C0E620421152E36800E6C079 /* Meemi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meemi.m; sourceTree = "<group>"; };
 		C0E620491152E4E100E6C079 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C0FB56821157B5DD003932F3 /* TextSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSender.h; sourceTree = "<group>"; };
+		C0FB56831157B5DD003932F3 /* TextSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSender.m; sourceTree = "<group>"; };
+		C0FB56841157B5DD003932F3 /* TextSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TextSender.xib; path = Classes/TextSender.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +131,8 @@
 				C07ED93B1151470A00311726 /* SettingsController.m */,
 				C0918685115442BC00C2C5A4 /* ImageSender.h */,
 				C0918686115442BC00C2C5A4 /* ImageSender.m */,
+				C0FB56821157B5DD003932F3 /* TextSender.h */,
+				C0FB56831157B5DD003932F3 /* TextSender.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
 				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
+				C0FB56841157B5DD003932F3 /* TextSender.xib */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
 			);
 			name = Resources;
@@ -272,6 +280,7 @@
 				C09186171154354B00C2C5A4 /* Text.png in Resources */,
 				C0918626115438A000C2C5A4 /* Default.png in Resources */,
 				C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */,
+				C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +305,7 @@
 				C0E6202C1152E12A00E6C079 /* Reachability.m in Sources */,
 				C0E620431152E36800E6C079 /* Meemi.m in Sources */,
 				C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */,
+				C0FB56851157B5DD003932F3 /* TextSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

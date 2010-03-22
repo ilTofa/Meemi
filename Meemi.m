@@ -155,20 +155,20 @@ static Meemi *sharedSession = nil;
 			// Defensive code for the case "code" do not exists
 			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
 			// if user is OK. Save it (both class and NSUserDefaults).
-			if([code intValue] == 0)
+			if([code intValue] == MmUserExists)
 				[self markSessionValid];
 			else // mark session not valid
 				self.valid = NO;
 			[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
 		}
-		// If it was animage post, check return and inform delegate
-		if(self.currentRequest == MmRPostImage)
+		// If it was a  post, check return and inform delegate
+		if(self.currentRequest == MmRPostImage || self.currentRequest == MmRPostText)
 		{
 			NSString *code = [attributeDict objectForKey:@"code"];
 			// Defensive code for the case "code" do not exists
 			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
 			// if return code is OK, get back to delegate
-			if([code intValue] == 7)
+			if([code intValue] == MmPostOK)
 				[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
 		}
 	}
@@ -310,16 +310,63 @@ static Meemi *sharedSession = nil;
 	// API for user testing
 	NSURL *url = [NSURL URLWithString:
 				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
+//	NSURL *url = [NSURL URLWithString:
+//				  [NSString stringWithFormat:@"http://meemi.com/stc/up.php?tag=upload", self.screenName]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.screenName forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setPostValue:@"image" forKey:@"meme_type"];
 	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
-	[request setPostValue:description forKey:@"image_description"];
-	[request setData:UIImageJPEGRepresentation(image, 0.75) forKey:@"image_pc"];
+	[request setPostValue:description forKey:@"text_content"];
+
+	NSData *imageAsJPEG = UIImageJPEGRepresentation(image, 0.75);
+	// DEBUG: save in a file for later reference
+//	NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask ,YES );
+//	NSString *documentsDirectory = [paths objectAtIndex:0];
+//	NSString *path = [documentsDirectory stringByAppendingPathComponent:@"unuseful.jpeg"];
+//	[imageAsJPEG writeToFile:path atomically:NO];
+//	NSLog(@"Wrote %d bytes to %@", [imageAsJPEG length], path);
+	[request setData:imageAsJPEG withFileName:@"unuseful.jpg" andContentType:@"image/jpeg" forKey:@"image_pc"];
+	
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
+	[request startAsynchronous];	
+}
+
+-(void)postTextAsMeme:(NSString *)description
+{
+	// Sanity checks
+	NSAssert(delegate, @"delegate not set in Meemi");
+	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
+	// Set current request type
+	self.currentRequest = MmRPostText;
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([self.password UTF8String],
+			  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	
+	// API for user testing
+	NSURL *url = [NSURL URLWithString:
+				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
+	//	NSURL *url = [NSURL URLWithString:
+	//				  [NSString stringWithFormat:@"http://meemi.com/stc/up.php?tag=upload", self.screenName]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:self.screenName forKey:@"meemi_id"];
+	[request setPostValue:hashedData forKey:@"pwd"];
+	[request setPostValue:kAPIKey forKey:@"app_key"];
+	[request setPostValue:@"text" forKey:@"meme_type"];
+	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
+	[request setPostValue:description forKey:@"text_content"];
+	[request setDelegate:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
 	[request startAsynchronous];	
 }
 

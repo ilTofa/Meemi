@@ -21,18 +21,20 @@
 	imageSenderController.theImage = theImage;
 	imageSenderController.delegate = self;
 	[self.view addSubview:imageSenderController.view];
-//	imageSenderController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//	imageSenderController.theImage.image = theImage;
-//	[self presentModalViewController:imageSenderController animated:YES];
-//	[imageSenderController release];
 }
 
-#pragma mark ImageSenderControllerDelegate
+#pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
 
 -(void)doneWithImageSender
 {
 	[imageSenderController.view removeFromSuperview];
 	[imageSenderController release];
+}
+
+-(void)doneWithTextSender
+{
+	[textSenderController.view removeFromSuperview];
+	[textSenderController release];
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -115,6 +117,9 @@
 
 -(IBAction)sendText:(id)sender
 {
+	textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+	textSenderController.delegate = self;
+	[self.view addSubview:textSenderController.view];	
 }
 
 /*
