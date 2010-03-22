@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol MeemiDelegate;
 
@@ -37,7 +38,7 @@ typedef enum
 	MmUndefinedError = 999
 } MeemiResult;
 
-@interface Meemi : NSObject 
+@interface Meemi : NSObject <CLLocationManagerDelegate>
 {
 	BOOL valid;
 	NSString *screenName, *password;
@@ -47,13 +48,28 @@ typedef enum
 	// for use by NSXMLParser and its delegates
 	NSXMLParser *addressParser;
 	NSMutableString *currentStringValue;
+	NSMutableData *xmlData;
+
+	NSURLConnection *theReverseGeoConnection;
+	// How Many times have been denied Location use?
+	double distance;
+	BOOL needLocation;
+	CLLocationManager *locationManager;
+	int nLocationUseDenies;
+	BOOL lcDenied;	
+	NSString *placeName, *state;
+	NSString *nearbyPlaceName;
 }
 
+@property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied;
+@property (nonatomic, assign) int nLocationUseDenies;
 @property (nonatomic, getter=isValid) BOOL valid;
+@property (nonatomic, copy) NSString *nearbyPlaceName;
 @property (nonatomic, copy) NSString *screenName;
 @property (nonatomic, copy) NSString *password;
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;
+@property (nonatomic, retain) NSString *placeName, *state;
 
 +(Meemi *)sharedSession;
 -(id)initWithDelegate:(id<MeemiDelegate>)delegate;

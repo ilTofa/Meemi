@@ -18,6 +18,7 @@ static Meemi *sharedSession = nil;
 @implementation Meemi
 
 @synthesize valid, screenName, password, delegate, currentRequest;
+@synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
 
 #pragma mark Singleton Class Setup
 
@@ -368,12 +369,6 @@ static Meemi *sharedSession = nil;
 	[request startAsynchronous];	
 }
 
-@end
-
-#if 0
-
-<CLLocationManagerDelegate>
-
 #pragma mark CLLocationManagerDelegate and its delegate
 
 - (void)startLocation
@@ -390,19 +385,17 @@ static Meemi *sharedSession = nil;
         locationManager = [[CLLocationManager alloc] init];
 		
 		locationManager.delegate = self;
-		locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
 		
 		// Set a movement threshold for new events
-		locationManager.distanceFilter = 500;
+		locationManager.distanceFilter = 200;
 		
 		[locationManager startUpdatingLocation];	
 }
 
 
 // Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manager
-didUpdateToLocation:(CLLocation *)newLocation
-fromLocation:(CLLocation *)oldLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     // If it's a relatively recent event, turn off updates to save power
     NSDate* eventDate = newLocation.timestamp;
@@ -411,27 +404,22 @@ fromLocation:(CLLocation *)oldLocation
     {
         [manager stopUpdatingLocation];
 		
-		// Pass location to Pinch Media and Flurry
-		[[Beacon shared] setBeaconLocation:newLocation];
-		[FlurryAPI setLocation:newLocation];
-		theSigns.latitude = newLocation.coordinate.latitude;
-		theSigns.longitude = newLocation.coordinate.longitude;
-		theSigns.accuracy = newLocation.horizontalAccuracy;
-		theSigns.needingLocation = NO;
-		locationLabel.text = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%dm\n",
-							  theSigns.latitude, theSigns.longitude, theSigns.accuracy];
+		// Pass location to Flurry
+//		[FlurryAPI setLocation:newLocation];
+		needLocation = NO;
+//		locationLabel.text = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%dm\n",
+//							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
+//							  newLocation.horizontalAccuracy];
 		// Do we need reverse geolocation?
-		if([theSigns.nearbyPlaceName isEqualToString:@""])
+		if([self.nearbyPlaceName isEqualToString:@""])
 		{
 			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
 			if(theReverseGeoConnection != nil)
 				return;
 			
 			NSString *urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPlaceName?lat=%+.6f&lng=%+.6f",
-								   theSigns.latitude, theSigns.longitude];
-			NSURL *url;
-			url = [NSURL URLWithString:urlString];
-			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url 
+								   newLocation.coordinate.latitude, newLocation.coordinate.longitude];
+			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
 														cachePolicy:NSURLRequestReturnCacheDataElseLoad
 													timeoutInterval:30];
 			xmlData = nil;
@@ -451,8 +439,8 @@ fromLocation:(CLLocation *)oldLocation
 		// add one to Get how many times user refused and save to default
 		self.nLocationUseDenies = self.nLocationUseDenies + 1;
 		// if denied thrice... signal it!
-		if(self.nLocationUseDenies >= 3)
-			[[Beacon shared] startSubBeaconWithName:@"userRefusedLocation" timeSession:NO];
+//		if(self.nLocationUseDenies >= 3)
+//			[[Beacon shared] startSubBeaconWithName:@"userRefusedLocation" timeSession:NO];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setInteger:self.nLocationUseDenies forKey:@"userDeny"];
 	}
@@ -480,10 +468,9 @@ fromLocation:(CLLocation *)oldLocation
     if([addressParser parse])
 	{
 		// Also trims strings
-		theSigns.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@",
-									[placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-									[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-		locationLabel.text = theSigns.nearbyPlaceName;
+		self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@",
+								[placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+								[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 	}	
 	[xmlData release];
 	theReverseGeoConnection = nil;
@@ -514,15 +501,15 @@ fromLocation:(CLLocation *)oldLocation
     if ([elementName isEqualToString:@"name"])
 		self.placeName = currentStringValue;
 		
-		if ([elementName isEqualToString:@"countryCode"])
-			self.state = currentStringValue;
+	if ([elementName isEqualToString:@"countryCode"])
+		self.state = currentStringValue;
 			
-			if ([elementName isEqualToString:@"distance"])
-				sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
+	if ([elementName isEqualToString:@"distance"])
+		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
 				
-				// reset currentStringValue for the next cycle
-				[currentStringValue release];
+	// reset currentStringValue for the next cycle
+	[currentStringValue release];
     currentStringValue = nil;
 }
 
-#endif
+@end
