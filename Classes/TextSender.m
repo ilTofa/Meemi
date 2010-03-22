@@ -56,7 +56,7 @@
 		[self.channel resignFirstResponder];
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text];
+	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:self.canBeLocalized.isOn];
 }
 
 -(IBAction)cancel:(id)sender
@@ -82,8 +82,9 @@
 	// Activate keyboard
     [super viewDidLoad];
 	[self.description becomeFirstResponder];
-	// Disable localization while we think about it
-	self.canBeLocalized.enabled = NO;
+	// Disable localization if we don't have a position
+	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
+		self.canBeLocalized.enabled = NO;
 }
 
 

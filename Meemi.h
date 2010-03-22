@@ -72,12 +72,13 @@ typedef enum
 @property (nonatomic, retain) NSString *placeName, *state;
 
 +(Meemi *)sharedSession;
--(id)initWithDelegate:(id<MeemiDelegate>)delegate;
+
+- (void)startLocation;
 
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description;
--(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel;
+-(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
 
 -(BOOL)parse:(NSData *)responseData;
 

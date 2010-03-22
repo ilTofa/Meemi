@@ -7,7 +7,7 @@
 //
 
 #import "MeemiAppDelegate.h"
-
+#import "Meemi.h"
 
 @implementation MeemiAppDelegate
 
@@ -18,7 +18,8 @@
 + (void)initialize
 {	
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", nil];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
+								 0, @"userValidated", 0, @"userDeny", nil];
     [defaults registerDefaults:appDefaults];
 }
 
@@ -28,6 +29,8 @@
     [window addSubview:tabBarController.view];
 	// Start on settings
 	self.tabBarController.selectedIndex = 2;
+	// Start location request
+	[[Meemi sharedSession] startLocation];
 }
 
 

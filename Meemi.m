@@ -73,22 +73,17 @@ static Meemi *sharedSession = nil;
 	if(self = [super init])
 	{
 		self.valid = NO;
+		needLocation = YES;
+		self.nearbyPlaceName = @"";
+		// get number of times user denied location use..
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
+		// At the moment, user have not denied anything
+		self.lcDenied = NO;		
 		return self;
 	}
 	else
 		return nil;
-}
-
--(id)initWithDelegate:(id<MeemiDelegate>)d
-{
-	if(self = [super init])
-	{
-		self.valid = NO;
-		self.delegate = d;
-		return self;
-	}
-	else
-		return nil;	
 }
 
 #pragma mark ASIHTTPRequest delegate
@@ -188,13 +183,20 @@ static Meemi *sharedSession = nil;
 {
 	NSLog(@"Element End: %@", elementName);
 	NSLog(@"<%@> fully received with value: <%@>", elementName, currentStringValue);
+
+    if ([elementName isEqualToString:@"name"])
+		self.placeName = currentStringValue;
+	
+	if ([elementName isEqualToString:@"countryName"])
+		self.state = currentStringValue;
+	
+	if ([elementName isEqualToString:@"distance"])
+		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
 	
     // reset currentStringValue for the next cycle
     [currentStringValue release];
     currentStringValue = nil;
 }
-
-
 
 #pragma mark API
 
@@ -335,7 +337,7 @@ static Meemi *sharedSession = nil;
 	[request startAsynchronous];	
 }
 
--(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel
+-(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized
 {
 	// Sanity checks
 	NSAssert(delegate, @"delegate not set in Meemi");
@@ -360,7 +362,10 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setPostValue:@"text" forKey:@"meme_type"];
-	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
+	if(!canBeLocalized)
+		[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
+	else
+		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
 	[request setPostValue:description forKey:@"text_content"];
 	[request setPostValue:channel forKey:@"channels"];
 	[request setDelegate:self];
@@ -407,18 +412,23 @@ static Meemi *sharedSession = nil;
 		// Pass location to Flurry
 //		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
-//		locationLabel.text = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%dm\n",
-//							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
-//							  newLocation.horizontalAccuracy];
+		NSLog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
+							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
+							  newLocation.horizontalAccuracy, self.nearbyPlaceName);
 		// Do we need reverse geolocation?
 		if([self.nearbyPlaceName isEqualToString:@""])
 		{
+			// init a safe value, just in case...
+			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
+									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+									locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
 			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
 			if(theReverseGeoConnection != nil)
 				return;
 			
 			NSString *urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPlaceName?lat=%+.6f&lng=%+.6f",
 								   newLocation.coordinate.latitude, newLocation.coordinate.longitude];
+			NSLog(@"Starting reverse geolocation via <%@>", urlString);
 			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
 														cachePolicy:NSURLRequestReturnCacheDataElseLoad
 													timeoutInterval:30];
@@ -460,6 +470,9 @@ static Meemi *sharedSession = nil;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+//	NSString* aStr = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+//	NSLog(@"Answer received from geolocation service: %@", aStr);
+//	[aStr release];
     if (addressParser) // addressParser is an NSXMLParser instance variable
         [addressParser release];
 	addressParser = [[NSXMLParser alloc] initWithData:xmlData];
@@ -468,10 +481,13 @@ static Meemi *sharedSession = nil;
     if([addressParser parse])
 	{
 		// Also trims strings
-		self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@",
+		self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
 								[placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-								[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-	}	
+								[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
+		NSLog(@"Got a full localization: %@", self.nearbyPlaceName);
+	}
 	[xmlData release];
 	theReverseGeoConnection = nil;
 }
@@ -483,33 +499,5 @@ static Meemi *sharedSession = nil;
 		[xmlData release];
 }
 
-
-#pragma mark NSXMLParser
-
-// NSXMLParser delegates
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
-{
-    if (!currentStringValue)
-        // currentStringValue is an NSMutableString instance variable
-        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
-		[currentStringValue appendString:string];
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:@"name"])
-		self.placeName = currentStringValue;
-		
-	if ([elementName isEqualToString:@"countryCode"])
-		self.state = currentStringValue;
-			
-	if ([elementName isEqualToString:@"distance"])
-		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
-				
-	// reset currentStringValue for the next cycle
-	[currentStringValue release];
-    currentStringValue = nil;
-}
 
 @end
