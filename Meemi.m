@@ -310,8 +310,6 @@ static Meemi *sharedSession = nil;
 	// API for user testing
 	NSURL *url = [NSURL URLWithString:
 				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
-//	NSURL *url = [NSURL URLWithString:
-//				  [NSString stringWithFormat:@"http://meemi.com/stc/up.php?tag=upload", self.screenName]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.screenName forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
@@ -319,6 +317,7 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:@"image" forKey:@"meme_type"];
 	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
 	[request setPostValue:description forKey:@"text_content"];
+	[request setPostValue:@"PC" forKey:@"flag"];
 
 	NSData *imageAsJPEG = UIImageJPEGRepresentation(image, 0.75);
 	// DEBUG: save in a file for later reference
@@ -327,7 +326,7 @@ static Meemi *sharedSession = nil;
 //	NSString *path = [documentsDirectory stringByAppendingPathComponent:@"unuseful.jpeg"];
 //	[imageAsJPEG writeToFile:path atomically:NO];
 //	NSLog(@"Wrote %d bytes to %@", [imageAsJPEG length], path);
-	[request setData:imageAsJPEG withFileName:@"unuseful.jpg" andContentType:@"image/jpeg" forKey:@"image_pc"];
+	[request setData:imageAsJPEG withFileName:@"unuseful.jpg" andContentType:@"image/jpeg" forKey:@"img_pc"];
 	
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -335,7 +334,7 @@ static Meemi *sharedSession = nil;
 	[request startAsynchronous];	
 }
 
--(void)postTextAsMeme:(NSString *)description
+-(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel
 {
 	// Sanity checks
 	NSAssert(delegate, @"delegate not set in Meemi");
@@ -355,8 +354,6 @@ static Meemi *sharedSession = nil;
 	// API for user testing
 	NSURL *url = [NSURL URLWithString:
 				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
-	//	NSURL *url = [NSURL URLWithString:
-	//				  [NSString stringWithFormat:@"http://meemi.com/stc/up.php?tag=upload", self.screenName]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:self.screenName forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
@@ -364,6 +361,7 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:@"text" forKey:@"meme_type"];
 	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
 	[request setPostValue:description forKey:@"text_content"];
+	[request setPostValue:channel forKey:@"channels"];
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	

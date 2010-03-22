@@ -61,7 +61,7 @@ typedef enum
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description;
--(void)postTextAsMeme:(NSString *)description;
+-(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel;
 
 -(BOOL)parse:(NSData *)responseData;
 

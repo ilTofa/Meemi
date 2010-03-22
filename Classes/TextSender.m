@@ -11,7 +11,7 @@
 
 @implementation TextSender
 
-@synthesize description, laRuota, delegate;
+@synthesize description, laRuota, delegate, canBeLocalized, channel;
 
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
@@ -52,9 +52,11 @@
 	// Dismiss keyboard if needed
 	if([self.description isFirstResponder])
 		[self.description resignFirstResponder];
+	if([self.channel isFirstResponder])
+		[self.channel resignFirstResponder];
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] postTextAsMeme:self.description.text];
+	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text];
 }
 
 -(IBAction)cancel:(id)sender
@@ -80,6 +82,8 @@
 	// Activate keyboard
     [super viewDidLoad];
 	[self.description becomeFirstResponder];
+	// Disable localization while we think about it
+	self.canBeLocalized.enabled = NO;
 }
 
 

@@ -20,11 +20,15 @@
 {
 	UITextView *description;
 	UIActivityIndicatorView *laRuota;
+	UISwitch *canBeLocalized;
+	UITextField *channel;
 	id<TextSenderControllerDelegate> delegate;
 }
 
 @property (retain, nonatomic) IBOutlet UITextView *description;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
+@property (retain, nonatomic) IBOutlet UISwitch *canBeLocalized;
+@property (retain, nonatomic) IBOutlet UITextField *channel;
 @property (assign) id<TextSenderControllerDelegate> delegate;
 
 -(IBAction)sendIt:(id)sender;
