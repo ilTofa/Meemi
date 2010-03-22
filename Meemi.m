@@ -369,3 +369,160 @@ static Meemi *sharedSession = nil;
 }
 
 @end
+
+#if 0
+
+<CLLocationManagerDelegate>
+
+#pragma mark CLLocationManagerDelegate and its delegate
+
+- (void)startLocation
+{
+	// If user already deny once this session, bail out
+	if(self.isLCDenied)
+		return;
+	// if user denied thrice, bail out...
+	if(self.nLocationUseDenies >= 3)
+		return;
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
+		
+		locationManager.delegate = self;
+		locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+		
+		// Set a movement threshold for new events
+		locationManager.distanceFilter = 500;
+		
+		[locationManager startUpdatingLocation];	
+}
+
+
+// Delegate method from the CLLocationManagerDelegate protocol.
+- (void)locationManager:(CLLocationManager *)manager
+didUpdateToLocation:(CLLocation *)newLocation
+fromLocation:(CLLocation *)oldLocation
+{
+    // If it's a relatively recent event, turn off updates to save power
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 5.0)
+    {
+        [manager stopUpdatingLocation];
+		
+		// Pass location to Pinch Media and Flurry
+		[[Beacon shared] setBeaconLocation:newLocation];
+		[FlurryAPI setLocation:newLocation];
+		theSigns.latitude = newLocation.coordinate.latitude;
+		theSigns.longitude = newLocation.coordinate.longitude;
+		theSigns.accuracy = newLocation.horizontalAccuracy;
+		theSigns.needingLocation = NO;
+		locationLabel.text = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%dm\n",
+							  theSigns.latitude, theSigns.longitude, theSigns.accuracy];
+		// Do we need reverse geolocation?
+		if([theSigns.nearbyPlaceName isEqualToString:@""])
+		{
+			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
+			if(theReverseGeoConnection != nil)
+				return;
+			
+			NSString *urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPlaceName?lat=%+.6f&lng=%+.6f",
+								   theSigns.latitude, theSigns.longitude];
+			NSURL *url;
+			url = [NSURL URLWithString:urlString];
+			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url 
+														cachePolicy:NSURLRequestReturnCacheDataElseLoad
+													timeoutInterval:30];
+			xmlData = nil;
+			theReverseGeoConnection = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+		}
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	// if the user don't want to give us the rights, give up.
+	if(error.code == kCLErrorDenied)
+	{
+		[manager stopUpdatingLocation];
+		// mark that user already denied us for this session
+		self.lcDenied = YES;
+		// add one to Get how many times user refused and save to default
+		self.nLocationUseDenies = self.nLocationUseDenies + 1;
+		// if denied thrice... signal it!
+		if(self.nLocationUseDenies >= 3)
+			[[Beacon shared] startSubBeaconWithName:@"userRefusedLocation" timeSession:NO];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setInteger:self.nLocationUseDenies forKey:@"userDeny"];
+	}
+}
+
+#pragma mark NSURLConnection delegates
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	if(xmlData == nil)
+	{
+		xmlData = [NSMutableData dataWithCapacity:10];
+		[xmlData retain];
+	}
+	[xmlData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (addressParser) // addressParser is an NSXMLParser instance variable
+        [addressParser release];
+	addressParser = [[NSXMLParser alloc] initWithData:xmlData];
+	[addressParser setDelegate:self];
+    [addressParser setShouldResolveExternalEntities:YES];
+    if([addressParser parse])
+	{
+		// Also trims strings
+		theSigns.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@",
+									[placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+									[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		locationLabel.text = theSigns.nearbyPlaceName;
+	}	
+	[xmlData release];
+	theReverseGeoConnection = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	NSLog(@"connection didFailWithError");
+	if(xmlData != nil)
+		[xmlData release];
+}
+
+
+#pragma mark NSXMLParser
+
+// NSXMLParser delegates
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
+{
+    if (!currentStringValue)
+        // currentStringValue is an NSMutableString instance variable
+        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
+		[currentStringValue appendString:string];
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if ([elementName isEqualToString:@"name"])
+		self.placeName = currentStringValue;
+		
+		if ([elementName isEqualToString:@"countryCode"])
+			self.state = currentStringValue;
+			
+			if ([elementName isEqualToString:@"distance"])
+				sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
+				
+				// reset currentStringValue for the next cycle
+				[currentStringValue release];
+    currentStringValue = nil;
+}
+
+#endif

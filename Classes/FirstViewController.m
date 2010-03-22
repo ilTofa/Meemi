@@ -99,7 +99,7 @@
 													 cancelButtonTitle:@"Camera"
 												destructiveButtonTitle:nil
 													 otherButtonTitles:@"Library", nil];
-		[chooseIt showInView:self.view];
+		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
 	}
 	else 
 	{
