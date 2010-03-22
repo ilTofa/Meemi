@@ -7,22 +7,32 @@
 //
 
 #import "FirstViewController.h"
-#import "ImageSender.h"
 
 @implementation FirstViewController
 
 @synthesize cameraButton;
 
+
+
 -(void)showImageSenderController:(UIImage *)theImage
 {
 	// Here we have the picture in an UIImage. Show the controller for definitive sending.
-	ImageSender *imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+	imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
 	imageSenderController.theImage = theImage;
+	imageSenderController.delegate = self;
 	[self.view addSubview:imageSenderController.view];
 //	imageSenderController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //	imageSenderController.theImage.image = theImage;
 //	[self presentModalViewController:imageSenderController animated:YES];
 //	[imageSenderController release];
+}
+
+#pragma mark ImageSenderControllerDelegate
+
+-(void)doneWithImageSender
+{
+	[imageSenderController.view removeFromSuperview];
+	[imageSenderController release];
 }
 
 #pragma mark UIImagePickerControllerDelegate

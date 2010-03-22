@@ -22,7 +22,8 @@
 														message:[error localizedDescription]
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil] autorelease];
+											  otherButtonTitles:nil] 
+							 autorelease];
 	[theAlert show];
 }
 

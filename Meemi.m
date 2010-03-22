@@ -161,6 +161,16 @@ static Meemi *sharedSession = nil;
 				self.valid = NO;
 			[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
 		}
+		// If it was animage post, check return and inform delegate
+		if(self.currentRequest == MmRPostImage)
+		{
+			NSString *code = [attributeDict objectForKey:@"code"];
+			// Defensive code for the case "code" do not exists
+			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
+			// if return code is OK, get back to delegate
+			if([code intValue] == 7)
+				[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
+		}
 	}
 }
 
@@ -278,6 +288,39 @@ static Meemi *sharedSession = nil;
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	[request startAsynchronous];
+}
+
+-(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description
+{
+	// Sanity checks
+	NSAssert(delegate, @"delegate not set in Meemi");
+	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
+	// Set current request type
+	self.currentRequest = MmRPostImage;
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([self.password UTF8String],
+			  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	
+	// API for user testing
+	NSURL *url = [NSURL URLWithString:
+				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:self.screenName forKey:@"meemi_id"];
+	[request setPostValue:hashedData forKey:@"pwd"];
+	[request setPostValue:kAPIKey forKey:@"app_key"];
+	[request setPostValue:@"image" forKey:@"meme_type"];
+	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
+	[request setPostValue:description forKey:@"image_description"];
+	[request setData:UIImageJPEGRepresentation(image, 0.75) forKey:@"image_pc"];
+	[request setDelegate:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	[request startAsynchronous];	
 }
 
 @end

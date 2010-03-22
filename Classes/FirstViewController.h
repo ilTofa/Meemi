@@ -11,10 +11,13 @@
 
 #import "MeemiAppDelegate.h"
 #import "Meemi.h"
+#import "ImageSender.h"
 
-@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate>
+@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, 
+													ImageSenderControllerDelegate>
 {
 	UIButton *cameraButton;
+	ImageSender *imageSenderController;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;

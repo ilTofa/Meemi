@@ -11,7 +11,8 @@
 @protocol MeemiDelegate;
 
 typedef enum {
-	MmRValidateUser = 1
+	MmRValidateUser = 1,
+	MmRPostImage
 } MeemiRequest;
 
 typedef enum
@@ -55,8 +56,10 @@ typedef enum
 
 +(Meemi *)sharedSession;
 -(id)initWithDelegate:(id<MeemiDelegate>)delegate;
+
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
+-(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description;
 
 -(BOOL)parse:(NSData *)responseData;
 

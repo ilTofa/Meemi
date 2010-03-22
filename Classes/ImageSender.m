@@ -11,14 +11,56 @@
 
 @implementation ImageSender
 
-@synthesize description, theImage, theThumbnail, theImageView, laRuota;
+@synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, delegate;
+
+// dismiss keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField
+{
+	NSLog(@"textFieldShouldReturn called");
+    if (theTextField == self.description)
+        [self.description resignFirstResponder];
+	return YES;
+}
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	if([laRuota isAnimating])
+		[laRuota stopAnimating];
+	NSLog(@"Error: %@", error);
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] 
+							 autorelease];
+	[theAlert show];
+	[self.delegate doneWithImageSender];
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	// if error, tell user.
+	if(result != MmPostOK)
+	{
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+															message:[[Meemi sharedSession] getResponseDescription:result]
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+	}
+	if([laRuota isAnimating])
+		[laRuota stopAnimating];
+	[self.delegate doneWithImageSender];
+}
 
 // make a scaled copy (constrained to targetSize size) of self.theImage into self.theThumbnail for display purpose
--(void)createThumbnail;
+-(void)createThumbnail:(CGFloat) ofSize
 {
 	// Calculate new dmension without deforming the image
-	CGFloat targetWidth = 128.0;
-	CGFloat targetHeight = 128.0;
+	CGFloat targetWidth = ofSize;
+	CGFloat targetHeight = ofSize;
 	CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
 	CGFloat scaleFactor = 0.0;
 	CGFloat scaledWidth = targetWidth;
@@ -50,13 +92,30 @@
 	UIGraphicsEndImageContext();
 }
 
+#define kImageSizeInNib 134.0
+#define kLowResolutionSize 800.0
 
 -(IBAction)sendIt:(id)sender
 {
+	// Dismiss keyboard if needed
+	if([self.description isFirstResponder])
+		[self.description resignFirstResponder];
+	[self.laRuota startAnimating];
+	[Meemi sharedSession].delegate = self;
+	// If user wants low res, make a thumbnail.
+	if(!self.highResWanted.isOn)
+	{
+		NSLog(@"Generating thumbnail for post");
+		[self createThumbnail:kLowResolutionSize];
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text];
+	}
+	else
+		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text];
 }
 
 -(IBAction)cancel:(id)sender
 {
+	[self.delegate doneWithImageSender];
 }
 
 /*
@@ -69,12 +128,21 @@
 }
 */
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	[self createThumbnail];
+	self.description.delegate = self;
+	CGSize imageSize = self.theImage.size;
+	// Create a thumbnail to show image (if image is bigger than the bounding box)
+	if(imageSize.width > kImageSizeInNib || imageSize.height > kImageSizeInNib)
+		[self createThumbnail:kImageSizeInNib];
+	// if image is smaller than low res for posting, disable highres switch
+	if(imageSize.width < kLowResolutionSize && imageSize.height < kLowResolutionSize)
+	{
+		self.highResWanted.on = YES;
+		self.highResWanted.enabled = NO;
+	}
 	self.theImageView.image = self.theThumbnail;
 }
 
