@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="106"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -36,10 +37,12 @@
 			</object>
 			<object class="IBUICustomObject" id="664661524"/>
 			<object class="IBUIWindow" id="380026005">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">1316</int>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{320, 480}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -55,7 +58,7 @@
 				<object class="IBUIViewController" key="IBUISelectedViewController" id="1024858337">
 					<string key="IBUITitle">Post</string>
 					<object class="IBUIView" key="IBUIView" id="434903890">
-						<nil key="NSNextResponder"/>
+						<reference key="NSNextResponder"/>
 						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -80,7 +83,7 @@
 							<object class="IBUIButton" id="370002986">
 								<reference key="NSNextResponder" ref="434903890"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 307}, {280, 64}}</string>
+								<string key="NSFrame">{{20, 312}, {280, 64}}</string>
 								<reference key="NSSuperview" ref="434903890"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -164,12 +167,12 @@
 							<object class="IBUILabel" id="266909846">
 								<reference key="NSNextResponder" ref="434903890"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 140}, {280, 43}}</string>
+								<string key="NSFrame">{{20, 135}, {280, 43}}</string>
 								<reference key="NSSuperview" ref="434903890"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">Meme to share </string>
+								<string key="IBUIText">Share a meme</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">24</double>
@@ -186,6 +189,7 @@
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 411}</string>
+						<reference key="NSSuperview"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC43NDUwOTgwNTQ0IDAuODUwOTgwNDYwNiAwLjk2NDcwNTk0NDEAA</bytes>
@@ -198,6 +202,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">64-zap.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 				</object>
@@ -212,6 +217,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">ToolBar-Meemi.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<string key="IBUINibName">SecondView</string>
@@ -224,6 +230,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">20-gear2.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -451,7 +458,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{17, 259}, {320, 480}}</string>
+					<string>{{660, 374}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FirstViewController</string>

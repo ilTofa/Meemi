@@ -13,6 +13,13 @@
 
 @synthesize screenName, password, testLabel, laRuota;
 
+-(void)restoreDefaults
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.screenName.text = [defaults stringForKey:@"screenName"];
+	self.password.text = [defaults stringForKey:@"password"];
+}
+
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
 	if([laRuota isAnimating])
@@ -37,10 +44,14 @@
 	{
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:self.screenName.text forKey:@"screenName"];
-		[defaults setObject:self.password.text forKey:@"password"];		
+		[defaults setObject:self.password.text forKey:@"password"];
+		[defaults setInteger:1 forKey:@"userValidated"];
 	}
-	else
+	else // restore base names and retry...
+	{
+		[self restoreDefaults];
 		[self.screenName becomeFirstResponder];
+	}
 	if([laRuota isAnimating])
 		[laRuota stopAnimating];
 }
@@ -48,6 +59,7 @@
 - (IBAction)testLogin:(id)sender
 {
 	// call back us above.
+	[laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
 	[[Meemi sharedSession] validateUser:self.screenName.text usingPassword:self.password.text];
 }
@@ -93,11 +105,10 @@
 {
 	[super viewDidAppear:animated];
 	// load user defaults
-	[laRuota startAnimating];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName.text = [defaults stringForKey:@"screenName"];
-	self.password.text = [defaults stringForKey:@"password"];;
-	[self testLogin:nil];
+	[self restoreDefaults];
+	// if user was not tested, test it
+	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"] == 0)
+		[self testLogin:nil];
 }
 
 /*

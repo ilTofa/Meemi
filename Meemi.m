@@ -293,13 +293,8 @@ static Meemi *sharedSession = nil;
 	[request startAsynchronous];
 }
 
--(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description
+-(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever
 {
-	// Sanity checks
-	NSAssert(delegate, @"delegate not set in Meemi");
-	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
-	// Set current request type
-	self.currentRequest = MmRPostImage;
 	// build the password using SHA-256
 	unsigned char hashedChars[32];
 	CC_SHA256([self.password UTF8String],
@@ -317,24 +312,37 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:self.screenName forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
-	[request setPostValue:@"image" forKey:@"meme_type"];
-	[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
-	[request setPostValue:description forKey:@"text_content"];
-	[request setPostValue:@"PC" forKey:@"flag"];
-
-	NSData *imageAsJPEG = UIImageJPEGRepresentation(image, 0.75);
-	// DEBUG: save in a file for later reference
-//	NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask ,YES );
-//	NSString *documentsDirectory = [paths objectAtIndex:0];
-//	NSString *path = [documentsDirectory stringByAppendingPathComponent:@"unuseful.jpeg"];
-//	[imageAsJPEG writeToFile:path atomically:NO];
-//	NSLog(@"Wrote %d bytes to %@", [imageAsJPEG length], path);
-	[request setData:imageAsJPEG withFileName:@"unuseful.jpg" andContentType:@"image/jpeg" forKey:@"img_pc"];
-	
+	if(self.currentRequest == MmRPostImage)
+	{
+		[request setPostValue:@"image" forKey:@"meme_type"];
+		[request setPostValue:@"PC" forKey:@"flag"];
+		NSData *imageAsJPEG = UIImageJPEGRepresentation((UIImage *)whatever, 0.75);
+		[request setData:imageAsJPEG withFileName:@"unuseful.jpg" andContentType:@"image/jpeg" forKey:@"img_pc"];
+	}
+	else // this is MmRPostText
+	{
+		[request setPostValue:@"text" forKey:@"meme_type"];
+		[request setPostValue:(NSString *)whatever forKey:@"channels"];
+	}
+	if(!canBeLocalized)
+		[request setPostValue:@"An unknown place, with an iPhone App still to be announced" forKey:@"location"];
+	else
+		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
+	[request setPostValue:withDescription forKey:@"text_content"];
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	[request startAsynchronous];	
+}
+
+-(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized
+{
+	// Sanity checks
+	NSAssert(delegate, @"delegate not set in Meemi");
+	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
+	// Set current request type
+	self.currentRequest = MmRPostImage;
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image];
 }
 
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized
@@ -344,34 +352,7 @@ static Meemi *sharedSession = nil;
 	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
-	// build the password using SHA-256
-	unsigned char hashedChars[32];
-	CC_SHA256([self.password UTF8String],
-			  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-			  hashedChars);
-	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
-	
-	// API for user testing
-	NSURL *url = [NSURL URLWithString:
-				  [NSString stringWithFormat:@"http://meemi.com/api/%@/save", self.screenName]];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:self.screenName forKey:@"meemi_id"];
-	[request setPostValue:hashedData forKey:@"pwd"];
-	[request setPostValue:kAPIKey forKey:@"app_key"];
-	[request setPostValue:@"text" forKey:@"meme_type"];
-	if(!canBeLocalized)
-		[request setPostValue:@"an iPhone App to be announced" forKey:@"location"];
-	else
-		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
-	[request setPostValue:description forKey:@"text_content"];
-	[request setPostValue:channel forKey:@"channels"];
-	[request setDelegate:self];
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
-	[request startAsynchronous];	
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel];
 }
 
 #pragma mark CLLocationManagerDelegate and its delegate

@@ -24,6 +24,7 @@
 	UIImage *theImage, *theThumbnail;
 	UIActivityIndicatorView *laRuota;
 	UISwitch *highResWanted;
+	UISwitch *canBeLocalized;
 	id<ImageSenderControllerDelegate> delegate;
 }
 
@@ -33,6 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIImage *theThumbnail;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
 @property (retain, nonatomic) IBOutlet UISwitch *highResWanted;
+@property (retain, nonatomic) IBOutlet UISwitch *canBeLocalized;
 @property (assign) id<ImageSenderControllerDelegate> delegate;
 
 -(IBAction)sendIt:(id)sender;

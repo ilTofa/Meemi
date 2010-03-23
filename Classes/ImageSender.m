@@ -11,7 +11,7 @@
 
 @implementation ImageSender
 
-@synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, delegate;
+@synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, delegate, canBeLocalized;
 
 // dismiss keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
@@ -107,10 +107,10 @@
 	{
 		NSLog(@"Generating thumbnail for post");
 		[self createThumbnail:kLowResolutionSize];
-		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text];
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
 	}
 	else
-		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text];
+		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
 }
 
 -(IBAction)cancel:(id)sender
@@ -144,6 +144,9 @@
 		self.highResWanted.enabled = NO;
 	}
 	self.theImageView.image = self.theThumbnail;
+	// Disable localization if we don't have a position
+	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
+		self.canBeLocalized.enabled = NO;	
 }
 
 
