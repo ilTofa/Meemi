@@ -30,7 +30,7 @@
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
-		C0D67CC411592559009EA92B /* iTunesArtwork.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */; };
+		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -80,7 +80,7 @@
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iTunesArtwork.jpeg; sourceTree = "<group>"; };
+		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */,
+				C0D67CC311592559009EA92B /* iTunesArtwork */,
 				C0FB57171157CD9D003932F3 /* 103-map.png */,
 				C09186161154354B00C2C5A4 /* Text.png */,
 				C0918614115434EB00C2C5A4 /* Camera.png */,
@@ -296,7 +296,7 @@
 				C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */,
 				C0FB57181157CD9D003932F3 /* 103-map.png in Resources */,
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
-				C0D67CC411592559009EA92B /* iTunesArtwork.jpeg in Resources */,
+				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

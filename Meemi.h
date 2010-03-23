@@ -75,6 +75,8 @@ typedef enum
 
 - (void)startLocation;
 
+-(void)startSessionFromUserDefaults;
+
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;

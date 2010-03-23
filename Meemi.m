@@ -110,6 +110,14 @@ static Meemi *sharedSession = nil;
 	self.valid = YES;
 }
 
+-(void)startSessionFromUserDefaults
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.screenName = [defaults stringForKey:@"screenName"];
+	self.password = [defaults stringForKey:@"password"];
+	self.valid = YES;
+}
+
 // Parse response string
 // returns YES if xml parsing succeeds, NO otherwise
 - (BOOL) parse:(NSData *)responseData

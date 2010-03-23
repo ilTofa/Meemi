@@ -31,7 +31,10 @@
 	[[Meemi sharedSession] startLocation];
 	// If use is validated, start on first tab, else on settings.
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
+	{
+		[[Meemi sharedSession] startSessionFromUserDefaults];
 		self.tabBarController.selectedIndex = 0;
+	}
 	else
 		self.tabBarController.selectedIndex = 2;
 }
