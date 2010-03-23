@@ -29,6 +29,8 @@
 		C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0918686115442BC00C2C5A4 /* ImageSender.m */; };
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
+		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
+		C0D67CC411592559009EA92B /* iTunesArtwork.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -77,6 +79,8 @@
 		C0918686115442BC00C2C5A4 /* ImageSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSender.m; sourceTree = "<group>"; };
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iTunesArtwork.jpeg; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -159,7 +163,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C0A1D54F11582F1200071314 /* CoreLocation.framework */,
 			);
 			name = Meemi;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C0D67CC311592559009EA92B /* iTunesArtwork.jpeg */,
 				C0FB57171157CD9D003932F3 /* 103-map.png */,
 				C09186161154354B00C2C5A4 /* Text.png */,
 				C0918614115434EB00C2C5A4 /* Camera.png */,
@@ -191,6 +195,7 @@
 				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
 				C0FB56841157B5DD003932F3 /* TextSender.xib */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
+				C0D67CBE11592261009EA92B /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0A1D54F11582F1200071314 /* CoreLocation.framework */,
 				C0E620491152E4E100E6C079 /* MobileCoreServices.framework */,
 				C0E6202D1152E13E00E6C079 /* CFNetwork.framework */,
 				C0E6202F1152E14300E6C079 /* SystemConfiguration.framework */,
@@ -289,6 +295,8 @@
 				C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */,
 				C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */,
 				C0FB57181157CD9D003932F3 /* 103-map.png in Resources */,
+				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
+				C0D67CC411592559009EA92B /* iTunesArtwork.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +388,36 @@
 			};
 			name = Release;
 		};
+		C0D67CAF115921F8009EA92B /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Giacomo Tufano";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = "Ad-Hoc";
+		};
+		C0D67CB0115921F8009EA92B /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Giacomo Tufano";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
+				INFOPLIST_FILE = "Meemi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = Meemi;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B80FAAB-347C-4E25-AFAA-D04C00485C33";
+			};
+			name = "Ad-Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -388,6 +426,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				C0D67CB0115921F8009EA92B /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -397,6 +436,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				C0D67CAF115921F8009EA92B /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
