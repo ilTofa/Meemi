@@ -8,6 +8,7 @@
 
 #import "SettingsController.h"
 #import "MeemiAppDelegate.h"
+#import "AboutBox.h"
 
 @implementation SettingsController
 
@@ -62,6 +63,13 @@
 	[laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
 	[[Meemi sharedSession] validateUser:self.screenName.text usingPassword:self.password.text];
+}
+
+- (IBAction)aboutBox:(id)sender
+{
+	AboutBox *theBox = [[[AboutBox alloc] initWithNibName:@"AboutBox" bundle:nil] autorelease];
+	theBox.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	[self presentModalViewController:theBox animated:YES]; 
 }
 
 // dismiss keyboard

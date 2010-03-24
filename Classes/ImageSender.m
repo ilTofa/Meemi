@@ -118,6 +118,12 @@
 	[self.delegate doneWithImageSender];
 }
 
+-(void)handleGotLocalization:(NSNotification *)note
+{
+	// enable localization, 'cause we now have one
+	self.canBeLocalized.enabled = YES;
+}
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -144,9 +150,12 @@
 		self.highResWanted.enabled = NO;
 	}
 	self.theImageView.image = self.theThumbnail;
-	// Disable localization if we don't have a position
+	// Disable localization if we don't have a position (but register to be notified)
 	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
-		self.canBeLocalized.enabled = NO;	
+	{
+		self.canBeLocalized.enabled = NO;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
+	}
 }
 
 

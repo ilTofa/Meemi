@@ -64,6 +64,11 @@
 	[self.delegate doneWithTextSender];
 }
 
+-(void)handleGotLocalization:(NSNotification *)note
+{
+	// enable localization, 'cause we have one
+	self.canBeLocalized.enabled = YES;
+}
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -82,9 +87,12 @@
 	// Activate keyboard
     [super viewDidLoad];
 	[self.description becomeFirstResponder];
-	// Disable localization if we don't have a position
+	// Disable localization if we don't have a position (but register to be notified)
 	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
+	{
 		self.canBeLocalized.enabled = NO;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
+	}
 }
 
 

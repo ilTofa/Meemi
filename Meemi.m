@@ -404,13 +404,15 @@ static Meemi *sharedSession = nil;
 		NSLog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
 							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
 							  newLocation.horizontalAccuracy, self.nearbyPlaceName);
+		// init a safe value, just in case...
+		self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
+								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
+		// Notify the world that we have found ourselves
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
 		// Do we need reverse geolocation?
 		if([self.nearbyPlaceName isEqualToString:@""])
 		{
-			// init a safe value, just in case...
-			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
-									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-									locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
 			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
 			if(theReverseGeoConnection != nil)
 				return;

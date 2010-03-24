@@ -15,6 +15,8 @@
 		282CCBFE0DB6C98000C4EA27 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282CCBFD0DB6C98000C4EA27 /* SecondView.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
+		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
+		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
@@ -62,6 +64,9 @@
 		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
+		C03E6446115A560600CF2B91 /* AboutBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutBox.m; sourceTree = "<group>"; };
+		C03E6447115A560600CF2B91 /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Classes/AboutBox.xib; sourceTree = "<group>"; };
 		C07ED92B1151429000311726 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C07ED9301151431800311726 /* MeemiWebAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeemiWebAppController.h; sourceTree = "<group>"; };
 		C07ED9311151431800311726 /* MeemiWebAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeemiWebAppController.m; sourceTree = "<group>"; };
@@ -142,6 +147,8 @@
 				C0918686115442BC00C2C5A4 /* ImageSender.m */,
 				C0FB56821157B5DD003932F3 /* TextSender.h */,
 				C0FB56831157B5DD003932F3 /* TextSender.m */,
+				C03E6445115A560600CF2B91 /* AboutBox.h */,
+				C03E6446115A560600CF2B91 /* AboutBox.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -189,6 +196,7 @@
 				C091860A11542D0D00C2C5A4 /* logo.png */,
 				C07ED92B1151429000311726 /* Icon.png */,
 				C0918625115438A000C2C5A4 /* Default.png */,
+				C03E6447115A560600CF2B91 /* AboutBox.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
@@ -297,6 +305,7 @@
 				C0FB57181157CD9D003932F3 /* 103-map.png in Resources */,
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
 				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
+				C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +331,7 @@
 				C0E620431152E36800E6C079 /* Meemi.m in Sources */,
 				C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */,
 				C0FB56851157B5DD003932F3 /* TextSender.m in Sources */,
+				C03E6448115A560600CF2B91 /* AboutBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

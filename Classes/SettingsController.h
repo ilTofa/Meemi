@@ -23,5 +23,6 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laRuota;
 
 - (IBAction)testLogin:(id)sender;
+- (IBAction)aboutBox:(id)sender;
 
 @end

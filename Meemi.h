@@ -38,6 +38,8 @@ typedef enum
 	MmUndefinedError = 999
 } MeemiResult;
 
+#define kGotLocation @"gotLocation"
+
 @interface Meemi : NSObject <CLLocationManagerDelegate>
 {
 	BOOL valid;
