@@ -296,6 +296,8 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:meemi_id forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
+	// DEBUG
+	NSLog(@"Auth: <meemi_id=%@&pwd=%@&app_key=%@>", meemi_id, hashedData, kAPIKey);
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	[request startAsynchronous];
