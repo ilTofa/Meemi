@@ -74,6 +74,7 @@ static Meemi *sharedSession = nil;
 	{
 		self.valid = NO;
 		needLocation = YES;
+		needG13N = YES;
 		self.nearbyPlaceName = @"";
 		// get number of times user denied location use..
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -407,13 +408,14 @@ static Meemi *sharedSession = nil;
 							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
 							  newLocation.horizontalAccuracy, self.nearbyPlaceName);
 		// init a safe value, just in case...
-		self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
-								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
+		if([self.nearbyPlaceName isEqualToString:@""])
+			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
+									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+									locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
 		// Notify the world that we have found ourselves
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
 		// Do we need reverse geolocation?
-		if([self.nearbyPlaceName isEqualToString:@""])
+		if(needG13N)
 		{
 			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
 			if(theReverseGeoConnection != nil)
@@ -480,6 +482,7 @@ static Meemi *sharedSession = nil;
 								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
 								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
 		NSLog(@"Got a full localization: %@", self.nearbyPlaceName);
+		needG13N = NO;
 	}
 	[xmlData release];
 	theReverseGeoConnection = nil;

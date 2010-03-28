@@ -24,6 +24,24 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	NSLog(@"shouldStartLoadWithRequest: <%@>", [[request URL] absoluteString]);
+	// if it's a reply...
+	if([[[request URL] absoluteString] rangeOfString:@"#myreply"].location != NSNotFound)
+	{
+		// Look for the last '/'
+		NSRange theMemeRange;
+		theMemeRange.location = [[[request URL] absoluteString] rangeOfString:@"/" options:NSBackwardsSearch].location + 1;
+		theMemeRange.length = [[[request URL] absoluteString] rangeOfString:@"#myreply"].location - theMemeRange.location;
+		NSString *temp = [NSString stringWithFormat:@"Should start reply to <%@>", [[[request URL] absoluteString] substringWithRange:theMemeRange]];
+		UIAlertView *WOW =  [[UIAlertView alloc] initWithTitle:@"Reply"
+													   message:temp
+													  delegate:self
+											 cancelButtonTitle:@"OK"
+											 otherButtonTitles:nil];
+		[WOW show];
+		[WOW release];
+		NSLog(@"Got a meme reply to <%@>", [[[request URL] absoluteString] substringWithRange:theMemeRange]);
+//		return NO;
+	}
 	return YES;
 }
 

@@ -55,7 +55,7 @@ typedef enum
 	NSURLConnection *theReverseGeoConnection;
 	// How Many times have been denied Location use?
 	double distance;
-	BOOL needLocation;
+	BOOL needLocation, needG13N;
 	CLLocationManager *locationManager;
 	int nLocationUseDenies;
 	BOOL lcDenied;	
