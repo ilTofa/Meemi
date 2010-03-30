@@ -52,6 +52,9 @@ typedef enum
 	NSMutableString *currentStringValue;
 	NSMutableData *xmlData;
 
+	// CoreData hook
+	NSManagedObjectContext *managedObjectContext;
+
 	NSURLConnection *theReverseGeoConnection;
 	// How Many times have been denied Location use?
 	double distance;
@@ -63,6 +66,7 @@ typedef enum
 	NSString *nearbyPlaceName;
 }
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied;
 @property (nonatomic, assign) int nLocationUseDenies;
 @property (nonatomic, getter=isValid) BOOL valid;

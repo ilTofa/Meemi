@@ -19,6 +19,7 @@ static Meemi *sharedSession = nil;
 
 @synthesize valid, screenName, password, delegate, currentRequest;
 @synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
+@synthesize managedObjectContext;
 
 #pragma mark Singleton Class Setup
 
