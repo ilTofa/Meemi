@@ -182,7 +182,7 @@ static Meemi *sharedSession = nil;
 	if(self.currentRequest == MmGetNew)
 	{
 		// Get number of memes
-		// not useful in itself, probably, but we use it to instanciate the CoreData class
+		// not useful in itself, probably, but we use it to create an instance of the CoreData supporting class
 		if([elementName isEqualToString:@"memes"])
 		{
 			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
@@ -241,11 +241,11 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"meme"])
 		{
 			NSLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
-			//		NSError *error;
-			//		if (![self.managedObjectContext save:&error])
-			//		{
-			//			NSLog(@"ERROR in saving!");
-			//		}
+			NSError *error;
+			if (![self.managedObjectContext save:&error])
+			{
+				NSLog(@"ERROR in saving read memes!");
+			}
 		}
 		// Other things
 		if([elementName isEqualToString:@"original_link"])
