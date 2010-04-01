@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
-		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.SystemVersion">10D573</string>
 		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.25</string>
-		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">62</string>
@@ -37,12 +37,10 @@
 			</object>
 			<object class="IBUICustomObject" id="664661524"/>
 			<object class="IBUIWindow" id="380026005">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">1316</int>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{320, 480}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -55,173 +53,172 @@
 			<object class="IBUITabBarController" id="1034742383">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUIViewController" key="IBUISelectedViewController" id="1024858337">
-					<string key="IBUITitle">Post</string>
-					<object class="IBUIView" key="IBUIView" id="434903890">
-						<reference key="NSNextResponder"/>
-						<int key="NSvFlags">274</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="878545483">
-								<reference key="NSNextResponder" ref="434903890"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 115}</string>
-								<reference key="NSSuperview" ref="434903890"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="767869422">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">logo.png</string>
-								</object>
-							</object>
-							<object class="IBUIButton" id="370002986">
-								<reference key="NSNextResponder" ref="434903890"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 312}, {280, 64}}</string>
-								<reference key="NSSuperview" ref="434903890"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="825389100">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<int key="IBUIButtonType">1</int>
-								<double key="IBUITitleEdgeInsets.top">0.0</double>
-								<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-								<double key="IBUITitleEdgeInsets.left">20</double>
-								<double key="IBUITitleEdgeInsets.right">0.0</double>
-								<double key="IBUIImageEdgeInsets.top">0.0</double>
-								<double key="IBUIImageEdgeInsets.bottom">0.0</double>
-								<double key="IBUIImageEdgeInsets.left">0.0</double>
-								<double key="IBUIImageEdgeInsets.right">20</double>
-								<string key="IBUINormalTitle">Image</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="764693098">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
-								<object class="NSColor" key="IBUIDisabledTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMC41AA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="269158225">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Camera.png</string>
-								</object>
-							</object>
-							<object class="IBUIButton" id="221631413">
-								<reference key="NSNextResponder" ref="434903890"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 213}, {280, 64}}</string>
-								<reference key="NSSuperview" ref="434903890"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="825389100"/>
-								<int key="IBUIButtonType">1</int>
-								<double key="IBUITitleEdgeInsets.top">0.0</double>
-								<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-								<double key="IBUITitleEdgeInsets.left">20</double>
-								<double key="IBUITitleEdgeInsets.right">0.0</double>
-								<double key="IBUIImageEdgeInsets.top">0.0</double>
-								<double key="IBUIImageEdgeInsets.bottom">0.0</double>
-								<double key="IBUIImageEdgeInsets.left">0.0</double>
-								<double key="IBUIImageEdgeInsets.right">20</double>
-								<string key="IBUINormalTitle">Text</string>
-								<reference key="IBUIHighlightedTitleColor" ref="764693098"/>
-								<object class="NSColor" key="IBUIDisabledTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMC41AA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="269158225"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Text.png</string>
-								</object>
-							</object>
-							<object class="IBUILabel" id="266909846">
-								<reference key="NSNextResponder" ref="434903890"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 135}, {280, 43}}</string>
-								<reference key="NSSuperview" ref="434903890"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">Share a meme</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">24</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4yMDM5MjE1ODYzIDAuNDUwOTgwNDI0OSAwLjcwOTgwMzkzODkAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">1</int>
-							</object>
-						</object>
-						<string key="NSFrameSize">{320, 411}</string>
-						<reference key="NSSuperview"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC43NDUwOTgwNTQ0IDAuODUwOTgwNDYwNiAwLjk2NDcwNTk0NDEAA</bytes>
-						</object>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-					</object>
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="765670903">
-						<string key="IBUITitle">Post</string>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="181494932">
+					<string key="IBUITitle">With Friends</string>
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="402219121">
+						<string key="IBUITitle">With Friends</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">64-zap.png</string>
+							<string key="NSResourceName">ToolBar-Meemi.png</string>
 						</object>
 						<reference key="IBUITabBar"/>
 					</object>
+					<reference key="IBUIToolbarItems" ref="0"/>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="1024858337"/>
-					<object class="IBUIViewController" id="268481961">
-						<string key="IBUITitle">Meemi</string>
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="807309489">
-							<string key="IBUITitle">Meemi</string>
+					<object class="IBUIViewController" id="1024858337">
+						<string key="IBUITitle">Post</string>
+						<object class="IBUIView" key="IBUIView" id="434903890">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">274</int>
+							<object class="NSMutableArray" key="NSSubviews">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="IBUIImageView" id="878545483">
+									<reference key="NSNextResponder" ref="434903890"/>
+									<int key="NSvFlags">274</int>
+									<string key="NSFrameSize">{320, 115}</string>
+									<reference key="NSSuperview" ref="434903890"/>
+									<object class="NSColor" key="IBUIBackgroundColor" id="767869422">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MCAwAA</bytes>
+									</object>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+									<int key="IBUIContentMode">4</int>
+									<bool key="IBUIUserInteractionEnabled">NO</bool>
+									<object class="NSCustomResource" key="IBUIImage">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">logo.png</string>
+									</object>
+								</object>
+								<object class="IBUIButton" id="370002986">
+									<reference key="NSNextResponder" ref="434903890"/>
+									<int key="NSvFlags">292</int>
+									<string key="NSFrame">{{20, 312}, {280, 64}}</string>
+									<reference key="NSSuperview" ref="434903890"/>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+									<int key="IBUIContentHorizontalAlignment">0</int>
+									<int key="IBUIContentVerticalAlignment">0</int>
+									<object class="NSFont" key="IBUIFont" id="825389100">
+										<string key="NSName">Helvetica-Bold</string>
+										<double key="NSSize">15</double>
+										<int key="NSfFlags">16</int>
+									</object>
+									<int key="IBUIButtonType">1</int>
+									<double key="IBUITitleEdgeInsets.top">0.0</double>
+									<double key="IBUITitleEdgeInsets.bottom">0.0</double>
+									<double key="IBUITitleEdgeInsets.left">20</double>
+									<double key="IBUITitleEdgeInsets.right">0.0</double>
+									<double key="IBUIImageEdgeInsets.top">0.0</double>
+									<double key="IBUIImageEdgeInsets.bottom">0.0</double>
+									<double key="IBUIImageEdgeInsets.left">0.0</double>
+									<double key="IBUIImageEdgeInsets.right">20</double>
+									<string key="IBUINormalTitle">Image</string>
+									<object class="NSColor" key="IBUIHighlightedTitleColor" id="764693098">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MQA</bytes>
+									</object>
+									<object class="NSColor" key="IBUIDisabledTitleColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMC41AA</bytes>
+									</object>
+									<object class="NSColor" key="IBUINormalTitleColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+									</object>
+									<object class="NSColor" key="IBUINormalTitleShadowColor" id="269158225">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MC41AA</bytes>
+									</object>
+									<object class="NSCustomResource" key="IBUINormalImage">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">Camera.png</string>
+									</object>
+								</object>
+								<object class="IBUIButton" id="221631413">
+									<reference key="NSNextResponder" ref="434903890"/>
+									<int key="NSvFlags">292</int>
+									<string key="NSFrame">{{20, 213}, {280, 64}}</string>
+									<reference key="NSSuperview" ref="434903890"/>
+									<object class="NSColor" key="IBUIBackgroundColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMAA</bytes>
+									</object>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+									<int key="IBUIContentHorizontalAlignment">0</int>
+									<int key="IBUIContentVerticalAlignment">0</int>
+									<reference key="IBUIFont" ref="825389100"/>
+									<int key="IBUIButtonType">1</int>
+									<double key="IBUITitleEdgeInsets.top">0.0</double>
+									<double key="IBUITitleEdgeInsets.bottom">0.0</double>
+									<double key="IBUITitleEdgeInsets.left">20</double>
+									<double key="IBUITitleEdgeInsets.right">0.0</double>
+									<double key="IBUIImageEdgeInsets.top">0.0</double>
+									<double key="IBUIImageEdgeInsets.bottom">0.0</double>
+									<double key="IBUIImageEdgeInsets.left">0.0</double>
+									<double key="IBUIImageEdgeInsets.right">20</double>
+									<string key="IBUINormalTitle">Text</string>
+									<reference key="IBUIHighlightedTitleColor" ref="764693098"/>
+									<object class="NSColor" key="IBUIDisabledTitleColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYgMC41AA</bytes>
+									</object>
+									<object class="NSColor" key="IBUINormalTitleColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+									</object>
+									<reference key="IBUINormalTitleShadowColor" ref="269158225"/>
+									<object class="NSCustomResource" key="IBUINormalImage">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">Text.png</string>
+									</object>
+								</object>
+								<object class="IBUILabel" id="266909846">
+									<reference key="NSNextResponder" ref="434903890"/>
+									<int key="NSvFlags">292</int>
+									<string key="NSFrame">{{20, 135}, {280, 43}}</string>
+									<reference key="NSSuperview" ref="434903890"/>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClipsSubviews">YES</bool>
+									<bool key="IBUIUserInteractionEnabled">NO</bool>
+									<string key="IBUIText">Share a meme</string>
+									<object class="NSFont" key="IBUIFont">
+										<string key="NSName">Helvetica-Bold</string>
+										<double key="NSSize">24</double>
+										<int key="NSfFlags">16</int>
+									</object>
+									<object class="NSColor" key="IBUITextColor">
+										<int key="NSColorSpace">2</int>
+										<bytes key="NSRGB">MC4yMDM5MjE1ODYzIDAuNDUwOTgwNDI0OSAwLjcwOTgwMzkzODkAA</bytes>
+									</object>
+									<nil key="IBUIHighlightedColor"/>
+									<int key="IBUIBaselineAdjustment">1</int>
+									<float key="IBUIMinimumFontSize">10</float>
+									<int key="IBUITextAlignment">1</int>
+								</object>
+							</object>
+							<string key="NSFrameSize">{320, 411}</string>
+							<object class="NSColor" key="IBUIBackgroundColor">
+								<int key="NSColorSpace">2</int>
+								<bytes key="NSRGB">MC43NDUwOTgwNTQ0IDAuODUwOTgwNDYwNiAwLjk2NDcwNTk0NDEAA</bytes>
+							</object>
+							<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						</object>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="765670903">
+							<string key="IBUITitle">Post</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">ToolBar-Meemi.png</string>
+								<string key="NSResourceName">64-zap.png</string>
 							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
-						<string key="IBUINibName">SecondView</string>
 					</object>
+					<reference ref="181494932"/>
 					<object class="IBUIViewController" id="820783966">
 						<string key="IBUITitle">Settings</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="169724684">
@@ -235,6 +232,19 @@
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<string key="IBUINibName">SettingsController</string>
+					</object>
+					<object class="IBUIViewController" id="268481961">
+						<string key="IBUITitle">Meemi</string>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="807309489">
+							<string key="IBUITitle">Mobile Web</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">71-compass.png</string>
+							</object>
+							<reference key="IBUITabBar"/>
+						</object>
+						<reference key="IBUIParentViewController" ref="1034742383"/>
+						<string key="IBUINibName">SecondView</string>
 					</object>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="795333663">
@@ -335,8 +345,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="795333663"/>
 							<reference ref="1024858337"/>
-							<reference ref="268481961"/>
 							<reference ref="820783966"/>
+							<reference ref="181494932"/>
+							<reference ref="268481961"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -425,6 +436,20 @@
 						<reference key="object" ref="266909846"/>
 						<reference key="parent" ref="434903890"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">133</int>
+						<reference key="object" ref="181494932"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="402219121"/>
+						</object>
+						<reference key="parent" ref="1034742383"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">134</int>
+						<reference key="object" ref="402219121"/>
+						<reference key="parent" ref="181494932"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -502,7 +527,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">132</int>
+			<int key="maxID">134</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -578,8 +603,17 @@
 					<string key="className">SettingsController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">testLogin:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>aboutBox:</string>
+							<string>testLogin:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>

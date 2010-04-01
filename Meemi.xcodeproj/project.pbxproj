@@ -22,6 +22,7 @@
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
 		C07ED93E1151470A00311726 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07ED93C1151470A00311726 /* SettingsController.xib */; };
+		C0881B5611650E1F00A83951 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = C0881B5511650E1F00A83951 /* 71-compass.png */; };
 		C091860B11542D0D00C2C5A4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860A11542D0D00C2C5A4 /* logo.png */; };
 		C091860F11542EC400C2C5A4 /* ToolBar-Meemi.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */; };
 		C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918610115431C600C2C5A4 /* 20-gear2.png */; };
@@ -77,6 +78,7 @@
 		C07ED93A1151470A00311726 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		C07ED93B1151470A00311726 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		C07ED93C1151470A00311726 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
+		C0881B5511650E1F00A83951 /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
 		C091860A11542D0D00C2C5A4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolBar-Meemi.png"; sourceTree = "<group>"; };
 		C0918610115431C600C2C5A4 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				C0E620161152E11A00E6C079 /* Meemi API */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				C0881B5711650E2800A83951 /* Images */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -195,23 +198,14 @@
 			isa = PBXGroup;
 			children = (
 				C0D67CC311592559009EA92B /* iTunesArtwork */,
-				C0FB57171157CD9D003932F3 /* 103-map.png */,
-				C09186161154354B00C2C5A4 /* Text.png */,
-				C0918614115434EB00C2C5A4 /* Camera.png */,
-				C0918612115432A500C2C5A4 /* 64-zap.png */,
-				C0918610115431C600C2C5A4 /* 20-gear2.png */,
-				C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */,
-				C091860A11542D0D00C2C5A4 /* logo.png */,
-				C07ED92B1151429000311726 /* Icon.png */,
-				C0918625115438A000C2C5A4 /* Default.png */,
+				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
+				C0D67CBE11592261009EA92B /* Entitlements.plist */,
 				C03E6447115A560600CF2B91 /* AboutBox.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
 				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
 				C0FB56841157B5DD003932F3 /* TextSender.xib */,
-				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
-				C0D67CBE11592261009EA92B /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -230,6 +224,23 @@
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0881B5711650E2800A83951 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C0FB57171157CD9D003932F3 /* 103-map.png */,
+				C09186161154354B00C2C5A4 /* Text.png */,
+				C0918614115434EB00C2C5A4 /* Camera.png */,
+				C0918612115432A500C2C5A4 /* 64-zap.png */,
+				C0918610115431C600C2C5A4 /* 20-gear2.png */,
+				C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */,
+				C091860A11542D0D00C2C5A4 /* logo.png */,
+				C07ED92B1151429000311726 /* Icon.png */,
+				C0918625115438A000C2C5A4 /* Default.png */,
+				C0881B5511650E1F00A83951 /* 71-compass.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
@@ -318,6 +329,7 @@
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
 				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
 				C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */,
+				C0881B5611650E1F00A83951 /* 71-compass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
