@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Meme.h"
 
 @protocol MeemiDelegate;
 
@@ -36,6 +37,7 @@ typedef enum
 	MmNotYours = 13,
 	MmMemeRemoved = 14,
 	MmMemeDoNotExists = 15,
+	MmOperationOK = 998,
 	MmUndefinedError = 999
 } MeemiResult;
 
@@ -55,6 +57,7 @@ typedef enum
 
 	// CoreData hook
 	NSManagedObjectContext *managedObjectContext;
+	Meme *theMeme;
 
 	NSURLConnection *theReverseGeoConnection;
 	// How Many times have been denied Location use?

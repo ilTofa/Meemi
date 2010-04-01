@@ -136,8 +136,6 @@
 	{
 		[[Meemi sharedSession] startSessionFromUserDefaults];
 		self.tabBarController.selectedIndex = 0;
-		// DEBUG: try to get new memes
-		[[Meemi sharedSession] getNewMemes];
 	}
 	else
 		self.tabBarController.selectedIndex = 2;

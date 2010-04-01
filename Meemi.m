@@ -124,7 +124,7 @@ static Meemi *sharedSession = nil;
 // returns YES if xml parsing succeeds, NO otherwise
 - (BOOL) parse:(NSData *)responseData
 {
-	NSLog(@"Startig parse of: %@", responseData);
+//	NSLog(@"Starting parse of: %@", responseData);
 	NSString *temp = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 	NSLog(@"As string: \"%@\"", temp);
     if (addressParser) // addressParser is an NSXMLParser instance variable
@@ -178,6 +178,42 @@ static Meemi *sharedSession = nil;
 				[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
 		}
 	}
+	// parse memes
+	if(self.currentRequest == MmGetNew)
+	{
+		// Get number of memes
+		// not useful in itself, probably, but we use it to instanciate the CoreData class
+		if([elementName isEqualToString:@"memes"])
+		{
+			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
+			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
+			NSLog(@"*** Got %d memes in reply to new_meme_request", [memeQuantity intValue]);
+			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+		}
+		// if a meme is coming...
+		if([elementName isEqualToString:@"meme"])
+		{
+			NSLog(@"*** got a new meme");
+			theMeme.id = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
+			theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
+			theMeme.qta_replies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
+			theMeme.type = [attributeDict objectForKey:@"type"];
+			theMeme.favourite = [NSNumber numberWithInt:[[attributeDict objectForKey:@"favourite"] intValue]];
+			// Workaround stupid date
+			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+			NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"date_time"]];
+			theMeme.date_time = [dateFormatter dateFromString:tempDate];
+			[dateFormatter release];
+		}
+		// Other parts of a meme
+		if([elementName isEqualToString:@"avatars"])
+		{
+			theMeme.avatar_small = [attributeDict objectForKey:@"small"];
+			NSLog(@"size before: %d, size after: %d", [[attributeDict objectForKey:@"small"] length], [theMeme.avatar_small length]);
+			NSLog(@"theMeme.avatar_small = \"%@\"", theMeme.avatar_small);
+		}
+	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
@@ -185,7 +221,7 @@ static Meemi *sharedSession = nil;
 	NSLog(@"Data: %@", string);
     if (!currentStringValue)
         // currentStringValue is an NSMutableString instance variable
-        currentStringValue = [[NSMutableString alloc] initWithCapacity:50];
+        currentStringValue = [[NSMutableString alloc] initWithCapacity:256];
     [currentStringValue appendString:string];
 }
 
@@ -194,6 +230,35 @@ static Meemi *sharedSession = nil;
 	NSLog(@"Element End: %@", elementName);
 	NSLog(@"<%@> fully received with value: <%@>", elementName, currentStringValue);
 
+	// new_memes processing 
+	if(self.currentRequest == MmGetNew)
+	{
+		// should end?
+		if([elementName isEqualToString:@"memes"])
+			[self.delegate meemi:MmGetNew didFinishWithResult:MmOperationOK];
+	
+		// Here a meme is ended, should be saved. :)
+		if([elementName isEqualToString:@"meme"])
+		{
+			NSLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
+			//		NSError *error;
+			//		if (![self.managedObjectContext save:&error])
+			//		{
+			//			NSLog(@"ERROR in saving!");
+			//		}
+		}
+		// Other things
+		if([elementName isEqualToString:@"original_link"])
+			theMeme.original_link = currentStringValue;
+		if([elementName isEqualToString:@"location"])
+			theMeme.location = currentStringValue;
+		if([elementName isEqualToString:@"source"])
+			theMeme.source = currentStringValue;
+		if([elementName isEqualToString:@"chans"])
+			theMeme.chans = currentStringValue;
+		if([elementName isEqualToString:@"content"])
+			theMeme.content = currentStringValue;
+	}
     if ([elementName isEqualToString:@"name"])
 		self.placeName = currentStringValue;
 	
@@ -309,6 +374,7 @@ static Meemi *sharedSession = nil;
 {
 	NSAssert(delegate, @"delegate not set in Meemi");
 	NSAssert(self.isValid, @"getNewMemes: called without valid session");
+	self.currentRequest = MmGetNew;
 	// build the password using SHA-256
 	unsigned char hashedChars[32];
 	CC_SHA256([self.password UTF8String],

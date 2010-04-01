@@ -146,13 +146,36 @@
 		self.cameraButton.enabled = NO;
 }
 
-- (void)viewDidAppear
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
 	// If the session is invalid, goto setting page!
 	if(![Meemi sharedSession].isValid)
 		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 2;	
+	// DEBUG: try to get new memes (this is a test, of course)
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getNewMemes];	
 }
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	NSLog(@"Error: %@", error);
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] 
+							 autorelease];
+	[theAlert show];
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	if(request == MmGetNew)
+	{
+		NSLog(@"Received response from getNewMemes");
+	}
+}	
 
 /*
 // Override to allow orientations other than the default portrait orientation.

@@ -32,6 +32,8 @@
 		C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0918686115442BC00C2C5A4 /* ImageSender.m */; };
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
+		C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C0BD043A11649D3800391138 /* Meme.xcdatamodel */; };
+		C0BD04441164AB8900391138 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BD04431164AB8900391138 /* Meme.m */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
@@ -86,6 +88,9 @@
 		C0918686115442BC00C2C5A4 /* ImageSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSender.m; sourceTree = "<group>"; };
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Meme.xcdatamodel; sourceTree = "<group>"; };
+		C0BD04421164AB8900391138 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
+		C0BD04431164AB8900391138 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -230,6 +235,8 @@
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;
 			children = (
+				C0BD04421164AB8900391138 /* Meme.h */,
+				C0BD04431164AB8900391138 /* Meme.m */,
 				C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */,
 				C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */,
 				C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */,
@@ -247,6 +254,7 @@
 				C0E620251152E12A00E6C079 /* Reachability.m */,
 				C0E620411152E36800E6C079 /* Meemi.h */,
 				C0E620421152E36800E6C079 /* Meemi.m */,
+				C0BD043A11649D3800391138 /* Meme.xcdatamodel */,
 			);
 			name = "Meemi API";
 			sourceTree = "<group>";
@@ -336,6 +344,8 @@
 				C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */,
 				C0FB56851157B5DD003932F3 /* TextSender.m in Sources */,
 				C03E6448115A560600CF2B91 /* AboutBox.m in Sources */,
+				C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */,
+				C0BD04441164AB8900391138 /* Meme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

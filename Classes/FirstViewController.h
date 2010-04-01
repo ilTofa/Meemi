@@ -15,7 +15,7 @@
 #import "TextSender.h"
 
 @interface FirstViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, 
-													ImageSenderControllerDelegate, TextSenderControllerDelegate>
+													ImageSenderControllerDelegate, TextSenderControllerDelegate, MeemiDelegate>
 {
 	UIButton *cameraButton;
 	ImageSender *imageSenderController;
