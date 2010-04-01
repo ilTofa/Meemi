@@ -305,6 +305,31 @@ static Meemi *sharedSession = nil;
 	[request startAsynchronous];
 }
 
+-(void)getNewMemes
+{
+	NSAssert(delegate, @"delegate not set in Meemi");
+	NSAssert(self.isValid, @"getNewMemes: called without valid session");
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([self.password UTF8String],
+			  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	
+	NSURL *url = [NSURL URLWithString:
+				  [NSString stringWithFormat:@"http://meemi.com/api/%@/wf/only_new_memes", self.screenName]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:self.screenName forKey:@"meemi_id"];
+	[request setPostValue:hashedData forKey:@"pwd"];
+	[request setPostValue:kAPIKey forKey:@"app_key"];
+	[request setDelegate:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	[request startAsynchronous];		
+}
+
 -(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever
 {
 	// build the password using SHA-256
@@ -361,7 +386,7 @@ static Meemi *sharedSession = nil;
 {
 	// Sanity checks
 	NSAssert(delegate, @"delegate not set in Meemi");
-	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
+	NSAssert(self.isValid, @"postTextAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel];
