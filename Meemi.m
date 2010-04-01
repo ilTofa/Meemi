@@ -182,22 +182,25 @@ static Meemi *sharedSession = nil;
 	if(self.currentRequest == MmGetNew)
 	{
 		// Get number of memes
-		// not useful in itself, probably, but we use it to create an instance of the CoreData supporting class
+		// not useful in itself, COULD be used to understand when the last fetch has been done (quantity < 20)
 		if([elementName isEqualToString:@"memes"])
 		{
 			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
 			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
 			NSLog(@"*** Got %d memes in reply to new_meme_request", [memeQuantity intValue]);
-			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 		}
 		// if a meme is coming...
 		if([elementName isEqualToString:@"meme"])
 		{
 			NSLog(@"*** got a new meme");
+			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 			theMeme.id = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
 			theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
 			theMeme.qta_replies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
 			theMeme.type = [attributeDict objectForKey:@"type"];
+			// TODO: avoid work around not implemented type different from text
+			if(![theMeme.type isEqualToString:@"text"])
+				theMeme.content = [NSString stringWithFormat:@"This meme is a %@", theMeme.type];
 			theMeme.favourite = [NSNumber numberWithInt:[[attributeDict objectForKey:@"favourite"] intValue]];
 			// Workaround stupid date
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -233,19 +236,32 @@ static Meemi *sharedSession = nil;
 	// new_memes processing 
 	if(self.currentRequest == MmGetNew)
 	{
-		// should end?
+		// should end? If YES, commit the CoreData objects to the db
 		if([elementName isEqualToString:@"memes"])
+		{
+			NSError *error;
+			if (![self.managedObjectContext save:&error])
+			{
+                NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+                NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+                if(detailedErrors != nil && [detailedErrors count] > 0) 
+				{
+					for(NSError* detailedError in detailedErrors) 
+					{
+						NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+					}
+                }
+                else 
+				{
+					NSLog(@"  %@", [error userInfo]);
+                }
+			}
 			[self.delegate meemi:MmGetNew didFinishWithResult:MmOperationOK];
-	
+		}	
 		// Here a meme is ended, should be saved. :)
 		if([elementName isEqualToString:@"meme"])
 		{
 			NSLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
-			NSError *error;
-			if (![self.managedObjectContext save:&error])
-			{
-				NSLog(@"ERROR in saving read memes!");
-			}
 		}
 		// Other things
 		if([elementName isEqualToString:@"original_link"])

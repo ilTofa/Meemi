@@ -153,8 +153,8 @@
 	if(![Meemi sharedSession].isValid)
 		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 2;	
 	// DEBUG: try to get new memes (this is a test, of course)
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemes];	
+//	[Meemi sharedSession].delegate = self;
+//	[[Meemi sharedSession] getNewMemes];	
 }
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
