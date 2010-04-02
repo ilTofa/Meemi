@@ -42,6 +42,7 @@
 														sectionNameKeyPath:nil 
 																 cacheName:@"WithFriendsCache"];
 	[fetchRequest release];
+	theMemeList.delegate = self;
 	
 	NSError *error;
 	if(![theMemeList performFetch:&error])
@@ -63,11 +64,13 @@
     [super viewWillAppear:animated];
 }
 */
-/*
-- (void)viewDidAppear:(BOOL)animated {
+
+- (void)viewDidAppear:(BOOL)animated 
+{
     [super viewDidAppear:animated];
+	[self.tableView reloadData];
 }
-*/
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -99,6 +102,12 @@
 	[theMemeList release];
 }
 
+#pragma mark NSFetchedResultsControllerDelegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 
+{
+	[self.tableView reloadData];
+}
 
 #pragma mark Table view methods
 
