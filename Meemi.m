@@ -138,6 +138,30 @@ static Meemi *sharedSession = nil;
 		return NO;
 }
 
+-(void)arrangeAnUserWithName:(NSString *)name
+{
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for an User with this screen_name.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil)
+	{
+		theUser = [fetchResults objectAtIndex:0];
+	}
+	else
+	{
+		// Create an User and add it to the managedObjectContext
+		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+		theUser.screen_name = name;
+	}
+}
+
 #pragma mark NSXMLParser delegate
 
 // NSXMLParser delegates
@@ -196,6 +220,8 @@ static Meemi *sharedSession = nil;
 			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 			theMeme.id = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
 			theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
+			// TODO: should now check the user is already into the CoreData list
+			
 			theMeme.qta_replies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
 			theMeme.type = [attributeDict objectForKey:@"type"];
 			// TODO: avoid work around not implemented type different from text
@@ -212,9 +238,9 @@ static Meemi *sharedSession = nil;
 		// Other parts of a meme
 		if([elementName isEqualToString:@"avatars"])
 		{
-			theMeme.avatar_small = [attributeDict objectForKey:@"small"];
-			NSLog(@"size before: %d, size after: %d", [[attributeDict objectForKey:@"small"] length], [theMeme.avatar_small length]);
-			NSLog(@"theMeme.avatar_small = \"%@\"", theMeme.avatar_small);
+//			theMeme.avatar_small = [attributeDict objectForKey:@"small"];
+//			NSLog(@"size before: %d, size after: %d", [[attributeDict objectForKey:@"small"] length], [theMeme.avatar_small length]);
+//			NSLog(@"theMeme.avatar_small = \"%@\"", theMeme.avatar_small);
 		}
 	}
 }
