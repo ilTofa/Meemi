@@ -19,6 +19,9 @@
 		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
+		C053D4E2116648FE001AC0B6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4DD116648FE001AC0B6 /* User.m */; };
+		C053D4E3116648FE001AC0B6 /* Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4DF116648FE001AC0B6 /* Avatar.m */; };
+		C053D4E4116648FE001AC0B6 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4E1116648FE001AC0B6 /* Meme.m */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
@@ -36,7 +39,6 @@
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
 		C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C0BD043A11649D3800391138 /* Meme.xcdatamodel */; };
-		C0BD04441164AB8900391138 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BD04431164AB8900391138 /* Meme.m */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
@@ -76,6 +78,12 @@
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
 		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
+		C053D4DC116648FE001AC0B6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C053D4DD116648FE001AC0B6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C053D4DE116648FE001AC0B6 /* Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatar.h; sourceTree = "<group>"; };
+		C053D4DF116648FE001AC0B6 /* Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatar.m; sourceTree = "<group>"; };
+		C053D4E0116648FE001AC0B6 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
+		C053D4E1116648FE001AC0B6 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C07ED92B1151429000311726 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C07ED9301151431800311726 /* MeemiWebAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeemiWebAppController.h; sourceTree = "<group>"; };
@@ -96,8 +104,6 @@
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Meme.xcdatamodel; sourceTree = "<group>"; };
-		C0BD04421164AB8900391138 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
-		C0BD04431164AB8900391138 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -254,8 +260,12 @@
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;
 			children = (
-				C0BD04421164AB8900391138 /* Meme.h */,
-				C0BD04431164AB8900391138 /* Meme.m */,
+				C053D4DC116648FE001AC0B6 /* User.h */,
+				C053D4DD116648FE001AC0B6 /* User.m */,
+				C053D4DE116648FE001AC0B6 /* Avatar.h */,
+				C053D4DF116648FE001AC0B6 /* Avatar.m */,
+				C053D4E0116648FE001AC0B6 /* Meme.h */,
+				C053D4E1116648FE001AC0B6 /* Meme.m */,
 				C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */,
 				C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */,
 				C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */,
@@ -366,8 +376,10 @@
 				C0FB56851157B5DD003932F3 /* TextSender.m in Sources */,
 				C03E6448115A560600CF2B91 /* AboutBox.m in Sources */,
 				C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */,
-				C0BD04441164AB8900391138 /* Meme.m in Sources */,
 				C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */,
+				C053D4E2116648FE001AC0B6 /* User.m in Sources */,
+				C053D4E3116648FE001AC0B6 /* Avatar.m in Sources */,
+				C053D4E4116648FE001AC0B6 /* Meme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
