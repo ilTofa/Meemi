@@ -138,7 +138,7 @@ static Meemi *sharedSession = nil;
 		return NO;
 }
 
--(void)arrangeAnUserWithName:(NSString *)name
+-(void)setRelationshipsWithMemeFrom:(NSString *)name
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
@@ -153,13 +153,21 @@ static Meemi *sharedSession = nil;
 	if (fetchResults != nil)
 	{
 		theUser = [fetchResults objectAtIndex:0];
+		theAvatar = theUser.avatar;
 	}
 	else
 	{
-		// Create an User and add it to the managedObjectContext
+		// Create an User and an Avatar and add them to the managedObjectContext
 		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
 		theUser.screen_name = name;
+		theAvatar = (Avatar *)[NSEntityDescription insertNewObjectForEntityForName:@"Avatar" inManagedObjectContext:self.managedObjectContext];
+		// set the relationship between theUser and theAvatar
+		theAvatar.user = theUser;
+		theUser.avatar = theAvatar;
 	}
+	// Whatever theUser is (new or pre-existing) now it's time to set the relationship with theMeme
+	theMeme.user = theUser;
+	[theUser addMemeObject:theMeme];
 }
 
 #pragma mark NSXMLParser delegate
@@ -220,8 +228,8 @@ static Meemi *sharedSession = nil;
 			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 			theMeme.id = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
 			theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
-			// TODO: should now check the user is already into the CoreData list
-			
+			// Now that theMeme is started, set the relationships with theUser (and create it if not existing)
+			[self setRelationshipsWithMemeFrom:theMeme.screen_name];
 			theMeme.qta_replies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
 			theMeme.type = [attributeDict objectForKey:@"type"];
 			// TODO: avoid work around not implemented type different from text

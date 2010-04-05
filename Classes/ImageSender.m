@@ -84,12 +84,24 @@
 	// Create a graphics image context
 	UIGraphicsBeginImageContext(newSize);
 	// Tell the old image to draw in this new context, with the desired size
-	UIImage *tempImage = [UIImage imageWithCGImage:theImage.CGImage];
-	[tempImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+	[self.theImage drawInRect:CGRectMake(0, 0, scaledWidth, scaledHeight)];
 	// Get the new image from the context
 	self.theThumbnail = UIGraphicsGetImageFromCurrentImageContext();
 	// End the context
 	UIGraphicsEndImageContext();
+}
+
+// This is a workaround a bug in meemi.
+-(void)removeOrientation
+{
+	// Create a graphics image context
+	UIGraphicsBeginImageContext(self.theImage.size);
+	// Tell the old image to draw in this new context, with the desired size
+	[self.theImage drawInRect:CGRectMake(0, 0, self.theImage.size.width, self.theImage.size.height)];
+	// Get the new image from the context
+	self.theThumbnail = UIGraphicsGetImageFromCurrentImageContext();
+	// End the context
+	UIGraphicsEndImageContext();	
 }
 
 #define kImageSizeInNib 134.0
@@ -110,7 +122,12 @@
 		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
 	}
 	else
-		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
+	{
+		// Workaround the Meemi bug on EXIF orientation flag
+		[self removeOrientation];
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
+	//		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
+	}
 }
 
 -(IBAction)cancel:(id)sender
