@@ -516,14 +516,14 @@ static Meemi *sharedSession = nil;
     // already have one.
     if (nil == locationManager)
         locationManager = [[CLLocationManager alloc] init];
-		
-		locationManager.delegate = self;
-		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-		
-		// Set a movement threshold for new events
-		locationManager.distanceFilter = 200;
-		
-		[locationManager startUpdatingLocation];	
+	
+	locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+	
+	// Set a movement threshold for new events
+	locationManager.distanceFilter = 100;
+	
+	[locationManager startUpdatingLocation];	
 }
 
 
