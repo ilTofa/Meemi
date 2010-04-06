@@ -56,6 +56,9 @@
 								 autorelease];
 		[theAlert show];
 	}
+	// now, load the new memes... ;)
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getNewMemes];
 }
 
 
@@ -100,6 +103,18 @@
 - (void)viewDidUnload 
 {
 	[theMemeList release];
+}
+
+#pragma mark MeemiDelegate
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	NSLog(@"(MeemiRequest)request didFailWithError:");
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	NSLog(@"(MeemiRequest)request didFinishWithResult:");
 }
 
 #pragma mark NSFetchedResultsControllerDelegate
@@ -155,12 +170,12 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{ 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[theMemeList sections] objectAtIndex:section];
-    return [sectionInfo name];
-}
-
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+//{ 
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[theMemeList sections] objectAtIndex:section];
+//    return [sectionInfo name];
+//}
+//
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
 {
     return [theMemeList sectionIndexTitles];

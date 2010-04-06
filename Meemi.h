@@ -88,6 +88,7 @@ typedef enum
 +(Meemi *)sharedSession;
 
 - (void)startLocation;
+- (void)stopLocation;
 
 -(void)startSessionFromUserDefaults;
 

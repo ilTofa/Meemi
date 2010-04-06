@@ -138,8 +138,9 @@ static Meemi *sharedSession = nil;
 		return NO;
 }
 
--(void)setRelationshipsWithMemeFrom:(NSString *)name
+-(void)setupMemeRelationshipsFrom:(NSString *)name
 {
+	NSLog(@"Now in setupMemeRelationshipsFrom");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
@@ -150,10 +151,11 @@ static Meemi *sharedSession = nil;
 	[request setFetchLimit:1];
 	NSError *error;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-	if (fetchResults != nil)
+	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		theUser = [fetchResults objectAtIndex:0];
 		theAvatar = theUser.avatar;
+		NSLog(@"User %@ for the meme already existing: %@", name);
 	}
 	else
 	{
@@ -164,6 +166,7 @@ static Meemi *sharedSession = nil;
 		// set the relationship between theUser and theAvatar
 		theAvatar.user = theUser;
 		theUser.avatar = theAvatar;
+		NSLog(@"New user created for %@", name);
 	}
 	// Whatever theUser is (new or pre-existing) now it's time to set the relationship with theMeme
 	theMeme.user = theUser;
@@ -229,7 +232,7 @@ static Meemi *sharedSession = nil;
 			theMeme.id = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
 			theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
 			// Now that theMeme is started, set the relationships with theUser (and create it if not existing)
-			[self setRelationshipsWithMemeFrom:theMeme.screen_name];
+			[self setupMemeRelationshipsFrom:theMeme.screen_name];
 			theMeme.qta_replies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
 			theMeme.type = [attributeDict objectForKey:@"type"];
 			// TODO: avoid work around not implemented type different from text
@@ -246,6 +249,8 @@ static Meemi *sharedSession = nil;
 		// Other parts of a meme
 		if([elementName isEqualToString:@"avatars"])
 		{
+			// TODO: strip -s from base URL...
+			theAvatar.baseURL = [attributeDict objectForKey:@"small"];
 //			theMeme.avatar_small = [attributeDict objectForKey:@"small"];
 //			NSLog(@"size before: %d, size after: %d", [[attributeDict objectForKey:@"small"] length], [theMeme.avatar_small length]);
 //			NSLog(@"theMeme.avatar_small = \"%@\"", theMeme.avatar_small);
@@ -504,6 +509,12 @@ static Meemi *sharedSession = nil;
 
 #pragma mark CLLocationManagerDelegate and its delegate
 
+- (void)stopLocation
+{
+	if(locationManager)
+		[locationManager stopUpdatingLocation];
+}
+
 - (void)startLocation
 {
 	// If user already deny once this session, bail out
@@ -522,6 +533,9 @@ static Meemi *sharedSession = nil;
 	
 	// Set a movement threshold for new events
 	locationManager.distanceFilter = 100;
+	
+	// We want a full service :)
+	needLocation = needG13N = YES;
 	
 	[locationManager startUpdatingLocation];	
 }

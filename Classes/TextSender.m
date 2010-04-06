@@ -93,8 +93,15 @@
 		self.canBeLocalized.enabled = NO;
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
 	}
+	
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	// Restart localization
+	[[Meemi sharedSession] startLocation];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
