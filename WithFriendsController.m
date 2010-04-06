@@ -177,7 +177,7 @@
     tempLabel = (UILabel *)[cell viewWithTag:2];
     tempLabel.text = theFetchedMeme.user.real_name;
     tempLabel = (UILabel *)[cell viewWithTag:4];
-    tempLabel.text = [NSString stringWithFormat:@"%d", theFetchedMeme.qta_replies];
+    tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
 	UITextView *tempTextView = (UITextView *)[cell viewWithTag:3];
 	tempTextView.text = theFetchedMeme.content;
 	
