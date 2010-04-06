@@ -72,6 +72,9 @@ typedef enum
 	BOOL lcDenied;	
 	NSString *placeName, *state;
 	NSString *nearbyPlaceName;
+	
+	// mark how many records we got.
+	int howMany;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

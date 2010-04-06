@@ -11,6 +11,8 @@
 
 @implementation WithFriendsController
 
+@synthesize memeCell;
+
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -115,6 +117,10 @@
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
 	NSLog(@"(MeemiRequest)request didFinishWithResult:");
+	if(result < 20)
+		NSLog(@"No other records to read");
+	else
+		NSLog(@"Still records to be read");
 }
 
 #pragma mark NSFetchedResultsControllerDelegate
@@ -154,18 +160,26 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MemeCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    if (cell == nil) 
+	{
+		[[NSBundle mainBundle] loadNibNamed:@"MemeCell" owner:self options:nil];
+        cell = memeCell;
+        self.memeCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
     Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
-    // TODO: configure the cell with data from the managed object.
-	cell.textLabel.text = theFetchedMeme.screen_name;
-	cell.detailTextLabel.text = theFetchedMeme.content;
+    UILabel *tempLabel;
+    tempLabel = (UILabel *)[cell viewWithTag:1];
+    tempLabel.text = theFetchedMeme.screen_name;
+    tempLabel = (UILabel *)[cell viewWithTag:2];
+    tempLabel.text = theFetchedMeme.user.real_name;
+    tempLabel = (UILabel *)[cell viewWithTag:4];
+    tempLabel.text = [NSString stringWithFormat:@"%d", theFetchedMeme.qta_replies];
+	UITextView *tempTextView = (UITextView *)[cell viewWithTag:3];
+	tempTextView.text = theFetchedMeme.content;
 	
     return cell;
 }

@@ -12,6 +12,9 @@
 @interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate>
 {
 	NSFetchedResultsController *theMemeList;
+	UITableViewCell *memeCell;
 }
+
+@property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 
 @end

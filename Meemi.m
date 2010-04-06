@@ -223,6 +223,7 @@ static Meemi *sharedSession = nil;
 			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
 			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
 			NSLog(@"*** Got %d memes in reply to new_meme_request", [memeQuantity intValue]);
+			howMany = [memeQuantity intValue];
 		}
 		// if a meme is coming...
 		if([elementName isEqualToString:@"meme"])
@@ -289,7 +290,8 @@ static Meemi *sharedSession = nil;
                 else 
 					NSLog(@"  %@", [error userInfo]);
 			}
-			[self.delegate meemi:MmGetNew didFinishWithResult:MmOperationOK];
+			// return to delegate how many records we read and, therefore, if there are still records to fetch...
+			[self.delegate meemi:MmGetNew didFinishWithResult:howMany];
 		}	
 		// Here a meme is ended, should be saved. :)
 		if([elementName isEqualToString:@"meme"])
