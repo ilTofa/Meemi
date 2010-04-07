@@ -402,6 +402,7 @@
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
 				INFOPLIST_FILE = "Meemi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
 			};

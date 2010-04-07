@@ -21,8 +21,16 @@
 			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
 		};
 	};
+	28A0AB4B0D9B1048005BE974 /* Meemi_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {843, 642}}";
+			sepNavSelRange = "{343, 0}";
+			sepNavVisRange = "{0, 343}";
+			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
+		};
+	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 6453FB9711527D95009F6DBD /* Meemi */;
 		activeSDKPreference = iphonesimulator3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
@@ -37,16 +45,13 @@
 			6453FB9711527D95009F6DBD /* Meemi */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 292258199;
-			PBXWorkspaceStateSaveDate = 292258199;
+			PBXPerProjectTemplateStateSaveDate = 292324883;
+			PBXWorkspaceStateSaveDate = 292324883;
 		};
 		perUserProjectItems = {
-			6443B0CF116B8A2000C16EEF /* PBXTextBookmark */ = 6443B0CF116B8A2000C16EEF /* PBXTextBookmark */;
-			6443B0D0116B8A2000C16EEF /* PBXTextBookmark */ = 6443B0D0116B8A2000C16EEF /* PBXTextBookmark */;
-			6443B0DD116B903100C16EEF /* PBXTextBookmark */ = 6443B0DD116B903100C16EEF /* PBXTextBookmark */;
-			6443B0DE116B903100C16EEF /* PBXTextBookmark */ = 6443B0DE116B903100C16EEF /* PBXTextBookmark */;
-			6443B0DF116B903100C16EEF /* PBXTextBookmark */ = 6443B0DF116B903100C16EEF /* PBXTextBookmark */;
-			6443B0E0116B903100C16EEF /* PBXTextBookmark */ = 6443B0E0116B903100C16EEF /* PBXTextBookmark */;
+			64AB98F9116CEF5000093207 /* PBXTextBookmark */ = 64AB98F9116CEF5000093207 /* PBXTextBookmark */;
+			64AB98FA116CEF5000093207 /* PBXTextBookmark */ = 64AB98FA116CEF5000093207 /* PBXTextBookmark */;
+			64AB9901116CEFD300093207 /* PBXTextBookmark */ = 64AB9901116CEFD300093207 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6453FBAA11527DB5009F6DBD /* Source Control */;
 		userBuildSettings = {
@@ -66,69 +71,9 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = Meemi;
-		modificationTime = 292260864.971414;
+		modificationTime = 292351882.847577;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
-	};
-	6443B0CF116B8A2000C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C71165DA91001AC0B6 /* WithFriendsController.h */;
-		name = "WithFriendsController.h: 18";
-		rLen = 0;
-		rLoc = 454;
-		rType = 0;
-		vrLen = 461;
-		vrLoc = 0;
-	};
-	6443B0D0116B8A2000C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 164";
-		rLen = 0;
-		rLoc = 4735;
-		rType = 0;
-		vrLen = 1864;
-		vrLoc = 3841;
-	};
-	6443B0DD116B903100C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 123";
-		rLen = 0;
-		rLoc = 3504;
-		rType = 0;
-		vrLen = 1335;
-		vrLoc = 2584;
-	};
-	6443B0DE116B903100C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0E620411152E36800E6C079 /* Meemi.h */;
-		name = "Meemi.h: 77";
-		rLen = 0;
-		rLoc = 1586;
-		rType = 0;
-		vrLen = 1431;
-		vrLoc = 760;
-	};
-	6443B0DF116B903100C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
-		name = "Meemi.m: 438";
-		rLen = 41;
-		rLoc = 15568;
-		rType = 0;
-		vrLen = 2596;
-		vrLoc = 6506;
-	};
-	6443B0E0116B903100C16EEF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
-		name = "Meemi.m: 276";
-		rLen = 0;
-		rLoc = 9439;
-		rType = 0;
-		vrLen = 1926;
-		vrLoc = 8804;
 	};
 	6453FB9711527D95009F6DBD /* Meemi */ = {
 		isa = PBXExecutable;
@@ -176,6 +121,36 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	64AB98F9116CEF5000093207 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620411152E36800E6C079 /* Meemi.h */;
+		name = "Meemi.h: 118";
+		rLen = 0;
+		rLoc = 3009;
+		rType = 0;
+		vrLen = 1602;
+		vrLoc = 1592;
+	};
+	64AB98FA116CEF5000093207 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 580";
+		rLen = 0;
+		rLoc = 20685;
+		rType = 0;
+		vrLen = 1503;
+		vrLoc = 19212;
+	};
+	64AB9901116CEFD300093207 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 580";
+		rLen = 0;
+		rLoc = 20685;
+		rType = 0;
+		vrLen = 1507;
+		vrLoc = 19367;
+	};
 	C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {843, 642}}";
@@ -185,9 +160,10 @@
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {929, 3510}}";
-			sepNavSelRange = "{7818, 0}";
-			sepNavVisRange = "{7770, 54}";
+			sepNavIntBoundsRect = "{{0, 0}, {901, 3731}}";
+			sepNavSelRange = "{3489, 0}";
+			sepNavVisRange = "{3071, 1210}";
+			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
 		};
 	};
 	C053D4DC116648FE001AC0B6 /* User.h */ = {
@@ -259,18 +235,192 @@
 			sepNavWindowFrame = "{{61, 3}, {902, 770}}";
 		};
 	};
+	C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {
+		uiCtxt = {
+			"Xdesign Model Editor Bookmark Key" = {
+				UIContextForDetailArea = {
+					_indexOfSelectedPane = 0;
+					_indexOfSelectedView = 0;
+				};
+				UIContextForEntityArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnns = (
+						"ET Entity",
+						"ET Abstract",
+						"ET Class",
+					);
+					chosenTableColumnns_sortDirections = (
+						YES,
+					);
+					chosenTableColumnns_sortKeys = (
+						name,
+					);
+					chosenTableColumnns_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableWidths = (
+						103.000000,
+						22.000000,
+						78.080078,
+					);
+				};
+				UIContextForLayoutManager = {
+					detailSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {699, 218}}",
+							"{{704, 0}, {368, 218}}",
+						);
+					};
+					diagramSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {1072, 220}}",
+							"{{0, 225}, {1072, 432}}",
+						);
+					};
+					tableSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {228, 218}}",
+							"{{233, 0}, {466, 218}}",
+						);
+					};
+				};
+				UIContextForPropertyArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnnFRTs = (
+						"FT Fetch Request",
+						"FT Predicate",
+					);
+					chosenTableColumnnFRTs_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnFRTs_sortKeys = (
+						name,
+					);
+					chosenTableColumnnFRTs_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsAT = (
+						"AT Attribute",
+						"AT Type",
+					);
+					chosenTableColumnnsAT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsAT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsAT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsFPT = (
+						"FP FetchedProperty",
+						"FP Destination",
+						"FP Predicate",
+					);
+					chosenTableColumnnsFPT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsFPT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsFPT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsPT = (
+						"PT Property",
+						"PT Kind",
+						"PT SharedKeyOne",
+					);
+					chosenTableColumnnsPT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsPT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsPT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsRT = (
+						"RT Relationship",
+						"RT Destination",
+					);
+					chosenTableColumnnsRT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsRT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsRT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableWidthsAT = (
+						128.000000,
+						64.000000,
+					);
+					chosenTableWidthsFPT = (
+						128.000000,
+						64.000000,
+						144.764160,
+					);
+					chosenTableWidthsFRT = (
+						128.000000,
+						249.764160,
+					);
+					chosenTableWidthsPT = (
+						128.000000,
+						108.110840,
+						203.570801,
+					);
+					chosenTableWidthsRT = (
+						128.000000,
+						64.000000,
+					);
+				};
+				"xdesign model browser state key - shown/hidden" = 1;
+				"xdesign model diagram view visible rect key" = "{{-180, -1}, {1057, 417}}";
+			};
+			sepNavWindowFrame = "{{61, 3}, {1072, 770}}";
+		};
+	};
+	C0E620201152E12A00E6C079 /* ASINetworkQueue.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1293, 1625}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{3064, 2258}";
+		};
+	};
+	C0E620211152E12A00E6C079 /* ASINetworkQueue.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1328, 5226}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{6952, 1560}";
+			sepNavWindowFrame = "{{61, 3}, {1072, 770}}";
+		};
+	};
 	C0E620411152E36800E6C079 /* Meemi.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {843, 1586}}";
-			sepNavSelRange = "{1586, 0}";
-			sepNavVisRange = "{760, 1431}";
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 1651}}";
+			sepNavSelRange = "{3009, 0}";
+			sepNavVisRange = "{1592, 1602}";
 		};
 	};
 	C0E620421152E36800E6C079 /* Meemi.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1020, 8190}}";
-			sepNavSelRange = "{9439, 0}";
-			sepNavVisRange = "{8804, 1926}";
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 11232}}";
+			sepNavSelRange = "{18581, 0}";
+			sepNavVisRange = "{18053, 1034}";
 		};
 	};
 	C0FB56831157B5DD003932F3 /* TextSender.m */ = {

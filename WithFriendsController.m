@@ -60,7 +60,7 @@
 	}
 	// now, load the new memes... ;)
 	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemes];
+	[[Meemi sharedSession] getNewMemes:YES];
 }
 
 
@@ -117,10 +117,29 @@
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
 	NSLog(@"(MeemiRequest)request didFinishWithResult:");
-	if(result < 20)
-		NSLog(@"No other records to read");
-	else
-		NSLog(@"Still records to be read");
+	switch (request) 
+	{
+		case MmGetNew:
+			// Continue to read new memes up to 30 of them
+			if(result > 20 && (result - 20) < 3)
+			{
+				NSLog(@"Still records to be read, now at page %d", result - 20);
+				[[Meemi sharedSession] getNewMemes:NO];
+			}
+			else
+			{
+				NSLog(@"No other records to read or max number reached, should be marking all read...");
+//				[[Meemi sharedSession] markNewMemesRead];
+				[[Meemi sharedSession] getNewUsers];
+			}
+			break;
+		case MmMarkNewRead:
+			NSLog(@"New memes marked read.");
+			break;
+		default:
+			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in WithFriendsController.m called with unknow request");
+			break;
+	}
 }
 
 #pragma mark NSFetchedResultsControllerDelegate

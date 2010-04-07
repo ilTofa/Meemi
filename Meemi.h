@@ -12,13 +12,17 @@
 #import "Avatar.h"
 #import "User.h"
 
+@class ASINetworkQueue;
+
 @protocol MeemiDelegate;
 
 typedef enum {
 	MmRValidateUser = 1,
 	MmRPostImage,
 	MmRPostText,
-	MmGetNew
+	MmGetNew,
+	MmMarkNewRead,
+	MmGetUser
 } MeemiRequest;
 
 typedef enum
@@ -75,6 +79,12 @@ typedef enum
 	
 	// mark how many records we got.
 	int howMany;
+	int newMemesPageWatermark;
+	NSMutableArray *newUsersFromNewMemes;
+	
+	// The Queue
+	ASINetworkQueue *networkQueue;
+	NSOperationQueue *theQueue;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -87,6 +97,7 @@ typedef enum
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;
 @property (nonatomic, retain) NSString *placeName, *state;
+@property (retain) ASINetworkQueue *networkQueue;
 
 +(Meemi *)sharedSession;
 
@@ -99,9 +110,12 @@ typedef enum
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
--(void)getNewMemes;
+-(void)getNewMemes:(BOOL)fromScratch;
+-(void)markNewMemesRead;
+-(void)getNewUsers;
 
 -(BOOL)parse:(NSData *)responseData;
+-(void)updateAvatars;
 
 @end
 
