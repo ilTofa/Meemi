@@ -64,7 +64,7 @@
 	
     NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] 
 											   stringByAppendingPathComponent: @"Core_Data.sqlite"]];
-	
+	NSLog(@"store is on %@", [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Core_Data.sqlite"]);
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] 
 								  initWithManagedObjectModel:[self managedObjectModel]];

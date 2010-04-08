@@ -33,7 +33,7 @@
 	// Configure the request's entity, and optionally its predicate.
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:context];
 	[fetchRequest setEntity:entityDescription];
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	[sortDescriptors release];
@@ -195,10 +195,19 @@
     tempLabel.text = theFetchedMeme.screen_name;
     tempLabel = (UILabel *)[cell viewWithTag:2];
     tempLabel.text = theFetchedMeme.user.real_name;
+    tempLabel = (UILabel *)[cell viewWithTag:3];
+    tempLabel.text = theFetchedMeme.content;
     tempLabel = (UILabel *)[cell viewWithTag:4];
     tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
-	UITextView *tempTextView = (UITextView *)[cell viewWithTag:3];
-	tempTextView.text = theFetchedMeme.content;
+    tempLabel = (UILabel *)[cell viewWithTag:5];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setLocale:[NSLocale currentLocale]];
+	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
+	[dateFormatter release];
+	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
+	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar.small];
 	
     return cell;
 }

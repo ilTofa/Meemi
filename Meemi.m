@@ -351,21 +351,21 @@ static Meemi *sharedSession = nil;
 		}
 		// Other things
 		if([elementName isEqualToString:@"original_link"])
-			theMeme.original_link = currentStringValue;
+			theMeme.original_link = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if([elementName isEqualToString:@"location"])
-			theMeme.location = currentStringValue;
+			theMeme.location = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if([elementName isEqualToString:@"source"])
-			theMeme.source = currentStringValue;
+			theMeme.source = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if([elementName isEqualToString:@"chans"])
-			theMeme.chans = currentStringValue;
+			theMeme.chans = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if([elementName isEqualToString:@"content"])
-			theMeme.content = currentStringValue;
+			theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	}
     if ([elementName isEqualToString:@"name"])
-		self.placeName = currentStringValue;
+		self.placeName = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	if ([elementName isEqualToString:@"countryName"])
-		self.state = currentStringValue;
+		self.state = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	if ([elementName isEqualToString:@"distance"])
 		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
@@ -373,12 +373,12 @@ static Meemi *sharedSession = nil;
 	if(self.currentRequest == MmGetUser)
 	{
 		if([elementName isEqualToString:@"avatars"])
-			theUser.info = currentStringValue;
+			theUser.info = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		else if([elementName isEqualToString:@"meemi"])
 			// user info end, save...
 			ALog(@"New user saved %@", theUser.screen_name);
 		else if([elementName isEqualToString:@"profile"])
-			theUser.profile = currentStringValue;		
+			theUser.profile = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	}
     // reset currentStringValue for the next cycle
     [currentStringValue release];
@@ -518,7 +518,6 @@ static Meemi *sharedSession = nil;
 
 -(void)getAvatarImageIfNeeded:(id)forThisAvatar
 {
-	BOOL needSave = NO;
 	NSURL *url;
 	Avatar *thisAvatar = forThisAvatar;
 	NSString *temp = [[NSString alloc] initWithData:thisAvatar.small encoding:NSUTF8StringEncoding];
@@ -531,8 +530,10 @@ static Meemi *sharedSession = nil;
 		NSError *error = [request error];
 		if (!error) {
 			theAvatar.small = [request responseData];
-			needSave = YES;
 		}		
+		else {
+			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+		}
 	}
 	[temp release];
 	
@@ -546,8 +547,10 @@ static Meemi *sharedSession = nil;
 		NSError *error = [request error];
 		if (!error) {
 			theAvatar.medium = [request responseData];
-			needSave = YES;
 		}		
+		else {
+			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+		}
 	}
 	[temp release];
 	
@@ -561,24 +564,31 @@ static Meemi *sharedSession = nil;
 		NSError *error = [request error];
 		if (!error) {
 			theAvatar.original = [request responseData];
-			needSave = YES;
-		}		
+		}
+		else {
+			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+		}
 	}
 	[temp release];
-	if(needSave)
+	if([self.managedObjectContext hasChanges])
 	{
 		NSError *error;
 		if (![self.managedObjectContext save:&error])
 		{
-			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			ALog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
 			if(detailedErrors != nil && [detailedErrors count] > 0) 
 				for(NSError* detailedError in detailedErrors) 
-					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+					ALog(@"  DetailedError: %@", [detailedError userInfo]);
 			else 
-				DLog(@"  %@", [error userInfo]);
-		}		
+				ALog(@"  %@", [error userInfo]);
+		}	
+		ALog(@"saved %@", thisAvatar.user.screen_name);
 	}
+	else {
+		ALog(@"No needs to save %@", thisAvatar.user.screen_name);
+	}
+
 }
 
 -(void)updateAvatars
@@ -598,6 +608,7 @@ static Meemi *sharedSession = nil;
 																			   object:newAvatar] autorelease];
 		[theQueue addOperation:theOp];
 	}
+	[request release];
 }
 
 -(void)getNewUsers
