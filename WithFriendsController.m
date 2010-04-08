@@ -130,11 +130,16 @@
 			{
 				NSLog(@"No other records to read or max number reached, should be marking all read...");
 //				[[Meemi sharedSession] markNewMemesRead];
+				// Now get newUsers into db.
 				[[Meemi sharedSession] getNewUsers];
 			}
 			break;
 		case MmMarkNewRead:
 			NSLog(@"New memes marked read.");
+			break;
+		case MmGetNewUsers:
+			NSLog(@"New users and avatars updated");
+			[self.tableView reloadData];
 			break;
 		default:
 			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in WithFriendsController.m called with unknow request");

@@ -529,7 +529,7 @@ static Meemi *sharedSession = nil;
 		[request startSynchronous];
 		NSError *error = [request error];
 		if (!error) {
-			theAvatar.small = [request responseData];
+			thisAvatar.small = [request responseData];
 		}		
 		else {
 			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -546,7 +546,7 @@ static Meemi *sharedSession = nil;
 		[request startSynchronous];
 		NSError *error = [request error];
 		if (!error) {
-			theAvatar.medium = [request responseData];
+			thisAvatar.medium = [request responseData];
 		}		
 		else {
 			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -563,7 +563,7 @@ static Meemi *sharedSession = nil;
 		[request startSynchronous];
 		NSError *error = [request error];
 		if (!error) {
-			theAvatar.original = [request responseData];
+			thisAvatar.original = [request responseData];
 		}
 		else {
 			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -588,7 +588,12 @@ static Meemi *sharedSession = nil;
 	else {
 		ALog(@"No needs to save %@", thisAvatar.user.screen_name);
 	}
+}
 
+-(void)getBackToDelegateAfterUpdateAvatars:(id)theDelegate
+{
+	ALog(@"in getBackToDelegateAfterUpdateAvatars:");
+	[(id<MeemiDelegate>)theDelegate meemi:MmGetNewUsers didFinishWithResult:0];
 }
 
 -(void)updateAvatars
@@ -609,6 +614,12 @@ static Meemi *sharedSession = nil;
 		[theQueue addOperation:theOp];
 	}
 	[request release];
+	// The last operation get back to the delegate...
+	NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
+																		 selector:@selector(getBackToDelegateAfterUpdateAvatars:) 
+																		   object:self.delegate] autorelease];
+	[theQueue addOperation:theOp];
+	
 }
 
 -(void)getNewUsers

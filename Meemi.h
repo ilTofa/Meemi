@@ -22,7 +22,8 @@ typedef enum {
 	MmRPostText,
 	MmGetNew,
 	MmMarkNewRead,
-	MmGetUser
+	MmGetUser,
+	MmGetNewUsers
 } MeemiRequest;
 
 typedef enum

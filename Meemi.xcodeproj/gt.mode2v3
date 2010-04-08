@@ -202,7 +202,7 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>6442920E1158293500C055BB</string>
+				<string>64490486116E297F003256BC</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>Meemi.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -210,17 +210,17 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>6442920F1158293500C055BB</string>
+						<string>64490487116E297F003256BC</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>Meemi.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64490470116E034B003256BC</string>
+						<string>64490496116E3495003256BC</string>
 						<key>history</key>
 						<array>
-							<string>64AB98F9116CEF5000093207</string>
-							<string>6449046F116E034B003256BC</string>
+							<string>64490491116E2D36003256BC</string>
+							<string>64490492116E2D36003256BC</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64490473116E034B003256BC</string>
+						<string>64490497116E3495003256BC</string>
 						<key>history</key>
 						<array>
 							<string>64490438116DD89F003256BC</string>
@@ -354,8 +354,8 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>30</integer>
-											<integer>26</integer>
+											<integer>24</integer>
+											<integer>1</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -535,6 +535,8 @@
 	</array>
 	<key>PerspectivesBarVisible</key>
 	<false/>
+	<key>PinnedNavigatorIdentifier</key>
+	<string>64490486116E297F003256BC</string>
 	<key>ShelfIsVisible</key>
 	<false/>
 	<key>SourceDescription</key>
@@ -563,10 +565,10 @@
 		<string>6449047D116E034B003256BC</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>64490471116E034B003256BC</string>
 		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>6442920E1158293500C055BB</string>
+		<string>64490471116E034B003256BC</string>
+		<string>64490486116E297F003256BC</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
