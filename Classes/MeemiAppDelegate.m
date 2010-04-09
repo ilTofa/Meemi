@@ -92,6 +92,35 @@
 	return persistentStoreCoordinator;
 }
 
+-(void)removeCoreDataStore
+{
+	NSError *error;
+	if(![[NSFileManager defaultManager] removeItemAtPath:[[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Core_Data.sqlite"]
+												   error:&error])
+	{
+		NSLog(@"Error in removeCoreDataStore: %@", error);
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+															message:[error localizedDescription]
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+	}
+	else
+	{
+		NSLog(@"Store deleted, exiting application");
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Quitting"
+															message:@"Store deleted, exiting application"
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+		abort();
+	}
+}
+	   
 #pragma mark -
 #pragma mark Application's documents directory
 
@@ -113,7 +142,7 @@
 {	
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
-								 0, @"userValidated", 0, @"userDeny", nil];
+								 0, @"userValidated", 0, @"userDeny", 0, "rowNumber", nil];
     [defaults registerDefaults:appDefaults];
 }
 

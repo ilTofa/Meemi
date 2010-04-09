@@ -32,4 +32,6 @@
 // Mobileweb navigation helper...
 @property (nonatomic, retain) NSString *urlToBeLoaded;
 
+-(void)removeCoreDataStore;
+
 @end

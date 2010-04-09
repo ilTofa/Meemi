@@ -856,7 +856,7 @@ static Meemi *sharedSession = nil;
 		// Pass location to Flurry
 //		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
-		DLog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
+		ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
 							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
 							  newLocation.horizontalAccuracy, self.nearbyPlaceName);
 		// init a safe value, just in case...
@@ -875,7 +875,7 @@ static Meemi *sharedSession = nil;
 			
 			NSString *urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPlaceName?lat=%+.6f&lng=%+.6f",
 								   newLocation.coordinate.latitude, newLocation.coordinate.longitude];
-			DLog(@"Starting reverse geolocation via <%@>", urlString);
+			ALog(@"Starting reverse geolocation via <%@>", urlString);
 			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
 														cachePolicy:NSURLRequestReturnCacheDataElseLoad
 													timeoutInterval:30];

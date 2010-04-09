@@ -150,8 +150,8 @@
 	switch (request) 
 	{
 		case MmGetNew:
-			// Continue to read new memes up to 50 of them
-			if(result > 20 && (result - 20) < 5)
+			// Continue to read new memes up to "rowNumber" / 10 of them
+			if(result > 20 && (result - 20) <= ([[NSUserDefaults standardUserDefaults] integerForKey:@"rowNumber"] / 10))
 			{
 				NSLog(@"Still records to be read, now at page %d", result - 20);
 				[[Meemi sharedSession] getNewMemes:NO];

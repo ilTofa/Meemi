@@ -12,7 +12,7 @@
 
 @implementation SettingsController
 
-@synthesize screenName, password, testLabel, laRuota;
+@synthesize screenName, password, testLabel, laRuota, rowNumber;
 
 -(void)restoreDefaults
 {
@@ -72,10 +72,40 @@
 	[self presentModalViewController:theBox animated:YES]; 
 }
 
+-(IBAction)dismiss:(id)sender
+{
+	if([Meemi sharedSession].isValid)
+		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
+		return;
+	// else do not dismiss keyboard (and warn user)
+	self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
+	[self.screenName becomeFirstResponder];	
+}
+
+-(IBAction)killDB:(id)sender
+{
+	[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) removeCoreDataStore];
+}
+
 // dismiss keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
 	NSLog(@"textFieldShouldReturn called");
+	if(theTextField == self.rowNumber)
+	{
+		// If reasonable...
+		if([theTextField.text intValue] > 9 && [theTextField.text intValue] < 101)
+		{
+			int value = [theTextField.text intValue] / 10 * 10;
+			ALog(@"setting rownumber default to %d", value);
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+			[defaults setInteger:value forKey:@"rowNumber"];
+			theTextField.text = [NSString stringWithFormat:@"%d", value];
+		}
+		else
+			theTextField.text = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"rowNumber"]];
+		return YES;
+	}
     if (theTextField == self.screenName)
         [self.screenName resignFirstResponder];
     if (theTextField == self.password)
