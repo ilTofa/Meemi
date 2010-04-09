@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize urlToBeLoaded;
 
 #pragma mark -
 #pragma mark Core Data stack
@@ -131,6 +132,9 @@
     }
     [Meemi sharedSession].managedObjectContext = context;
 	
+	// reset mobileweb to goto home
+	self.urlToBeLoaded = @"";
+	
 	// If use is validated, start on first tab, else on settings.
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
 	{
@@ -138,7 +142,7 @@
 		self.tabBarController.selectedIndex = 0;
 	}
 	else
-		self.tabBarController.selectedIndex = 2;
+		self.tabBarController.selectedIndex = kSettingsTab;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

@@ -17,4 +17,6 @@
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 
+-(IBAction)reloadMemes;
+
 @end

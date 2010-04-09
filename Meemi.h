@@ -86,6 +86,9 @@ typedef enum
 	// The Queue
 	ASINetworkQueue *networkQueue;
 	NSOperationQueue *theQueue;
+	
+	// Temporary workaround for no "mark read" bug of meemi
+	BOOL currentMemeIsNew;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -117,6 +120,7 @@ typedef enum
 
 -(BOOL)parse:(NSData *)responseData;
 -(void)updateAvatars;
+-(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID withReplyNumber:(NSNumber *)replies;
 
 @end
 

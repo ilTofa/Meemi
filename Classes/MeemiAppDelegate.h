@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#define kSettingsTab 3
+#define kWebTab 4
+
 @interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
     UITabBarController *tabBarController;
 	// CoreData helpers
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;       
-	NSPersistentStoreCoordinator *persistentStoreCoordinator;	
+	NSPersistentStoreCoordinator *persistentStoreCoordinator;
+	// Mobileweb navigation helper...
+	NSString *urlToBeLoaded;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -24,5 +29,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, readonly) NSString *applicationDocumentsDirectory;
+// Mobileweb navigation helper...
+@property (nonatomic, retain) NSString *urlToBeLoaded;
 
 @end

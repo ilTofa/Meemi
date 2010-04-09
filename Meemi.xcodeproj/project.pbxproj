@@ -18,6 +18,17 @@
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
 		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
+		C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C045116F43DA00BEDCCC /* camera-verysmall.png */; };
+		C045C04C116F453000BEDCCC /* video-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C04B116F453000BEDCCC /* video-verysmall.png */; };
+		C045C066116F57C300BEDCCC /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C065116F57C300BEDCCC /* 02-redo.png */; };
+		C045C068116F57E700BEDCCC /* 21-skull.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C067116F57E700BEDCCC /* 21-skull.png */; };
+		C045C06C116F59B400BEDCCC /* link-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C06B116F59B400BEDCCC /* link-verysmall.png */; };
+		C045C165116F6C8400BEDCCC /* MemeOnWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */; };
+		C045C166116F6C8400BEDCCC /* MemeOnWeb.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */; };
+		C045C222116F74F900BEDCCC /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C045C220116F74F900BEDCCC /* UserDetail.m */; };
+		C045C223116F74F900BEDCCC /* UserDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C221116F74F900BEDCCC /* UserDetail.xib */; };
+		C045C277116F798600BEDCCC /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = C045C275116F798600BEDCCC /* UserProfile.m */; };
+		C045C278116F798600BEDCCC /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C276116F798600BEDCCC /* UserProfile.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
 		C053D4E2116648FE001AC0B6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4DD116648FE001AC0B6 /* User.m */; };
@@ -77,6 +88,20 @@
 		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
 		C03E6446115A560600CF2B91 /* AboutBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutBox.m; sourceTree = "<group>"; };
 		C03E6447115A560600CF2B91 /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Classes/AboutBox.xib; sourceTree = "<group>"; };
+		C045C045116F43DA00BEDCCC /* camera-verysmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-verysmall.png"; sourceTree = "<group>"; };
+		C045C04B116F453000BEDCCC /* video-verysmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-verysmall.png"; sourceTree = "<group>"; };
+		C045C065116F57C300BEDCCC /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
+		C045C067116F57E700BEDCCC /* 21-skull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-skull.png"; sourceTree = "<group>"; };
+		C045C06B116F59B400BEDCCC /* link-verysmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link-verysmall.png"; sourceTree = "<group>"; };
+		C045C162116F6C8400BEDCCC /* MemeOnWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeOnWeb.h; sourceTree = "<group>"; };
+		C045C163116F6C8400BEDCCC /* MemeOnWeb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeOnWeb.m; sourceTree = "<group>"; };
+		C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MemeOnWeb.xib; path = Classes/MemeOnWeb.xib; sourceTree = "<group>"; };
+		C045C21F116F74F900BEDCCC /* UserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetail.h; sourceTree = "<group>"; };
+		C045C220116F74F900BEDCCC /* UserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetail.m; sourceTree = "<group>"; };
+		C045C221116F74F900BEDCCC /* UserDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserDetail.xib; path = Classes/UserDetail.xib; sourceTree = "<group>"; };
+		C045C274116F798600BEDCCC /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
+		C045C275116F798600BEDCCC /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
+		C045C276116F798600BEDCCC /* UserProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserProfile.xib; path = Classes/UserProfile.xib; sourceTree = "<group>"; };
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
 		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
@@ -174,6 +199,12 @@
 				C053D3C81165DA91001AC0B6 /* WithFriendsController.m */,
 				C03E6445115A560600CF2B91 /* AboutBox.h */,
 				C03E6446115A560600CF2B91 /* AboutBox.m */,
+				C045C162116F6C8400BEDCCC /* MemeOnWeb.h */,
+				C045C163116F6C8400BEDCCC /* MemeOnWeb.m */,
+				C045C21F116F74F900BEDCCC /* UserDetail.h */,
+				C045C220116F74F900BEDCCC /* UserDetail.m */,
+				C045C274116F798600BEDCCC /* UserProfile.h */,
+				C045C275116F798600BEDCCC /* UserProfile.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -220,8 +251,11 @@
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
 				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
+				C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */,
 				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
 				C0FB56841157B5DD003932F3 /* TextSender.xib */,
+				C045C221116F74F900BEDCCC /* UserDetail.xib */,
+				C045C276116F798600BEDCCC /* UserProfile.xib */,
 				6443B081116B824200C16EEF /* MemeCell.xib */,
 			);
 			name = Resources;
@@ -246,6 +280,11 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C045C06B116F59B400BEDCCC /* link-verysmall.png */,
+				C045C067116F57E700BEDCCC /* 21-skull.png */,
+				C045C065116F57C300BEDCCC /* 02-redo.png */,
+				C045C04B116F453000BEDCCC /* video-verysmall.png */,
+				C045C045116F43DA00BEDCCC /* camera-verysmall.png */,
 				C0FB57171157CD9D003932F3 /* 103-map.png */,
 				C09186161154354B00C2C5A4 /* Text.png */,
 				C0918614115434EB00C2C5A4 /* Camera.png */,
@@ -353,6 +392,14 @@
 				C0881B5611650E1F00A83951 /* 71-compass.png in Resources */,
 				C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */,
 				6443B082116B824200C16EEF /* MemeCell.xib in Resources */,
+				C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */,
+				C045C04C116F453000BEDCCC /* video-verysmall.png in Resources */,
+				C045C066116F57C300BEDCCC /* 02-redo.png in Resources */,
+				C045C068116F57E700BEDCCC /* 21-skull.png in Resources */,
+				C045C06C116F59B400BEDCCC /* link-verysmall.png in Resources */,
+				C045C166116F6C8400BEDCCC /* MemeOnWeb.xib in Resources */,
+				C045C223116F74F900BEDCCC /* UserDetail.xib in Resources */,
+				C045C278116F798600BEDCCC /* UserProfile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +431,9 @@
 				C053D4E2116648FE001AC0B6 /* User.m in Sources */,
 				C053D4E3116648FE001AC0B6 /* Avatar.m in Sources */,
 				C053D4E4116648FE001AC0B6 /* Meme.m in Sources */,
+				C045C165116F6C8400BEDCCC /* MemeOnWeb.m in Sources */,
+				C045C222116F74F900BEDCCC /* UserDetail.m in Sources */,
+				C045C277116F798600BEDCCC /* UserProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

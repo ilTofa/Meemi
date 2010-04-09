@@ -8,6 +8,7 @@
 
 #import "WithFriendsController.h"
 #import "Meme.h"
+#import "MemeOnWeb.h"
 
 @implementation WithFriendsController
 
@@ -22,12 +23,27 @@
 }
 */
 
+-(IBAction)reloadMemes
+{
+	// Protect ourselves against more reloads...
+	self.navigationItem.leftBarButtonItem.enabled = NO;
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getNewMemes:YES];	
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	// Add a left button for reloading the meme list
+	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
+																	 style:UIBarButtonItemStylePlain 
+																	target:self 
+																	action:@selector(reloadMemes)];
+	
+	self.navigationItem.leftBarButtonItem = reloadButton;
+	[reloadButton release];
+	
 	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.
@@ -59,8 +75,7 @@
 		[theAlert show];
 	}
 	// now, load the new memes... ;)
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemes:YES];
+	[self reloadMemes];
 }
 
 
@@ -120,8 +135,8 @@
 	switch (request) 
 	{
 		case MmGetNew:
-			// Continue to read new memes up to 30 of them
-			if(result > 20 && (result - 20) < 3)
+			// Continue to read new memes up to 50 of them
+			if(result > 20 && (result - 20) < 5)
 			{
 				NSLog(@"Still records to be read, now at page %d", result - 20);
 				[[Meemi sharedSession] getNewMemes:NO];
@@ -140,6 +155,7 @@
 		case MmGetNewUsers:
 			NSLog(@"New users and avatars updated");
 			[self.tableView reloadData];
+			self.navigationItem.leftBarButtonItem.enabled = YES;
 			break;
 		default:
 			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in WithFriendsController.m called with unknow request");
@@ -193,6 +209,9 @@
         cell = memeCell;
         self.memeCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		// This is 172/209/245 the Meemi "formal" background
+//		cell.contentView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
+//		cell.accessoryView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
     }
     Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
     UILabel *tempLabel;
@@ -200,8 +219,6 @@
     tempLabel.text = theFetchedMeme.screen_name;
     tempLabel = (UILabel *)[cell viewWithTag:2];
     tempLabel.text = theFetchedMeme.user.real_name;
-    tempLabel = (UILabel *)[cell viewWithTag:3];
-    tempLabel.text = theFetchedMeme.content;
     tempLabel = (UILabel *)[cell viewWithTag:4];
     tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
     tempLabel = (UILabel *)[cell viewWithTag:5];
@@ -213,9 +230,26 @@
 	[dateFormatter release];
 	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
 	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar.small];
+	// things that depend on the kind of meme
+	tempLabel = (UILabel *)[cell viewWithTag:3];
+	tempLabel.text = theFetchedMeme.content;
+	tempView = (UIImageView *)[cell viewWithTag:7];
+	if([theFetchedMeme.type isEqualToString:@"image"])
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
+	else if([theFetchedMeme.type isEqualToString:@"video"])
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"video-verysmall" ofType:@"png"]];
+	else if([theFetchedMeme.type isEqualToString:@"link"])
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
+	else // should be "text" only, but who knows
+		tempView.image = nil;
 	
     return cell;
 }
+
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	
+//}
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 //{ 
@@ -233,11 +267,14 @@
     return [theMemeList sectionForSectionIndexTitle:title atIndex:index];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+	NSString *originalLink = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).original_link;
+	NSString *mobileLink = [NSString stringWithFormat:@"http://meemi.com/m/%@", [originalLink substringFromIndex:17]];
+	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+	controller.urlToBeLoaded = mobileLink;
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
 }
 
 

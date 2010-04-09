@@ -151,7 +151,7 @@
     [super viewDidAppear:animated];
 	// If the session is invalid, goto setting page!
 	if(![Meemi sharedSession].isValid)
-		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 2;	
+		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = kSettingsTab;	
 	// DEBUG: try to get new memes (this is a test, of course)
 //	[Meemi sharedSession].delegate = self;
 //	[[Meemi sharedSession] getNewMemes];	
