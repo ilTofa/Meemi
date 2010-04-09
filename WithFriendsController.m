@@ -27,23 +27,13 @@
 {
 	// Protect ourselves against more reloads...
 	self.navigationItem.leftBarButtonItem.enabled = NO;
+
 	[Meemi sharedSession].delegate = self;
 	[[Meemi sharedSession] getNewMemes:YES];	
 }
 
-- (void)viewDidLoad 
+-(void)setupFetch:(NSString *)filterString
 {
-    [super viewDidLoad];
-
-	// Add a left button for reloading the meme list
-	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
-																	 style:UIBarButtonItemStylePlain 
-																	target:self 
-																	action:@selector(reloadMemes)];
-	
-	self.navigationItem.leftBarButtonItem = reloadButton;
-	[reloadButton release];
-	
 	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.
@@ -52,9 +42,16 @@
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
+	if(![filterString isEqualToString:@""])
+	{
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", filterString];
+		[fetchRequest setPredicate:predicate];
+	}
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
+	if(theMemeList != nil)
+		[theMemeList release];
 	theMemeList = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
 													  managedObjectContext:context 
 														sectionNameKeyPath:nil 
@@ -74,6 +71,24 @@
 								 autorelease];
 		[theAlert show];
 	}
+	[self.tableView reloadData];
+}	
+
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+
+	// Add a left button for reloading the meme list
+	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
+																	 style:UIBarButtonItemStylePlain 
+																	target:self 
+																	action:@selector(reloadMemes)];
+	
+	self.navigationItem.leftBarButtonItem = reloadButton;
+	[reloadButton release];
+	
+	[self setupFetch:@""];
+	
 	// now, load the new memes... ;)
 	[self reloadMemes];
 }
@@ -161,6 +176,32 @@
 			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in WithFriendsController.m called with unknow request");
 			break;
 	}
+}
+
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	if([searchBar isFirstResponder])
+		[searchBar resignFirstResponder];
+	DLog(@"searchBarSearchButtonClicked");
+	DLog(@"should we search for <%@>", searchBar.text);
+	[self setupFetch:searchBar.text];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	DLog(@"searchBarCancelButtonClicked");
+	if([searchBar isFirstResponder])
+		[searchBar resignFirstResponder];
+	searchBar.text = @"";
+	[self setupFetch:searchBar.text];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	// Start editing only if we could reload
+	return self.navigationItem.leftBarButtonItem.enabled;
 }
 
 #pragma mark NSFetchedResultsControllerDelegate

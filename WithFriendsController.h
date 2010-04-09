@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Meemi.h"
 
-@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate>
+@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate, UISearchBarDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
