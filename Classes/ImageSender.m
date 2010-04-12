@@ -11,14 +11,14 @@
 
 @implementation ImageSender
 
-@synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, delegate, canBeLocalized;
+@synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, wantSave; 
+@synthesize delegate, locationLabel, comesFromCamera;
 
 // dismiss keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
 	NSLog(@"textFieldShouldReturn called");
-    if (theTextField == self.description)
-        [self.description resignFirstResponder];
+	[theTextField resignFirstResponder];
 	return YES;
 }
 
@@ -115,17 +115,18 @@
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
 	// If user wants low res, make a thumbnail.
+	BOOL canBeLocalized = !([self.locationLabel.text isEqualToString:@""]);
 	if(!self.highResWanted.isOn)
 	{
 		NSLog(@"Generating thumbnail for post");
 		[self createThumbnail:kLowResolutionSize];
-		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	}
 	else
 	{
 		// Workaround the Meemi bug on EXIF orientation flag
 		[self removeOrientation];
-		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	//		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
 	}
 }
@@ -138,7 +139,9 @@
 -(void)handleGotLocalization:(NSNotification *)note
 {
 	// enable localization, 'cause we now have one
-	self.canBeLocalized.enabled = YES;
+	self.locationLabel.enabled = YES;
+	DLog(@"Setting location.text to %@", [Meemi sharedSession].nearbyPlaceName);
+	self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
 }
 
 /*
@@ -169,10 +172,12 @@
 	self.theImageView.image = self.theThumbnail;
 	// Disable localization if we don't have a position (but register to be notified)
 	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
-	{
-		self.canBeLocalized.enabled = NO;
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
-	}
+		self.locationLabel.enabled = NO;
+	else
+		self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
+	self.wantSave.enabled = self.comesFromCamera;
+	self.wantSave.on = self.comesFromCamera;
 }
 
 -(void)viewDidAppear:(BOOL)animated

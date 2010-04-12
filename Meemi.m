@@ -11,6 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
+#import "FlurryAPI.h"
+
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
 
@@ -331,7 +333,7 @@ static Meemi *sharedSession = nil;
 				NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"since"]];
 				theUser.since = [dateFormatter dateFromString:tempDate];
 				[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-				theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"since"]];
+				theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"birth"]];
 			}
 			else
 			{
@@ -854,7 +856,7 @@ static Meemi *sharedSession = nil;
         [manager stopUpdatingLocation];
 		
 		// Pass location to Flurry
-//		[FlurryAPI setLocation:newLocation];
+		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
 		ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
 							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
@@ -862,8 +864,7 @@ static Meemi *sharedSession = nil;
 		// init a safe value, just in case...
 		if([self.nearbyPlaceName isEqualToString:@""])
 			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
-									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-									locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
+									newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy];
 		// Notify the world that we have found ourselves
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
 		// Do we need reverse geolocation?
@@ -933,8 +934,10 @@ static Meemi *sharedSession = nil;
 								[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
 								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
-		DLog(@"Got a full localization: %@", self.nearbyPlaceName);
+		ALog(@"Got a full localization: %@", self.nearbyPlaceName);
 		needG13N = NO;
+		// Notify the world that we have found ourselves
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
 	}
 	[xmlData release];
 	theReverseGeoConnection = nil;

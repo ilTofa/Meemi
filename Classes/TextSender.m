@@ -11,7 +11,7 @@
 
 @implementation TextSender
 
-@synthesize description, laRuota, delegate, canBeLocalized, channel;
+@synthesize description, laRuota, delegate, channel, locationLabel;
 
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
@@ -54,9 +54,10 @@
 		[self.description resignFirstResponder];
 	if([self.channel isFirstResponder])
 		[self.channel resignFirstResponder];
+	BOOL canBeLocalized = !([self.locationLabel.text isEqualToString:@""]);
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:self.canBeLocalized.isOn];
+	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
 }
 
 -(IBAction)cancel:(id)sender
@@ -67,7 +68,9 @@
 -(void)handleGotLocalization:(NSNotification *)note
 {
 	// enable localization, 'cause we have one
-	self.canBeLocalized.enabled = YES;
+	self.locationLabel.enabled = YES;
+	DLog(@"Setting location.text to %@", [Meemi sharedSession].nearbyPlaceName);
+	self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
 }
 
 /*
@@ -87,13 +90,12 @@
 	// Activate keyboard
     [super viewDidLoad];
 	[self.description becomeFirstResponder];
-	// Disable localization if we don't have a position (but register to be notified)
+	// Disable localization if we don't have a position and register to be notified when it changes
 	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
-	{
-		self.canBeLocalized.enabled = NO;
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
-	}
-	
+		self.locationLabel.enabled = NO;
+	else
+		self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated

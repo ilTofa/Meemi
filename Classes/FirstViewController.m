@@ -19,6 +19,7 @@
 	// Here we have the picture in an UIImage. Show the controller for definitive sending.
 	imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
 	imageSenderController.theImage = theImage;
+	imageSenderController.comesFromCamera = imageComesFromCamera;
 	imageSenderController.delegate = self;
 	[self.view addSubview:imageSenderController.view];
 }
@@ -72,7 +73,17 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	NSLog(@"Picked button #%d", buttonIndex);
-	[self showMediaPickerFor:(buttonIndex == 0) ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
+	if(buttonIndex == 0)
+	{
+		imageComesFromCamera = NO;
+		[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
+	else
+	{
+		imageComesFromCamera = YES;
+		[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+	}
+//	[self showMediaPickerFor:(buttonIndex == 0) ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
 }
 
 #pragma mark TheWorkflow
@@ -105,9 +116,15 @@
 	{
 		// use what client have
 		if(library)
+		{
+			imageComesFromCamera = NO;
 			[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+		}
 		else if(camera)
+		{
+			imageComesFromCamera = YES;
 			[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+		}
 		else
 			// TODO: gray Image button if no camera, nor library
 			;
@@ -152,9 +169,6 @@
 	// If the session is invalid, goto setting page!
 	if(![Meemi sharedSession].isValid)
 		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = kSettingsTab;	
-	// DEBUG: try to get new memes (this is a test, of course)
-//	[Meemi sharedSession].delegate = self;
-//	[[Meemi sharedSession] getNewMemes];	
 }
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error

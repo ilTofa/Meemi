@@ -20,6 +20,7 @@
 	UIButton *cameraButton;
 	ImageSender *imageSenderController;
 	TextSender *textSenderController;
+	BOOL imageComesFromCamera;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;

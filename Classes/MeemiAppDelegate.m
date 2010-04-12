@@ -8,6 +8,7 @@
 
 #import "MeemiAppDelegate.h"
 #import "Meemi.h"
+#import "FlurryAPI.h"
 
 @implementation MeemiAppDelegate
 
@@ -135,6 +136,13 @@
 }
 
 #pragma mark -
+#pragma mark Exception Handler
+void uncaughtExceptionHandler(NSException *exception) 
+{
+	[FlurryAPI logError:@"Uncaught exception." message:@"Crash!" exception:exception];
+}                                       
+
+#pragma mark -
 #pragma mark Standard
 
 // Register user default
@@ -147,9 +155,12 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
-{    
+{
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	[FlurryAPI startSession:@"K26CYXQMYFKM84B13825"];
+	
     // Add the tab bar controller's current view as a subview of the window
-    [window addSubview:tabBarController.view];
+	[window addSubview:tabBarController.view];
 
 	// Start location request
 	[[Meemi sharedSession] startLocation];
