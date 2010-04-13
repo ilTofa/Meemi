@@ -23,8 +23,17 @@
 }
 */
 
+-(void)deviceShaken:(NSNotification *)note
+{
+	DLog(@"SHAKED!");
+	[self reloadMemes];
+}
+
 -(IBAction)reloadMemes
 {
+	if(self.navigationItem.leftBarButtonItem.enabled == NO)
+		// Do nothing, a reload is already running
+		return;
 	// Protect ourselves against more reloads...
 	self.navigationItem.leftBarButtonItem.enabled = NO;
 
@@ -94,11 +103,14 @@
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
+
+- (void)viewWillAppear:(BOOL)animated 
+{
     [super viewWillAppear:animated];
+	// And register to be notified for shaking...
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
 }
-*/
+
 
 - (void)viewDidAppear:(BOOL)animated 
 {
@@ -106,11 +118,13 @@
 	[self.tableView reloadData];
 }
 
-/*
-- (void)viewWillDisappear:(BOOL)animated {
+
+- (void)viewWillDisappear:(BOOL)animated 
+{
 	[super viewWillDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-*/
+
 /*
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
@@ -314,6 +328,8 @@
 	NSString *mobileLink = [NSString stringWithFormat:@"http://meemi.com/m/%@", [originalLink substringFromIndex:17]];
 	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 	controller.urlToBeLoaded = mobileLink;
+	controller.replyTo = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).id;
+	controller.replyScreenName = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).screen_name;
 	[self.navigationController pushViewController:controller animated:YES];
 	[controller release];
 }

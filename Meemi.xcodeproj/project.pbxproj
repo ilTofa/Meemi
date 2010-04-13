@@ -17,6 +17,7 @@
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		64876D651173659600F09B92 /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64876D641173659600F09B92 /* libFlurryWithLocation.a */; };
+		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
 		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
 		C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C045116F43DA00BEDCCC /* camera-verysmall.png */; };
@@ -88,6 +89,8 @@
 		64876D631173659600F09B92 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		64876D641173659600F09B92 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
+		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
 		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
 		C03E6446115A560600CF2B91 /* AboutBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutBox.m; sourceTree = "<group>"; };
 		C03E6447115A560600CF2B91 /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Classes/AboutBox.xib; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				C045C220116F74F900BEDCCC /* UserDetail.m */,
 				C045C274116F798600BEDCCC /* UserProfile.h */,
 				C045C275116F798600BEDCCC /* UserProfile.m */,
+				C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */,
+				C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				C045C165116F6C8400BEDCCC /* MemeOnWeb.m in Sources */,
 				C045C222116F74F900BEDCCC /* UserDetail.m in Sources */,
 				C045C277116F798600BEDCCC /* UserProfile.m in Sources */,
+				C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +479,7 @@
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -492,6 +499,7 @@
 				);
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
@@ -542,7 +550,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Giacomo Tufano";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
@@ -553,7 +561,8 @@
 					"\"$(SRCROOT)/FlurryLibWithLocation\"",
 				);
 				PRODUCT_NAME = Meemi;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B80FAAB-347C-4E25-AFAA-D04C00485C33";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.0;
 			};
 			name = "Ad-Hoc";
 		};

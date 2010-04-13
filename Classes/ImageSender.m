@@ -113,6 +113,9 @@
 	if([self.description isFirstResponder])
 		[self.description resignFirstResponder];
 	[self.laRuota startAnimating];
+	// Save to camera roll if requested
+	if(self.wantSave) 
+		UIImageWriteToSavedPhotosAlbum(self.theImage, nil, nil, nil);
 	[Meemi sharedSession].delegate = self;
 	// If user wants low res, make a thumbnail.
 	BOOL canBeLocalized = !([self.locationLabel.text isEqualToString:@""]);
@@ -202,9 +205,9 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+- (void)viewDidUnload 
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

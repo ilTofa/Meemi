@@ -7,19 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextSender.h"
 
-
-@interface MemeOnWeb : UIViewController <UIWebViewDelegate>
+@interface MemeOnWeb : UIViewController <UIWebViewDelegate, TextSenderControllerDelegate>
 {
 	NSString *urlToBeLoaded;
 	UIWebView *theView;
 	UIActivityIndicatorView *laRuota;
+	TextSender *textSenderController;
+	NSNumber *replyTo;
+	NSString *replyScreenName;
 }
 
 @property (retain, nonatomic) NSString *urlToBeLoaded;
+@property (retain, nonatomic) NSNumber *replyTo;
+@property (retain, nonatomic) NSString *replyScreenName;
 @property (retain, nonatomic) IBOutlet UIWebView *theView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
 
--(IBAction)done:(id)sender;
+-(IBAction)replyToMeme:(id)sender;
+-(void)loadMemePage;
 
 @end

@@ -11,8 +11,7 @@
 
 @implementation TextSender
 
-@synthesize description, laRuota, delegate, channel, locationLabel;
-
+@synthesize description, laRuota, delegate, channel, locationLabel, replyTo, replyScreenName;
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
@@ -57,7 +56,11 @@
 	BOOL canBeLocalized = !([self.locationLabel.text isEqualToString:@""]);
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
+	if(self.replyScreenName == nil)
+		[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
+	else // this is a reply
+		[[Meemi sharedSession] postTextReply:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized 
+									replyWho:self.replyScreenName replyNo:replyTo];
 }
 
 -(IBAction)cancel:(id)sender
@@ -120,9 +123,9 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+- (void)viewDidUnload 
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

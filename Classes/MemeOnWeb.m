@@ -7,11 +7,11 @@
 //
 
 #import "MemeOnWeb.h"
-
+#import "FirstViewController.h"
 
 @implementation MemeOnWeb
 
-@synthesize theView, laRuota, urlToBeLoaded;
+@synthesize theView, laRuota, urlToBeLoaded, replyTo, replyScreenName;
 
 #pragma mark UIWebViewDelegate
 
@@ -64,9 +64,34 @@
 	[noWay release];
 }
 
--(IBAction)done:(id)sender
+#pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
+
+//-(void)doneWithImageSender
+//{
+//	[imageSenderController.view removeFromSuperview];
+//	[imageSenderController release];
+//}
+
+-(void)doneWithTextSender
 {
-	
+	[self dismissModalViewControllerAnimated:YES];
+//	[textSenderController.view removeFromSuperview];
+	[textSenderController release];
+	// reload to get new meme
+	[self loadMemePage];
+}
+
+#pragma mark Reply and Reload
+
+-(IBAction)replyToMeme:(id)sender
+{
+	DLog(@"replyToMeme: called");
+	textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+	textSenderController.delegate = self;
+	textSenderController.replyTo = self.replyTo;
+	textSenderController.replyScreenName = self.replyScreenName;
+//	[self.view addSubview:textSenderController.view];
+	[self presentModalViewController:textSenderController animated:YES];
 }
 
 -(void)loadMemePage
@@ -74,6 +99,12 @@
 	[self.laRuota startAnimating];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlToBeLoaded]];
 	[self.theView loadRequest:request];	
+}
+
+-(void)deviceShaken:(NSNotification *)note
+{
+	DLog(@"SHAKED!");
+	[self loadMemePage];
 }
 
 /*
@@ -86,21 +117,33 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad 
+{
     [super viewDidLoad];
+	// Add a right button for reply to the meme list
+	UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
+																				  target:self 
+																				  action:@selector(replyToMeme:)];
+	self.navigationItem.rightBarButtonItem = replyButton;
+	[replyButton release];
 }
-*/
 
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	// Init username and password
+	ALog(@"Thread for meme %@. URL is %@", self.replyTo, self.urlToBeLoaded);
 	// Set delegate of web view to us
 	self.theView.delegate = self;
-
 	[self loadMemePage];	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated 
+{
+	[super viewWillDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

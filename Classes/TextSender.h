@@ -23,6 +23,8 @@
 	UITextField *channel;
 	UITextField *locationLabel;
 	id<TextSenderControllerDelegate> delegate;
+	NSNumber *replyTo;
+	NSString *replyScreenName;
 }
 
 @property (retain, nonatomic) IBOutlet UITextView *description;
@@ -30,6 +32,8 @@
 @property (retain, nonatomic) IBOutlet UITextField *channel;
 @property (retain, nonatomic) IBOutlet UITextField *locationLabel;
 @property (assign) id<TextSenderControllerDelegate> delegate;
+@property (retain, nonatomic) NSNumber *replyTo;
+@property (retain, nonatomic) NSString *replyScreenName;
 
 -(IBAction)sendIt:(id)sender;
 -(IBAction)cancel:(id)sender;

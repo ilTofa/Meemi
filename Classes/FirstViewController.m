@@ -12,8 +12,6 @@
 
 @synthesize cameraButton;
 
-
-
 -(void)showImageSenderController:(UIImage *)theImage
 {
 	// Here we have the picture in an UIImage. Show the controller for definitive sending.
@@ -93,6 +91,7 @@
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
 	imagePicker.sourceType = type;
+	imagePicker.allowsImageEditing = YES;
 	[self presentModalViewController:imagePicker animated:YES];
 	[imagePicker release];		
 }
