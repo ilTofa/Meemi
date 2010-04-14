@@ -23,7 +23,7 @@ static Meemi *sharedSession = nil;
 @synthesize valid, screenName, password, delegate, currentRequest;
 @synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
 @synthesize managedObjectContext;
-@synthesize networkQueue;
+@synthesize networkQueue, busy;
 
 #pragma mark Singleton Class Setup
 
@@ -88,6 +88,8 @@ static Meemi *sharedSession = nil;
 		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
+		// mark ourselves not busy
+		self.busy = NO;
 		return self;
 	}
 	else
@@ -100,6 +102,7 @@ static Meemi *sharedSession = nil;
 {
 	NSData *responseData = [request responseData];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	self.busy = NO;
 	DLog(@"request sent and answer received. Calling parser for processing\n");
 	[self parse:responseData];
 }
@@ -107,6 +110,7 @@ static Meemi *sharedSession = nil;
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	self.busy = NO;
 	NSError *error = [request error];
 	[self.delegate meemi:self.currentRequest didFailWithError:error];
 }
@@ -523,6 +527,7 @@ static Meemi *sharedSession = nil;
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setDelegate:self];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	self.busy = YES;
 	[request startAsynchronous];			
 }
 
@@ -568,6 +573,8 @@ static Meemi *sharedSession = nil;
 		}
 		[newUsersFromNewMemes release];
 		newUsersFromNewMemes = nil;
+		self.busy = NO;
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		// OK. Now get avatar images.
 		[self updateAvatars];
 	}
@@ -650,6 +657,8 @@ static Meemi *sharedSession = nil;
 -(void)getBackToDelegateAfterUpdateAvatars:(id)theDelegate
 {
 	ALog(@"in getBackToDelegateAfterUpdateAvatars:");
+	self.busy = NO;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[(id<MeemiDelegate>)theDelegate meemi:MmGetNewUsers didFinishWithResult:0];
 }
 
@@ -657,6 +666,8 @@ static Meemi *sharedSession = nil;
 {
 	[theQueue setMaxConcurrentOperationCount:1];
 	DLog(@"Loading NSOperationQueue in updateAvatars");
+	self.busy = YES;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Avatar" inManagedObjectContext:self.managedObjectContext];
 	[request setEntity:entity];
@@ -699,6 +710,8 @@ static Meemi *sharedSession = nil;
 	}		
 	else
 	{
+		self.busy = YES;
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		// Creating a new queue each time we use it means we don't have to worry about clearing delegates or resetting progress tracking
 		[self setNetworkQueue:[ASINetworkQueue queue]];
 		[[self networkQueue] setDelegate:self];

@@ -87,6 +87,9 @@ typedef enum
 	ASINetworkQueue *networkQueue;
 	NSOperationQueue *theQueue;
 	
+	// Is the channel available?
+	BOOL busy;
+	
 	// Temporary workaround for no "mark read" bug of meemi
 	BOOL currentMemeIsNew;
 }
@@ -102,6 +105,7 @@ typedef enum
 @property (assign) MeemiRequest currentRequest;
 @property (nonatomic, retain) NSString *placeName, *state;
 @property (retain) ASINetworkQueue *networkQueue;
+@property (nonatomic, assign, getter=isBusy) BOOL busy;
 
 +(Meemi *)sharedSession;
 
