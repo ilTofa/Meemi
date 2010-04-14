@@ -86,6 +86,16 @@
 -(IBAction)replyToMeme:(id)sender
 {
 	DLog(@"replyToMeme: called");
+	// Now check we are still in the same page
+	if(([[[self.theView.request URL] absoluteString] rangeOfString:[self.replyTo stringValue]]).location == NSNotFound)
+	{
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Sorry" 
+															message:@"The current meme is not the original one. Shake to reload" 
+														   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+		return;
+	}
 	textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
 	textSenderController.delegate = self;
 	textSenderController.replyTo = self.replyTo;
