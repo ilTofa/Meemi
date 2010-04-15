@@ -7,20 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileCoreServices/UTCoreTypes.h>
 
-#import "MeemiAppDelegate.h"
 #import "Meemi.h"
 #import "ImageSender.h"
 #import "TextSender.h"
 
-@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, 
-													ImageSenderControllerDelegate, TextSenderControllerDelegate, MeemiDelegate>
+@interface FirstViewController : UIViewController <ImageSenderControllerDelegate, TextSenderControllerDelegate, MeemiDelegate>
 {
 	UIButton *cameraButton;
 	ImageSender *imageSenderController;
 	TextSender *textSenderController;
-	BOOL imageComesFromCamera;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;
@@ -28,6 +24,5 @@
 -(IBAction)sendImage:(id)sender;
 -(IBAction)sendText:(id)sender;
 
--(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type;
 
 @end

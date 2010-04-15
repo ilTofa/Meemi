@@ -12,22 +12,12 @@
 
 @synthesize cameraButton;
 
--(void)showImageSenderController:(UIImage *)theImage
-{
-	// Here we have the picture in an UIImage. Show the controller for definitive sending.
-	imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
-	imageSenderController.theImage = theImage;
-	imageSenderController.comesFromCamera = imageComesFromCamera;
-	imageSenderController.delegate = self;
-	[self.view addSubview:imageSenderController.view];
-}
-
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
 
 -(void)doneWithImageSender
 {
-	[imageSenderController.view removeFromSuperview];
-	[imageSenderController release];
+	[self.navigationController popViewControllerAnimated:YES];
+//	[imageSenderController.view removeFromSuperview];
 }
 
 -(void)doneWithTextSender
@@ -36,99 +26,16 @@
 	[textSenderController release];
 }
 
-#pragma mark UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
-    // can get the URL to the actual file itself. This example only looks for images.
-    NSLog(@"info: %@", info);
-    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    // NSString* videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
-	
-    // Try getting the edited image first. If it doesn't exist then you get the
-    // original image.
-    //
-    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) 
-	{
-        UIImage* picture = [info objectForKey:UIImagePickerControllerEditedImage];
-        if (!picture)
-			picture = [info objectForKey:UIImagePickerControllerOriginalImage];
-		[self dismissModalViewControllerAnimated:YES];
-		[self showImageSenderController:picture];
-    }
-	else
-		[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-#pragma mark UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	NSLog(@"Picked button #%d", buttonIndex);
-	if(buttonIndex == 0)
-	{
-		imageComesFromCamera = NO;
-		[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
-	}
-	else
-	{
-		imageComesFromCamera = YES;
-		[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
-	}
-//	[self showMediaPickerFor:(buttonIndex == 0) ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
-}
 
 #pragma mark TheWorkflow
 
--(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
-{
-	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	imagePicker.delegate = self;
-	imagePicker.sourceType = type;
-	imagePicker.allowsImageEditing = YES;
-	[self presentModalViewController:imagePicker animated:YES];
-	[imagePicker release];		
-}
-
 -(IBAction)sendImage:(id)sender
 {
-	// What the client have?
-	BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-	BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-	// if both, allow the user to choose between camera and library
-	if(library && camera)
-	{
-		UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:@"Image from?"
-															  delegate:self 
-													 cancelButtonTitle:@"Camera"
-												destructiveButtonTitle:nil
-													 otherButtonTitles:@"Library", nil];
-		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
-	}
-	else 
-	{
-		// use what client have
-		if(library)
-		{
-			imageComesFromCamera = NO;
-			[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
-		}
-		else if(camera)
-		{
-			imageComesFromCamera = YES;
-			[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
-		}
-		else
-			// TODO: gray Image button if no camera, nor library
-			;
-	}
-	
+	// Here we have the picture in an UIImage. Show the controller for definitive sending.
+	imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+	imageSenderController.delegate = self;
+	[self.navigationController pushViewController:imageSenderController animated:YES];
+	[imageSenderController release];
 }
 
 -(IBAction)sendText:(id)sender

@@ -14,6 +14,8 @@
 @synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, wantSave; 
 @synthesize delegate, locationLabel, comesFromCamera;
 
+#pragma mark UITextFieldDelegate
+
 // dismiss keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
@@ -21,6 +23,8 @@
 	[theTextField resignFirstResponder];
 	return YES;
 }
+
+#pragma mark MeemiDelegate
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
@@ -54,6 +58,8 @@
 		[laRuota stopAnimating];
 	[self.delegate doneWithImageSender];
 }
+
+#pragma mark Image scaling
 
 // make a scaled copy (constrained to targetSize size) of self.theImage into self.theThumbnail for display purpose
 -(void)createThumbnail:(CGFloat) ofSize
@@ -130,7 +136,6 @@
 		// Workaround the Meemi bug on EXIF orientation flag
 		[self removeOrientation];
 		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
-	//		[[Meemi sharedSession] postImageAsMeme:self.theImage withDescription:self.description.text withLocalization:self.canBeLocalized.isOn];
 	}
 }
 
@@ -161,6 +166,54 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	// Restart localization
+	[[Meemi sharedSession] startLocation];
+	// What the client have?
+	BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+	BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+	// if both, allow the user to choose between camera and library
+	if(library && camera)
+	{
+		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Image from?" 
+															   delegate:self 
+													  cancelButtonTitle:@"Camera"
+												 destructiveButtonTitle:nil
+													  otherButtonTitles:@"Library", nil]
+								   autorelease];
+		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
+	}
+	else 
+	{
+		// use what client have
+		if(library)
+		{
+			comesFromCamera = NO;
+			[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+		}
+		else if(camera)
+		{
+			comesFromCamera = YES;
+			[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+		}
+		else
+			// TODO: gray Image button if no camera, nor library
+			;
+	}
+}
+
+-(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
+{
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	imagePicker.delegate = self;
+	imagePicker.sourceType = type;
+	if(comesFromCamera)
+		imagePicker.allowsImageEditing = YES;
+	[self presentModalViewController:imagePicker animated:YES];
+	[imagePicker release];		
+}
+
+-(void)showImageSenderController
+{
 	self.description.delegate = self;
 	CGSize imageSize = self.theImage.size;
 	// Create a thumbnail to show image (if image is bigger than the bounding box)
@@ -181,13 +234,6 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
 	self.wantSave.enabled = self.comesFromCamera;
 	self.wantSave.on = self.comesFromCamera;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	// Restart localization
-	[[Meemi sharedSession] startLocation];
 }
 
 /*
@@ -215,5 +261,57 @@
     [super dealloc];
 }
 
+
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
+    // can get the URL to the actual file itself. This example only looks for images.
+    NSLog(@"info: %@", info);
+    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    // NSString* videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
+	
+    // Try getting the edited image first. If it doesn't exist then you get the
+    // original image.
+    //
+    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) 
+	{
+        self.theImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        if (!self.theImage)
+			self.theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+		[self dismissModalViewControllerAnimated:YES];
+		[self showImageSenderController];
+    }
+	else
+	{
+		// user don't want to do something, dismiss
+		[self dismissModalViewControllerAnimated:YES];
+		[self cancel:nil];
+	}
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"Picked button #%d", buttonIndex);
+	if(buttonIndex == 0)
+	{
+		comesFromCamera = NO;
+		[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+	}
+	else
+	{
+		comesFromCamera = YES;
+		[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+	}
+	//	[self showMediaPickerFor:(buttonIndex == 0) ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
+}
 
 @end

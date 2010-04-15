@@ -98,14 +98,9 @@
 		self.locationLabel.enabled = NO;
 	else
 		self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
 	// Restart localization
 	[[Meemi sharedSession] startLocation];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
 }
 
 /*

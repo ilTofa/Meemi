@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 #import "Meemi.h"
+#import "MeemiAppDelegate.h"
 
 @protocol ImageSenderControllerDelegate
 
@@ -17,7 +19,8 @@
 @end
 
 
-@interface ImageSender : UIViewController <MeemiDelegate, UITextFieldDelegate>
+@interface ImageSender : UIViewController <MeemiDelegate, UITextFieldDelegate, UIActionSheetDelegate, MeemiDelegate,
+									UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
 	UITextField *description;
 	UITextField *locationLabel;
@@ -43,5 +46,6 @@
 
 -(IBAction)sendIt:(id)sender;
 -(IBAction)cancel:(id)sender;
+-(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type;
 
 @end
