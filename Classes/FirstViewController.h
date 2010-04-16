@@ -12,11 +12,10 @@
 #import "ImageSender.h"
 #import "TextSender.h"
 
+
 @interface FirstViewController : UIViewController <ImageSenderControllerDelegate, TextSenderControllerDelegate, MeemiDelegate>
 {
 	UIButton *cameraButton;
-	ImageSender *imageSenderController;
-	TextSender *textSenderController;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;

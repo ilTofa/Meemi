@@ -12,7 +12,7 @@
 @implementation ImageSender
 
 @synthesize description, theImage, theThumbnail, theImageView, laRuota, highResWanted, wantSave; 
-@synthesize delegate, locationLabel, comesFromCamera;
+@synthesize delegate, locationLabel, comesFromCamera, replyTo, replyScreenName;
 
 #pragma mark UITextFieldDelegate
 
@@ -118,6 +118,11 @@
 	// Dismiss keyboard if needed
 	if([self.description isFirstResponder])
 		[self.description resignFirstResponder];
+	if(self.theImage == nil)
+	{
+		[self cancel:nil];
+		return;
+	}
 	[self.laRuota startAnimating];
 	// Save to camera roll if requested
 	if(self.wantSave) 
@@ -129,14 +134,18 @@
 	{
 		NSLog(@"Generating thumbnail for post");
 		[self createThumbnail:kLowResolutionSize];
-		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	}
 	else
 	{
-		// Workaround the Meemi bug on EXIF orientation flag
+		// Workaround the Meemi bug on EXIF orientation flag (
 		[self removeOrientation];
-		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	}
+	if(self.replyScreenName == nil)
+		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
+	else
+		[[Meemi sharedSession] postImageAsReply:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized 
+									  replyWho:self.replyScreenName replyNo:replyTo];
+		NSLog(@"send image on reply");
 }
 
 -(IBAction)cancel:(id)sender
@@ -166,6 +175,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	// Hide toolbar
+	self.navigationController.navigationBarHidden = YES;
 	// Restart localization
 	[[Meemi sharedSession] startLocation];
 	// What the client have?
@@ -207,7 +218,7 @@
 	imagePicker.delegate = self;
 	imagePicker.sourceType = type;
 	if(comesFromCamera)
-		imagePicker.allowsImageEditing = YES;
+		imagePicker.allowsEditing = YES;
 	[self presentModalViewController:imagePicker animated:YES];
 	[imagePicker release];		
 }
@@ -287,13 +298,14 @@
 	{
 		// user don't want to do something, dismiss
 		[self dismissModalViewControllerAnimated:YES];
-		[self cancel:nil];
+		[self showImageSenderController];
 	}
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
 	[self dismissModalViewControllerAnimated:YES];
+	[self showImageSenderController];
 }
 
 #pragma mark UIActionSheetDelegate
@@ -311,7 +323,6 @@
 		comesFromCamera = YES;
 		[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
 	}
-	//	[self showMediaPickerFor:(buttonIndex == 0) ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera];
 }
 
 @end

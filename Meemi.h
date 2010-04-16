@@ -117,6 +117,7 @@ typedef enum
 -(NSString *)getResponseDescription:(MeemiResult)response;
 -(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
+-(void)postImageAsReply:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)getNewMemes:(BOOL)fromScratch;

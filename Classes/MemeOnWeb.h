@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TextSender.h"
+#import "FirstViewController.h"
 
-@interface MemeOnWeb : UIViewController <UIWebViewDelegate, TextSenderControllerDelegate>
+@interface MemeOnWeb : UIViewController <UIWebViewDelegate, TextSenderControllerDelegate, ImageSenderControllerDelegate, UIActionSheetDelegate>
 {
 	NSString *urlToBeLoaded;
 	UIWebView *theView;
 	UIActivityIndicatorView *laRuota;
-	TextSender *textSenderController;
 	NSNumber *replyTo;
 	NSString *replyScreenName;
 }

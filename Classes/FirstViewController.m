@@ -16,14 +16,14 @@
 
 -(void)doneWithImageSender
 {
-	[self.navigationController popViewControllerAnimated:YES];
-//	[imageSenderController.view removeFromSuperview];
+	self.navigationController.navigationBarHidden = NO;
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 -(void)doneWithTextSender
 {
-	[textSenderController.view removeFromSuperview];
-	[textSenderController release];
+	self.navigationController.navigationBarHidden = NO;
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 
@@ -32,7 +32,7 @@
 -(IBAction)sendImage:(id)sender
 {
 	// Here we have the picture in an UIImage. Show the controller for definitive sending.
-	imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+	ImageSender *imageSenderController = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
 	imageSenderController.delegate = self;
 	[self.navigationController pushViewController:imageSenderController animated:YES];
 	[imageSenderController release];
@@ -40,9 +40,10 @@
 
 -(IBAction)sendText:(id)sender
 {
-	textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+	TextSender *textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
 	textSenderController.delegate = self;
-	[self.view addSubview:textSenderController.view];	
+	[self.navigationController pushViewController:textSenderController animated:YES];
+	[textSenderController release];
 }
 
 /*
@@ -71,7 +72,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+	[super viewDidAppear:animated];
+	self.navigationController.navigationBarHidden = NO;
 	// If the session is invalid, goto setting page!
 	if(![Meemi sharedSession].isValid)
 		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = kSettingsTab;	

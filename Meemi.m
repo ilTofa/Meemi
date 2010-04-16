@@ -824,6 +824,16 @@ static Meemi *sharedSession = nil;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:nil replyNo:nil];
 }
 
+-(void)postImageAsReply:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized 
+			   replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
+{
+	// Sanity checks
+	NSAssert(self.isValid, @"postImageAsReply:withDescription called without valid session");
+	// Set current request type
+	self.currentRequest = MmRPostImage;
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:replyScreenName replyNo:replyID];
+}
+
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized
 {
 	// Sanity checks
@@ -837,7 +847,7 @@ static Meemi *sharedSession = nil;
 			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postTextAsMeme:withDescription called without valid session");
+	NSAssert(self.isValid, @"postTextAsReply:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:replyScreenName replyNo:replyID];

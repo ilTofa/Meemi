@@ -90,8 +90,10 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+	[super viewDidLoad];
+	// Hide toolbar
+	self.navigationController.navigationBarHidden = YES;
 	// Activate keyboard
-    [super viewDidLoad];
 	[self.description becomeFirstResponder];
 	// Disable localization if we don't have a position and register to be notified when it changes
 	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])

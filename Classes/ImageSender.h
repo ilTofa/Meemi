@@ -31,6 +31,8 @@
 	UISwitch *wantSave;
 	id<ImageSenderControllerDelegate> delegate;
 	BOOL comesFromCamera;
+	NSNumber *replyTo;
+	NSString *replyScreenName;
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *description;
@@ -43,6 +45,8 @@
 @property (retain, nonatomic) IBOutlet UISwitch *wantSave;
 @property (assign) BOOL comesFromCamera;
 @property (assign) id<ImageSenderControllerDelegate> delegate;
+@property (retain, nonatomic) NSNumber *replyTo;
+@property (retain, nonatomic) NSString *replyScreenName;
 
 -(IBAction)sendIt:(id)sender;
 -(IBAction)cancel:(id)sender;

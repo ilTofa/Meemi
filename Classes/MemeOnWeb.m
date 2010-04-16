@@ -7,7 +7,6 @@
 //
 
 #import "MemeOnWeb.h"
-#import "FirstViewController.h"
 
 @implementation MemeOnWeb
 
@@ -55,13 +54,17 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-	UIAlertView *noWay = [[UIAlertView alloc] initWithTitle:@"ERROR"
-													message:[error localizedDescription]
-												   delegate:self
-										  cancelButtonTitle:@"OK"
-										  otherButtonTitles:nil];
-	[noWay show];
-	[noWay release];
+	// Ignore NSAsyncLoadCancelled, because it seems an overkill to tell user of it.
+	if([error code] != -999)
+	{
+		UIAlertView *noWay = [[UIAlertView alloc] initWithTitle:@"ERROR"
+														message:[error localizedDescription]
+													   delegate:self
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[noWay show];
+		[noWay release];
+	}
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -74,11 +77,15 @@
 
 -(void)doneWithTextSender
 {
-	[self dismissModalViewControllerAnimated:YES];
-//	[textSenderController.view removeFromSuperview];
-	[textSenderController release];
+	self.navigationController.navigationBarHidden = NO;
+	[self.navigationController popViewControllerAnimated:YES];
 	// reload to get new meme
 	[self loadMemePage];
+}
+
+-(void)doneWithImageSender
+{
+	[self doneWithTextSender];
 }
 
 #pragma mark Reply and Reload
@@ -96,13 +103,16 @@
 		[theAlert show];
 		return;
 	}
-	textSenderController = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
-	textSenderController.delegate = self;
-	textSenderController.replyTo = self.replyTo;
-	textSenderController.replyScreenName = self.replyScreenName;
-//	[self.view addSubview:textSenderController.view];
-	[self presentModalViewController:textSenderController animated:YES];
-}
+	// Make user choose if (s)he wants to reply with text or image
+	UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
+														   delegate:self 
+												  cancelButtonTitle:@"Cancel"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:@"Text", @"Image", nil]
+							   autorelease];
+	[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
+	// Flows below to the ActionSheetDelegate function.
+}	
 
 -(void)loadMemePage
 {
@@ -116,6 +126,33 @@
 	DLog(@"SHAKED!");
 	[self loadMemePage];
 }
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"Picked button #%d", buttonIndex);
+	if(buttonIndex == 0) // Text
+	{
+		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else if(buttonIndex == 1) // Image
+	{
+		ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
+
+#pragma mark Standard Stuff
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
