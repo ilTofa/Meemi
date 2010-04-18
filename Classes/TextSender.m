@@ -56,6 +56,8 @@
 	BOOL canBeLocalized = !([self.locationLabel.text isEqualToString:@""]);
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
+	// Send "edited" localization to session
+	[Meemi sharedSession].nearbyPlaceName = self.locationLabel.text;
 	if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
 	else // this is a reply

@@ -14,6 +14,8 @@
 
 #pragma mark UIWebViewDelegate
 
+// TODO: look into http://www.quackit.com/css/properties/css_table-layout.cfm
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	DLog(@"shouldStartLoadWithRequest: <%@>", [[request URL] absoluteString]);
@@ -24,14 +26,14 @@
 		NSRange theMemeRange;
 		theMemeRange.location = [[[request URL] absoluteString] rangeOfString:@"/" options:NSBackwardsSearch].location + 1;
 		theMemeRange.length = [[[request URL] absoluteString] rangeOfString:@"#myreply"].location - theMemeRange.location;
-		NSString *temp = [NSString stringWithFormat:@"Should start reply to <%@>", [[[request URL] absoluteString] substringWithRange:theMemeRange]];
-		UIAlertView *WOW =  [[UIAlertView alloc] initWithTitle:@"Reply"
-													   message:temp
-													  delegate:self
-											 cancelButtonTitle:@"OK"
-											 otherButtonTitles:nil];
-		[WOW show];
-		[WOW release];
+//		NSString *temp = [NSString stringWithFormat:@"Should start reply to <%@>", [[[request URL] absoluteString] substringWithRange:theMemeRange]];
+//		UIAlertView *WOW =  [[UIAlertView alloc] initWithTitle:@"Reply"
+//													   message:temp
+//													  delegate:self
+//											 cancelButtonTitle:@"OK"
+//											 otherButtonTitles:nil];
+//		[WOW show];
+//		[WOW release];
 		NSLog(@"Got a meme reply to <%@>", [[[request URL] absoluteString] substringWithRange:theMemeRange]);
 		//		return NO;
 	}

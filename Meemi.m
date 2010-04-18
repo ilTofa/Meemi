@@ -895,18 +895,32 @@ static Meemi *sharedSession = nil;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 5.0)
     {
-        [manager stopUpdatingLocation];
+		// Check accuracy and continue to look if more than 100m...
+		if(newLocation.horizontalAccuracy < 100)
+			[manager stopUpdatingLocation];
 		
 		// Pass location to Flurry
 		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
-		ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still \"%@\"",
-							  newLocation.coordinate.latitude, newLocation.coordinate.longitude, 
-							  newLocation.horizontalAccuracy, self.nearbyPlaceName);
-		// init a safe value, just in case...
+		// init a safe value, if void and if we don't have a reverse location
 		if([self.nearbyPlaceName isEqualToString:@""])
+		{
 			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
 									newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy];
+			ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still unknown.",
+				 newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy);
+		}
+			// Set the new position, in case we already have a reverse geolocation, but we have a new position
+		if(self.placeName != nil && self.state != nil)
+		{
+			self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
+									[self.placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+									[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+									locationManager.location.horizontalAccuracy];
+			ALog(@"Got a new position (reverse geoloc already in place): %@", self.nearbyPlaceName);
+		}
+			
 		// Notify the world that we have found ourselves
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
 		// Do we need reverse geolocation?
@@ -972,10 +986,10 @@ static Meemi *sharedSession = nil;
 	{
 		// Also trims strings
 		self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
-								[placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-								[state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+								[self.placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
+								[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-								locationManager.location.horizontalAccuracy, self.nearbyPlaceName];
+								locationManager.location.horizontalAccuracy];
 		ALog(@"Got a full localization: %@", self.nearbyPlaceName);
 		needG13N = NO;
 		// Notify the world that we have found ourselves

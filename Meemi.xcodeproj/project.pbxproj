@@ -231,6 +231,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
+				C0A1BFFB117BC4EB0064AF2A /* Libs */,
 				64876D621173659600F09B92 /* FlurryLibWithLocation */,
 				C0E620161152E11A00E6C079 /* Meemi API */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -321,15 +322,9 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		C0E620161152E11A00E6C079 /* Meemi API */ = {
+		C0A1BFFB117BC4EB0064AF2A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				C053D4DC116648FE001AC0B6 /* User.h */,
-				C053D4DD116648FE001AC0B6 /* User.m */,
-				C053D4DE116648FE001AC0B6 /* Avatar.h */,
-				C053D4DF116648FE001AC0B6 /* Avatar.m */,
-				C053D4E0116648FE001AC0B6 /* Meme.h */,
-				C053D4E1116648FE001AC0B6 /* Meme.m */,
 				C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */,
 				C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */,
 				C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */,
@@ -345,9 +340,22 @@
 				C0E620231152E12A00E6C079 /* ASINSStringAdditions.m */,
 				C0E620241152E12A00E6C079 /* Reachability.h */,
 				C0E620251152E12A00E6C079 /* Reachability.m */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		C0E620161152E11A00E6C079 /* Meemi API */ = {
+			isa = PBXGroup;
+			children = (
+				C053D4DC116648FE001AC0B6 /* User.h */,
+				C053D4DD116648FE001AC0B6 /* User.m */,
+				C053D4DE116648FE001AC0B6 /* Avatar.h */,
+				C053D4DF116648FE001AC0B6 /* Avatar.m */,
+				C053D4E0116648FE001AC0B6 /* Meme.h */,
+				C053D4E1116648FE001AC0B6 /* Meme.m */,
+				C0BD043A11649D3800391138 /* Meme.xcdatamodel */,
 				C0E620411152E36800E6C079 /* Meemi.h */,
 				C0E620421152E36800E6C079 /* Meemi.m */,
-				C0BD043A11649D3800391138 /* Meme.xcdatamodel */,
 			);
 			name = "Meemi API";
 			sourceTree = "<group>";
@@ -468,7 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Giacomo Tufano";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -492,7 +500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -512,7 +520,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Giacomo Tufano";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -527,7 +535,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Giacomo Tufano";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -542,7 +550,7 @@
 		C0D67CAF115921F8009EA92B /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -551,6 +559,7 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.3;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = "Ad-Hoc";
 		};
@@ -558,7 +567,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;

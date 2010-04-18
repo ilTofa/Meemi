@@ -140,6 +140,8 @@
 		// Workaround the Meemi bug on EXIF orientation flag (
 		[self removeOrientation];
 	}
+	// Send "edited" localization to session
+	[Meemi sharedSession].nearbyPlaceName = self.locationLabel.text;
 	if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	else
