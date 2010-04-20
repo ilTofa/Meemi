@@ -2,8 +2,8 @@
 //  Meme.m
 //  Meemi
 //
-//  Created by Giacomo Tufano on 02/04/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//  Created by Giacomo Tufano on 20/04/10.
+//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
 //
 
 #import "Meme.h"
@@ -12,19 +12,31 @@
 
 @implementation Meme 
 
-@dynamic id;
-@dynamic date_time;
-@dynamic reply_id;
-@dynamic reply_screen_name;
-@dynamic type;
-@dynamic source;
-@dynamic location;
 @dynamic qta_replies;
-@dynamic favourite;
-@dynamic original_link;
-@dynamic chans;
+@dynamic location;
+@dynamic posted_from;
+@dynamic dt_last_movement;
+@dynamic link;
+@dynamic image_medium;
+@dynamic event_when;
+@dynamic event_name;
+@dynamic image;
+@dynamic image_medium_url;
+@dynamic image_small;
+@dynamic image_url;
+@dynamic event_where;
+@dynamic reply_screen_name;
+@dynamic quote_source;
+@dynamic image_small_url;
 @dynamic screen_name;
+@dynamic date_time;
+@dynamic id;
+@dynamic new_meme;
+@dynamic reply_id;
+@dynamic channels;
+@dynamic meme_type;
 @dynamic content;
+@dynamic new_replies;
 @dynamic user;
 
 @end

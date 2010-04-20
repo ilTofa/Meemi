@@ -134,7 +134,7 @@ static Meemi *sharedSession = nil;
 // returns YES if xml parsing succeeds, NO otherwise
 - (BOOL) parse:(NSData *)responseData
 {
-	DLog(@"Starting parse of: %@", responseData);
+//	DLog(@"Starting parse of: %@", responseData);
 //	NSString *temp = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
 //	DLog(@"As string: \"%@\"", temp);
     if (addressParser) // addressParser is an NSXMLParser instance variable
@@ -186,7 +186,29 @@ static Meemi *sharedSession = nil;
 	[request release];
 }
 
--(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID withReplyNumber:(NSNumber *)replies
+-(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID
+{
+	DLog(@"Now in isMemeAlreadyExisting");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for an User with this screen_name.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	BOOL retValue;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+		retValue = YES;
+	else
+		retValue = NO;
+	[request release];
+	return retValue;
+}
+
+-(void)updateQtaReply:(NSNumber *)memeID
 {
 	DLog(@"Now in isMemeAlreadyExisting");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -202,19 +224,15 @@ static Meemi *sharedSession = nil;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
-		// Already existing. Now check if the number of replies is not the same, set the new number into the old one.
 		Meme *theOldOne = [fetchResults objectAtIndex:0];
 		if([theOldOne.qta_replies compare:replies] != NSOrderedSame)
 		{
 			DLog(@"Changing qta_replies on %@ from %@ to %@", memeID, theOldOne.qta_replies, replies);
 			theOldOne.qta_replies = replies;
+			theOldOne.new_replies = YES;
 		}
-		retValue = YES;
-	}
-	else
-		retValue = NO;
+	}	
 	[request release];
-	return retValue;
 }
 
 #pragma mark NSXMLParser delegate
@@ -265,50 +283,14 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"memes"])
 		{
 			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
-			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
+//			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
 			DLog(@"*** Got %d memes in reply to new_meme_request", [memeQuantity intValue]);
-			howMany = [memeQuantity intValue];
+			howMany = 0;
 		}
 		// if a meme is coming...
 		if([elementName isEqualToString:@"meme"])
-		{
-			NSNumber *newMemeID = [NSNumber numberWithLongLong:[[attributeDict objectForKey:@"id"] longLongValue]];
-			NSNumber *newMemeQtaReplies = [NSNumber numberWithInt:[[attributeDict objectForKey:@"qta_replies"] intValue]];
-			// TODO: Review when we will have a "mark read" in Meemi platform
-			currentMemeIsNew = ![self isMemeAlreadyExisting:newMemeID withReplyNumber:newMemeQtaReplies];
-			if(currentMemeIsNew)
-			{
-				ALog(@"*** got a new meme");
-				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
-				theMeme.id = newMemeID;
-				theMeme.screen_name = [attributeDict objectForKey:@"screen_name"];
-				// Now that theMeme is started, set the relationships with theUser (and create it if not existing)
-				[self setupMemeRelationshipsFrom:theMeme.screen_name];
-				theMeme.qta_replies = newMemeQtaReplies;
-				theMeme.type = [attributeDict objectForKey:@"type"];
-				// TODO: avoid work around not implemented type different from text
-				if(![theMeme.type isEqualToString:@"text"])
-					theMeme.content = [NSString stringWithFormat:@"This meme is a %@", theMeme.type];
-				theMeme.favourite = [NSNumber numberWithInt:[[attributeDict objectForKey:@"favourite"] intValue]];
-				// Workaround stupid date
-				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
-				NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"date_time"]];
-				theMeme.date_time = [dateFormatter dateFromString:tempDate];
-				[dateFormatter release];
-			}
-			else
-				ALog(@"*** Got an already read meme: %@", newMemeID);
-		}
-		// Other parts of a meme
-		if([elementName isEqualToString:@"avatars"] && currentMemeIsNew)
-		{
-			// TODO: strip -s from base URL...
-			theAvatar.baseURL = [attributeDict objectForKey:@"small"];
-//			theMeme.avatar_small = [attributeDict objectForKey:@"small"];
-//			DLog(@"size before: %d, size after: %d", [[attributeDict objectForKey:@"small"] length], [theMeme.avatar_small length]);
-//			DLog(@"theMeme.avatar_small = \"%@\"", theMeme.avatar_small);
-		}
+			// increment meme count
+			howMany++;
 	}
 	if(self.currentRequest == MmGetUser)
 	{
@@ -370,6 +352,115 @@ static Meemi *sharedSession = nil;
 	// new_memes processing 
 	if(self.currentRequest == MmGetNew)
 	{
+		// id received, verify if the meme is new.
+		if([elementName isEqualToString:@"id"])
+		{
+			NSNumber *newMemeID = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+			currentMemeIsNew = ![self isMemeAlreadyExisting:newMemeID];
+			if(currentMemeIsNew)
+			{
+				ALog(@"*** got a new meme");
+				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+				theMeme.id = newMemeID;
+				theMeme.new_meme = YES;
+			}
+			else
+				ALog(@"*** Got an already read meme: %@", newMemeID);
+		}
+		// Other new memes things, only if the meme is new
+		if(currentMemeIsNew)
+		{
+			// got a screen_name for a new meme. Setup relationship.
+			if([elementName isEqualToString:@"screen_name"])
+			{
+				theMeme.screen_name = currentStringValue;
+				[self setupMemeRelationshipsFrom:theMeme.screen_name];
+			}
+			if([elementName isEqualToString:@"date_time"])
+			{
+				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
+				[dateFormatter release];
+			}
+			if([elementName isEqualToString:@"dt_last_movement"])
+			{
+				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
+				[dateFormatter release];
+			}
+			if([elementName isEqualToString:@"meme_type"])
+			{
+				theMeme.meme_type = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+				if(![theMeme.meme_type isEqualToString:@"text"])
+					theMeme.content = [NSString stringWithFormat:@"This meme is a %@", theMeme.meme_type];
+			}
+			
+			if([elementName isEqualToString:@"content"])
+				theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"location"])
+				theMeme.location = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"posted_from"])
+				theMeme.posted_from = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			if([elementName isEqualToString:@"reply_screen_name"])
+				theMeme.reply_screen_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"reply_id"])
+				theMeme.reply_id = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+			
+			if([elementName isEqualToString:@"qta_replies"])
+				theMeme.qta_replies = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+
+			// TODO: Still to be managed.
+//			<channels>
+//			<channel>google</channel>
+//			<channel>doodle</channel>
+//			<channel>logo</channel>
+//			</channels>
+//			<preferite_this/>
+//			<reshare_this/>
+			
+			// Here a meme is ended, should be saved. :)
+			if([elementName isEqualToString:@"meme"])
+			{
+				DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
+			}
+			// event meme_type
+			if([elementName isEqualToString:@"name"])
+				theMeme.event_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"when"])
+			{
+				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
+				[dateFormatter release];
+			}
+			if([elementName isEqualToString:@"where"])
+				theMeme.event_where = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+			// image meme_type
+			if([elementName isEqualToString:@"image"])
+				theMeme.image_url = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"image_medium"])
+				theMeme.image_medium_url = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([elementName isEqualToString:@"image_small"])
+				theMeme.image_small_url = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+			// quote meme_type
+			if([elementName isEqualToString:@"source"])
+				theMeme.quote_source = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			// link meme_type
+			if([elementName isEqualToString:@"link"])
+				theMeme.link = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		}
+		// It's not a newMeme, but with different qta_reply?
+		if([elementName isEqualToString:@"qta_replies"])
+		{
+			theMeme.qta_replies = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+			
+		
 		// should end? If YES, commit the CoreData objects to the db
 		if([elementName isEqualToString:@"memes"])
 		{
@@ -390,36 +481,6 @@ static Meemi *sharedSession = nil;
 			// If records are 20, return the page number as addition to 20...
 			int retValue = (howMany == 20) ? 20 + newMemesPageWatermark : howMany;
 			[self.delegate meemi:MmGetNew didFinishWithResult:retValue];
-		}
-		// Other new memes things, only if the meme is new
-		if(currentMemeIsNew)
-		{
-			// Here a meme is ended, should be saved. :)
-			if([elementName isEqualToString:@"meme"])
-			{
-				DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
-			}
-			// Other things
-			if([elementName isEqualToString:@"original_link"])
-				theMeme.original_link = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			if([elementName isEqualToString:@"location"])
-				theMeme.location = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			if([elementName isEqualToString:@"source"])
-				theMeme.source = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			if([elementName isEqualToString:@"chans"])
-				theMeme.chans = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			// workaround the video meme bug
-			if(theMeme.chans == nil)
-				theMeme.chans = @"";
-			if([elementName isEqualToString:@"content"])
-				theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			// TODO: avoid workarounds when "non text memes" will be implemented
-			if([elementName isEqualToString:@"caption"] && [theMeme.type isEqualToString:@"image"])
-				theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];			
-			if([elementName isEqualToString:@"description"] && [theMeme.type isEqualToString:@"link"])
-				theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];			
-			if([elementName isEqualToString:@"caption"] && [theMeme.type isEqualToString:@"video"])
-				theMeme.content = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];			
 		}
 	}
     if ([elementName isEqualToString:@"name"])
@@ -755,7 +816,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api/%@/wf/only_new_memes", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10", self.screenName]];
 		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 	}
