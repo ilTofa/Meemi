@@ -80,7 +80,18 @@ typedef enum
 	
 	// mark how many records we got.
 	int howMany;
+	int howManyRequestTotal;
 	int newMemesPageWatermark;
+	// Temporary workaround for no "mark read" bug of meemi
+	BOOL currentMemeIsNew;
+	// Maintain "last meme read" number (for use by updateQtaReply)
+	NSNumber *newMemeID; 
+	// limits on number and timing of new memes reads
+	int memeNumber;
+	int memeTime;
+	// last date
+	NSDate *lastMemeTimestamp;
+
 	NSMutableArray *newUsersFromNewMemes;
 	
 	// The Queue
@@ -88,15 +99,14 @@ typedef enum
 	NSOperationQueue *theQueue;
 	
 	// Is the channel available?
-	BOOL busy;
-	
-	// Temporary workaround for no "mark read" bug of meemi
-	BOOL currentMemeIsNew;
+	BOOL busy;	
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied;
 @property (nonatomic, assign) int nLocationUseDenies;
+@property (nonatomic, assign) int memeNumber;
+@property (nonatomic, assign) int memeTime;
 @property (nonatomic, getter=isValid) BOOL valid;
 @property (nonatomic, copy) NSString *nearbyPlaceName;
 @property (nonatomic, copy) NSString *screenName;
@@ -126,7 +136,7 @@ typedef enum
 
 -(BOOL)parse:(NSData *)responseData;
 -(void)updateAvatars;
--(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID withReplyNumber:(NSNumber *)replies;
+-(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID;
 
 @end
 

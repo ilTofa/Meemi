@@ -24,6 +24,7 @@ static Meemi *sharedSession = nil;
 @synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
 @synthesize managedObjectContext;
 @synthesize networkQueue, busy;
+@synthesize memeNumber, memeTime;
 
 #pragma mark Singleton Class Setup
 
@@ -81,9 +82,6 @@ static Meemi *sharedSession = nil;
 		needLocation = YES;
 		needG13N = YES;
 		self.nearbyPlaceName = @"";
-		// get number of times user denied location use..
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 		// At the moment, user have not denied anything
 		self.lcDenied = NO;
 		// init the Queue
@@ -127,6 +125,11 @@ static Meemi *sharedSession = nil;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	self.screenName = [defaults stringForKey:@"screenName"];
 	self.password = [defaults stringForKey:@"password"];
+	// TODO: should be read from defaults too
+	self.memeNumber = [defaults integerForKey:@"rowNumber"];
+	self.memeTime = [defaults integerForKey:@"memeTime"];
+	// get number of times user denied location use..
+	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 	self.valid = YES;
 }
 
@@ -208,28 +211,27 @@ static Meemi *sharedSession = nil;
 	return retValue;
 }
 
--(void)updateQtaReply:(NSNumber *)memeID
+-(void)updateQtaReply:(NSNumber *)repliesNumber
 {
-	DLog(@"Now in isMemeAlreadyExisting");
+	DLog(@"Now in updateQtaReply");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 	[request setEntity:entity];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", newMemeID];
 	[request setPredicate:predicate];
 	// We're only looking for one.
 	[request setFetchLimit:1];
 	NSError *error;
-	BOOL retValue;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		Meme *theOldOne = [fetchResults objectAtIndex:0];
-		if([theOldOne.qta_replies compare:replies] != NSOrderedSame)
+		if([theOldOne.qta_replies compare:repliesNumber] != NSOrderedSame)
 		{
-			DLog(@"Changing qta_replies on %@ from %@ to %@", memeID, theOldOne.qta_replies, replies);
-			theOldOne.qta_replies = replies;
-			theOldOne.new_replies = YES;
+			DLog(@"Changing qta_replies on %@ from %@ to %@", newMemeID, theOldOne.qta_replies, repliesNumber);
+			theOldOne.qta_replies = repliesNumber;
+			theOldOne.new_replies = [NSNumber numberWithBool:YES];
 		}
 	}	
 	[request release];
@@ -278,19 +280,15 @@ static Meemi *sharedSession = nil;
 	// parse memes
 	if(self.currentRequest == MmGetNew)
 	{
-		// Get number of memes
-		// not useful in itself, COULD be used to understand when the last fetch has been done (quantity < 20)
+		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"])
-		{
-			NSString *memeQuantity = [attributeDict objectForKey:@"qta"];
-//			NSAssert(memeQuantity, @"In NSXMLParser: attribute qta for <memes> is missing");
-			DLog(@"*** Got %d memes in reply to new_meme_request", [memeQuantity intValue]);
 			howMany = 0;
-		}
-		// if a meme is coming...
+		// if a meme is coming increment meme count
 		if([elementName isEqualToString:@"meme"])
-			// increment meme count
+		{
 			howMany++;
+			howManyRequestTotal++;
+		}
 	}
 	if(self.currentRequest == MmGetUser)
 	{
@@ -355,14 +353,14 @@ static Meemi *sharedSession = nil;
 		// id received, verify if the meme is new.
 		if([elementName isEqualToString:@"id"])
 		{
-			NSNumber *newMemeID = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+			newMemeID = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 			currentMemeIsNew = ![self isMemeAlreadyExisting:newMemeID];
 			if(currentMemeIsNew)
 			{
 				ALog(@"*** got a new meme");
 				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 				theMeme.id = newMemeID;
-				theMeme.new_meme = YES;
+				theMeme.new_meme = [NSNumber numberWithBool:YES];
 			}
 			else
 				ALog(@"*** Got an already read meme: %@", newMemeID);
@@ -407,10 +405,10 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"reply_screen_name"])
 				theMeme.reply_screen_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 			if([elementName isEqualToString:@"reply_id"])
-				theMeme.reply_id = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+				theMeme.reply_id = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 			
 			if([elementName isEqualToString:@"qta_replies"])
-				theMeme.qta_replies = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
+				theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 
 			// TODO: Still to be managed.
 //			<channels>
@@ -421,7 +419,8 @@ static Meemi *sharedSession = nil;
 //			<preferite_this/>
 //			<reshare_this/>
 			
-			// Here a meme is ended, should be saved. :)
+			// Here a meme is ended, should be saved.
+			// For perfomance reason, we save at <memes/> below
 			if([elementName isEqualToString:@"meme"])
 			{
 				DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
@@ -458,8 +457,22 @@ static Meemi *sharedSession = nil;
 		// It's not a newMeme, but with different qta_reply?
 		if([elementName isEqualToString:@"qta_replies"])
 		{
-			theMeme.qta_replies = [NSNumber numberWithLongLong:[[currentStringValue] longLongValue]];
-			
+			theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
+		}
+		// Get the timestamp in any case for checking end
+		if([elementName isEqualToString:@"dt_last_movement"])
+		{
+			if(lastMemeTimestamp != nil)
+			{
+				[lastMemeTimestamp release];
+				lastMemeTimestamp = nil;
+			}
+			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+			lastMemeTimestamp = [dateFormatter dateFromString:currentStringValue];
+			[lastMemeTimestamp retain];
+			[dateFormatter release];
+		}
 		
 		// should end? If YES, commit the CoreData objects to the db
 		if([elementName isEqualToString:@"memes"])
@@ -477,9 +490,12 @@ static Meemi *sharedSession = nil;
 			}
 			// DEBUG: what we read
 			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersFromNewMemes);
-			// return to delegate how many records we read and, therefore, if there are still records to fetch...
-			// If records are 20, return the page number as addition to 20...
-			int retValue = (howMany == 20) ? 20 + newMemesPageWatermark : howMany;
+			// return to delegate 1 if we should continue, 0 if we should stop here.
+			int retValue;
+			if(howMany >= howManyRequestTotal || [lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending)
+				retValue = 0;
+			else
+				retValue = 1;
 			[self.delegate meemi:MmGetNew didFinishWithResult:retValue];
 		}
 	}
@@ -819,12 +835,13 @@ static Meemi *sharedSession = nil;
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10", self.screenName]];
 		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
+		howManyRequestTotal = 0;
 	}
 	else 
 	{
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api/%@/wf/only_new_memes/page_%d", 
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10/page_%d", 
 				self.screenName, newMemesPageWatermark]];
 	}
 	

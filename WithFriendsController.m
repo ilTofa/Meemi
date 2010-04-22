@@ -164,10 +164,10 @@
 	switch (request) 
 	{
 		case MmGetNew:
-			// Continue to read new memes up to "rowNumber" / 10 of them
-			if(result > 20 && (result - 20) <= ([[NSUserDefaults standardUserDefaults] integerForKey:@"rowNumber"] / 10))
+			// Continue to read new memes if result != 0
+			if(result)
 			{
-				NSLog(@"Still records to be read, now at page %d", result - 20);
+				NSLog(@"Still records to be read, continuing");
 				[[Meemi sharedSession] getNewMemes:NO];
 			}
 			else
@@ -289,11 +289,11 @@
 	tempLabel = (UILabel *)[cell viewWithTag:3];
 	tempLabel.text = theFetchedMeme.content;
 	tempView = (UIImageView *)[cell viewWithTag:7];
-	if([theFetchedMeme.type isEqualToString:@"image"])
+	if([theFetchedMeme.meme_type isEqualToString:@"image"])
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
-	else if([theFetchedMeme.type isEqualToString:@"video"])
+	else if([theFetchedMeme.meme_type isEqualToString:@"video"])
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"video-verysmall" ofType:@"png"]];
-	else if([theFetchedMeme.type isEqualToString:@"link"])
+	else if([theFetchedMeme.meme_type isEqualToString:@"link"])
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
@@ -324,12 +324,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	NSString *originalLink = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).original_link;
-	NSString *mobileLink = [NSString stringWithFormat:@"http://meemi.com/m/%@", [originalLink substringFromIndex:17]];
+	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
-	controller.urlToBeLoaded = mobileLink;
-	controller.replyTo = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).id;
-	controller.replyScreenName = ((Meme *)[theMemeList objectAtIndexPath:indexPath]).screen_name;
+	controller.replyTo = selectedMeme.id;
+	controller.replyScreenName = selectedMeme.screen_name;
+	controller.urlToBeLoaded = [NSString stringWithFormat:@"http://meemi.com/m/%@/%@", controller.replyScreenName, controller.replyTo];
 	[self.navigationController pushViewController:controller animated:YES];
 	[controller release];
 }
