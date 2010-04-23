@@ -127,7 +127,11 @@ static Meemi *sharedSession = nil;
 	self.password = [defaults stringForKey:@"password"];
 	// TODO: should be read from defaults too
 	self.memeNumber = [defaults integerForKey:@"rowNumber"];
+	if(self.memeNumber == 0)
+		self.memeNumber = 100;
 	self.memeTime = [defaults integerForKey:@"memeTime"];
+	if(self.memeTime == 0)
+		self.memeTime = 24;
 	// get number of times user denied location use..
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 	self.valid = YES;
@@ -494,7 +498,7 @@ static Meemi *sharedSession = nil;
 			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersFromNewMemes);
 			// return to delegate 1 if we should continue, 0 if we should stop here.
 			int retValue;
-			if(howMany >= howManyRequestTotal || [lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending)
+			if(howManyRequestTotal >= self.memeNumber || [lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending)
 				retValue = 0;
 			else
 				retValue = 1;
@@ -697,22 +701,22 @@ static Meemi *sharedSession = nil;
 	}
 	[temp release];
 	
-	temp = [[NSString alloc] initWithData:thisAvatar.original encoding:NSUTF8StringEncoding];
-	if((url = [NSURL URLWithString:temp]) != nil)
-	{
-		// get avatar and store it
-		DLog(@"getting original avatar for %@ from %@", thisAvatar.user.screen_name, temp);
-		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-		[request startSynchronous];
-		NSError *error = [request error];
-		if (!error) {
-			thisAvatar.original = [request responseData];
-		}
-		else {
-			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
-		}
-	}
-	[temp release];
+//	temp = [[NSString alloc] initWithData:thisAvatar.original encoding:NSUTF8StringEncoding];
+//	if((url = [NSURL URLWithString:temp]) != nil)
+//	{
+//		// get avatar and store it
+//		DLog(@"getting original avatar for %@ from %@", thisAvatar.user.screen_name, temp);
+//		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//		[request startSynchronous];
+//		NSError *error = [request error];
+//		if (!error) {
+//			thisAvatar.original = [request responseData];
+//		}
+//		else {
+//			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+//		}
+//	}
+//	[temp release];
 	if([self.managedObjectContext hasChanges])
 	{
 		NSError *error;

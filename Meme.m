@@ -3,7 +3,7 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 23/04/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
 //
 
 #import "Meme.h"
@@ -23,7 +23,7 @@
 @dynamic image;
 @dynamic image_medium_url;
 @dynamic image_small;
-@dynamic image_url;
+@dynamic new_replies;
 @dynamic event_where;
 @dynamic reply_screen_name;
 @dynamic quote_source;
@@ -37,7 +37,7 @@
 @dynamic channels;
 @dynamic meme_type;
 @dynamic content;
-@dynamic new_replies;
+@dynamic image_url;
 @dynamic user;
 
 @end
