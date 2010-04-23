@@ -2,8 +2,8 @@
 //  Meme.h
 //  Meemi
 //
-//  Created by Giacomo Tufano on 20/04/10.
-//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
+//  Created by Giacomo Tufano on 23/04/10.
+//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSString * reply_screen_name;
 @property (nonatomic, retain) NSString * quote_source;
 @property (nonatomic, retain) NSString * image_small_url;
+@property (nonatomic, retain) NSString * video;
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) NSDate * date_time;
 @property (nonatomic, retain) NSNumber * id;

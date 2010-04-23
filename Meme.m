@@ -2,8 +2,8 @@
 //  Meme.m
 //  Meemi
 //
-//  Created by Giacomo Tufano on 20/04/10.
-//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
+//  Created by Giacomo Tufano on 23/04/10.
+//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
 #import "Meme.h"
@@ -28,6 +28,7 @@
 @dynamic reply_screen_name;
 @dynamic quote_source;
 @dynamic image_small_url;
+@dynamic video;
 @dynamic screen_name;
 @dynamic date_time;
 @dynamic id;

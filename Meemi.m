@@ -377,14 +377,14 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"date_time"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
 				[dateFormatter release];
 			}
 			if([elementName isEqualToString:@"dt_last_movement"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
 				[dateFormatter release];
 			}
@@ -418,6 +418,8 @@ static Meemi *sharedSession = nil;
 //			</channels>
 //			<preferite_this/>
 //			<reshare_this/>
+			// avatar
+			// video
 			
 			// Here a meme is ended, should be saved.
 			// For perfomance reason, we save at <memes/> below
@@ -431,7 +433,7 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"when"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
 				[dateFormatter release];
 			}
@@ -468,7 +470,7 @@ static Meemi *sharedSession = nil;
 				lastMemeTimestamp = nil;
 			}
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+			[dateFormatter setDateFormat:kMeemiDatesFormat];
 			lastMemeTimestamp = [dateFormatter dateFromString:currentStringValue];
 			[lastMemeTimestamp retain];
 			[dateFormatter release];

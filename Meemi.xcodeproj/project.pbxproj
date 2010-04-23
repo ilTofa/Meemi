@@ -17,8 +17,10 @@
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		64876D651173659600F09B92 /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64876D641173659600F09B92 /* libFlurryWithLocation.a */; };
-		64B29CFD117E118500228A54 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B29CFC117E118500228A54 /* Meme.m */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
+		C034515C1182073F005DBA24 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C03451571182073E005DBA24 /* User.m */; };
+		C034515D1182073F005DBA24 /* Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = C03451591182073F005DBA24 /* Avatar.m */; };
+		C034515E1182073F005DBA24 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C034515B1182073F005DBA24 /* Meme.m */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
 		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
 		C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C045116F43DA00BEDCCC /* camera-verysmall.png */; };
@@ -34,8 +36,6 @@
 		C045C278116F798600BEDCCC /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C276116F798600BEDCCC /* UserProfile.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
-		C053D4E2116648FE001AC0B6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4DD116648FE001AC0B6 /* User.m */; };
-		C053D4E3116648FE001AC0B6 /* Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D4DF116648FE001AC0B6 /* Avatar.m */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
 		C07ED9321151431800311726 /* MeemiWebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED9311151431800311726 /* MeemiWebAppController.m */; };
@@ -89,11 +89,15 @@
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		64876D631173659600F09B92 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		64876D641173659600F09B92 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
-		64B29CFB117E118500228A54 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
-		64B29CFC117E118500228A54 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
+		C03451561182073E005DBA24 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C03451571182073E005DBA24 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C03451581182073E005DBA24 /* Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatar.h; sourceTree = "<group>"; };
+		C03451591182073F005DBA24 /* Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatar.m; sourceTree = "<group>"; };
+		C034515A1182073F005DBA24 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
+		C034515B1182073F005DBA24 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
 		C03E6446115A560600CF2B91 /* AboutBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutBox.m; sourceTree = "<group>"; };
 		C03E6447115A560600CF2B91 /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Classes/AboutBox.xib; sourceTree = "<group>"; };
@@ -114,10 +118,6 @@
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
 		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
-		C053D4DC116648FE001AC0B6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		C053D4DD116648FE001AC0B6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C053D4DE116648FE001AC0B6 /* Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatar.h; sourceTree = "<group>"; };
-		C053D4DF116648FE001AC0B6 /* Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatar.m; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C07ED92B1151429000311726 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C07ED9301151431800311726 /* MeemiWebAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeemiWebAppController.h; sourceTree = "<group>"; };
@@ -347,12 +347,12 @@
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;
 			children = (
-				64B29CFB117E118500228A54 /* Meme.h */,
-				64B29CFC117E118500228A54 /* Meme.m */,
-				C053D4DC116648FE001AC0B6 /* User.h */,
-				C053D4DD116648FE001AC0B6 /* User.m */,
-				C053D4DE116648FE001AC0B6 /* Avatar.h */,
-				C053D4DF116648FE001AC0B6 /* Avatar.m */,
+				C03451561182073E005DBA24 /* User.h */,
+				C03451571182073E005DBA24 /* User.m */,
+				C03451581182073E005DBA24 /* Avatar.h */,
+				C03451591182073F005DBA24 /* Avatar.m */,
+				C034515A1182073F005DBA24 /* Meme.h */,
+				C034515B1182073F005DBA24 /* Meme.m */,
 				C0BD043A11649D3800391138 /* Meme.xcdatamodel */,
 				C0E620411152E36800E6C079 /* Meemi.h */,
 				C0E620421152E36800E6C079 /* Meemi.m */,
@@ -459,13 +459,13 @@
 				C03E6448115A560600CF2B91 /* AboutBox.m in Sources */,
 				C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */,
 				C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */,
-				C053D4E2116648FE001AC0B6 /* User.m in Sources */,
-				C053D4E3116648FE001AC0B6 /* Avatar.m in Sources */,
 				C045C165116F6C8400BEDCCC /* MemeOnWeb.m in Sources */,
 				C045C222116F74F900BEDCCC /* UserDetail.m in Sources */,
 				C045C277116F798600BEDCCC /* UserProfile.m in Sources */,
 				C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */,
-				64B29CFD117E118500228A54 /* Meme.m in Sources */,
+				C034515C1182073F005DBA24 /* User.m in Sources */,
+				C034515D1182073F005DBA24 /* Avatar.m in Sources */,
+				C034515E1182073F005DBA24 /* Meme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
