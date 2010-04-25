@@ -148,9 +148,11 @@ void uncaughtExceptionHandler(NSException *exception)
 // Register user default
 + (void)initialize
 {	
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
-								 0, @"userValidated", 0, @"userDeny", 100, "rowNumber", 24, "memeTime", nil];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSDate *tempDate = [NSDate distantPast];
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
+								 0, @"userValidated", 0, @"userDeny", 100, "rowNumber", 24, "memeTime", 
+								 tempDate, @"lastRead", nil];
     [defaults registerDefaults:appDefaults];
 }
 

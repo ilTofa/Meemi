@@ -47,6 +47,7 @@
 		[defaults setObject:self.screenName.text forKey:@"screenName"];
 		[defaults setObject:self.password.text forKey:@"password"];
 		[defaults setInteger:1 forKey:@"userValidated"];
+		[[Meemi sharedSession] startSessionFromUserDefaults];
 	}
 	else // restore base names and retry...
 	{

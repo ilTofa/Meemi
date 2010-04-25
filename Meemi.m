@@ -24,7 +24,7 @@ static Meemi *sharedSession = nil;
 @synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
 @synthesize managedObjectContext;
 @synthesize networkQueue, busy;
-@synthesize memeNumber, memeTime;
+@synthesize memeNumber, memeTime, lastReadDate;
 
 #pragma mark Singleton Class Setup
 
@@ -132,6 +132,11 @@ static Meemi *sharedSession = nil;
 	self.memeTime = [defaults integerForKey:@"memeTime"];
 	if(self.memeTime == 0)
 		self.memeTime = 24;
+	// Last read meme...
+	self.lastReadDate = [defaults objectForKey:@"lastRead"];
+	// protect ourselves...
+	if(self.lastReadDate == nil)
+		self.lastReadDate = [NSDate distantPast];
 	// get number of times user denied location use..
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 	self.valid = YES;
@@ -498,8 +503,14 @@ static Meemi *sharedSession = nil;
 			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersFromNewMemes);
 			// return to delegate 1 if we should continue, 0 if we should stop here.
 			int retValue;
-			if(howManyRequestTotal >= self.memeNumber || [lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending)
+			if(howManyRequestTotal >= self.memeNumber ||
+				[lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending ||
+				[self.lastReadDate compare:lastMemeTimestamp] == NSOrderedDescending)
+			{
 				retValue = 0;
+				self.lastReadDate = [NSDate dateWithTimeIntervalSinceNow:-30];
+				[[NSUserDefaults standardUserDefaults] setObject:self.lastReadDate forKey:@"lastRead"];
+			}
 			else
 				retValue = 1;
 			[self.delegate meemi:MmGetNew didFinishWithResult:retValue];

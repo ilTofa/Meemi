@@ -93,6 +93,7 @@ typedef enum
 	int memeTime;
 	// last date
 	NSDate *lastMemeTimestamp;
+	NSDate *lastReadDate;
 
 	NSMutableArray *newUsersFromNewMemes;
 	
@@ -109,6 +110,7 @@ typedef enum
 @property (nonatomic, assign) int nLocationUseDenies;
 @property (nonatomic, assign) int memeNumber;
 @property (nonatomic, assign) int memeTime;
+@property (nonatomic, retain) NSDate *lastReadDate;
 @property (nonatomic, getter=isValid) BOOL valid;
 @property (nonatomic, copy) NSString *nearbyPlaceName;
 @property (nonatomic, copy) NSString *screenName;
