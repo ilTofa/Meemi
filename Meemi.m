@@ -387,14 +387,14 @@ static Meemi *sharedSession = nil;
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
+				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
 			}
 			if([elementName isEqualToString:@"dt_last_movement"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
+				theMeme.dt_last_movement = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
 			}
 			if([elementName isEqualToString:@"meme_type"])
@@ -443,7 +443,7 @@ static Meemi *sharedSession = nil;
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
+				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
 			}
 			if([elementName isEqualToString:@"where"])
@@ -480,7 +480,7 @@ static Meemi *sharedSession = nil;
 			}
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			lastMemeTimestamp = [dateFormatter dateFromString:currentStringValue];
+			lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 			[lastMemeTimestamp retain];
 			[dateFormatter release];
 		}

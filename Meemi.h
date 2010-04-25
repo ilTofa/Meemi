@@ -50,7 +50,8 @@ typedef enum
 
 #define kGotLocation @"gotLocation"
 
-#define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ"
+/* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
+#define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
 
 @interface Meemi : NSObject <CLLocationManagerDelegate>
 {
