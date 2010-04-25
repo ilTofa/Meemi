@@ -866,14 +866,70 @@ static Meemi *sharedSession = nil;
 	[self startRequestToMeemi:request];
 }
 
+-(void)markMemeRead:(NSNumber *)memeID
+{
+	DLog(@"Now in markMemeRead");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for an User with this screen_name.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		Meme *theOne = [fetchResults objectAtIndex:0];
+		theOne.new_meme = [NSNumber numberWithBool:NO];
+		theOne.new_replies = [NSNumber numberWithBool:NO];
+		if (![self.managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+	}
+}	
+
 -(void)markNewMemesRead
 {
 	NSAssert(self.isValid, @"markNewMemesRead: called without valid session");
-	self.currentRequest = MmMarkNewRead;
-	NSURL *url = [NSURL URLWithString:
-				  [NSString stringWithFormat:@"http://meemi.com/api/%@/wf/mark/only_new_memes", self.screenName]];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[self startRequestToMeemi:request];
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for all the new ones.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"new_meme == %@ OR new_replies == %@", 
+							  [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+	[request setPredicate:predicate];
+	NSError *error;
+	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+	ALog(@"Got %d new memes to mark read", [fetchResults count]);
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		for(Meme *theOne in fetchResults)
+		{
+			theOne.new_meme = [NSNumber numberWithBool:NO];
+			theOne.new_replies = [NSNumber numberWithBool:NO];
+		}
+	}	
+	[request release];
+	// now commit.
+	if (![self.managedObjectContext save:&error])
+	{
+		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		if(detailedErrors != nil && [detailedErrors count] > 0) 
+			for(NSError* detailedError in detailedErrors) 
+				DLog(@"  DetailedError: %@", [detailedError userInfo]);
+		else 
+			DLog(@"  %@", [error userInfo]);
+	}	
 }
 
 -(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever 

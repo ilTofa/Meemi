@@ -41,6 +41,11 @@
 	[[Meemi sharedSession] getNewMemes:YES];	
 }
 
+-(IBAction)markReadMemes
+{
+	[[Meemi sharedSession] markNewMemesRead];
+}
+
 -(void)setupFetch:(NSString *)filterString
 {
 	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
@@ -95,6 +100,13 @@
 	
 	self.navigationItem.leftBarButtonItem = reloadButton;
 	[reloadButton release];
+	
+	UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" 
+																	   style:UIBarButtonItemStylePlain 
+																	  target:self 
+																	  action:@selector(markReadMemes)];
+	self.navigationItem.rightBarButtonItem  = markReadButton;
+	[markReadButton release];
 	
 	[self setupFetch:@""];
 	
@@ -297,6 +309,11 @@
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
+	// Hide the "new" flag if meme is not new...
+	BOOL isNewMeme = [theFetchedMeme.new_meme boolValue];
+	BOOL isNewReplies = [theFetchedMeme.new_replies boolValue];
+	if(!isNewMeme && !isNewReplies)
+		((UIImageView *)[cell viewWithTag:8]).hidden = YES;
 	
     return cell;
 }
@@ -331,6 +348,8 @@
 	controller.urlToBeLoaded = [NSString stringWithFormat:@"http://meemi.com/m/%@/%@", controller.replyScreenName, controller.replyTo];
 	[self.navigationController pushViewController:controller animated:YES];
 	[controller release];
+	// Mark it read, btw...
+	[[Meemi sharedSession] markMemeRead:selectedMeme.id];
 }
 
 

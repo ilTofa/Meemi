@@ -136,6 +136,7 @@ typedef enum
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)getNewMemes:(BOOL)fromScratch;
 -(void)markNewMemesRead;
+-(void)markMemeRead:(NSNumber *)memeID;
 -(void)getNewUsers;
 
 -(BOOL)parse:(NSData *)responseData;

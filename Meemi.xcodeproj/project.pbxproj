@@ -42,6 +42,7 @@
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
 		C07ED93E1151470A00311726 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07ED93C1151470A00311726 /* SettingsController.xib */; };
 		C0881B5611650E1F00A83951 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = C0881B5511650E1F00A83951 /* 71-compass.png */; };
+		C090D6DD1184F06C00B12A72 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = C090D6DC1184F06C00B12A72 /* eye.png */; };
 		C091860B11542D0D00C2C5A4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860A11542D0D00C2C5A4 /* logo.png */; };
 		C091860F11542EC400C2C5A4 /* ToolBar-Meemi.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */; };
 		C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918610115431C600C2C5A4 /* 20-gear2.png */; };
@@ -126,6 +127,7 @@
 		C07ED93B1151470A00311726 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		C07ED93C1151470A00311726 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
 		C0881B5511650E1F00A83951 /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
+		C090D6DC1184F06C00B12A72 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
 		C091860A11542D0D00C2C5A4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolBar-Meemi.png"; sourceTree = "<group>"; };
 		C0918610115431C600C2C5A4 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C090D6DC1184F06C00B12A72 /* eye.png */,
 				C045C06B116F59B400BEDCCC /* link-verysmall.png */,
 				C045C067116F57E700BEDCCC /* 21-skull.png */,
 				C045C065116F57C300BEDCCC /* 02-redo.png */,
@@ -431,6 +434,7 @@
 				C045C223116F74F900BEDCCC /* UserDetail.xib in Resources */,
 				C045C278116F798600BEDCCC /* UserProfile.xib in Resources */,
 				C0CE759F11771F3900A6BBC3 /* PostMeme.xib in Resources */,
+				C090D6DD1184F06C00B12A72 /* eye.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
