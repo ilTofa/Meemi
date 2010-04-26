@@ -67,6 +67,8 @@ typedef enum
 
 	// CoreData hook
 	NSManagedObjectContext *managedObjectContext;
+	
+	// Next three contain the current one
 	Meme *theMeme;
 	Avatar *theAvatar;
 	User *theUser;

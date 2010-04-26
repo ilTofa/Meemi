@@ -19,6 +19,8 @@
 		6478559C11820C500044CDB5 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6478559B11820C500044CDB5 /* Meme.m */; };
 		64876D651173659600F09B92 /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64876D641173659600F09B92 /* libFlurryWithLocation.a */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
+		C02C6B781185E81A007AF8BE /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = C02C6B771185E81A007AF8BE /* chat.png */; };
+		C02C6B7A1185E86D007AF8BE /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C02C6B791185E86D007AF8BE /* flag.png */; };
 		C034515C1182073F005DBA24 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C03451571182073E005DBA24 /* User.m */; };
 		C034515D1182073F005DBA24 /* Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = C03451591182073F005DBA24 /* Avatar.m */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
@@ -95,6 +97,8 @@
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
+		C02C6B771185E81A007AF8BE /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
+		C02C6B791185E86D007AF8BE /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
 		C03451561182073E005DBA24 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C03451571182073E005DBA24 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C03451581182073E005DBA24 /* Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatar.h; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C02C6B791185E86D007AF8BE /* flag.png */,
+				C02C6B771185E81A007AF8BE /* chat.png */,
 				C090D6DC1184F06C00B12A72 /* eye.png */,
 				C045C06B116F59B400BEDCCC /* link-verysmall.png */,
 				C045C067116F57E700BEDCCC /* 21-skull.png */,
@@ -435,6 +441,8 @@
 				C045C278116F798600BEDCCC /* UserProfile.xib in Resources */,
 				C0CE759F11771F3900A6BBC3 /* PostMeme.xib in Resources */,
 				C090D6DD1184F06C00B12A72 /* eye.png in Resources */,
+				C02C6B781185E81A007AF8BE /* chat.png in Resources */,
+				C02C6B7A1185E86D007AF8BE /* flag.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +504,7 @@
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
 		};
@@ -532,7 +540,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
 		};

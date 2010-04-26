@@ -213,37 +213,16 @@ static Meemi *sharedSession = nil;
 	BOOL retValue;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		// Set theMeme for further processing (if any)
+		theMeme = [fetchResults objectAtIndex:0];
+		// This is released at the end of the meme, if needed (if theMeme.new_meme is YES)
 		retValue = YES;
+	}
 	else
 		retValue = NO;
 	[request release];
 	return retValue;
-}
-
--(void)updateQtaReply:(NSNumber *)repliesNumber
-{
-	DLog(@"Now in updateQtaReply");
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
-	[request setEntity:entity];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", newMemeID];
-	[request setPredicate:predicate];
-	// We're only looking for one.
-	[request setFetchLimit:1];
-	NSError *error;
-	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-	if (fetchResults != nil && [fetchResults count] != 0)
-	{
-		Meme *theOldOne = [fetchResults objectAtIndex:0];
-		if([theOldOne.qta_replies compare:repliesNumber] != NSOrderedSame)
-		{
-			DLog(@"Changing qta_replies on %@ from %@ to %@", newMemeID, theOldOne.qta_replies, repliesNumber);
-			theOldOne.qta_replies = repliesNumber;
-			theOldOne.new_replies = [NSNumber numberWithBool:YES];
-		}
-	}	
-	[request release];
 }
 
 #pragma mark NSXMLParser delegate
@@ -372,7 +351,9 @@ static Meemi *sharedSession = nil;
 				theMeme.new_meme = [NSNumber numberWithBool:YES];
 			}
 			else
+			{
 				ALog(@"*** Got an already read meme: %@", newMemeID);
+			}
 		}
 		// Other new memes things, only if the meme is new
 		if(currentMemeIsNew)
@@ -388,13 +369,6 @@ static Meemi *sharedSession = nil;
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-				[dateFormatter release];
-			}
-			if([elementName isEqualToString:@"dt_last_movement"])
-			{
-				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.dt_last_movement = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
 			}
 			if([elementName isEqualToString:@"meme_type"])
@@ -416,9 +390,6 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"reply_id"])
 				theMeme.reply_id = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 			
-			if([elementName isEqualToString:@"qta_replies"])
-				theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
-
 			// TODO: Still to be managed.
 //			<channels>
 //			<channel>google</channel>
@@ -468,9 +439,14 @@ static Meemi *sharedSession = nil;
 		// It's not a newMeme, but with different qta_reply?
 		if([elementName isEqualToString:@"qta_replies"])
 		{
+			if([theMeme.qta_replies compare:[NSNumber numberWithLongLong:[currentStringValue longLongValue]]] == NSOrderedAscending)
+			{
+				theMeme.new_replies = [NSNumber numberWithBool:YES];
+				ALog(@"### The meme have %d new reply(es).", [currentStringValue intValue] - [theMeme.qta_replies intValue]);
+			}
 			theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 		}
-		// Get the timestamp in any case for checking end
+		// Get the timestamp in any case for checking end (and set it just in case)
 		if([elementName isEqualToString:@"dt_last_movement"])
 		{
 			if(lastMemeTimestamp != nil)
@@ -481,6 +457,7 @@ static Meemi *sharedSession = nil;
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setDateFormat:kMeemiDatesFormat];
 			lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+			theMeme.dt_last_movement = lastMemeTimestamp;
 			[lastMemeTimestamp retain];
 			[dateFormatter release];
 		}
@@ -1047,8 +1024,11 @@ static Meemi *sharedSession = nil;
     if (abs(howRecent) < 5.0)
     {
 		// Check accuracy and continue to look if more than 100m...
-		if(newLocation.horizontalAccuracy < 100)
+		if(newLocation.horizontalAccuracy < 101)
+		{
+			DLog(@"Got a stable position");
 			[manager stopUpdatingLocation];
+		}
 		
 		// Pass location to Flurry
 		[FlurryAPI setLocation:newLocation];

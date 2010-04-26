@@ -309,11 +309,15 @@
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
-	// Hide the "new" flag if meme is not new...
-	BOOL isNewMeme = [theFetchedMeme.new_meme boolValue];
-	BOOL isNewReplies = [theFetchedMeme.new_replies boolValue];
-	if(!isNewMeme && !isNewReplies)
+	// Hide the "new" flags if meme is not new...
+	if([theFetchedMeme.new_meme boolValue])
+		((UIImageView *)[cell viewWithTag:8]).hidden = NO;
+	else
 		((UIImageView *)[cell viewWithTag:8]).hidden = YES;
+	if([theFetchedMeme.new_replies boolValue])
+		((UIImageView *)[cell viewWithTag:9]).hidden = NO;
+	else
+		((UIImageView *)[cell viewWithTag:9]).hidden = YES;
 	
     return cell;
 }
