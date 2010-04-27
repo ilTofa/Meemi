@@ -41,6 +41,8 @@
 {
 	DLog(@"meemiIsFree: enabling navButtons");
 	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = YES;
+	// While we are at it, probably the session something should have read. :)
+	[self.tableView reloadData];
 }
 
 -(void)setupFetch:(NSString *)filterString

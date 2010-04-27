@@ -251,7 +251,7 @@ static Meemi *sharedSession = nil;
 	DLog(@"Element Start: <%@>", elementName);
 	NSEnumerator *enumerator = [attributeDict keyEnumerator];
 	id key;
-	while ((key = [enumerator nextObject])) 
+	while (key = [enumerator nextObject]) 
 	{
 		DLog(@"attribute \"%@\" is \"%@\"", key, [attributeDict objectForKey:key]);
 	}
@@ -322,11 +322,13 @@ static Meemi *sharedSession = nil;
 				theUser.since = [dateFormatter dateFromString:tempDate];
 				[dateFormatter setDateFormat:@"yyyy-MM-dd"];
 				theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"birth"]];
+				[dateFormatter release];
 			}
 			else
 			{
 				NSAssert(YES, @"user not found while it should be present");
-			}				
+			}
+			[request release];
 		}
 		if([elementName isEqualToString:@"avatars"])
 		{
@@ -890,6 +892,7 @@ static Meemi *sharedSession = nil;
 				DLog(@"  %@", [error userInfo]);
 		}
 	}
+	[request release];
 }	
 
 -(void)markNewMemesRead
