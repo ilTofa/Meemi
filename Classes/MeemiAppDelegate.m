@@ -7,7 +7,6 @@
 //
 
 #import "MeemiAppDelegate.h"
-#import "Meemi.h"
 #import "FlurryAPI.h"
 
 @implementation MeemiAppDelegate
@@ -142,6 +141,58 @@ void uncaughtExceptionHandler(NSException *exception)
 	[FlurryAPI logError:@"Uncaught exception." message:@"Crash!" exception:exception];
 }                                       
 
+#pragma mark MeemiDelegate
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	NSLog(@"(MeemiRequest)request didFailWithError:");
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	NSLog(@"(MeemiRequest)request didFinishWithResult:");
+	switch (request) 
+	{
+		case MmGetNew:
+			// Continue to read new memes if result != 0
+			if(result)
+			{
+				NSLog(@"Still records to be read, continuing");
+				[[Meemi sharedSession] getNewMemes:NO];
+			}
+			else
+			{
+				NSLog(@"No other records to read or max number reached, should be marking all read...");
+				// Now get newUsers into db.
+				[[Meemi sharedSession] getNewUsers];
+			}
+			break;
+		case MmMarkNewRead:
+			NSLog(@"New memes marked read.");
+			break;
+		case MmGetNewUsers:
+			NSLog(@"New users and avatars updated");
+			break;
+		default:
+			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in MeemiAppDelegate.m called with unknow request");
+			break;
+	}
+}
+
+#pragma mark -
+#pragma mark Meemi Actions
+
+-(void)reloadMemes
+{
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getNewMemes:YES];	
+}
+
+-(void)markReadMemes
+{
+	[[Meemi sharedSession] markNewMemesRead];
+}
+
 #pragma mark -
 #pragma mark Standard
 
@@ -182,6 +233,8 @@ void uncaughtExceptionHandler(NSException *exception)
 	{
 		[[Meemi sharedSession] startSessionFromUserDefaults];
 		self.tabBarController.selectedIndex = 0;
+		// now, load the new memes... ;)
+		[self reloadMemes];
 	}
 	else
 		self.tabBarController.selectedIndex = kSettingsTab;

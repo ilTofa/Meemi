@@ -9,14 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Meemi.h"
 
-@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate, UISearchBarDelegate>
+@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
 }
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
-
--(IBAction)reloadMemes;
 
 @end

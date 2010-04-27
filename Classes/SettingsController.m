@@ -114,6 +114,7 @@
 	// Select POST TAB (only if we have valid user and password)
 	if([Meemi sharedSession].isValid)
 	{
+		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
 		return YES;
 	}

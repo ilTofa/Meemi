@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Meemi.h"
 
 #define kSettingsTab 3
 #define kWebTab 4
 
-@interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
+@interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, MeemiDelegate> 
+{
     UIWindow *window;
     UITabBarController *tabBarController;
 	// CoreData helpers
@@ -33,5 +35,8 @@
 @property (nonatomic, retain) NSString *urlToBeLoaded;
 
 -(void)removeCoreDataStore;
+-(void)reloadMemes;
+-(void)markReadMemes;
+
 
 @end

@@ -26,24 +26,21 @@
 -(void)deviceShaken:(NSNotification *)note
 {
 	DLog(@"SHAKED!");
-	[self reloadMemes];
+	// If session is not busy, reload.
+	if(![Meemi sharedSession].isBusy)
+		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 }
 
--(IBAction)reloadMemes
+-(void)meemiIsBusy:(NSNotification *)note
 {
-	if(self.navigationItem.leftBarButtonItem.enabled == NO)
-		// Do nothing, a reload is already running
-		return;
-	// Protect ourselves against more reloads...
-	self.navigationItem.leftBarButtonItem.enabled = NO;
-
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemes:YES];	
+	DLog(@"meemiIsBusy: dimming navButtons");
+	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
--(IBAction)markReadMemes
+-(void)meemiIsFree:(NSNotification *)note
 {
-	[[Meemi sharedSession] markNewMemesRead];
+	DLog(@"meemiIsFree: enabling navButtons");
+	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = YES;
 }
 
 -(void)setupFetch:(NSString *)filterString
@@ -95,7 +92,7 @@
 	// Add a left button for reloading the meme list
 	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
 																	 style:UIBarButtonItemStylePlain 
-																	target:self 
+																	target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
 																	action:@selector(reloadMemes)];
 	
 	self.navigationItem.leftBarButtonItem = reloadButton;
@@ -103,24 +100,25 @@
 	
 	UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" 
 																	   style:UIBarButtonItemStylePlain 
-																	  target:self 
+																	  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
 																	  action:@selector(markReadMemes)];
 	self.navigationItem.rightBarButtonItem  = markReadButton;
 	[markReadButton release];
 	
 	[self setupFetch:@""];
-	
-	// now, load the new memes... ;)
-	[self reloadMemes];
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated 
 {
     [super viewWillAppear:animated];
-	// And register to be notified for shaking...
+	// And register to be notified for shaking and busy/not busy of Meemi session
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
+	if([Meemi sharedSession].isBusy)
+		[self meemiIsBusy:nil];
+	else
+		[self meemiIsFree:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
 }
 
 
@@ -161,47 +159,6 @@
 - (void)viewDidUnload 
 {
 	[theMemeList release];
-}
-
-#pragma mark MeemiDelegate
-
--(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
-{
-	NSLog(@"(MeemiRequest)request didFailWithError:");
-}
-
--(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
-{
-	NSLog(@"(MeemiRequest)request didFinishWithResult:");
-	switch (request) 
-	{
-		case MmGetNew:
-			// Continue to read new memes if result != 0
-			if(result)
-			{
-				NSLog(@"Still records to be read, continuing");
-				[[Meemi sharedSession] getNewMemes:NO];
-			}
-			else
-			{
-				NSLog(@"No other records to read or max number reached, should be marking all read...");
-//				[[Meemi sharedSession] markNewMemesRead];
-				// Now get newUsers into db.
-				[[Meemi sharedSession] getNewUsers];
-			}
-			break;
-		case MmMarkNewRead:
-			NSLog(@"New memes marked read.");
-			break;
-		case MmGetNewUsers:
-			NSLog(@"New users and avatars updated");
-			[self.tableView reloadData];
-			self.navigationItem.leftBarButtonItem.enabled = YES;
-			break;
-		default:
-			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in WithFriendsController.m called with unknow request");
-			break;
-	}
 }
 
 #pragma mark UISearchBarDelegate

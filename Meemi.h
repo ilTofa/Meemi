@@ -48,7 +48,10 @@ typedef enum
 	MmUndefinedError = 999
 } MeemiResult;
 
+// Notification posted
 #define kGotLocation @"gotLocation"
+#define kNowBusy @"nowBusy"
+#define kNowFree @"nowFree"
 
 /* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
 #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
