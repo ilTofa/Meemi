@@ -12,7 +12,7 @@
 
 @implementation WithFriendsController
 
-@synthesize memeCell;
+@synthesize memeCell, predicateString, searchString;
 
 -(void)deviceShaken:(NSNotification *)note
 {
@@ -36,7 +36,7 @@
 	[self.tableView reloadData];
 }
 
--(void)setupFetch:(NSString *)filterString
+-(void)setupFetch
 {
 	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -46,9 +46,29 @@
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dt_last_movement" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
-	if(![filterString isEqualToString:@""])
+	switch(currentFetch)
 	{
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", filterString];
+		case FTAll:
+			if([self.searchString isEqualToString:@""])
+				self.predicateString = @"";
+			else
+				self.predicateString = [NSString stringWithFormat:@"screen_name like %@", self.searchString];
+			break;
+		case FTNew:
+			if([self.searchString isEqualToString:@""])
+				self.predicateString = [NSString stringWithFormat:@"new_meme == %@ OR new_replies == %@", 
+										[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+			else
+				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND (new_meme == %@ OR new_replies == %@)",
+										self.searchString,
+										[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+			break;
+	}
+
+	DLog(@"In setupFetch. Type of fetch: %d. Filter: %@", currentFetch, self.predicateString);
+	if(![self.predicateString isEqualToString:@""])
+	{
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:self.predicateString];
 		[fetchRequest setPredicate:predicate];
 	}
 	[sortDescriptors release];
@@ -80,7 +100,9 @@
 
 -(void)filterSelected
 {
-	DLog(@"in filterSelected");
+	currentFetch = ((UISegmentedControl *) (((UIBarButtonItem *)[self.toolbarItems objectAtIndex:1]).customView)).selectedSegmentIndex;
+	DLog(@"in filterSelected for %d selected, filtering on '%@'", currentFetch, self.searchString);
+	[self setupFetch];
 }
 
 - (void)viewDidLoad 
@@ -110,6 +132,7 @@
 	theSegment.tintColor = [UIColor darkGrayColor];
 	theSegment.momentary = NO;
 	theSegment.selectedSegmentIndex = 0;
+	currentFetch = FTAll;
 	[theSegment setEnabled:NO forSegmentAtIndex:2];
 	[theSegment setEnabled:NO forSegmentAtIndex:3];
 	[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
@@ -122,7 +145,8 @@
 	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 	self.navigationController.toolbarHidden = NO;
 
-	[self setupFetch:@""];
+	self.searchString = @"";
+	[self setupFetch];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -186,7 +210,8 @@
 		[searchBar resignFirstResponder];
 	DLog(@"searchBarSearchButtonClicked");
 	DLog(@"should we search for <%@>", searchBar.text);
-	[self setupFetch:searchBar.text];
+	self.searchString = searchBar.text;
+	[self setupFetch];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -195,7 +220,8 @@
 	if([searchBar isFirstResponder])
 		[searchBar resignFirstResponder];
 	searchBar.text = @"";
-	[self setupFetch:searchBar.text];
+	self.searchString = searchBar.text;
+	[self setupFetch];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar

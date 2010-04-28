@@ -10,7 +10,7 @@
 #import "Meemi.h"
 
 typedef enum {
-	FTAll = 1,
+	FTAll = 0,
 	FTNew,
 	FTPvt,
 	FTMentions
@@ -20,12 +20,15 @@ typedef enum {
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
-	NSString *filterString;
+	NSString *predicateString;
+	NSString *searchString;
 	FetchTypes currentFetch;
 }
 
 -(IBAction)filterSelected;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
+@property (nonatomic, retain) NSString *predicateString;
+@property (nonatomic, retain) NSString *searchString;
 
 @end
