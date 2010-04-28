@@ -192,6 +192,7 @@
 - (void)viewWillDisappear:(BOOL)animated 
 {
 	[super viewWillDisappear:animated];
+	[self.theView stopLoading];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

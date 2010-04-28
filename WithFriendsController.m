@@ -14,15 +14,6 @@
 
 @synthesize memeCell;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
-
 -(void)deviceShaken:(NSNotification *)note
 {
 	DLog(@"SHAKED!");
@@ -87,6 +78,11 @@
 	[self.tableView reloadData];
 }	
 
+-(void)filterSelected
+{
+	DLog(@"in filterSelected");
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -107,6 +103,25 @@
 	self.navigationItem.rightBarButtonItem  = markReadButton;
 	[markReadButton release];
 	
+	NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Mentions", nil];
+	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
+	theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
+	theSegment.tintColor = [UIColor darkGrayColor];
+	theSegment.momentary = NO;
+	theSegment.selectedSegmentIndex = 0;
+	[theSegment setEnabled:NO forSegmentAtIndex:2];
+	[theSegment setEnabled:NO forSegmentAtIndex:3];
+	[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
+	NSArray *toolbarItems = [NSArray arrayWithObjects:
+							 spacer,
+							 [[UIBarButtonItem alloc] initWithCustomView:theSegment], spacer, nil];
+	self.toolbarItems = toolbarItems;
+	[theSegment release];
+	[spacer release];
+	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+	self.navigationController.toolbarHidden = NO;
+
 	[self setupFetch:@""];
 }
 

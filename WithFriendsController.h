@@ -9,11 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "Meemi.h"
 
+typedef enum {
+	FTAll = 1,
+	FTNew,
+	FTPvt,
+	FTMentions
+} FetchTypes;
+
 @interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
+	NSString *filterString;
+	FetchTypes currentFetch;
 }
+
+-(IBAction)filterSelected;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 
