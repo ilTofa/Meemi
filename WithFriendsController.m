@@ -46,7 +46,6 @@
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dt_last_movement" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
-	NSString *cacheName;
 	switch(currentFetch)
 	{
 		case FTAll:
@@ -209,32 +208,32 @@
 
 #pragma mark UISearchBarDelegate
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-	if([searchBar isFirstResponder])
-		[searchBar resignFirstResponder];
-	DLog(@"searchBarSearchButtonClicked");
-	DLog(@"should we search for <%@>", searchBar.text);
-	self.searchString = searchBar.text;
-	[self setupFetch];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-	DLog(@"searchBarCancelButtonClicked");
-	if([searchBar isFirstResponder])
-		[searchBar resignFirstResponder];
-	searchBar.text = @"";
-	self.searchString = searchBar.text;
-	[self setupFetch];
-}
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-	// Start editing only if we could reload
-	return self.navigationItem.leftBarButtonItem.enabled;
-}
-
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//	if([searchBar isFirstResponder])
+//		[searchBar resignFirstResponder];
+//	DLog(@"searchBarSearchButtonClicked");
+//	DLog(@"should we search for <%@>", searchBar.text);
+//	self.searchString = searchBar.text;
+//	[self setupFetch];
+//}
+//
+//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+//{
+//	DLog(@"searchBarCancelButtonClicked");
+//	if([searchBar isFirstResponder])
+//		[searchBar resignFirstResponder];
+//	searchBar.text = @"";
+//	self.searchString = searchBar.text;
+//	[self setupFetch];
+//}
+//
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+//{
+//	// Start editing only if we could reload
+//	return self.navigationItem.leftBarButtonItem.enabled;
+//}
+//
 #pragma mark NSFetchedResultsControllerDelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 

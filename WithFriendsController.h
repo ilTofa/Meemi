@@ -16,7 +16,7 @@ typedef enum {
 	FTMentions
 } FetchTypes;
 
-@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
+@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
