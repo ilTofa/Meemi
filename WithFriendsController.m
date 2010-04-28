@@ -32,7 +32,7 @@
 {
 	DLog(@"meemiIsFree: enabling navButtons");
 	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = YES;
-	// While we are at it, probably the session something should have read. :)
+	// While we are at it, probably the session could have read something. :)
 	[self.tableView reloadData];
 }
 
@@ -60,6 +60,7 @@
 			else
 				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND (new_meme == YES OR new_replies == YES)",
 										self.searchString];
+			break;
 		case FTPvt:
 			if([self.searchString isEqualToString:@""])
 				self.predicateString = [NSString stringWithFormat:@"private_meme == YES"];
@@ -147,6 +148,8 @@
 	[spacer release];
 	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 
+	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
+	 
 	self.searchString = @"";
 	[self setupFetch];
 }
@@ -280,10 +283,10 @@
         cell = memeCell;
         self.memeCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		// This is 172/209/245 the Meemi "formal" background
-//		cell.contentView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
-//		cell.accessoryView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
     }
+	// This is 172/209/245 the Meemi "formal" background
+//	cell.contentView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
+//	cell.accessoryView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
     Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
     UILabel *tempLabel;
     tempLabel = (UILabel *)[cell viewWithTag:1];

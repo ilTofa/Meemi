@@ -28,6 +28,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
+
 	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.

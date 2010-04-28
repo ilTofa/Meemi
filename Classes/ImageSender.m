@@ -137,7 +137,7 @@
 	}
 	else
 	{
-		// Workaround the Meemi bug on EXIF orientation flag (
+		// Workaround the Meemi bug on EXIF orientation flag
 		[self removeOrientation];
 	}
 	// Send "edited" localization to session
@@ -219,8 +219,8 @@
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
 	imagePicker.sourceType = type;
-	if(comesFromCamera)
-		imagePicker.allowsEditing = YES;
+//	if(comesFromCamera)
+//		imagePicker.allowsEditing = YES;
 	[self presentModalViewController:imagePicker animated:YES];
 	[imagePicker release];		
 }
