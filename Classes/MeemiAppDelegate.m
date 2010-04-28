@@ -153,6 +153,7 @@ void uncaughtExceptionHandler(NSException *exception)
 	NSLog(@"(MeemiRequest)request didFinishWithResult:");
 	switch (request) 
 	{
+		// Flow through newMemes, newPrivateMemes and newPrivateMemesSent
 		case MmGetNew:
 			// Continue to read new memes if result != 0
 			if(result)
@@ -162,7 +163,35 @@ void uncaughtExceptionHandler(NSException *exception)
 			}
 			else
 			{
-				NSLog(@"No other records to read or max number reached, should be marking all read...");
+				NSLog(@"No other records to read or max number reached, now get private memes...");
+				// Now get newUsers into db.
+				[[Meemi sharedSession] getNewPrivateMemes:YES];
+			}
+			break;
+		case MMGetNewPvt:
+			// Continue to read new memes if result != 0
+			if(result)
+			{
+				NSLog(@"Still records to be read, continuing");
+				[[Meemi sharedSession] getNewPrivateMemes:NO];
+			}
+			else
+			{
+				NSLog(@"No other pvt records to read or max number reached, now get private sent memes...");
+				// Now get newUsers into db.
+				[[Meemi sharedSession] getNewPrivateMemesSent:YES];
+			}
+			break;
+		case MMGetNewPvtSent:
+			// Continue to read new memes if result != 0
+			if(result)
+			{
+				NSLog(@"Still records to be read, continuing");
+				[[Meemi sharedSession] getNewPrivateMemesSent:NO];
+			}
+			else
+			{
+				NSLog(@"No other records to read or max number reached, now get users...");
 				// Now get newUsers into db.
 				[[Meemi sharedSession] getNewUsers];
 			}
@@ -243,18 +272,16 @@ void uncaughtExceptionHandler(NSException *exception)
 - (void)applicationWillTerminate:(UIApplication *)application 
 {	
     NSError *error;
-    if (managedObjectContext != nil) 
-	{
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) 
+   if (managedObjectContext != nil) 
+   {
+       if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) 
 		{
 			// Handle error
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
-        } 
-    }
+		} 
+   }
 }
-
-
 
 /*
 // Optional UITabBarControllerDelegate method

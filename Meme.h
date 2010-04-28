@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * image_medium_url;
 @property (nonatomic, retain) NSData * image_small;
-@property (nonatomic, retain) NSNumber * new_replies;
+@property (nonatomic, retain) NSString * image_url;
 @property (nonatomic, retain) NSString * event_where;
 @property (nonatomic, retain) NSString * reply_screen_name;
 @property (nonatomic, retain) NSString * quote_source;
@@ -37,10 +37,11 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * new_meme;
 @property (nonatomic, retain) NSNumber * reply_id;
+@property (nonatomic, retain) NSNumber * private_meme;
 @property (nonatomic, retain) NSString * channels;
 @property (nonatomic, retain) NSString * meme_type;
 @property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSString * image_url;
+@property (nonatomic, retain) NSNumber * new_replies;
 @property (nonatomic, retain) User * user;
 
 @end

@@ -143,7 +143,6 @@
 	[theSegment release];
 	[spacer release];
 	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-	self.navigationController.toolbarHidden = NO;
 
 	self.searchString = @"";
 	[self setupFetch];
@@ -166,6 +165,7 @@
 - (void)viewDidAppear:(BOOL)animated 
 {
     [super viewDidAppear:animated];
+	self.navigationController.toolbarHidden = NO;
 	[self.tableView reloadData];
 }
 
@@ -174,6 +174,7 @@
 {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.navigationController.toolbarHidden = YES;
 }
 
 /*
@@ -318,6 +319,11 @@
 		((UIImageView *)[cell viewWithTag:9]).hidden = NO;
 	else
 		((UIImageView *)[cell viewWithTag:9]).hidden = YES;
+	// "Private" memes
+	if([theFetchedMeme.private_meme boolValue])
+		((UIImageView *)[cell viewWithTag:10]).hidden = NO;
+	else
+		((UIImageView *)[cell viewWithTag:10]).hidden = YES;
 	
     return cell;
 }

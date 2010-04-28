@@ -23,7 +23,7 @@
 @dynamic image;
 @dynamic image_medium_url;
 @dynamic image_small;
-@dynamic new_replies;
+@dynamic image_url;
 @dynamic event_where;
 @dynamic reply_screen_name;
 @dynamic quote_source;
@@ -35,10 +35,11 @@
 @dynamic id;
 @dynamic new_meme;
 @dynamic reply_id;
+@dynamic private_meme;
 @dynamic channels;
 @dynamic meme_type;
 @dynamic content;
-@dynamic image_url;
+@dynamic new_replies;
 @dynamic user;
 
 @end

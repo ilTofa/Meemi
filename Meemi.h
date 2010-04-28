@@ -23,7 +23,9 @@ typedef enum {
 	MmGetNew,
 	MmMarkNewRead,
 	MmGetUser,
-	MmGetNewUsers
+	MmGetNewUsers,
+	MMGetNewPvt,
+	MMGetNewPvtSent,
 } MeemiRequest;
 
 typedef enum
@@ -92,6 +94,8 @@ typedef enum
 	int newMemesPageWatermark;
 	// Temporary workaround for no "mark read" bug of meemi
 	BOOL currentMemeIsNew;
+	// Accumulator for recipient of private memes
+	NSMutableString *sent_to;
 	// Maintain "last meme read" number (for use by updateQtaReply)
 	NSNumber *newMemeID; 
 	// limits on number and timing of new memes reads
@@ -141,6 +145,8 @@ typedef enum
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)getNewMemes:(BOOL)fromScratch;
+-(void)getNewPrivateMemes:(BOOL)fromScratch;
+-(void)getNewPrivateMemesSent:(BOOL)fromScratch;
 -(void)markNewMemesRead;
 -(void)markMemeRead:(NSNumber *)memeID;
 -(void)getNewUsers;
