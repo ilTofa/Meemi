@@ -282,7 +282,7 @@ static Meemi *sharedSession = nil;
 		}
 	}
 	// parse memes
-	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt)
+	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || self.currentRequest == MMGetNewPvtSent)
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"])
@@ -360,7 +360,7 @@ static Meemi *sharedSession = nil;
 	DLog(@"<%@> fully received with value: <%@>", elementName, currentStringValue);
 
 	// new_memes processing 
-	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt)
+	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || self.currentRequest == MMGetNewPvtSent)
 	{
 		// id received, verify if the meme is new.
 		if([elementName isEqualToString:@"id"])
@@ -534,6 +534,8 @@ static Meemi *sharedSession = nil;
 			   [self.delegate meemi:MmGetNew didFinishWithResult:retValue];
 			else if(self.currentRequest == MMGetNewPvt)
 				[self.delegate meemi:MMGetNewPvt didFinishWithResult:retValue];
+			else if(self.currentRequest == MMGetNewPvtSent)
+				[self.delegate meemi:MMGetNewPvtSent didFinishWithResult:retValue];
 		}
 	}
     if ([elementName isEqualToString:@"name"])
@@ -897,7 +899,7 @@ static Meemi *sharedSession = nil;
 	{
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_10", self.screenName]];
-		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
+//		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
 	}
@@ -924,7 +926,7 @@ static Meemi *sharedSession = nil;
 	{
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_10", self.screenName]];
-		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
+//		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
 	}

@@ -46,6 +46,7 @@
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dt_last_movement" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
+	NSString *cacheName;
 	switch(currentFetch)
 	{
 		case FTAll:
@@ -56,12 +57,16 @@
 			break;
 		case FTNew:
 			if([self.searchString isEqualToString:@""])
-				self.predicateString = [NSString stringWithFormat:@"new_meme == %@ OR new_replies == %@", 
-										[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+				self.predicateString = [NSString stringWithFormat:@"new_meme == YES OR new_replies == YES"];
 			else
-				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND (new_meme == %@ OR new_replies == %@)",
-										self.searchString,
-										[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND (new_meme == YES OR new_replies == YES)",
+										self.searchString];
+		case FTPvt:
+			if([self.searchString isEqualToString:@""])
+				self.predicateString = [NSString stringWithFormat:@"private_meme == YES"];
+			else
+				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND private_meme == YES",
+										self.searchString];
 			break;
 	}
 
@@ -133,7 +138,6 @@
 	theSegment.momentary = NO;
 	theSegment.selectedSegmentIndex = 0;
 	currentFetch = FTAll;
-	[theSegment setEnabled:NO forSegmentAtIndex:2];
 	[theSegment setEnabled:NO forSegmentAtIndex:3];
 	[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 	NSArray *toolbarItems = [NSArray arrayWithObjects:
@@ -285,8 +289,6 @@
     UILabel *tempLabel;
     tempLabel = (UILabel *)[cell viewWithTag:1];
     tempLabel.text = theFetchedMeme.screen_name;
-    tempLabel = (UILabel *)[cell viewWithTag:2];
-    tempLabel.text = theFetchedMeme.user.real_name;
     tempLabel = (UILabel *)[cell viewWithTag:4];
     tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
     tempLabel = (UILabel *)[cell viewWithTag:5];
@@ -321,9 +323,17 @@
 		((UIImageView *)[cell viewWithTag:9]).hidden = YES;
 	// "Private" memes
 	if([theFetchedMeme.private_meme boolValue])
+	{
 		((UIImageView *)[cell viewWithTag:10]).hidden = NO;
+		tempLabel = (UILabel *)[cell viewWithTag:2];
+		tempLabel.text = theFetchedMeme.sent_to;
+	}
 	else
+	{
 		((UIImageView *)[cell viewWithTag:10]).hidden = YES;
+		tempLabel = (UILabel *)[cell viewWithTag:2];
+		tempLabel.text = theFetchedMeme.user.real_name;
+	}
 	
     return cell;
 }
