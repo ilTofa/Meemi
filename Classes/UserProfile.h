@@ -13,7 +13,9 @@
 {
 	User *theUser;
 	UIImageView *theAvatar;
-	UILabel *screenName, *realName, *since, *birth, *location, *info, *profile;
+	UILabel *screenName, *realName, *since, *birth, *location;
+	UITextView *info;
+	UISegmentedControl *theSegment;
 }
 
 @property (nonatomic, retain) User *theUser;
@@ -23,7 +25,9 @@
 @property (nonatomic, retain) IBOutlet UILabel *since;
 @property (nonatomic, retain) IBOutlet UILabel *birth;
 @property (nonatomic, retain) IBOutlet UILabel *location;
-@property (nonatomic, retain) IBOutlet UILabel *info;
-@property (nonatomic, retain) IBOutlet UILabel *profile;
+@property (nonatomic, retain) IBOutlet UITextView *info;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *theSegment;
+
+-(IBAction)infoSwapped;
 
 @end

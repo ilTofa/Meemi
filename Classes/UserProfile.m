@@ -11,7 +11,7 @@
 
 @implementation UserProfile
 
-@synthesize theAvatar, screenName, realName, since, birth, location, info, profile;
+@synthesize theAvatar, screenName, realName, since, birth, location, info, theSegment;
 @synthesize theUser;
 
 /*
@@ -24,6 +24,13 @@
 }
 */
 
+-(IBAction)infoSwapped
+{
+	if(self.theSegment.selectedSegmentIndex == 0)
+		info.text = theUser.info;
+	else
+		info.text = theUser.profile;
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
@@ -34,13 +41,13 @@
 	realName.text = theUser.real_name;
 	location.text = theUser.location;
 	info.text = theUser.info;
-	profile.text = theUser.profile;
 	// dates...
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[NSLocale currentLocale]];
 	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     since.text = [dateFormatter stringFromDate:theUser.since];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 	birth.text = [dateFormatter stringFromDate:theUser.birth];
 	[dateFormatter release];
 	// Image

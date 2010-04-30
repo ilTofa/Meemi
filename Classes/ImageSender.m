@@ -124,8 +124,8 @@
 		return;
 	}
 	[self.laRuota startAnimating];
-	// Save to camera roll if requested
-	if(self.wantSave) 
+	// Save to camera roll if requested (and if photo comes from camera)
+	if(self.wantSave && comesFromCamera) 
 		UIImageWriteToSavedPhotosAlbum(self.theImage, nil, nil, nil);
 	[Meemi sharedSession].delegate = self;
 	// If user wants low res, make a thumbnail.
