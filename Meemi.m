@@ -391,6 +391,8 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"date_time"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+				[dateFormatter setLocale:usLocale];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
@@ -446,6 +448,8 @@ static Meemi *sharedSession = nil;
 			if([elementName isEqualToString:@"when"])
 			{
 				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+				[dateFormatter setLocale:usLocale];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
@@ -488,6 +492,8 @@ static Meemi *sharedSession = nil;
 				lastMemeTimestamp = nil;
 			}
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+			[dateFormatter setLocale:usLocale];
 			[dateFormatter setDateFormat:kMeemiDatesFormat];
 			lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 			theMeme.dt_last_movement = lastMemeTimestamp;
