@@ -296,7 +296,7 @@
     tempLabel = (UILabel *)[cell viewWithTag:5];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[NSLocale currentLocale]];
-	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
 	[dateFormatter release];

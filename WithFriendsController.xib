@@ -62,7 +62,7 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-				<float key="IBUIRowHeight">96</float>
+				<float key="IBUIRowHeight">100</float>
 				<float key="IBUISectionHeaderHeight">22</float>
 				<float key="IBUISectionFooterHeight">22</float>
 			</object>
@@ -138,7 +138,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>WithFriendsController</string>
 					<string>UIResponder</string>
-					<string>{{612, 100}, {320, 480}}</string>
+					<string>{{612, 245}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -178,35 +178,14 @@
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>memeCell</string>
-							<string>theSearchBar</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UITableViewCell</string>
-							<string>UISearchBar</string>
-						</object>
+						<string key="NS.key.0">memeCell</string>
+						<string key="NS.object.0">UITableViewCell</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>memeCell</string>
-							<string>theSearchBar</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">memeCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">theSearchBar</string>
-								<string key="candidateClassName">UISearchBar</string>
-							</object>
+						<string key="NS.key.0">memeCell</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">memeCell</string>
+							<string key="candidateClassName">UITableViewCell</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
