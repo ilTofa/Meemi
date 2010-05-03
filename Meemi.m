@@ -300,48 +300,46 @@ static Meemi *sharedSession = nil;
 			sent_to = [[NSMutableString alloc] initWithString:@""];
 		}
 	}
-	if(self.currentRequest == MmGetUser)
+	// Users...
+	if([elementName isEqualToString:@"info"])
 	{
-		if([elementName isEqualToString:@"info"])
+		NSString *name = [attributeDict objectForKey:@"screen_name"];
+		ALog(@"Now looking for the user %@ for update", name);
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		// We're looking for an User with this screen_name.
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+		[request setEntity:entity];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
+		[request setPredicate:predicate];
+		// We're only looking for one.
+		[request setFetchLimit:1];
+		NSError *error;
+		NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+		if (fetchResults != nil && [fetchResults count] != 0)
 		{
-			NSString *name = [attributeDict objectForKey:@"screen_name"];
-			ALog(@"Now looking for the user %@ for update", name);
-			NSFetchRequest *request = [[NSFetchRequest alloc] init];
-			// We're looking for an User with this screen_name.
-			NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
-			[request setEntity:entity];
-			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
-			[request setPredicate:predicate];
-			// We're only looking for one.
-			[request setFetchLimit:1];
-			NSError *error;
-			NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-			if (fetchResults != nil && [fetchResults count] != 0)
-			{
-				theUser = [fetchResults objectAtIndex:0];
-				theUser.location = [attributeDict objectForKey:@"location"];
-				theUser.real_name = [attributeDict objectForKey:@"real_name"];
-				// Workaround stupid date
-				NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
-				NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"since"]];
-				theUser.since = [dateFormatter dateFromString:tempDate];
-				[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-				theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"birth"]];
-				[dateFormatter release];
-			}
-			else
-			{
-				NSAssert(YES, @"user not found while it should be present");
-			}
-			[request release];
+			theUser = [fetchResults objectAtIndex:0];
+			theUser.location = [attributeDict objectForKey:@"location"];
+			theUser.real_name = [attributeDict objectForKey:@"real_name"];
+			// Workaround stupid date
+			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+			NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"since"]];
+			theUser.since = [dateFormatter dateFromString:tempDate];
+			[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+			theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"birth"]];
+			[dateFormatter release];
 		}
-		if([elementName isEqualToString:@"avatars"])
+		else
 		{
-			theUser.avatar.small = [[attributeDict objectForKey:@"small"] dataUsingEncoding:NSUTF8StringEncoding];
-			theUser.avatar.medium = [[attributeDict objectForKey:@"medium"] dataUsingEncoding:NSUTF8StringEncoding];
-			theUser.avatar.original = [[attributeDict objectForKey:@"normal"] dataUsingEncoding:NSUTF8StringEncoding];
+			NSAssert(YES, @"user not found while it should be present");
 		}
+		[request release];
+	}
+	if([elementName isEqualToString:@"avatars"])
+	{
+		theUser.avatar.small = [[attributeDict objectForKey:@"small"] dataUsingEncoding:NSUTF8StringEncoding];
+		theUser.avatar.medium = [[attributeDict objectForKey:@"medium"] dataUsingEncoding:NSUTF8StringEncoding];
+		theUser.avatar.original = [[attributeDict objectForKey:@"normal"] dataUsingEncoding:NSUTF8StringEncoding];
 	}
 }
 
@@ -553,16 +551,14 @@ static Meemi *sharedSession = nil;
 	if ([elementName isEqualToString:@"distance"])
 		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
 
-	if(self.currentRequest == MmGetUser)
-	{
-		if([elementName isEqualToString:@"avatars"])
-			theUser.info = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-		else if([elementName isEqualToString:@"meemi"])
-			// user info end, save...
-			ALog(@"New user saved %@", theUser.screen_name);
-		else if([elementName isEqualToString:@"profile"])
-			theUser.profile = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	}
+	if([elementName isEqualToString:@"avatars"])
+		theUser.info = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	else if([elementName isEqualToString:@"meemi"])
+		// user info end, save...
+		ALog(@"New user saved %@", theUser.screen_name);
+	else if([elementName isEqualToString:@"profile"])
+		theUser.profile = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
     // reset currentStringValue for the next cycle
     [currentStringValue release];
     currentStringValue = nil;
@@ -679,27 +675,24 @@ static Meemi *sharedSession = nil;
 		[self.networkQueue release];
 	}
 	ALog(@"Queue finished");
-	// if we what read were the new users, save modifications and release the array...
-	if(self.currentRequest == MmGetUser)
+	// What read were the new users, save modifications and release the array...
+	NSError *error;
+	if (![self.managedObjectContext save:&error])
 	{
-		NSError *error;
-		if (![self.managedObjectContext save:&error])
-		{
-			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
-			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-			if(detailedErrors != nil && [detailedErrors count] > 0) 
-				for(NSError* detailedError in detailedErrors) 
-					DLog(@"  DetailedError: %@", [detailedError userInfo]);
-			else 
-				DLog(@"  %@", [error userInfo]);
-		}
-		[newUsersFromNewMemes release];
-		newUsersFromNewMemes = nil;
-		[self nowFree];
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		// OK. Now get avatar images.
-		[self updateAvatars];
+		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		if(detailedErrors != nil && [detailedErrors count] > 0) 
+			for(NSError* detailedError in detailedErrors) 
+				DLog(@"  DetailedError: %@", [detailedError userInfo]);
+		else 
+			DLog(@"  %@", [error userInfo]);
 	}
+	[newUsersFromNewMemes release];
+	newUsersFromNewMemes = nil;
+	[self nowFree];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	// OK. Now get avatar images.
+	[self updateAvatars];
 }
 
 -(void)getAvatarImageIfNeeded:(id)forThisAvatar

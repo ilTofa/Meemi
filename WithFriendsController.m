@@ -270,6 +270,8 @@
     return count;
 }
 
+#define kTextWidth 263.0f
+#define kHeigthBesideText 53.0f
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -291,8 +293,6 @@
     UILabel *tempLabel;
     tempLabel = (UILabel *)[cell viewWithTag:1];
     tempLabel.text = theFetchedMeme.screen_name;
-    tempLabel = (UILabel *)[cell viewWithTag:4];
-    tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
     tempLabel = (UILabel *)[cell viewWithTag:5];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[NSLocale currentLocale]];
@@ -302,9 +302,21 @@
 	[dateFormatter release];
 	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
 	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar.small];
+    tempLabel = (UILabel *)[cell viewWithTag:4];
+    tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
+
 	// things that depend on the kind of meme
+	
+	// This is the calculated size of "content"
 	tempLabel = (UILabel *)[cell viewWithTag:3];
 	tempLabel.text = theFetchedMeme.content;
+	tempLabel.font = [UIFont systemFontOfSize:13.0f];
+	tempLabel.lineBreakMode = UILineBreakModeWordWrap;
+	CGRect labelFrame = tempLabel.frame;
+	labelFrame.size.width = kTextWidth;
+	tempLabel.frame = labelFrame;
+	[tempLabel sizeToFit];
+	
 	tempView = (UIImageView *)[cell viewWithTag:7];
 	if([theFetchedMeme.meme_type isEqualToString:@"image"])
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
@@ -338,6 +350,14 @@
 	}
 	
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
+	CGSize theSize = [theFetchedMeme.content sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:CGSizeMake(kTextWidth, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+	return theSize.height + kHeigthBesideText;
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
