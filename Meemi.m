@@ -211,6 +211,8 @@ static Meemi *sharedSession = nil;
 	// Whatever theUser is (new or pre-existing) now it's time to set the relationship with theMeme
 	theMeme.user = theUser;
 	[theUser addMemeObject:theMeme];
+	// if the meme is from ourselves, mark it "Special"
+	theMeme.special = [NSNumber numberWithBool:[name isEqualToString:self.screenName]];
 	[request release];
 }
 
@@ -409,6 +411,8 @@ static Meemi *sharedSession = nil;
 			{
 				theMeme.sent_to = [sent_to substringToIndex:([sent_to length] - 2)];
 				theMeme.private_meme = [NSNumber numberWithBool:YES];
+				// It's private, I'm seeing it, so it must be special. :)
+				theMeme.special = [NSNumber numberWithBool:YES];
 			}
 			
 			if([elementName isEqualToString:@"content"])
@@ -806,7 +810,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getNewUsers
 {
-	NSAssert(self.isValid, @"getNewMemes: called without valid session");
+	NSAssert(self.isValid, @"getNewUsers: called without valid session");
 
 	// Stop anything already in the queue before removing it
 	if(self.networkQueue != nil)
@@ -941,6 +945,37 @@ static Meemi *sharedSession = nil;
 	[self startRequestToMeemi:request];
 }
 
+-(void)markMemeSpecial:(NSNumber *)memeID
+{
+	DLog(@"Now in markMemeSpecial");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for an User with this screen_name.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		Meme *theOne = [fetchResults objectAtIndex:0];
+		theOne.special = [NSNumber numberWithBool:YES];
+		if (![self.managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+	}
+	[request release];
+}	
+
 -(void)markMemeRead:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeRead");
@@ -1040,6 +1075,9 @@ static Meemi *sharedSession = nil;
 		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
 	[request setPostValue:withDescription forKey:@"text_content"];
 	[self startRequestToMeemi:request];
+	// If it's a reply, mark the parent meme as "special"
+	if(replyScreenName != nil)
+		[self markMemeSpecial:replyID];
 }
 
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized

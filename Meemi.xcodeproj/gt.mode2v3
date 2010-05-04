@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>640F2C60118F1EEA0003014A</string>
+						<string>6467C6CB119080AF00F86F0E</string>
 						<key>history</key>
 						<array>
-							<string>64203E371188A85E00BA45EC</string>
-							<string>6474E43C118D6717001834DF</string>
+							<string>6467C6B611907D0300F86F0E</string>
+							<string>6467C6B711907D0300F86F0E</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,10 +257,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>640F2C61118F1EEA0003014A</string>
+						<string>6467C6CC119080AF00F86F0E</string>
 						<key>history</key>
 						<array>
-							<string>640F2B87118EE5E60003014A</string>
+							<string>6467C6B01190758C00F86F0E</string>
+							<string>6467C6B11190758C00F86F0E</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -272,11 +273,11 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {937, 678}}</string>
+				<string>{{0, 20}, {880, 679}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>53 59 937 719 0 0 1280 778 </string>
+				<string>50 58 880 720 0 0 1280 778 </string>
 			</dict>
 		</dict>
 		<dict>
@@ -297,11 +298,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>640F2C62118F1EEA0003014A</string>
+						<string>6467C6CD119080AF00F86F0E</string>
 						<key>history</key>
 						<array>
 							<string>64DE328F1188411A00828EA1</string>
-							<string>6474E43E118D6717001834DF</string>
+							<string>64CEE93D118F2A5300840328</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -338,10 +339,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>640F2C63118F1EEA0003014A</string>
+						<string>6467C6CE119080AF00F86F0E</string>
 						<key>history</key>
 						<array>
-							<string>6474E43F118D6717001834DF</string>
+							<string>64CEE93E118F2A5300840328</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -602,8 +603,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>640F2B6D118EE4620003014A</string>
-				<string>640F2B6E118EE4620003014A</string>
+				<string>6467C68611902AC400F86F0E</string>
+				<string>6467C68711902AC400F86F0E</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -640,17 +641,16 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>640F2B7B118EE4620003014A</string>
-		<string>640F2B7C118EE4620003014A</string>
+		<string>6467C69E11902C2700F86F0E</string>
+		<string>6467C69F11902C2700F86F0E</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>6441CA5D1187368F0045BA02</string>
 		<string>64055675118720FB0016DE15</string>
 		<string>64DE33531188749B00828EA1</string>
 		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>6405566E118720FB0016DE15</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
@@ -867,7 +867,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>640F2B73118EE4620003014A</string>
+				<string>6467C68C11902AC400F86F0E</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -989,13 +989,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>640F2B74118EE4620003014A</string>
+				<string>6467C69611902C2700F86F0E</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>640F2B75118EE4620003014A</string>
-				<string>640F2B76118EE4620003014A</string>
-				<string>640F2B77118EE4620003014A</string>
-				<string>640F2B78118EE4620003014A</string>
-				<string>640F2B79118EE4620003014A</string>
+				<string>6467C69711902C2700F86F0E</string>
+				<string>6467C69811902C2700F86F0E</string>
+				<string>6467C69911902C2700F86F0E</string>
+				<string>6467C69A11902C2700F86F0E</string>
+				<string>6467C69B11902C2700F86F0E</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1151,7 +1151,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>640F2B7A118EE4620003014A</string>
+				<string>6467C69C11902C2700F86F0E</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

@@ -13,7 +13,7 @@ typedef enum {
 	FTAll = 0,
 	FTNew,
 	FTPvt,
-	FTMentions
+	FTSpecial
 } FetchTypes;
 
 @interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate>

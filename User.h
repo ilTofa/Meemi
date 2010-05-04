@@ -2,8 +2,8 @@
 //  User.h
 //  Meemi
 //
-//  Created by Giacomo Tufano on 28/04/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//  Created by Giacomo Tufano on 04/05/10.
+//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>

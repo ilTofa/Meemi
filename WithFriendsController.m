@@ -49,24 +49,16 @@
 	switch(currentFetch)
 	{
 		case FTAll:
-			if([self.searchString isEqualToString:@""])
-				self.predicateString = @"";
-			else
-				self.predicateString = [NSString stringWithFormat:@"screen_name like %@", self.searchString];
+			self.predicateString = @"";
 			break;
 		case FTNew:
-			if([self.searchString isEqualToString:@""])
-				self.predicateString = [NSString stringWithFormat:@"new_meme == YES OR new_replies == YES"];
-			else
-				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND (new_meme == YES OR new_replies == YES)",
-										self.searchString];
+			self.predicateString = [NSString stringWithFormat:@"new_meme == YES OR new_replies == YES"];
 			break;
 		case FTPvt:
-			if([self.searchString isEqualToString:@""])
-				self.predicateString = [NSString stringWithFormat:@"private_meme == YES"];
-			else
-				self.predicateString = [NSString stringWithFormat:@"screen_name like %@ AND private_meme == YES",
-										self.searchString];
+			self.predicateString = [NSString stringWithFormat:@"private_meme == YES"];
+			break;
+		case FTSpecial:
+			self.predicateString = [NSString stringWithFormat:@"special == YES"];
 			break;
 	}
 
@@ -130,7 +122,7 @@
 	self.navigationItem.rightBarButtonItem  = markReadButton;
 	[markReadButton release];
 	
-	NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Mentions", nil];
+	NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Special", nil];
 	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 	theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -138,7 +130,6 @@
 	theSegment.momentary = NO;
 	theSegment.selectedSegmentIndex = 0;
 	currentFetch = FTAll;
-	[theSegment setEnabled:NO forSegmentAtIndex:3];
 	[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 	NSArray *toolbarItems = [NSArray arrayWithObjects:
 							 spacer,
@@ -271,7 +262,7 @@
 }
 
 #define kTextWidth 263.0f
-#define kHeigthBesideText 53.0f
+#define kHeigthBesideText 73.0f
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -335,6 +326,10 @@
 		((UIImageView *)[cell viewWithTag:9]).hidden = NO;
 	else
 		((UIImageView *)[cell viewWithTag:9]).hidden = YES;
+	if([theFetchedMeme.special boolValue])
+		((UIImageView *)[cell viewWithTag:11]).hidden = NO;
+	else
+		((UIImageView *)[cell viewWithTag:11]).hidden = YES;
 	// "Private" memes
 	if([theFetchedMeme.private_meme boolValue])
 	{

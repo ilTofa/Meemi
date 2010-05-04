@@ -149,6 +149,7 @@ typedef enum
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch;
 -(void)markNewMemesRead;
 -(void)markMemeRead:(NSNumber *)memeID;
+-(void)markMemeSpecial:(NSNumber *)memeID;
 -(void)getNewUsers;
 
 -(BOOL)parse:(NSData *)responseData;
