@@ -350,6 +350,7 @@ static Meemi *sharedSession = nil;
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
+				[usLocale release];
 			}
 			if([elementName isEqualToString:@"meme_type"])
 			{
@@ -410,6 +411,7 @@ static Meemi *sharedSession = nil;
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 				[dateFormatter release];
+				[usLocale release];
 			}
 			if([elementName isEqualToString:@"where"])
 				theMeme.event_where = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -456,6 +458,7 @@ static Meemi *sharedSession = nil;
 			theMeme.dt_last_movement = lastMemeTimestamp;
 			[lastMemeTimestamp retain];
 			[dateFormatter release];
+			[usLocale release];
 		}
 		
 		// should end? If YES, commit the CoreData objects to the db
@@ -511,7 +514,7 @@ static Meemi *sharedSession = nil;
 		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
 
 	// users processor
-	if(self.currentRequest == MmGetUser)
+	if(self.currentRequest == MMGetNewUser)
 	{
 		if([elementName isEqualToString:@"screen_name"])
 		{
@@ -540,9 +543,7 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"birth"])
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-			[dateFormatter setLocale:usLocale];
-			[dateFormatter setDateFormat:kMeemiDatesFormat];
+			[dateFormatter setDateFormat:@"yyyy-mm-dd"];
 			theUser.birth = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 			[dateFormatter release];
 		}
@@ -559,8 +560,21 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"qta_followers"])
 			theUser.qta_followers = [NSDecimalNumber decimalNumberWithString:currentStringValue];
 		if([elementName isEqualToString:@"user"])
-			// user info end
+		{
+			NSError *error;
+			if (![self.managedObjectContext save:&error])
+			{
+                DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+                NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+                if(detailedErrors != nil && [detailedErrors count] > 0) 
+					for(NSError* detailedError in detailedErrors) 
+						DLog(@"  DetailedError: %@", [detailedError userInfo]);
+                else 
+					DLog(@"  %@", [error userInfo]);
+			}
 			ALog(@"New user added %@", theUser.screen_name);
+			[self.delegate meemi:MMGetNewUser didFinishWithResult:YES];
+		}
 	}
     // reset currentStringValue for the next cycle
     [currentStringValue release];
@@ -698,26 +712,40 @@ static Meemi *sharedSession = nil;
 	[self updateAvatars];
 }
 
--(void)getAvatarImageIfNeeded:(id)forThisAvatar
+-(void)getAvatarImageIfNeeded:(NSString *)userScreenName
 {
 	NSURL *url;
-	User *thisUser = forThisAvatar;
-	NSString *temp = [[NSString alloc] initWithData:thisUser.avatar encoding:NSUTF8StringEncoding];
-	if((url = [NSURL URLWithString:temp]) != nil)
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name == %@", userScreenName];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
 	{
-		// get avatar and store it
-		DLog(@"getting avatar for %@ from %@", thisUser.screen_name, temp);
-		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-		[request startSynchronous];
-		NSError *error = [request error];
-		if (!error) {
-			thisUser.avatar = [request responseData];
-		}		
-		else {
-			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+		User *theOne = [fetchResults objectAtIndex:0];
+		NSString *temp = [[NSString alloc] initWithData:theOne.avatar encoding:NSUTF8StringEncoding];
+		if((url = [NSURL URLWithString:temp]) != nil)
+		{
+			NSError *error;
+			// get avatar and store it
+			DLog(@"getting avatar for %@ from %@", theOne.screen_name, temp);
+			ASIHTTPRequest *netRequest = [ASIHTTPRequest requestWithURL:url];
+			[netRequest startSynchronous];
+			error = [netRequest error];
+			if (!error) {
+				theOne.avatar = [netRequest responseData];
+			}		
+			else {
+				ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
+			}
 		}
+		[temp release];
 	}
-	[temp release];
+	[request release];
 	
 	if([self.managedObjectContext hasChanges])
 	{
@@ -732,10 +760,10 @@ static Meemi *sharedSession = nil;
 			else 
 				ALog(@"  %@", [error userInfo]);
 		}	
-		ALog(@"saved %@", thisUser.screen_name);
+		DLog(@"saved %@", userScreenName);
 	}
 	else {
-		ALog(@"No needs to save %@", thisUser.screen_name);
+		DLog(@"No needs to save %@", userScreenName);
 	}
 }
 
@@ -753,82 +781,38 @@ static Meemi *sharedSession = nil;
 	DLog(@"Loading NSOperationQueue in updateAvatars");
 	[self nowBusy];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
-	[request setEntity:entity];
-	NSError *error;
-	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-	for(User *newAvatar in fetchResults)
+	for(NSString *newUser in newUsersQueue)
 	{
 		NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
 																			 selector:@selector(getAvatarImageIfNeeded:) 
-																			   object:newAvatar] autorelease];
+																			   object:newUser] autorelease];
 		[theQueue addOperation:theOp];
 	}
-	[request release];
 	// The last operation get back to the delegate...
 	NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
 																		 selector:@selector(getBackToDelegateAfterUpdateAvatars:) 
 																		   object:self.delegate] autorelease];
 	[theQueue addOperation:theOp];
-	
-}
 
--(void)getNewUsers
-{
-	NSAssert(self.isValid, @"getNewUsers: called without valid session");
-
-	// Stop anything already in the queue before removing it
-	if(self.networkQueue != nil)
-	{
-		[[self networkQueue] cancelAllOperations];
-		[self.networkQueue release];
-		self.networkQueue = nil;
-	}
-	// if nothing to do... go directly to updateAvatars.
-	if([newUsersQueue count] == 0)
+	// reset newUsersQueue
+	if(newUsersQueue)
 	{
 		[newUsersQueue release];
 		newUsersQueue = nil;
-		// OK. Now get avatar images.
-		[self updateAvatars];
-	}		
-	else
-	{
-		[self nowBusy];
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		// Creating a new queue each time we use it means we don't have to worry about clearing delegates or resetting progress tracking
-		[self setNetworkQueue:[ASINetworkQueue queue]];
-		[[self networkQueue] setDelegate:self];
-		[[self networkQueue] setQueueDidFinishSelector:@selector(queueFinished:)];
-		[self networkQueue].maxConcurrentOperationCount = 1;
-		
-		for(NSString *newUser in newUsersQueue)
-		{
-			self.currentRequest = MmGetUser;
-			NSURL *url = [NSURL URLWithString:
-						  [NSString stringWithFormat:@"http://meemi.com/api3/%@/profile", newUser]];
-			
-			ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-			// build the password using SHA-256
-			unsigned char hashedChars[32];
-			CC_SHA256([self.password UTF8String],
-					  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-					  hashedChars);
-			NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
-			hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
-			hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
-			hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
-			[request setPostValue:self.screenName forKey:@"meemi_id"];
-			[request setPostValue:hashedData forKey:@"pwd"];
-			[request setPostValue:kAPIKey forKey:@"app_key"];
-			[request setDelegate:self];
-			[[self networkQueue] addOperation:request];
-			ALog(@"Adding %@ to queue", newUser);
-		}
-		[[self networkQueue] go];
 	}
 }
+
+-(void)getUser:(NSString *)withName
+{
+	self.currentRequest = MMGetNewUser;
+	NSURL *url = [NSURL URLWithString:
+				  [NSString stringWithFormat:@"http://meemi.com/api3/%@/profile", withName]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	DLog(@"Requesting user %@ profile", withName);
+	[self startRequestToMeemi:request];
+}
+
 
 -(void)getNewMemes:(BOOL)fromScratch
 {

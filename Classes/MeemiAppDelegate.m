@@ -193,7 +193,7 @@ void uncaughtExceptionHandler(NSException *exception)
 			{
 				NSLog(@"No other records to read or max number reached, now get users...");
 				// Now get newUsers into db.
-				[[Meemi sharedSession] getNewUsers];
+				[[Meemi sharedSession] updateAvatars];
 			}
 			break;
 		case MmMarkNewRead:

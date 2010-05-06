@@ -21,10 +21,10 @@ typedef enum {
 	MmRPostText,
 	MmGetNew,
 	MmMarkNewRead,
-	MmGetUser,
 	MmGetNewUsers,
 	MMGetNewPvt,
 	MMGetNewPvtSent,
+	MMGetNewUser
 } MeemiRequest;
 
 typedef enum
@@ -148,7 +148,7 @@ typedef enum
 -(void)markNewMemesRead;
 -(void)markMemeRead:(NSNumber *)memeID;
 -(void)markMemeSpecial:(NSNumber *)memeID;
--(void)getNewUsers;
+-(void)getUser:(NSString *)withName;
 
 -(BOOL)parse:(NSData *)responseData;
 -(void)updateAvatars;
