@@ -71,6 +71,7 @@
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
+	[NSFetchedResultsController deleteCacheWithName:@"WithFriendsCache"];
 	if(theMemeList != nil)
 		[theMemeList release];
 	theMemeList = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
@@ -292,7 +293,7 @@
     tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
 	[dateFormatter release];
 	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
-	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar.small];
+	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar];
     tempLabel = (UILabel *)[cell viewWithTag:4];
     tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
 

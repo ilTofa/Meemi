@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Meme.h"
-#import "Avatar.h"
 #import "User.h"
 
 @class ASINetworkQueue;
@@ -75,7 +74,6 @@ typedef enum
 	
 	// Next three contain the current one
 	Meme *theMeme;
-	Avatar *theAvatar;
 	User *theUser;
 
 	NSURLConnection *theReverseGeoConnection;

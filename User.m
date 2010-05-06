@@ -3,7 +3,7 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 06/05/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
 //
 
 #import "User.h"
@@ -12,16 +12,18 @@
 
 @implementation User 
 
-@dynamic screen_name;
 @dynamic real_name;
 @dynamic profile;
+@dynamic you_follow;
+@dynamic qta_followings;
+@dynamic qta_followers;
+@dynamic current_location;
 @dynamic birth;
-@dynamic avatar_medium;
-@dynamic avatar_original;
-@dynamic location;
+@dynamic follow_you;
+@dynamic avatar;
 @dynamic since;
 @dynamic info;
-@dynamic avatar_small;
+@dynamic screen_name;
 @dynamic meme;
 
 @end

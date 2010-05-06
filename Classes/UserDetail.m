@@ -136,7 +136,7 @@
     }
     User *theFetchedUser = [theUserList objectAtIndexPath:indexPath];
 
-    cell.imageView.image = [UIImage imageWithData:theFetchedUser.avatar.medium];
+    cell.imageView.image = [UIImage imageWithData:theFetchedUser.avatar];
 	cell.textLabel.text = theFetchedUser.screen_name;
 	cell.detailTextLabel.text = theFetchedUser.real_name;
     

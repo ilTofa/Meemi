@@ -11,7 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
-#import "FlurryAPI.h"
+// #import "FlurryAPI.h"
 
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
@@ -192,19 +192,14 @@ static Meemi *sharedSession = nil;
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		theUser = [fetchResults objectAtIndex:0];
-		theAvatar = theUser.avatar;
 		DLog(@"User %@ for the meme already existing: %@", name);
 	}
 	else
 	{
-		// Create an User and an Avatar and add them to the managedObjectContext
+		// Create an User and add it to the managedObjectContext
 		// (and to the list of "new ones" for later processing
 		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
 		theUser.screen_name = name;
-		theAvatar = (Avatar *)[NSEntityDescription insertNewObjectForEntityForName:@"Avatar" inManagedObjectContext:self.managedObjectContext];
-		// set the relationship between theUser and theAvatar
-		theAvatar.user = theUser;
-		theUser.avatar = theAvatar;
 		[newUsersQueue addObject:name];
 		DLog(@"New user created for %@", name);
 	}
@@ -302,47 +297,6 @@ static Meemi *sharedSession = nil;
 			sent_to = [[NSMutableString alloc] initWithString:@""];
 		}
 	}
-	// Users...
-	if([elementName isEqualToString:@"info"])
-	{
-		NSString *name = [attributeDict objectForKey:@"screen_name"];
-		ALog(@"Now looking for the user %@ for update", name);
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		// We're looking for an User with this screen_name.
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
-		[request setEntity:entity];
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
-		[request setPredicate:predicate];
-		// We're only looking for one.
-		[request setFetchLimit:1];
-		NSError *error;
-		NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-		if (fetchResults != nil && [fetchResults count] != 0)
-		{
-			theUser = [fetchResults objectAtIndex:0];
-			theUser.location = [attributeDict objectForKey:@"location"];
-			theUser.real_name = [attributeDict objectForKey:@"real_name"];
-			// Workaround stupid date
-			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
-			NSString *tempDate = [NSString stringWithFormat:@"%@ +0200", [attributeDict objectForKey:@"since"]];
-			theUser.since = [dateFormatter dateFromString:tempDate];
-			[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-			theUser.birth = [dateFormatter dateFromString:[attributeDict objectForKey:@"birth"]];
-			[dateFormatter release];
-		}
-		else
-		{
-			NSAssert(YES, @"user not found while it should be present");
-		}
-		[request release];
-	}
-	if([elementName isEqualToString:@"avatars"])
-	{
-		theUser.avatar.small = [[attributeDict objectForKey:@"small"] dataUsingEncoding:NSUTF8StringEncoding];
-		theUser.avatar.medium = [[attributeDict objectForKey:@"medium"] dataUsingEncoding:NSUTF8StringEncoding];
-		theUser.avatar.original = [[attributeDict objectForKey:@"normal"] dataUsingEncoding:NSUTF8StringEncoding];
-	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
@@ -426,7 +380,9 @@ static Meemi *sharedSession = nil;
 				theMeme.reply_screen_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 			if([elementName isEqualToString:@"reply_id"])
 				theMeme.reply_id = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
-			
+
+			if([elementName isEqualToString:@"avatar"] && theMeme.user.avatar == nil)
+				theMeme.user.avatar = [[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] dataUsingEncoding:NSUTF8StringEncoding];
 			// TODO: Still to be managed.
 //			<channels>
 //			<channel>google</channel>
@@ -435,7 +391,6 @@ static Meemi *sharedSession = nil;
 //			</channels>
 //			<preferite_this/>
 //			<reshare_this/>
-			// avatar
 			// video
 			
 			// Here a meme is ended, should be saved.
@@ -518,7 +473,7 @@ static Meemi *sharedSession = nil;
 					DLog(@"  %@", [error userInfo]);
 			}
 			// DEBUG: what we read
-			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersFromNewMemes);
+			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersQueue);
 			// return to delegate 1 if we should continue, 0 if we should stop here.
 			int retValue;
 			if(howManyRequestTotal >= self.memeNumber ||
@@ -555,14 +510,58 @@ static Meemi *sharedSession = nil;
 	if ([elementName isEqualToString:@"distance"])
 		sscanf([currentStringValue cStringUsingEncoding:NSASCIIStringEncoding], "%lf", &distance);
 
-	if([elementName isEqualToString:@"avatars"])
-		theUser.info = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	else if([elementName isEqualToString:@"meemi"])
-		// user info end, save...
-		ALog(@"New user saved %@", theUser.screen_name);
-	else if([elementName isEqualToString:@"profile"])
-		theUser.profile = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
+	// users processor
+	if(self.currentRequest == MmGetUser)
+	{
+		if([elementName isEqualToString:@"screen_name"])
+		{
+			NSString *name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			ALog(@"Now looking for the user %@ for update", name);
+			NSFetchRequest *request = [[NSFetchRequest alloc] init];
+			// We're looking for an User with this screen_name.
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+			[request setEntity:entity];
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
+			[request setPredicate:predicate];
+			// We're only looking for one.
+			[request setFetchLimit:1];
+			NSError *error;
+			NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+			if (fetchResults != nil && [fetchResults count] != 0)
+				theUser = [fetchResults objectAtIndex:0];
+			else
+				NSAssert(YES, @"user not found while it should be present");
+			[request release];
+		}
+		if([elementName isEqualToString:@"current_location"])
+			theUser.current_location = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		if([elementName isEqualToString:@"real_name"])
+			theUser.real_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		if([elementName isEqualToString:@"birth"])
+		{
+			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+			[dateFormatter setLocale:usLocale];
+			[dateFormatter setDateFormat:kMeemiDatesFormat];
+			theUser.birth = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+			[dateFormatter release];
+		}
+		if([elementName isEqualToString:@"description"])
+			theUser.info = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		if([elementName isEqualToString:@"profile"])
+			theUser.profile = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		if([elementName isEqualToString:@"you_follow"])
+			theUser.you_follow = [NSNumber numberWithBool:[currentStringValue boolValue]];
+		if([elementName isEqualToString:@"follow_you"])
+			theUser.follow_you = [NSNumber numberWithBool:[currentStringValue boolValue]];
+		if([elementName isEqualToString:@"qta_followings"])
+			theUser.qta_followings = [NSDecimalNumber decimalNumberWithString:currentStringValue];
+		if([elementName isEqualToString:@"qta_followers"])
+			theUser.qta_followers = [NSDecimalNumber decimalNumberWithString:currentStringValue];
+		if([elementName isEqualToString:@"user"])
+			// user info end
+			ALog(@"New user added %@", theUser.screen_name);
+	}
     // reset currentStringValue for the next cycle
     [currentStringValue release];
     currentStringValue = nil;
@@ -702,17 +701,17 @@ static Meemi *sharedSession = nil;
 -(void)getAvatarImageIfNeeded:(id)forThisAvatar
 {
 	NSURL *url;
-	Avatar *thisAvatar = forThisAvatar;
-	NSString *temp = [[NSString alloc] initWithData:thisAvatar.small encoding:NSUTF8StringEncoding];
+	User *thisUser = forThisAvatar;
+	NSString *temp = [[NSString alloc] initWithData:thisUser.avatar encoding:NSUTF8StringEncoding];
 	if((url = [NSURL URLWithString:temp]) != nil)
 	{
 		// get avatar and store it
-		DLog(@"getting small avatar for %@ from %@", thisAvatar.user.screen_name, temp);
+		DLog(@"getting avatar for %@ from %@", thisUser.screen_name, temp);
 		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 		[request startSynchronous];
 		NSError *error = [request error];
 		if (!error) {
-			thisAvatar.small = [request responseData];
+			thisUser.avatar = [request responseData];
 		}		
 		else {
 			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -720,39 +719,6 @@ static Meemi *sharedSession = nil;
 	}
 	[temp release];
 	
-	temp = [[NSString alloc] initWithData:thisAvatar.medium encoding:NSUTF8StringEncoding];
-	if((url = [NSURL URLWithString:temp]) != nil)
-	{
-		// get avatar and store it
-		DLog(@"getting medium avatar for %@ from %@", thisAvatar.user.screen_name, temp);
-		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-		[request startSynchronous];
-		NSError *error = [request error];
-		if (!error) {
-			thisAvatar.medium = [request responseData];
-		}		
-		else {
-			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
-		}
-	}
-	[temp release];
-	
-//	temp = [[NSString alloc] initWithData:thisAvatar.original encoding:NSUTF8StringEncoding];
-//	if((url = [NSURL URLWithString:temp]) != nil)
-//	{
-//		// get avatar and store it
-//		DLog(@"getting original avatar for %@ from %@", thisAvatar.user.screen_name, temp);
-//		ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-//		[request startSynchronous];
-//		NSError *error = [request error];
-//		if (!error) {
-//			thisAvatar.original = [request responseData];
-//		}
-//		else {
-//			ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
-//		}
-//	}
-//	[temp release];
 	if([self.managedObjectContext hasChanges])
 	{
 		NSError *error;
@@ -766,10 +732,10 @@ static Meemi *sharedSession = nil;
 			else 
 				ALog(@"  %@", [error userInfo]);
 		}	
-		ALog(@"saved %@", thisAvatar.user.screen_name);
+		ALog(@"saved %@", thisUser.screen_name);
 	}
 	else {
-		ALog(@"No needs to save %@", thisAvatar.user.screen_name);
+		ALog(@"No needs to save %@", thisUser.screen_name);
 	}
 }
 
@@ -788,11 +754,11 @@ static Meemi *sharedSession = nil;
 	[self nowBusy];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Avatar" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
 	[request setEntity:entity];
 	NSError *error;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-	for(Avatar *newAvatar in fetchResults)
+	for(User *newAvatar in fetchResults)
 	{
 		NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
 																			 selector:@selector(getAvatarImageIfNeeded:) 
@@ -841,7 +807,7 @@ static Meemi *sharedSession = nil;
 		{
 			self.currentRequest = MmGetUser;
 			NSURL *url = [NSURL URLWithString:
-						  [NSString stringWithFormat:@"http://meemi.com/api/%@/profile", newUser]];
+						  [NSString stringWithFormat:@"http://meemi.com/api3/%@/profile", newUser]];
 			
 			ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 			// build the password using SHA-256
@@ -1168,7 +1134,7 @@ static Meemi *sharedSession = nil;
 		}
 		
 		// Pass location to Flurry
-		[FlurryAPI setLocation:newLocation];
+//		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
 		// init a safe value, if void and if we don't have a reverse location
 		if([self.nearbyPlaceName isEqualToString:@""])

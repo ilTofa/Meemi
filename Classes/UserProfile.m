@@ -7,7 +7,6 @@
 //
 
 #import "UserProfile.h"
-#import "Avatar.h"
 
 @implementation UserProfile
 
@@ -39,7 +38,7 @@
 	// Text
 	screenName.text = theUser.screen_name;
 	realName.text = theUser.real_name;
-	location.text = theUser.location;
+	location.text = theUser.current_location;
 	info.text = theUser.info;
 	// dates...
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -51,7 +50,7 @@
 	birth.text = [dateFormatter stringFromDate:theUser.birth];
 	[dateFormatter release];
 	// Image
-	theAvatar.image = [UIImage imageWithData:theUser.avatar.medium];
+	theAvatar.image = [UIImage imageWithData:theUser.avatar];
 }
 
 
