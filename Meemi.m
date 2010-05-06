@@ -205,7 +205,7 @@ static Meemi *sharedSession = nil;
 		// set the relationship between theUser and theAvatar
 		theAvatar.user = theUser;
 		theUser.avatar = theAvatar;
-		[newUsersFromNewMemes addObject:name];
+		[newUsersQueue addObject:name];
 		DLog(@"New user created for %@", name);
 	}
 	// Whatever theUser is (new or pre-existing) now it's time to set the relationship with theMeme
@@ -691,8 +691,8 @@ static Meemi *sharedSession = nil;
 		else 
 			DLog(@"  %@", [error userInfo]);
 	}
-	[newUsersFromNewMemes release];
-	newUsersFromNewMemes = nil;
+	[newUsersQueue release];
+	newUsersQueue = nil;
 	[self nowFree];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	// OK. Now get avatar images.
@@ -820,10 +820,10 @@ static Meemi *sharedSession = nil;
 		self.networkQueue = nil;
 	}
 	// if nothing to do... go directly to updateAvatars.
-	if([newUsersFromNewMemes count] == 0)
+	if([newUsersQueue count] == 0)
 	{
-		[newUsersFromNewMemes release];
-		newUsersFromNewMemes = nil;
+		[newUsersQueue release];
+		newUsersQueue = nil;
 		// OK. Now get avatar images.
 		[self updateAvatars];
 	}		
@@ -837,7 +837,7 @@ static Meemi *sharedSession = nil;
 		[[self networkQueue] setQueueDidFinishSelector:@selector(queueFinished:)];
 		[self networkQueue].maxConcurrentOperationCount = 1;
 		
-		for(NSString *newUser in newUsersFromNewMemes)
+		for(NSString *newUser in newUsersQueue)
 		{
 			self.currentRequest = MmGetUser;
 			NSURL *url = [NSURL URLWithString:
@@ -875,7 +875,7 @@ static Meemi *sharedSession = nil;
 	{
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10", self.screenName]];
-		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
 	}

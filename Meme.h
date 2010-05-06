@@ -2,8 +2,8 @@
 //  Meme.h
 //  Meemi
 //
-//  Created by Giacomo Tufano on 04/05/10.
-//  Copyright 2010 Sun Microsystems Italia SpA. All rights reserved.
+//  Created by Giacomo Tufano on 06/05/10.
+//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * image_medium_url;
 @property (nonatomic, retain) NSData * image_small;
-@property (nonatomic, retain) NSNumber * new_replies;
+@property (nonatomic, retain) NSString * image_url;
 @property (nonatomic, retain) NSString * event_where;
 @property (nonatomic, retain) NSString * reply_screen_name;
 @property (nonatomic, retain) NSString * quote_source;
@@ -42,7 +42,7 @@
 @property (nonatomic, retain) NSString * meme_type;
 @property (nonatomic, retain) NSNumber * special;
 @property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSString * image_url;
+@property (nonatomic, retain) NSNumber * new_replies;
 @property (nonatomic, retain) User * user;
 
 @end
