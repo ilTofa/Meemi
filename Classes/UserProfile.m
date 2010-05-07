@@ -10,7 +10,7 @@
 
 @implementation UserProfile
 
-@synthesize theAvatar, screenName, realName, since, birth, location, info, theSegment;
+@synthesize theAvatar, screenName, realName, birth, location, info, theSegment, followButton;
 @synthesize theUser;
 
 /*
@@ -25,16 +25,32 @@
 
 -(IBAction)infoSwapped
 {
-	if(self.theSegment.selectedSegmentIndex == 0)
-		info.text = theUser.info;
-	else
-		info.text = theUser.profile;
+	switch (self.theSegment.selectedSegmentIndex) 
+	{
+		case 0:
+			info.text = theUser.info;
+			info.textAlignment = UITextAlignmentLeft;
+			followButton.hidden = YES;
+			break;
+		case 1:
+			info.text = theUser.profile;
+			info.textAlignment = UITextAlignmentLeft;
+			followButton.hidden = YES;
+			break;
+		default:
+			info.text = [NSString stringWithFormat:@"Follows: %d\nFollowed: %d\n\n%@\n%@",
+						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],
+						 [theUser.follow_you boolValue] ? @"He/She follows you" : @"He/she don't follow you",
+						 [theUser.you_follow boolValue] ? @"You follow him/her" : @"You don't follow him/her"];
+			info.textAlignment = UITextAlignmentCenter;
+			followButton.hidden = NO;
+			[followButton setTitle:[theUser.you_follow boolValue] ? @"Unfollow" : @"Follow" forState:UIControlStateNormal];
+			break;
+	}
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad 
+-(void)loadTextInView
 {
-    [super viewDidLoad];
 	// Text
 	screenName.text = theUser.screen_name;
 	realName.text = theUser.real_name;
@@ -44,15 +60,74 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[NSLocale currentLocale]];
 	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    since.text = [dateFormatter stringFromDate:theUser.since];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 	birth.text = [dateFormatter stringFromDate:theUser.birth];
 	[dateFormatter release];
 	// Image
 	theAvatar.image = [UIImage imageWithData:theUser.avatar];
+	[self infoSwapped];
 }
 
+-(void)loadUser:(NSNotification *)note
+{
+	DLog(@"Now loading user info");
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getUser:theUser.screen_name];
+}
+
+-(IBAction)followUnfollow:(id)sender
+{
+	DLog(@"Now %@ user", [theUser.you_follow boolValue] ? @"unfollowing" : @"following");
+	[Meemi sharedSession].delegate = self;
+	if([theUser.you_follow boolValue])
+		[[Meemi sharedSession] unfollowUser:theUser.screen_name];	
+	else
+		[[Meemi sharedSession] followUser:theUser.screen_name];	
+}
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:@"Error loading data, please try again later"
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] 
+							 autorelease];
+	[theAlert show];
+}	
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	DLog(@"got info (or followed/unfollowed), reloading the user. New infos are: %@", self.theUser);
+	if(result == MmFollowOK)
+		theUser.you_follow = [NSNumber numberWithBool:YES];
+	if(result == MmUnfollowOK)
+		theUser.you_follow = [NSNumber numberWithBool:NO];
+	[self loadTextInView];
+}
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+	[self loadTextInView];
+}
+
+- (void)viewWillAppear:(BOOL)animated 
+{
+    [super viewWillAppear:animated];
+	// And register to be notified for shaking and busy/not busy of Meemi session
+	if([Meemi sharedSession].isBusy)
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUser:) name:kNowFree object:nil];
+	else
+		[self loadUser:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated 
+{
+	[super viewWillDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

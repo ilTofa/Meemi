@@ -255,27 +255,33 @@ static Meemi *sharedSession = nil;
 	if([elementName isEqualToString:@"message"])
 	{
 		// If it was a request for user validation, check return and inform delegate
+		NSString *codeString = [attributeDict objectForKey:@"code"];
+		int code = [codeString intValue];
+		NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
 		if(self.currentRequest == MmRValidateUser)
 		{
-			NSString *code = [attributeDict objectForKey:@"code"];
-			// Defensive code for the case "code" do not exists
-			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
 			// if user is OK. Save it (both class and NSUserDefaults).
-			if([code intValue] == MmUserExists)
+			if(code == MmUserExists)
 				[self markSessionValid];
 			else // mark session not valid
 				self.valid = NO;
-			[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
+			[self.delegate meemi:self.currentRequest didFinishWithResult:code];
 		}
 		// If it was a  post, check return and inform delegate
 		if(self.currentRequest == MmRPostImage || self.currentRequest == MmRPostText)
 		{
-			NSString *code = [attributeDict objectForKey:@"code"];
-			// Defensive code for the case "code" do not exists
-			NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
 			// if return code is OK, get back to delegate
-			if([code intValue] == MmPostOK)
-				[self.delegate meemi:self.currentRequest didFinishWithResult:[code intValue]];
+			if(code == MmPostOK)
+				[self.delegate meemi:self.currentRequest didFinishWithResult:code];
+		}
+		// if it's a follow/unfollow request
+		if(self.currentRequest == MMFollowUnfollow)
+		{
+			// if return code is OK, get back to delegate
+			if(code == MmFollowOK || code == MmUnfollowOK)
+				[self.delegate meemi:self.currentRequest didFinishWithResult:code];
+			else
+				[self.delegate meemi:self.currentRequest didFailWithError:nil];				
 		}
 	}
 	// parse memes
@@ -543,8 +549,8 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"birth"])
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setDateFormat:@"yyyy-mm-dd"];
-			theUser.birth = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+			[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+			theUser.birth = [dateFormatter dateFromString:currentStringValue];
 			[dateFormatter release];
 		}
 		if([elementName isEqualToString:@"description"])
@@ -638,6 +644,12 @@ static Meemi *sharedSession = nil;
 		case MmUndefinedError:
 			ret = NSLocalizedString(@"Undefined error.", @"");
 			break;
+		case MmFollowOK:
+			ret = NSLocalizedString(@"Ok, you follow this user", @"");
+			break;
+		case MmUnfollowOK:
+			ret = NSLocalizedString(@"Ok, you not follow this user", @"");
+			break;
 		default:
 			ret = [NSString stringWithFormat:NSLocalizedString(@"REALLY undefined error: %d", @""), response];
 			break;
@@ -681,6 +693,30 @@ static Meemi *sharedSession = nil;
 	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api/p/exists"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];
+}
+
+-(void)followOrUnfollow:(NSString *)user isFollow:(BOOL)follow
+{
+	// Sanity checks
+	NSAssert(delegate, @"delegate not set in Meemi");
+	// Set current request type
+	self.currentRequest = MMFollowUnfollow;
+	
+	// API for user testing
+	NSString *stringUrl = [NSString stringWithFormat:@"http://meemi.com/api/%@/%@/%@", self.screenName, follow ? @"follow" : @"unfollow", user];
+	NSURL *url = [NSURL URLWithString:stringUrl];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];
+}
+
+-(void)followUser:(NSString *)user
+{
+	[self followOrUnfollow:user isFollow:YES];
+}
+
+-(void)unfollowUser:(NSString *)user
+{
+	[self followOrUnfollow:user isFollow:NO];	
 }
 
 - (void)queueFinished:(ASINetworkQueue *)queue

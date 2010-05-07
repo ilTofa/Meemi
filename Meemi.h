@@ -24,7 +24,8 @@ typedef enum {
 	MmGetNewUsers,
 	MMGetNewPvt,
 	MMGetNewPvtSent,
-	MMGetNewUser
+	MMGetNewUser,
+	MMFollowUnfollow
 } MeemiRequest;
 
 typedef enum
@@ -45,6 +46,8 @@ typedef enum
 	MmNotYours = 13,
 	MmMemeRemoved = 14,
 	MmMemeDoNotExists = 15,
+	MmFollowOK = 17,
+	MmUnfollowOK = 19,
 	MmOperationOK = 998,
 	MmUndefinedError = 999
 } MeemiResult;
@@ -149,6 +152,8 @@ typedef enum
 -(void)markMemeRead:(NSNumber *)memeID;
 -(void)markMemeSpecial:(NSNumber *)memeID;
 -(void)getUser:(NSString *)withName;
+-(void)followUser:(NSString *)user;
+-(void)unfollowUser:(NSString *)user;
 
 -(BOOL)parse:(NSData *)responseData;
 -(void)updateAvatars;
