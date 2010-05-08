@@ -488,15 +488,18 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 		{
 			NSError *error;
-			if (![self.managedObjectContext save:&error])
+			if([self.managedObjectContext hasChanges])
 			{
-                DLog(@"Failed to save to data store: %@", [error localizedDescription]);
-                NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-                if(detailedErrors != nil && [detailedErrors count] > 0) 
-					for(NSError* detailedError in detailedErrors) 
-						DLog(@"  DetailedError: %@", [detailedError userInfo]);
-                else 
-					DLog(@"  %@", [error userInfo]);
+				if (![self.managedObjectContext save:&error])
+				{
+					DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+					NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+					if(detailedErrors != nil && [detailedErrors count] > 0) 
+						for(NSError* detailedError in detailedErrors) 
+							DLog(@"  DetailedError: %@", [detailedError userInfo]);
+					else 
+						DLog(@"  %@", [error userInfo]);
+				}
 			}
 			// DEBUG: what we read
 			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersQueue);

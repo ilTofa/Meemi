@@ -12,7 +12,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1041, 3861}}";
 			sepNavSelRange = "{4077, 0}";
-			sepNavVisRange = "{3633, 2126}";
+			sepNavVisRange = "{3633, 2159}";
 			sepNavWindowFrame = "{{321, 58}, {1099, 1107}}";
 		};
 	};
@@ -56,9 +56,10 @@
 		breakpoints = (
 			C02743EB1156DF4600C818F9 /* malloc_error_break */,
 			C0619C4F115ED3CB00EFA27E /* MeemiWebAppController.m:31 */,
-			C045C3C5116F998800BEDCCC /* WithFriendsController.m:315 */,
+			C045C3C5116F998800BEDCCC /* WithFriendsController.m:326 */,
 			C034510A1181EBA8005DBA24 /* Meemi.m:233 */,
-			C090D6F41184F17700B12A72 /* WithFriendsController.m:401 */,
+			C090D6F41184F17700B12A72 /* WithFriendsController.m:412 */,
+			C00BF2771195E31900E5CFE6 /* Meemi.m:493 */,
 		);
 		codeSenseManager = C01D8706115141AA00608D7E /* Code sense */;
 		executables = (
@@ -472,6 +473,26 @@
 			C00BF25B1195AA2F00E5CFE6 /* PBXTextBookmark */ = C00BF25B1195AA2F00E5CFE6 /* PBXTextBookmark */;
 			C00BF25C1195AA2F00E5CFE6 /* PBXTextBookmark */ = C00BF25C1195AA2F00E5CFE6 /* PBXTextBookmark */;
 			C00BF2601195AB2600E5CFE6 /* PBXTextBookmark */ = C00BF2601195AB2600E5CFE6 /* PBXTextBookmark */;
+			C00BF2631195E23D00E5CFE6 /* PBXTextBookmark */ = C00BF2631195E23D00E5CFE6 /* PBXTextBookmark */;
+			C00BF2641195E23D00E5CFE6 /* PBXTextBookmark */ = C00BF2641195E23D00E5CFE6 /* PBXTextBookmark */;
+			C00BF2651195E23D00E5CFE6 /* PBXTextBookmark */ = C00BF2651195E23D00E5CFE6 /* PBXTextBookmark */;
+			C00BF2661195E23D00E5CFE6 /* PBXTextBookmark */ = C00BF2661195E23D00E5CFE6 /* PBXTextBookmark */;
+			C00BF2671195E23D00E5CFE6 /* PBXTextBookmark */ = C00BF2671195E23D00E5CFE6 /* PBXTextBookmark */;
+			C00BF26A1195E27200E5CFE6 /* PBXTextBookmark */ = C00BF26A1195E27200E5CFE6 /* PBXTextBookmark */;
+			C00BF26B1195E28F00E5CFE6 /* PBXTextBookmark */ = C00BF26B1195E28F00E5CFE6 /* PBXTextBookmark */;
+			C00BF26C1195E28F00E5CFE6 /* PBXTextBookmark */ = C00BF26C1195E28F00E5CFE6 /* PBXTextBookmark */;
+			C00BF26D1195E28F00E5CFE6 /* PBXTextBookmark */ = C00BF26D1195E28F00E5CFE6 /* PBXTextBookmark */;
+			C00BF26E1195E28F00E5CFE6 /* PBXTextBookmark */ = C00BF26E1195E28F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2711195E30F00E5CFE6 /* PBXTextBookmark */ = C00BF2711195E30F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2721195E30F00E5CFE6 /* PBXTextBookmark */ = C00BF2721195E30F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2731195E30F00E5CFE6 /* PBXTextBookmark */ = C00BF2731195E30F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2741195E30F00E5CFE6 /* PBXTextBookmark */ = C00BF2741195E30F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2751195E30F00E5CFE6 /* PBXTextBookmark */ = C00BF2751195E30F00E5CFE6 /* PBXTextBookmark */;
+			C00BF2791195E31D00E5CFE6 /* PBXTextBookmark */ = C00BF2791195E31D00E5CFE6 /* PBXTextBookmark */;
+			C00BF27A1195E31D00E5CFE6 /* PBXTextBookmark */ = C00BF27A1195E31D00E5CFE6 /* PBXTextBookmark */;
+			C00BF27B1195E31D00E5CFE6 /* PBXTextBookmark */ = C00BF27B1195E31D00E5CFE6 /* PBXTextBookmark */;
+			C00BF27C1195E31D00E5CFE6 /* PBXTextBookmark */ = C00BF27C1195E31D00E5CFE6 /* PBXTextBookmark */;
+			C00BF27D1195E31D00E5CFE6 /* PBXTextBookmark */ = C00BF27D1195E31D00E5CFE6 /* PBXTextBookmark */;
 			C02150271194238D00BF4DB4 = C02150271194238D00BF4DB4 /* PBXBookmark */;
 			C0215031119426DA00BF4DB4 = C0215031119426DA00BF4DB4 /* PBXBookmark */;
 			C02150331194287A00BF4DB4 = C02150331194287A00BF4DB4 /* PBXBookmark */;
@@ -525,7 +546,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 852";
 		rLen = 127;
-		rLoc = 32121;
+		rLoc = 32139;
 		rType = 0;
 		vrLen = 2371;
 		vrLoc = 30994;
@@ -535,7 +556,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 862";
 		rLen = 0;
-		rLoc = 32810;
+		rLoc = 32828;
 		rType = 0;
 		vrLen = 2298;
 		vrLoc = 30994;
@@ -595,7 +616,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 854";
 		rLen = 0;
-		rLoc = 32296;
+		rLoc = 32314;
 		rType = 0;
 		vrLen = 2277;
 		vrLoc = 30551;
@@ -605,7 +626,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 854";
 		rLen = 0;
-		rLoc = 32296;
+		rLoc = 32314;
 		rType = 0;
 		vrLen = 2277;
 		vrLoc = 30551;
@@ -763,7 +784,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 109";
 		rLen = 0;
-		rLoc = 6526;
+		rLoc = 6866;
 		rType = 0;
 		vrLen = 3072;
 		vrLoc = 2807;
@@ -773,7 +794,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 118";
 		rLen = 0;
-		rLoc = 6526;
+		rLoc = 6866;
 		rType = 0;
 		vrLen = 3032;
 		vrLoc = 2895;
@@ -813,7 +834,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 121";
 		rLen = 0;
-		rLoc = 7061;
+		rLoc = 7401;
 		rType = 0;
 		vrLen = 3041;
 		vrLoc = 2895;
@@ -853,7 +874,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 170";
 		rLen = 0;
-		rLoc = 9828;
+		rLoc = 10168;
 		rType = 0;
 		vrLen = 3071;
 		vrLoc = 3529;
@@ -903,7 +924,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 150";
 		rLen = 0;
-		rLoc = 8860;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 2852;
 		vrLoc = 2897;
@@ -913,7 +934,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 147";
 		rLen = 0;
-		rLoc = 8381;
+		rLoc = 8721;
 		rType = 0;
 		vrLen = 2917;
 		vrLoc = 2848;
@@ -993,7 +1014,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 153";
 		rLen = 0;
-		rLoc = 8860;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 2985;
 		vrLoc = 3158;
@@ -1033,7 +1054,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 152";
 		rLen = 0;
-		rLoc = 8453;
+		rLoc = 8793;
 		rType = 0;
 		vrLen = 2964;
 		vrLoc = 3158;
@@ -1073,7 +1094,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 152";
 		rLen = 0;
-		rLoc = 8453;
+		rLoc = 8793;
 		rType = 0;
 		vrLen = 2964;
 		vrLoc = 3158;
@@ -1124,7 +1145,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 159;
+		rLoc = 170;
 		rType = 1;
 	};
 	C00BF02C1195700400E5CFE6 /* PBXTextBookmark */ = {
@@ -1132,7 +1153,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 136";
 		rLen = 0;
-		rLoc = 5048;
+		rLoc = 5388;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 3553;
@@ -1142,7 +1163,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 136";
 		rLen = 0;
-		rLoc = 5048;
+		rLoc = 5388;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 3553;
@@ -1152,7 +1173,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 3959;
+		rLoc = 4299;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 3553;
@@ -1172,7 +1193,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 155";
 		rLen = 0;
-		rLoc = 5573;
+		rLoc = 5913;
 		rType = 0;
 		vrLen = 2381;
 		vrLoc = 2557;
@@ -1182,7 +1203,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 2151;
 		vrLoc = 2131;
@@ -1242,7 +1263,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 3959;
+		rLoc = 4299;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 3553;
@@ -1252,7 +1273,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 2118;
 		vrLoc = 2131;
@@ -1292,7 +1313,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 3959;
+		rLoc = 4299;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 3553;
@@ -1302,7 +1323,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 111";
 		rLen = 0;
-		rLoc = 3959;
+		rLoc = 4299;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 3430;
@@ -1312,7 +1333,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 112";
 		rLen = 109;
-		rLoc = 4002;
+		rLoc = 4342;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 3240;
@@ -1322,7 +1343,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 112";
 		rLen = 109;
-		rLoc = 4002;
+		rLoc = 4342;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 3240;
@@ -1342,7 +1363,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 112";
 		rLen = 0;
-		rLoc = 4091;
+		rLoc = 4431;
 		rType = 0;
 		vrLen = 2286;
 		vrLoc = 2000;
@@ -1352,7 +1373,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 117";
 		rLen = 0;
-		rLoc = 4697;
+		rLoc = 5037;
 		rType = 0;
 		vrLen = 2429;
 		vrLoc = 3041;
@@ -1372,7 +1393,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 855";
 		rLen = 0;
-		rLoc = 32195;
+		rLoc = 32213;
 		rType = 0;
 		vrLen = 2512;
 		vrLoc = 30091;
@@ -1382,7 +1403,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 855";
 		rLen = 0;
-		rLoc = 32195;
+		rLoc = 32213;
 		rType = 0;
 		vrLen = 2512;
 		vrLoc = 30091;
@@ -1412,7 +1433,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 3158;
@@ -1422,7 +1443,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 3158;
@@ -1432,7 +1453,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 2940;
@@ -1442,7 +1463,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1505;
 		vrLoc = 2940;
@@ -1462,7 +1483,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 112";
 		rLen = 0;
-		rLoc = 4001;
+		rLoc = 4341;
 		rType = 0;
 		vrLen = 2439;
 		vrLoc = 3041;
@@ -1472,7 +1493,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 132";
 		rLen = 0;
-		rLoc = 4616;
+		rLoc = 4956;
 		rType = 0;
 		vrLen = 2289;
 		vrLoc = 3766;
@@ -1482,7 +1503,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 866";
 		rLen = 0;
-		rLoc = 32807;
+		rLoc = 32825;
 		rType = 0;
 		vrLen = 2396;
 		vrLoc = 30241;
@@ -1512,7 +1533,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 2940;
@@ -1522,7 +1543,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1532,7 +1553,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 2904;
 		vrLoc = 6182;
@@ -1542,7 +1563,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 866";
 		rLen = 0;
-		rLoc = 32807;
+		rLoc = 32825;
 		rType = 0;
 		vrLen = 2403;
 		vrLoc = 30244;
@@ -1572,7 +1593,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1582,7 +1603,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1592,7 +1613,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 509";
 		rLen = 356;
-		rLoc = 19052;
+		rLoc = 19070;
 		rType = 0;
 		vrLen = 3327;
 		vrLoc = 15554;
@@ -1602,7 +1623,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 2939;
 		vrLoc = 6209;
@@ -1652,7 +1673,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 2939;
 		vrLoc = 6209;
@@ -1682,7 +1703,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1702,7 +1723,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 2970;
 		vrLoc = 6212;
@@ -1742,7 +1763,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 2970;
 		vrLoc = 6212;
@@ -1772,7 +1793,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1782,7 +1803,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 113";
 		rLen = 0;
-		rLoc = 4110;
+		rLoc = 4450;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 3158;
@@ -1802,7 +1823,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1070";
 		rLen = 0;
-		rLoc = 39653;
+		rLoc = 39671;
 		rType = 0;
 		vrLen = 1906;
 		vrLoc = 38712;
@@ -1852,7 +1873,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 866";
 		rLen = 0;
-		rLoc = 32544;
+		rLoc = 32562;
 		rType = 0;
 		vrLen = 2497;
 		vrLoc = 30251;
@@ -1862,7 +1883,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 875";
 		rLen = 0;
-		rLoc = 32536;
+		rLoc = 32554;
 		rType = 0;
 		vrLen = 2415;
 		vrLoc = 30683;
@@ -1872,7 +1893,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 243";
 		rLen = 0;
-		rLoc = 8857;
+		rLoc = 9197;
 		rType = 0;
 		vrLen = 3206;
 		vrLoc = 6212;
@@ -2042,7 +2063,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 358";
 		rLen = 0;
-		rLoc = 12160;
+		rLoc = 12500;
 		rType = 0;
 		vrLen = 3377;
 		vrLoc = 11346;
@@ -2092,7 +2113,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 365";
 		rLen = 0;
-		rLoc = 12579;
+		rLoc = 12919;
 		rType = 0;
 		vrLen = 3399;
 		vrLoc = 11373;
@@ -2132,7 +2153,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3463;
 		vrLoc = 11455;
@@ -2182,7 +2203,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 11565;
@@ -2222,7 +2243,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 11565;
@@ -2232,7 +2253,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 11565;
@@ -2272,7 +2293,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 11565;
@@ -2282,7 +2303,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 379";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 11565;
@@ -2332,7 +2353,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 378";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3407;
 		vrLoc = 11621;
@@ -2382,7 +2403,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 381";
 		rLen = 0;
-		rLoc = 13194;
+		rLoc = 13534;
 		rType = 0;
 		vrLen = 3298;
 		vrLoc = 11733;
@@ -2442,7 +2463,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 386";
 		rLen = 0;
-		rLoc = 13395;
+		rLoc = 13735;
 		rType = 0;
 		vrLen = 3278;
 		vrLoc = 11811;
@@ -2691,7 +2712,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 382";
 		rLen = 0;
-		rLoc = 13346;
+		rLoc = 13686;
 		rType = 0;
 		vrLen = 3366;
 		vrLoc = 11491;
@@ -2741,7 +2762,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 382";
 		rLen = 0;
-		rLoc = 13346;
+		rLoc = 13686;
 		rType = 0;
 		vrLen = 3440;
 		vrLoc = 11492;
@@ -2861,7 +2882,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 880";
 		rLen = 0;
-		rLoc = 32763;
+		rLoc = 32781;
 		rType = 0;
 		vrLen = 2523;
 		vrLoc = 30605;
@@ -2871,7 +2892,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 880";
 		rLen = 0;
-		rLoc = 32763;
+		rLoc = 32781;
 		rType = 0;
 		vrLen = 2475;
 		vrLoc = 30682;
@@ -2921,7 +2942,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 880";
 		rLen = 0;
-		rLoc = 32763;
+		rLoc = 32781;
 		rType = 0;
 		vrLen = 2502;
 		vrLoc = 30685;
@@ -2981,7 +3002,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 879";
 		rLen = 0;
-		rLoc = 32635;
+		rLoc = 32653;
 		rType = 0;
 		vrLen = 2516;
 		vrLoc = 30706;
@@ -3031,7 +3052,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 879";
 		rLen = 0;
-		rLoc = 32635;
+		rLoc = 32653;
 		rType = 0;
 		vrLen = 2498;
 		vrLoc = 30754;
@@ -3081,7 +3102,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 879";
 		rLen = 0;
-		rLoc = 32635;
+		rLoc = 32653;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 30824;
@@ -3141,7 +3162,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 879";
 		rLen = 0;
-		rLoc = 32635;
+		rLoc = 32653;
 		rType = 0;
 		vrLen = 2590;
 		vrLoc = 30824;
@@ -3191,7 +3212,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 884";
 		rLen = 0;
-		rLoc = 32920;
+		rLoc = 32938;
 		rType = 0;
 		vrLen = 2584;
 		vrLoc = 30939;
@@ -3270,7 +3291,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2667;
 		vrLoc = 15925;
@@ -3310,7 +3331,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 884";
 		rLen = 0;
-		rLoc = 32920;
+		rLoc = 32938;
 		rType = 0;
 		vrLen = 2581;
 		vrLoc = 30942;
@@ -3340,7 +3361,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2663;
 		vrLoc = 15933;
@@ -3360,7 +3381,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 884";
 		rLen = 0;
-		rLoc = 32920;
+		rLoc = 32938;
 		rType = 0;
 		vrLen = 2433;
 		vrLoc = 31093;
@@ -3390,7 +3411,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2666;
 		vrLoc = 15934;
@@ -3410,7 +3431,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 884";
 		rLen = 0;
-		rLoc = 32920;
+		rLoc = 32938;
 		rType = 0;
 		vrLen = 2394;
 		vrLoc = 31178;
@@ -3460,7 +3481,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2632;
 		vrLoc = 16034;
@@ -3530,7 +3551,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2655;
 		vrLoc = 16168;
@@ -3570,7 +3591,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2655;
 		vrLoc = 16168;
@@ -3620,7 +3641,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 488";
 		rLen = 0;
-		rLoc = 18137;
+		rLoc = 18477;
 		rType = 0;
 		vrLen = 2666;
 		vrLoc = 16175;
@@ -3660,7 +3681,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 471";
 		rLen = 0;
-		rLoc = 16783;
+		rLoc = 17123;
 		rType = 0;
 		vrLen = 2732;
 		vrLoc = 15933;
@@ -3710,7 +3731,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 483";
 		rLen = 0;
-		rLoc = 17265;
+		rLoc = 17605;
 		rType = 0;
 		vrLen = 2898;
 		vrLoc = 15502;
@@ -3740,7 +3761,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 483";
 		rLen = 0;
-		rLoc = 17265;
+		rLoc = 17605;
 		rType = 0;
 		vrLen = 2898;
 		vrLoc = 15502;
@@ -3750,7 +3771,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 483";
 		rLen = 0;
-		rLoc = 17265;
+		rLoc = 17605;
 		rType = 0;
 		vrLen = 2898;
 		vrLoc = 15502;
@@ -3800,7 +3821,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2807;
 		vrLoc = 16292;
@@ -3850,7 +3871,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2808;
 		vrLoc = 16295;
@@ -3910,7 +3931,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 492";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2901;
 		vrLoc = 16295;
@@ -3920,7 +3941,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 492";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2784;
 		vrLoc = 16415;
@@ -3980,7 +4001,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 494";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2998;
 		vrLoc = 16294;
@@ -4030,7 +4051,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17722;
+		rLoc = 18062;
 		rType = 0;
 		vrLen = 2765;
 		vrLoc = 16415;
@@ -4080,7 +4101,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2845;
 		vrLoc = 16491;
@@ -4120,7 +4141,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2839;
 		vrLoc = 16491;
@@ -4170,7 +4191,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2855;
 		vrLoc = 16493;
@@ -4220,7 +4241,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2764;
 		vrLoc = 16587;
@@ -4260,7 +4281,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2766;
 		vrLoc = 16587;
@@ -4310,7 +4331,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2689;
 		vrLoc = 16664;
@@ -4370,7 +4391,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 491";
 		rLen = 0;
-		rLoc = 17775;
+		rLoc = 18115;
 		rType = 0;
 		vrLen = 2852;
 		vrLoc = 13440;
@@ -4410,7 +4431,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 497";
 		rLen = 0;
-		rLoc = 18032;
+		rLoc = 18372;
 		rType = 0;
 		vrLen = 2910;
 		vrLoc = 16295;
@@ -4460,7 +4481,7 @@
 		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
 		name = "WithFriendsController.m: 497";
 		rLen = 0;
-		rLoc = 18032;
+		rLoc = 18372;
 		rType = 0;
 		vrLen = 2792;
 		vrLoc = 16417;
@@ -4504,6 +4525,224 @@
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 0;
+	};
+	C00BF2631195E23D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 13";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 0;
+	};
+	C00BF2641195E23D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 90";
+		rLen = 0;
+		rLoc = 3187;
+		rType = 0;
+		vrLen = 2724;
+		vrLoc = 1062;
+	};
+	C00BF2651195E23D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 456";
+		rLen = 0;
+		rLoc = 16028;
+		rType = 0;
+		vrLen = 2962;
+		vrLoc = 9347;
+	};
+	C00BF2661195E23D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 88";
+		rLen = 0;
+		rLoc = 2286;
+		rType = 0;
+		vrLen = 2032;
+		vrLoc = 578;
+	};
+	C00BF2671195E23D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
+		name = "MeemiAppDelegate.m: 123";
+		rLen = 0;
+		rLoc = 4077;
+		rType = 0;
+		vrLen = 2126;
+		vrLoc = 3633;
+	};
+	C00BF26A1195E27200E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 13";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 0;
+	};
+	C00BF26B1195E28F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 491";
+		rLen = 0;
+		rLoc = 17466;
+		rType = 0;
+		vrLen = 3469;
+		vrLoc = 15847;
+	};
+	C00BF26C1195E28F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 90";
+		rLen = 0;
+		rLoc = 3187;
+		rType = 0;
+		vrLen = 2793;
+		vrLoc = 1062;
+	};
+	C00BF26D1195E28F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 88";
+		rLen = 0;
+		rLoc = 2286;
+		rType = 0;
+		vrLen = 2034;
+		vrLoc = 578;
+	};
+	C00BF26E1195E28F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
+		name = "MeemiAppDelegate.m: 123";
+		rLen = 0;
+		rLoc = 4077;
+		rType = 0;
+		vrLen = 2159;
+		vrLoc = 3633;
+	};
+	C00BF2711195E30F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 13";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 0;
+	};
+	C00BF2721195E30F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 503";
+		rLen = 0;
+		rLoc = 17935;
+		rType = 0;
+		vrLen = 3275;
+		vrLoc = 15905;
+	};
+	C00BF2731195E30F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 90";
+		rLen = 0;
+		rLoc = 3187;
+		rType = 0;
+		vrLen = 2761;
+		vrLoc = 1094;
+	};
+	C00BF2741195E30F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 88";
+		rLen = 0;
+		rLoc = 2286;
+		rType = 0;
+		vrLen = 2032;
+		vrLoc = 578;
+	};
+	C00BF2751195E30F00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
+		name = "MeemiAppDelegate.m: 123";
+		rLen = 0;
+		rLoc = 4077;
+		rType = 0;
+		vrLen = 2126;
+		vrLoc = 3633;
+	};
+	C00BF2771195E31900E5CFE6 /* Meemi.m:493 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C0E620421152E36800E6C079 /* Meemi.m */;
+		functionName = "-parser:didEndElement:namespaceURI:qualifiedName:";
+		hitCount = 5;
+		ignoreCount = 0;
+		lineNumber = 493;
+		location = Meemi;
+		modificationTime = 295035735.45874;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	C00BF2791195E31D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 503";
+		rLen = 0;
+		rLoc = 17935;
+		rType = 0;
+		vrLen = 3275;
+		vrLoc = 15905;
+	};
+	C00BF27A1195E31D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 503";
+		rLen = 0;
+		rLoc = 17935;
+		rType = 0;
+		vrLen = 3275;
+		vrLoc = 15905;
+	};
+	C00BF27B1195E31D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 90";
+		rLen = 0;
+		rLoc = 3187;
+		rType = 0;
+		vrLen = 2761;
+		vrLoc = 1094;
+	};
+	C00BF27C1195E31D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C045C163116F6C8400BEDCCC /* MemeOnWeb.m */;
+		name = "MemeOnWeb.m: 88";
+		rLen = 0;
+		rLoc = 2286;
+		rType = 0;
+		vrLen = 2032;
+		vrLoc = 578;
+	};
+	C00BF27D1195E31D00E5CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
+		name = "MeemiAppDelegate.m: 123";
+		rLen = 0;
+		rLoc = 4077;
+		rType = 0;
+		vrLen = 2126;
+		vrLoc = 3633;
 	};
 	C01D86FB115141A100608D7E /* Meemi */ = {
 		isa = PBXExecutable;
@@ -4664,7 +4903,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 295021104.417769;
+		modificationTime = 295035665.209311;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 		symbolName = malloc_error_break;
@@ -4698,7 +4937,7 @@
 		ignoreCount = 0;
 		lineNumber = 233;
 		location = Meemi;
-		modificationTime = 295021104.417512;
+		modificationTime = 295035665.209003;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4726,10 +4965,10 @@
 	};
 	C045C163116F6C8400BEDCCC /* MemeOnWeb.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1222, 1664}}";
-			sepNavSelRange = "{243, 0}";
-			sepNavVisRange = "{0, 1118}";
-			sepNavWindowFrame = "{{322, 71}, {1058, 1102}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 1677}}";
+			sepNavSelRange = "{2286, 0}";
+			sepNavVisRange = "{0, 1925}";
+			sepNavWindowFrame = "{{98, 53}, {1058, 1102}}";
 		};
 	};
 	C045C21F116F74F900BEDCCC /* UserDetail.h */ = {
@@ -4762,7 +5001,7 @@
 			sepNavWindowFrame = "{{192, 66}, {1191, 1112}}";
 		};
 	};
-	C045C3C5116F998800BEDCCC /* WithFriendsController.m:315 */ = {
+	C045C3C5116F998800BEDCCC /* WithFriendsController.m:326 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4774,25 +5013,25 @@
 		functionName = "-searchBarSearchButtonClicked:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 315;
+		lineNumber = 326;
 		location = Meemi;
-		modificationTime = 295021104.417371;
+		modificationTime = 295035665.208857;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
 	C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1356, 949}}";
-			sepNavSelRange = "{980, 106}";
+			sepNavSelRange = "{773, 0}";
 			sepNavVisRange = "{0, 1092}";
 			sepNavWindowFrame = "{{283, 74}, {1058, 1102}}";
 		};
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1265, 6968}}";
-			sepNavSelRange = "{18032, 0}";
-			sepNavVisRange = "{16417, 2792}";
+			sepNavIntBoundsRect = "{{0, 0}, {1258, 7540}}";
+			sepNavSelRange = "{3187, 0}";
+			sepNavVisRange = "{10076, 1873}";
 			sepNavWindowFrame = "{{283, 74}, {1058, 1102}}";
 		};
 	};
@@ -4810,7 +5049,7 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = Meemi;
-		modificationTime = 295021104.417336;
+		modificationTime = 295035665.208813;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4846,7 +5085,7 @@
 			sepNavWindowFrame = "{{211, 118}, {1225, 1040}}";
 		};
 	};
-	C090D6F41184F17700B12A72 /* WithFriendsController.m:401 */ = {
+	C090D6F41184F17700B12A72 /* WithFriendsController.m:412 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4858,9 +5097,9 @@
 		functionName = "-tableView:cellForRowAtIndexPath:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 401;
+		lineNumber = 412;
 		location = Meemi;
-		modificationTime = 295021104.417617;
+		modificationTime = 295035665.209168;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5110,9 +5349,9 @@
 	};
 	C0E620421152E36800E6C079 /* Meemi.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 16068}}";
-			sepNavSelRange = "{14897, 5}";
-			sepNavVisRange = "{18919, 3973}";
+			sepNavIntBoundsRect = "{{0, 0}, {1286, 16198}}";
+			sepNavSelRange = "{18497, 0}";
+			sepNavVisRange = "{16785, 3435}";
 			sepNavWindowFrame = "{{172, 66}, {1191, 1112}}";
 		};
 	};

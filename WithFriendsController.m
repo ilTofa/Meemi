@@ -79,13 +79,24 @@
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
-	[NSFetchedResultsController deleteCacheWithName:@"WithFriendsCache"];
 	if(theMemeList != nil)
 		[theMemeList release];
-	theMemeList = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-													  managedObjectContext:context 
-														sectionNameKeyPath:nil 
-																 cacheName:@"WithFriendsCache"];
+	if(currentFetch == FTReplyView)
+	{
+		[NSFetchedResultsController deleteCacheWithName:@"ThreadCache"];
+		theMemeList = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+														  managedObjectContext:context 
+															sectionNameKeyPath:nil 
+																	 cacheName:@"ThreadCache"];
+	}
+	else
+	{
+		[NSFetchedResultsController deleteCacheWithName:@"WithFriendsCache"];
+		theMemeList = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+														  managedObjectContext:context 
+															sectionNameKeyPath:nil 
+																	 cacheName:@"WithFriendsCache"];
+	}
 	[fetchRequest release];
 	theMemeList.delegate = self;
 	
