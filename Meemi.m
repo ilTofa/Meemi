@@ -25,6 +25,7 @@ static Meemi *sharedSession = nil;
 @synthesize managedObjectContext;
 @synthesize networkQueue, busy;
 @synthesize memeNumber, memeTime, lastReadDate;
+@synthesize replyTo, replyUser;
 
 #pragma mark Singleton Class Setup
 
@@ -257,7 +258,7 @@ static Meemi *sharedSession = nil;
 		// If it was a request for user validation, check return and inform delegate
 		NSString *codeString = [attributeDict objectForKey:@"code"];
 		int code = [codeString intValue];
-		NSAssert(code, @"In NSXMLParser: attribute code for <message> is missing");
+		NSAssert(codeString, @"In NSXMLParser: attribute code for <message> is missing");
 		if(self.currentRequest == MmRValidateUser)
 		{
 			// if user is OK. Save it (both class and NSUserDefaults).
@@ -285,7 +286,8 @@ static Meemi *sharedSession = nil;
 		}
 	}
 	// parse memes
-	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || self.currentRequest == MMGetNewPvtSent)
+	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
+	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies)
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"])
@@ -320,7 +322,8 @@ static Meemi *sharedSession = nil;
 	DLog(@"<%@> fully received with value: <%@>", elementName, currentStringValue);
 
 	// new_memes processing 
-	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || self.currentRequest == MMGetNewPvtSent)
+	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
+	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies)
 	{
 		// id received, verify if the meme is new.
 		if([elementName isEqualToString:@"id"])
@@ -370,10 +373,13 @@ static Meemi *sharedSession = nil;
 				[sent_to appendFormat:@"%@, ", currentStringValue];
 			if([elementName isEqualToString:@"sent_to"])
 			{
-				theMeme.sent_to = [sent_to substringToIndex:([sent_to length] - 2)];
+				if(self.currentRequest != MMGetNewReplies)
+				{
+					theMeme.sent_to = [sent_to substringToIndex:([sent_to length] - 2)];
+					// It's private, I'm seeing it, so it must be special. :)
+					theMeme.special = [NSNumber numberWithBool:YES];
+				}
 				theMeme.private_meme = [NSNumber numberWithBool:YES];
-				// It's private, I'm seeing it, so it must be special. :)
-				theMeme.special = [NSNumber numberWithBool:YES];
 			}
 			
 			if([elementName isEqualToString:@"content"])
@@ -398,12 +404,19 @@ static Meemi *sharedSession = nil;
 //			</channels>
 //			<preferite_this/>
 //			<reshare_this/>
-			// video
 			
 			// Here a meme is ended, should be saved.
 			// For perfomance reason, we save at <memes/> below
 			if([elementName isEqualToString:@"meme"])
 			{
+				// Workaround <replies>
+				if(self.currentRequest == MMGetNewReplies)
+				{
+					if([theMeme.reply_id intValue] == 0)
+						theMeme.reply_id = self.replyTo;
+					if(theMeme.reply_screen_name == nil)
+						theMeme.reply_screen_name = self.replyUser;
+				}
 				DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
 			}
 			// event meme_type
@@ -437,6 +450,10 @@ static Meemi *sharedSession = nil;
 			// link meme_type
 			if([elementName isEqualToString:@"link"])
 				theMeme.link = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			// video
+			if([elementName isEqualToString:@"video"])
+				theMeme.video = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		}
 		// It's not a newMeme, but with different qta_reply?
 		if([elementName isEqualToString:@"qta_replies"])
@@ -468,7 +485,7 @@ static Meemi *sharedSession = nil;
 		}
 		
 		// should end? If YES, commit the CoreData objects to the db
-		if([elementName isEqualToString:@"memes"])
+		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 		{
 			NSError *error;
 			if (![self.managedObjectContext save:&error])
@@ -487,8 +504,9 @@ static Meemi *sharedSession = nil;
 			int retValue;
 			if(howManyRequestTotal >= self.memeNumber ||
 				[lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending ||
-				[self.lastReadDate compare:lastMemeTimestamp] == NSOrderedDescending ||
-			   howMany < 10)
+				[self.lastReadDate compare:lastMemeTimestamp] == NSOrderedDescending || 
+			    howMany < 10 ||
+			    self.currentRequest == MMGetNewReplies)
 			{
 				retValue = 0;
 				// remember last date for "public" memes (allow 30 seconds less to account for network processing)
@@ -502,12 +520,13 @@ static Meemi *sharedSession = nil;
 			}
 			else
 				retValue = 1;
-			if(self.currentRequest == MmGetNew)
-			   [self.delegate meemi:MmGetNew didFinishWithResult:retValue];
-			else if(self.currentRequest == MMGetNewPvt)
-				[self.delegate meemi:MMGetNewPvt didFinishWithResult:retValue];
-			else if(self.currentRequest == MMGetNewPvtSent)
-				[self.delegate meemi:MMGetNewPvtSent didFinishWithResult:retValue];
+			[self.delegate meemi:self.currentRequest didFinishWithResult:retValue];
+//			if(self.currentRequest == MmGetNew)
+//			   [self.delegate meemi:MmGetNew didFinishWithResult:retValue];
+//			else if(self.currentRequest == MMGetNewPvt)
+//				[self.delegate meemi:MMGetNewPvt didFinishWithResult:retValue];
+//			else if(self.currentRequest == MMGetNewPvtSent)
+//				[self.delegate meemi:MMGetNewPvtSent didFinishWithResult:retValue];
 		}
 	}
     if ([elementName isEqualToString:@"name"])
@@ -849,6 +868,23 @@ static Meemi *sharedSession = nil;
 	[self startRequestToMeemi:request];
 }
 
+-(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve
+{
+	NSAssert(self.isValid, @"getNewMemesRepliesOf:from:number:");
+	self.currentRequest = MMGetNewReplies;
+	
+	// Now setup the URI depending on the request
+	// http://meemi.com/api3/capobecchino/1010224/replies/-/10
+	
+	// Workaround <replies> data...
+	self.replyTo = memeID;
+	self.replyUser = user;
+	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
+						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], nMessagesToRetrieve];
+	NSURL *url = [NSURL URLWithString:urlString];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];
+}
 
 -(void)getNewMemes:(BOOL)fromScratch
 {

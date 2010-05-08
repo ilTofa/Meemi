@@ -8,21 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "Meemi.h"
+#import "TextSender.h"
+#import "ImageSender.h"
 
 typedef enum {
 	FTAll = 0,
 	FTNew,
 	FTPvt,
-	FTSpecial
+	FTSpecial,
+	FTReplyView
 } FetchTypes;
 
-@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate, TextSenderControllerDelegate, ImageSenderControllerDelegate, UIActionSheetDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
 	NSString *predicateString;
 	NSString *searchString;
 	FetchTypes currentFetch;
+	// Is this the "main list", or a detail? :)
+	NSNumber *replyTo;
+	NSString *replyScreenName;
 }
 
 -(IBAction)filterSelected;
@@ -30,5 +36,7 @@ typedef enum {
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, retain) NSString *predicateString;
 @property (nonatomic, retain) NSString *searchString;
+@property (nonatomic, retain) NSNumber *replyTo;
+@property (nonatomic, retain) NSString *replyScreenName;
 
 @end

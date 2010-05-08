@@ -7,12 +7,13 @@
 //
 
 #import "WithFriendsController.h"
+#import "MeemiAppDelegate.h"
 #import "Meme.h"
 #import "MemeOnWeb.h"
 
 @implementation WithFriendsController
 
-@synthesize memeCell, predicateString, searchString;
+@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName;
 
 -(void)deviceShaken:(NSNotification *)note
 {
@@ -43,22 +44,29 @@
 	// Configure the request's entity, and optionally its predicate.
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:context];
 	[fetchRequest setEntity:entityDescription];
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dt_last_movement" ascending:NO];
+	NSSortDescriptor *sortDescriptor;
+	if(currentFetch == FTReplyView)
+		sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date_time" ascending:YES];
+	else
+		sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dt_last_movement" ascending:NO];		
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	switch(currentFetch)
 	{
 		case FTAll:
-			self.predicateString = @"";
+			self.predicateString = @"reply_id == 0";
 			break;
 		case FTNew:
-			self.predicateString = [NSString stringWithFormat:@"new_meme == YES OR new_replies == YES"];
+			self.predicateString = [NSString stringWithFormat:@"(new_meme == YES OR new_replies == YES) AND reply_id == 0"];
 			break;
 		case FTPvt:
-			self.predicateString = [NSString stringWithFormat:@"private_meme == YES"];
+			self.predicateString = [NSString stringWithFormat:@"private_meme == YES AND reply_id == 0"];
 			break;
 		case FTSpecial:
-			self.predicateString = [NSString stringWithFormat:@"special == YES"];
+			self.predicateString = [NSString stringWithFormat:@"special == YES and reply_id == 0"];
+			break;
+		case FTReplyView:
+			self.predicateString = [NSString stringWithFormat:@"reply_id == %@ OR id == %@", self.replyTo, self.replyTo];
 			break;
 	}
 
@@ -103,43 +111,143 @@
 	[self setupFetch];
 }
 
+-(void)loadMemePage
+{
+	DLog(@"loadMemePage called");
+	[Meemi sharedSession].delegate = self;
+	[[Meemi sharedSession] getNewMemesRepliesOf:self.replyTo screenName:self.replyScreenName from:0 number:20];
+}
+
+#pragma mark MeemiDelegate
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:@"Error loading data, please try again later"
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] 
+							 autorelease];
+	[theAlert show];
+}	
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	DLog(@"got replies");
+	[self setupFetch];
+}
+
+#pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
+
+-(void)doneWithTextSender
+{
+	self.navigationController.navigationBarHidden = NO;
+	[self.navigationController popViewControllerAnimated:YES];
+	// reload to get new meme
+	[self loadMemePage];
+}
+
+-(void)doneWithImageSender
+{
+	[self doneWithTextSender];
+}
+
+#pragma mark Reply and Reload
+
+-(IBAction)replyToMeme:(id)sender
+{
+	DLog(@"replyToMeme: called");
+	// Make user choose if (s)he wants to reply with text or image
+	UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
+														   delegate:self 
+												  cancelButtonTitle:@"Cancel"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:@"Text", @"Image", nil]
+							   autorelease];
+	[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
+	// Flows below to the ActionSheetDelegate function.
+}	
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"Picked button #%d", buttonIndex);
+	if(buttonIndex == 0) // Text
+	{
+		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else if(buttonIndex == 1) // Image
+	{
+		ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
+
+#pragma mark Standard Stuff
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 
-	// Add a left button for reloading the meme list
-	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
-																	 style:UIBarButtonItemStylePlain 
-																	target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
-																	action:@selector(reloadMemes)];
+	if(self.replyTo == nil)
+	{
+		// Add a left button for reloading the meme list
+		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
+																		 style:UIBarButtonItemStylePlain 
+																		target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
+																		action:@selector(reloadMemes)];
+		
+		self.navigationItem.leftBarButtonItem = reloadButton;
+		[reloadButton release];
+		
+		UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" 
+																		   style:UIBarButtonItemStylePlain 
+																		  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
+																		  action:@selector(markReadMemes)];
+		self.navigationItem.rightBarButtonItem  = markReadButton;
+		[markReadButton release];
+		
+		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Special", nil];
+		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
+		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
+		theSegment.tintColor = [UIColor darkGrayColor];
+		theSegment.momentary = NO;
+		theSegment.selectedSegmentIndex = 0;
+		currentFetch = FTAll;
+		[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
+		NSArray *toolbarItems = [NSArray arrayWithObjects:
+								 spacer,
+								 [[UIBarButtonItem alloc] initWithCustomView:theSegment], spacer, nil];
+		self.toolbarItems = toolbarItems;
+		[theSegment release];
+		[spacer release];
+		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+		currentFetch = FTAll;
+	}
+	else
+	{
+		currentFetch = FTReplyView;
+		self.title = NSLocalizedString(@"Thread", @"");
+		// Add a right button for reply to the meme list
+		UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
+																					 target:self 
+																					 action:@selector(replyToMeme:)];
+		self.navigationItem.rightBarButtonItem = replyButton;
+		[replyButton release];
+		[self loadMemePage];
+	}
 	
-	self.navigationItem.leftBarButtonItem = reloadButton;
-	[reloadButton release];
-	
-	UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" 
-																	   style:UIBarButtonItemStylePlain 
-																	  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
-																	  action:@selector(markReadMemes)];
-	self.navigationItem.rightBarButtonItem  = markReadButton;
-	[markReadButton release];
-	
-	NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Special", nil];
-	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-	UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
-	theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-	theSegment.tintColor = [UIColor darkGrayColor];
-	theSegment.momentary = NO;
-	theSegment.selectedSegmentIndex = 0;
-	currentFetch = FTAll;
-	[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
-	NSArray *toolbarItems = [NSArray arrayWithObjects:
-							 spacer,
-							 [[UIBarButtonItem alloc] initWithCustomView:theSegment], spacer, nil];
-	self.toolbarItems = toolbarItems;
-	[theSegment release];
-	[spacer release];
-	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-
 	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 	 
 	self.searchString = @"";
@@ -151,19 +259,22 @@
     [super viewWillAppear:animated];
 	// And register to be notified for shaking and busy/not busy of Meemi session
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
-	if([Meemi sharedSession].isBusy)
-		[self meemiIsBusy:nil];
-	else
-		[self meemiIsFree:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
+	if(self.replyTo == nil)
+	{
+		if([Meemi sharedSession].isBusy)
+			[self meemiIsBusy:nil];
+		else
+			[self meemiIsFree:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
+	}
 }
-
 
 - (void)viewDidAppear:(BOOL)animated 
 {
     [super viewDidAppear:animated];
-	self.navigationController.toolbarHidden = NO;
+	// toolBar only on "parent" list
+	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	[self.tableView reloadData];
 }
 
@@ -201,34 +312,6 @@
 	[theMemeList release];
 }
 
-#pragma mark UISearchBarDelegate
-
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-//{
-//	if([searchBar isFirstResponder])
-//		[searchBar resignFirstResponder];
-//	DLog(@"searchBarSearchButtonClicked");
-//	DLog(@"should we search for <%@>", searchBar.text);
-//	self.searchString = searchBar.text;
-//	[self setupFetch];
-//}
-//
-//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-//{
-//	DLog(@"searchBarCancelButtonClicked");
-//	if([searchBar isFirstResponder])
-//		[searchBar resignFirstResponder];
-//	searchBar.text = @"";
-//	self.searchString = searchBar.text;
-//	[self setupFetch];
-//}
-//
-//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-//{
-//	// Start editing only if we could reload
-//	return self.navigationItem.leftBarButtonItem.enabled;
-//}
-//
 #pragma mark NSFetchedResultsControllerDelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 
@@ -294,9 +377,12 @@
 	[dateFormatter release];
 	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
 	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar];
-    tempLabel = (UILabel *)[cell viewWithTag:4];
-    tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
-
+	
+	tempLabel = (UILabel *)[cell viewWithTag:4];
+	tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
+	// Hid the reply quantity number if it is a thread view (no reply for sure)
+	tempLabel.hidden = (self.replyTo != nil);
+	
 	// things that depend on the kind of meme
 	
 	// This is the calculated size of "content"
@@ -380,12 +466,37 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
-	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
-	controller.replyTo = selectedMeme.id;
-	controller.replyScreenName = selectedMeme.screen_name;
-	controller.urlToBeLoaded = [NSString stringWithFormat:@"http://meemi.com/m/%@/%@", controller.replyScreenName, controller.replyTo];
-	[self.navigationController pushViewController:controller animated:YES];
-	[controller release];
+	// if we are at a meme list level, just push another controller, same kind of this one. :)
+	if(self.replyTo == nil)
+	{
+		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
+		controller.replyTo = selectedMeme.id;
+		controller.replyScreenName = selectedMeme.screen_name;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else // This is a reply thread list
+	{
+		// If meme is a link, simply push a browser Windows on it.
+		if([selectedMeme.meme_type isEqualToString:@"link"])
+		{
+			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+			controller.urlToBeLoaded = [selectedMeme.link stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			[self.navigationController pushViewController:controller animated:YES];
+			[controller release];
+		}
+		if([selectedMeme.meme_type isEqualToString:@"image"])
+		{
+			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+			controller.urlToBeLoaded = [selectedMeme.image_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			[self.navigationController pushViewController:controller animated:YES];
+			[controller release];
+		}
+		if([selectedMeme.meme_type isEqualToString:@"video"])
+		{
+			DLog(@"video meme: %@", selectedMeme);
+		}
+	}
 	// Mark it read, btw...
 	[[Meemi sharedSession] markMemeRead:selectedMeme.id];
 }

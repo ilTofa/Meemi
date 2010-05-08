@@ -9,22 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
 
-@interface MemeOnWeb : UIViewController <UIWebViewDelegate, TextSenderControllerDelegate, ImageSenderControllerDelegate, UIActionSheetDelegate>
+@interface MemeOnWeb : UIViewController <UIWebViewDelegate>
 {
 	NSString *urlToBeLoaded;
 	UIWebView *theView;
 	UIActivityIndicatorView *laRuota;
-	NSNumber *replyTo;
-	NSString *replyScreenName;
 }
 
 @property (retain, nonatomic) NSString *urlToBeLoaded;
-@property (retain, nonatomic) NSNumber *replyTo;
-@property (retain, nonatomic) NSString *replyScreenName;
 @property (retain, nonatomic) IBOutlet UIWebView *theView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *laRuota;
-
--(IBAction)replyToMeme:(id)sender;
--(void)loadMemePage;
 
 @end

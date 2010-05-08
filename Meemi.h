@@ -24,6 +24,7 @@ typedef enum {
 	MmGetNewUsers,
 	MMGetNewPvt,
 	MMGetNewPvtSent,
+	MMGetNewReplies,
 	MMGetNewUser,
 	MMFollowUnfollow
 } MeemiRequest;
@@ -106,6 +107,10 @@ typedef enum
 	NSDate *lastMemeTimestamp;
 	NSDate *lastReadDate;
 
+	// Workaround <replies> data
+	NSNumber *replyTo;
+	NSString *replyUser;
+
 	NSMutableArray *newUsersQueue;
 	
 	// The Queue
@@ -131,6 +136,8 @@ typedef enum
 @property (nonatomic, retain) NSString *placeName, *state;
 @property (retain) ASINetworkQueue *networkQueue;
 @property (nonatomic, assign, getter=isBusy) BOOL busy;
+@property (nonatomic, retain) NSNumber *replyTo;
+@property (nonatomic, retain) NSString *replyUser;
 
 +(Meemi *)sharedSession;
 
@@ -146,6 +153,7 @@ typedef enum
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)getNewMemes:(BOOL)fromScratch;
+-(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve;
 -(void)getNewPrivateMemes:(BOOL)fromScratch;
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch;
 -(void)markNewMemesRead;
