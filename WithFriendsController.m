@@ -262,7 +262,6 @@
 	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 	 
 	self.searchString = @"";
-	[self setupFetch];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -279,6 +278,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
 	}
+	[self setupFetch];
 }
 
 - (void)viewDidAppear:(BOOL)animated 
@@ -295,6 +295,12 @@
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.navigationController.toolbarHidden = YES;
+	if(theMemeList != nil)
+	{
+		theMemeList.delegate = nil;
+		[theMemeList release];
+		theMemeList = nil;
+	}
 }
 
 /*
@@ -485,6 +491,7 @@
 		controller.replyScreenName = selectedMeme.screen_name;
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];
+		controller = nil;
 	}
 	else // This is a reply thread list
 	{
@@ -495,6 +502,7 @@
 			controller.urlToBeLoaded = [selectedMeme.link stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
 			[controller release];
+			controller = nil;
 		}
 		if([selectedMeme.meme_type isEqualToString:@"image"])
 		{
@@ -502,6 +510,7 @@
 			controller.urlToBeLoaded = [selectedMeme.image_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
 			[controller release];
+			controller = nil;
 		}
 		if([selectedMeme.meme_type isEqualToString:@"video"])
 		{
