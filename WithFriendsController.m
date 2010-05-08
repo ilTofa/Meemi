@@ -145,7 +145,11 @@
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
 	DLog(@"got replies");
-	[self setupFetch];
+	// If returning from "get new replies", get avatars if needed.
+	if(request == MMGetNewReplies)
+		[[Meemi sharedSession] updateAvatars];
+	else // It's OK, update...
+		[self setupFetch];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -514,7 +518,28 @@
 		}
 		if([selectedMeme.meme_type isEqualToString:@"video"])
 		{
-			DLog(@"video meme: %@", selectedMeme);
+			DLog(@"video meme: %@", selectedMeme.video);
+			// Check if the URl is valid
+			if([NSURL URLWithString:selectedMeme.video])
+			{	// URL is valid
+				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+				controller.urlToBeLoaded = [selectedMeme.video stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+				[self.navigationController pushViewController:controller animated:YES];
+				[controller release];
+				controller = nil;
+			}
+			else
+			{	// tell user that the video cannot be shown
+				// TODO: find the way to show this kind of video...
+				// <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/GSFPQDEkc-k&hl=it_IT&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/GSFPQDEkc-k&hl=it_IT&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+																	message:@"This video cannot be shown on this device"
+																   delegate:nil
+														  cancelButtonTitle:@"OK" 
+														  otherButtonTitles:nil] 
+										 autorelease];
+				[theAlert show];				
+			}
 		}
 	}
 	// Mark it read, btw...

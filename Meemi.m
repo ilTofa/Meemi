@@ -882,6 +882,9 @@ static Meemi *sharedSession = nil;
 	// Workaround <replies> data...
 	self.replyTo = memeID;
 	self.replyUser = user;
+	// Init user DB
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
 						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], nMessagesToRetrieve];
 	NSURL *url = [NSURL URLWithString:urlString];

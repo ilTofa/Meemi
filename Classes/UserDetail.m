@@ -35,7 +35,7 @@
 	// Configure the request's entity, and optionally its predicate.
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
 	[fetchRequest setEntity:entityDescription];
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"screen_name" ascending:YES];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"screen_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	[sortDescriptors release];
