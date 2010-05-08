@@ -239,7 +239,7 @@
 		[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:
 								 spacer,
-								 [[UIBarButtonItem alloc] initWithCustomView:theSegment], spacer, nil];
+								 [[[UIBarButtonItem alloc] initWithCustomView:theSegment] autorelease], spacer, nil];
 		self.toolbarItems = toolbarItems;
 		[theSegment release];
 		[spacer release];
