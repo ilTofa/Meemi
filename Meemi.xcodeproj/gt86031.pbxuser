@@ -46,9 +46,9 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = "Ad-Hoc";
 		activeExecutable = C01D86FB115141A100608D7E /* Meemi */;
-		activeSDKPreference = iphoneos4.0;
+		activeSDKPreference = iphoneos3.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Meemi */,
@@ -68,18 +68,18 @@
 			info,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 295087619;
-			PBXWorkspaceStateSaveDate = 295087619;
+			PBXPerProjectTemplateStateSaveDate = 295096408;
+			PBXWorkspaceStateSaveDate = 295096408;
 		};
 		perUserProjectItems = {
 			C00BF1C41195A24F00E5CFE6 /* PBXTextBookmark */ = C00BF1C41195A24F00E5CFE6 /* PBXTextBookmark */;
+			C02CECF21196D17A00AA0854 /* PBXTextBookmark */ = C02CECF21196D17A00AA0854 /* PBXTextBookmark */;
+			C02CECF31196D17A00AA0854 /* PBXTextBookmark */ = C02CECF31196D17A00AA0854 /* PBXTextBookmark */;
+			C02CECF41196D17A00AA0854 /* PBXTextBookmark */ = C02CECF41196D17A00AA0854 /* PBXTextBookmark */;
 			C05E84AD1196AEE10058993A /* PBXTextBookmark */ = C05E84AD1196AEE10058993A /* PBXTextBookmark */;
-			C05E84AE1196AEE10058993A /* PBXTextBookmark */ = C05E84AE1196AEE10058993A /* PBXTextBookmark */;
 			C05E84D21196B2BC0058993A /* PBXTextBookmark */ = C05E84D21196B2BC0058993A /* PBXTextBookmark */;
 			C05E84D31196B2BC0058993A /* PBXTextBookmark */ = C05E84D31196B2BC0058993A /* PBXTextBookmark */;
 			C05E84D41196B2BC0058993A /* PBXTextBookmark */ = C05E84D41196B2BC0058993A /* PBXTextBookmark */;
-			C0C79F8411962FD4004101D4 /* PBXTextBookmark */ = C0C79F8411962FD4004101D4 /* PBXTextBookmark */;
-			C0C79F8611962FD4004101D4 /* PBXTextBookmark */ = C0C79F8611962FD4004101D4 /* PBXTextBookmark */;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -111,7 +111,7 @@
 		fRef = C0E620411152E36800E6C079 /* Meemi.h */;
 		name = "Meemi.h: 141";
 		rLen = 0;
-		rLoc = 3563;
+		rLoc = 3542;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 0;
@@ -192,6 +192,36 @@
 			sepNavVisRange = "{0, 645}";
 			sepNavWindowFrame = "{{15, 71}, {1058, 1102}}";
 		};
+	};
+	C02CECF21196D17A00AA0854 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 279";
+		rLen = 0;
+		rLoc = 9942;
+		rType = 0;
+		vrLen = 2483;
+		vrLoc = 8984;
+	};
+	C02CECF31196D17A00AA0854 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 887";
+		rLen = 0;
+		rLoc = 32608;
+		rType = 0;
+		vrLen = 2694;
+		vrLoc = 30194;
+	};
+	C02CECF41196D17A00AA0854 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
+		name = "MeemiAppDelegate.m: 123";
+		rLen = 0;
+		rLoc = 4077;
+		rType = 0;
+		vrLen = 2159;
+		vrLoc = 3633;
 	};
 	C034510A1181EBA8005DBA24 /* Meemi.m:233 */ = {
 		isa = PBXFileBreakpoint;
@@ -299,9 +329,9 @@
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1258, 8073}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1258, 7982}}";
 			sepNavSelRange = "{9942, 0}";
-			sepNavVisRange = "{8984, 2485}";
+			sepNavVisRange = "{8984, 2483}";
 			sepNavWindowFrame = "{{283, 74}, {1058, 1102}}";
 		};
 	};
@@ -314,16 +344,6 @@
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 0;
-	};
-	C05E84AE1196AEE10058993A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 295";
-		rLen = 0;
-		rLoc = 10592;
-		rType = 0;
-		vrLen = 2986;
-		vrLoc = 7876;
 	};
 	C05E84D21196B2BC0058993A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -598,26 +618,6 @@
 			sepNavWindowFrame = "{{127, 62}, {1099, 1107}}";
 		};
 	};
-	C0C79F8411962FD4004101D4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
-		name = "Meemi.m: 887";
-		rLen = 0;
-		rLoc = 32608;
-		rType = 0;
-		vrLen = 2770;
-		vrLoc = 30118;
-	};
-	C0C79F8611962FD4004101D4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */;
-		name = "MeemiAppDelegate.m: 123";
-		rLen = 0;
-		rLoc = 4077;
-		rType = 0;
-		vrLen = 2159;
-		vrLoc = 3633;
-	};
 	C0D67CBE11592261009EA92B /* Entitlements.plist */ = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 66}, {1099, 1107}}";
@@ -673,9 +673,9 @@
 	};
 	C0E620411152E36800E6C079 /* Meemi.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1300, 2288}}";
-			sepNavSelRange = "{3563, 0}";
-			sepNavVisRange = "{0, 1457}";
+			sepNavIntBoundsRect = "{{0, 0}, {1222, 2678}}";
+			sepNavSelRange = "{1250, 0}";
+			sepNavVisRange = "{496, 978}";
 			sepNavWindowFrame = "{{109, 66}, {1191, 1112}}";
 		};
 	};
