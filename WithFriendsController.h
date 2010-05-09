@@ -29,6 +29,8 @@ typedef enum {
 	// Is this the "main list", or a detail? :)
 	NSNumber *replyTo;
 	NSString *replyScreenName;
+	// Current position, for reloading. :)
+	NSIndexPath *currentPosition;
 }
 
 -(IBAction)filterSelected;
@@ -38,5 +40,6 @@ typedef enum {
 @property (nonatomic, retain) NSString *searchString;
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyScreenName;
+@property (nonatomic, retain) NSIndexPath *currentPosition;
 
 @end

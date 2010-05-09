@@ -13,7 +13,7 @@
 
 @implementation WithFriendsController
 
-@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName;
+@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
 
 -(void)deviceShaken:(NSNotification *)note
 {
@@ -266,6 +266,7 @@
 	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 	 
 	self.searchString = @"";
+	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -291,6 +292,7 @@
 	// toolBar only on "parent" list
 	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	[self.tableView reloadData];
+	[self.tableView scrollToRowAtIndexPath:self.currentPosition atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 
@@ -542,8 +544,9 @@
 			}
 		}
 	}
-	// Mark it read, btw...
+	// Mark it read and remember where we were, btw...
 	[[Meemi sharedSession] markMemeRead:selectedMeme.id];
+	self.currentPosition = indexPath;
 }
 
 
