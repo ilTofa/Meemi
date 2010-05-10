@@ -80,7 +80,11 @@
 	[sortDescriptor release];
 	
 	if(theMemeList != nil)
+	{
+		theMemeList.delegate = nil;
 		[theMemeList release];
+		theMemeList = nil;
+	}
 	if(currentFetch == FTReplyView)
 	{
 		[NSFetchedResultsController deleteCacheWithName:@"ThreadCache"];
@@ -292,7 +296,8 @@
 	// toolBar only on "parent" list
 	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	[self.tableView reloadData];
-	[self.tableView scrollToRowAtIndexPath:self.currentPosition atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	if(self.currentPosition.row != 0 && self.currentPosition.section != 0)
+		[self.tableView scrollToRowAtIndexPath:self.currentPosition atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 
