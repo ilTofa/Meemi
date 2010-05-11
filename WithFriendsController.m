@@ -153,7 +153,7 @@
 	if(request == MMGetNewReplies)
 		[[Meemi sharedSession] updateAvatars];
 	else // It's OK, update...
-		[self setupFetch];
+		[self.tableView reloadData];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -253,6 +253,7 @@
 		[spacer release];
 		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 		currentFetch = FTAll;
+		[self setupFetch];
 	}
 	else
 	{
@@ -287,7 +288,8 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
 	}
-	[self setupFetch];
+	else // reinit fetch only for replies...
+		[self setupFetch];
 }
 
 - (void)viewDidAppear:(BOOL)animated 
@@ -296,8 +298,12 @@
 	// toolBar only on "parent" list
 	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	[self.tableView reloadData];
-	if(self.currentPosition.row != 0 && self.currentPosition.section != 0)
+	// Only for replies...
+	if(self.replyTo != nil)
+	{
+		DLog(@"table appeared: now scroll it to %d, %d", self.currentPosition.section, self.currentPosition.row);
 		[self.tableView scrollToRowAtIndexPath:self.currentPosition atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	}
 }
 
 
@@ -306,7 +312,8 @@
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.navigationController.toolbarHidden = YES;
-	if(theMemeList != nil)
+	// if this is the detail view, reset fetchcontroller...
+	if(self.replyTo != nil && theMemeList != nil)
 	{
 		theMemeList.delegate = nil;
 		[theMemeList release];
@@ -351,26 +358,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    NSUInteger count = [[theMemeList sections] count];
-	// "Official" workaround for problem in iPhone OS 3
-    if (count == 0) 
-        count = 1;
-    return count;
+    return [[theMemeList sections] count];
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
- 	// "Official" workaround for problem in iPhone OS 3
-	NSArray *sections = [theMemeList sections];
-    NSUInteger count = 0;
-    if ([sections count]) 
-	{
-        id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
-        count = [sectionInfo numberOfObjects];
-    }
-    return count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[theMemeList sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 #define kTextWidth 263.0f
@@ -466,8 +462,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
-	CGSize theSize = [theFetchedMeme.content sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:CGSizeMake(kTextWidth, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-	return theSize.height + kHeigthBesideText;
+	if(theFetchedMeme)
+	{
+		CGSize theSize = [theFetchedMeme.content sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:CGSizeMake(kTextWidth, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+		return theSize.height + kHeigthBesideText;
+	}
+	else
+	{
+		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@", indexPath);
+		return kHeigthBesideText;
+	}
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

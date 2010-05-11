@@ -290,7 +290,7 @@ static Meemi *sharedSession = nil;
 	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies)
 	{
 		// Zero meme count in reply, to start counting
-		if([elementName isEqualToString:@"memes"])
+		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 			howMany = 0;
 		// if a meme is coming increment meme count
 		if([elementName isEqualToString:@"meme"])
@@ -524,12 +524,6 @@ static Meemi *sharedSession = nil;
 			else
 				retValue = 1;
 			[self.delegate meemi:self.currentRequest didFinishWithResult:retValue];
-//			if(self.currentRequest == MmGetNew)
-//			   [self.delegate meemi:MmGetNew didFinishWithResult:retValue];
-//			else if(self.currentRequest == MMGetNewPvt)
-//				[self.delegate meemi:MMGetNewPvt didFinishWithResult:retValue];
-//			else if(self.currentRequest == MMGetNewPvtSent)
-//				[self.delegate meemi:MMGetNewPvtSent didFinishWithResult:retValue];
 		}
 	}
     if ([elementName isEqualToString:@"name"])
