@@ -13,7 +13,7 @@
 @interface UserProfile : UIViewController <MeemiDelegate>
 {
 	User *theUser;
-	UIImageView *theAvatar;
+	UIButton *theAvatar;
 	UILabel *screenName, *realName, *birth, *location;
 	UITextView *info;
 	UISegmentedControl *theSegment;
@@ -21,7 +21,7 @@
 }
 
 @property (nonatomic, retain) User *theUser;
-@property (nonatomic, retain) IBOutlet UIImageView *theAvatar;
+@property (nonatomic, retain) IBOutlet UIButton *theAvatar;
 @property (nonatomic, retain) IBOutlet UILabel *screenName;
 @property (nonatomic, retain) IBOutlet UILabel *realName;
 @property (nonatomic, retain) IBOutlet UILabel *birth;
@@ -32,5 +32,6 @@
 
 -(IBAction)infoSwapped;
 -(IBAction)followUnfollow:(id)sender;
+-(IBAction)loadAvatar:(id)sender;
 
 @end

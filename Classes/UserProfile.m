@@ -7,6 +7,7 @@
 //
 
 #import "UserProfile.h"
+#import "MemeOnWeb.h"
 
 @implementation UserProfile
 
@@ -22,6 +23,15 @@
     return self;
 }
 */
+
+-(IBAction)loadAvatar:(id)sender
+{
+	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+	controller.urlToBeLoaded = theUser.avatar_url;
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
+	controller = nil;	
+}
 
 -(IBAction)infoSwapped
 {
@@ -64,7 +74,7 @@
 	birth.text = [dateFormatter stringFromDate:theUser.birth];
 	[dateFormatter release];
 	// Image
-	theAvatar.image = [UIImage imageWithData:theUser.avatar];
+	[theAvatar setImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
 	[self infoSwapped];
 }
 

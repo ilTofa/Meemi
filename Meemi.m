@@ -395,7 +395,10 @@ static Meemi *sharedSession = nil;
 				theMeme.reply_id = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 
 			if([elementName isEqualToString:@"avatar"] && theMeme.user.avatar == nil)
+			{
 				theMeme.user.avatar = [[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] dataUsingEncoding:NSUTF8StringEncoding];
+				theMeme.user.avatar_url = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			}
 			// TODO: Still to be managed.
 //			<channels>
 //			<channel>google</channel>

@@ -10,6 +10,7 @@
 #import "MeemiAppDelegate.h"
 #import "Meme.h"
 #import "MemeOnWeb.h"
+#import "UserProfile.h"
 
 @implementation WithFriendsController
 
@@ -35,6 +36,26 @@
 	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = YES;
 	// While we are at it, probably the session could have read something. :)
 	[self.tableView reloadData];
+}
+
+-(IBAction)avatarTouched:(id)sender
+{
+	DLog(@"avatarTouched at row: %d", [[((UIButton *)sender) titleForState:UIControlStateNormal] integerValue]);
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[((UIButton *)sender) titleForState:UIControlStateNormal] integerValue] 
+												inSection:0];
+	if(indexPath)
+	{
+		Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
+		if(theFetchedMeme)
+		{
+			// Push user detail view
+			UserProfile *detailViewController = [[UserProfile alloc] initWithNibName:@"UserProfile" bundle:nil];
+			detailViewController.theUser = theFetchedMeme.user;
+			// Pass the selected object to the new view controller.
+			[self.navigationController pushViewController:detailViewController animated:YES];
+			[detailViewController release];		
+		}
+	}
 }
 
 -(void)setupFetch
@@ -370,7 +391,7 @@
 }
 
 #define kTextWidth 263.0f
-#define kHeigthBesideText 73.0f
+#define kHeigthBesideText 85.0f
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -399,8 +420,13 @@
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
 	[dateFormatter release];
-	UIImageView *tempView = (UIImageView *)[cell viewWithTag:6];
-	tempView.image = [UIImage imageWithData:theFetchedMeme.user.avatar];
+	
+	// avatar clickable image (this needs all user in a fixed section)
+	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
+	[tempButton setImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
+	NSString *indexinController = [NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row];
+	[tempButton setTitle:indexinController forState:UIControlStateNormal];
+	[tempButton addTarget:self action:@selector(avatarTouched:) forControlEvents:UIControlEventTouchUpInside];
 	
 	tempLabel = (UILabel *)[cell viewWithTag:4];
 	tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
@@ -419,7 +445,7 @@
 	tempLabel.frame = labelFrame;
 	[tempLabel sizeToFit];
 	
-	tempView = (UIImageView *)[cell viewWithTag:7];
+	UIImageView *tempView = (UIImageView *)[cell viewWithTag:7];
 	if([theFetchedMeme.meme_type isEqualToString:@"image"])
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
 	else if([theFetchedMeme.meme_type isEqualToString:@"video"])

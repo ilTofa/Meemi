@@ -34,6 +34,7 @@ typedef enum {
 }
 
 -(IBAction)filterSelected;
+-(IBAction)avatarTouched:(id)sender;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, retain) NSString *predicateString;
