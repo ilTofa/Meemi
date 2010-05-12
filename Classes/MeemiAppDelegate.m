@@ -7,12 +7,13 @@
 //
 
 #import "MeemiAppDelegate.h"
+#import "WithFriendsController.h"
 // #import "FlurryAPI.h"
 
 @implementation MeemiAppDelegate
 
 @synthesize window;
-@synthesize tabBarController;
+@synthesize navigationController;
 @synthesize urlToBeLoaded;
 
 #pragma mark -
@@ -241,9 +242,9 @@ void uncaughtExceptionHandler(NSException *exception)
 //	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 //	[FlurryAPI startSession:@"K26CYXQMYFKM84B13825"];
 //	
-    // Add the tab bar controller's current view as a subview of the window
-	[window addSubview:tabBarController.view];
-
+    
+    [window addSubview:[navigationController view]];
+	
 	// Start location request
 	[[Meemi sharedSession] startLocation];
 
@@ -258,15 +259,15 @@ void uncaughtExceptionHandler(NSException *exception)
 	self.urlToBeLoaded = @"";
 	
 	// If use is validated, start on first tab, else on settings.
-	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
-	{
+/*	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
+	{*/
 		[[Meemi sharedSession] startSessionFromUserDefaults];
-		self.tabBarController.selectedIndex = 0;
 		// now, load the new memes... ;)
 		[self reloadMemes];
-	}
+/*	}
 	else
 		self.tabBarController.selectedIndex = kSettingsTab;
+ */
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 
@@ -302,7 +303,7 @@ void uncaughtExceptionHandler(NSException *exception)
     [managedObjectModel release];
     [persistentStoreCoordinator release];
     
-    [tabBarController release];
+    [navigationController release];
     [window release];
     [super dealloc];
 }

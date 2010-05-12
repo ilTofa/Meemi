@@ -181,6 +181,8 @@
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
+	// TODO: we can get this message when deallocated.
+	// As in 2010-05-12 23:21:11.345 Meemi[1134:207] *** -[WithFriendsController meemi:didFinishWithResult:]: message sent to deallocated instance 0x719f880
 	DLog(@"got replies");
 	// If returning from "get new replies", get avatars if needed.
 	if(request == MMGetNewReplies)
@@ -216,8 +218,10 @@
 											 destructiveButtonTitle:nil
 												  otherButtonTitles:@"Text", @"Image", nil]
 							   autorelease];
-	[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
-	// Flows below to the ActionSheetDelegate function.
+	if(self.navigationController.toolbar.hidden)
+		[chooseIt showInView:self.view];
+	else // we have a toolbar, use it!
+		[chooseIt showFromToolbar:self.navigationController.toolbar];
 }	
 
 #pragma mark UIActionSheetDelegate
@@ -270,7 +274,7 @@
 		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Chg", @"Pvt", @"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-		theSegment.tintColor = [UIColor darkGrayColor];
+//		theSegment.tintColor = [UIColor darkGrayColor];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 5; i++)
@@ -285,7 +289,7 @@
 		[theSegment release];
 		[spacer release];
 		[readB release];
-		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+//		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 		currentFetch = FTAll;
 		[self setupFetch];
 	}

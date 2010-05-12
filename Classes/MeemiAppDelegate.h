@@ -15,7 +15,7 @@
 @interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, MeemiDelegate> 
 {
     UIWindow *window;
-    UITabBarController *tabBarController;
+    UINavigationController *navigationController;
 	// CoreData helpers
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;       
@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 // CoreData helpers
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;

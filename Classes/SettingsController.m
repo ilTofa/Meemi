@@ -75,8 +75,8 @@
 
 -(IBAction)dismiss:(id)sender
 {
-	if([Meemi sharedSession].isValid)
-		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
+//	if([Meemi sharedSession].isValid)
+//		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
 		return;
 	// else do not dismiss keyboard (and warn user)
 	self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
@@ -115,7 +115,7 @@
 	if([Meemi sharedSession].isValid)
 	{
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
-		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
+//		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
 		return YES;
 	}
 	// else do not dismiss keyboard (and warn user)

@@ -183,7 +183,7 @@
 					<object class="IBUISegmentedControl" id="796680319">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{60, 330}, {200, 30}}</string>
+						<string key="NSFrame">{{60, 373}, {200, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -228,7 +228,7 @@
 					<object class="IBUITextView" id="597316747">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 147}, {280, 175}}</string>
+						<string key="NSFrame">{{20, 147}, {280, 212}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -255,7 +255,7 @@ bS9oZXI</string>
 					<object class="IBUIButton" id="306735666">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{85, 271}, {150, 37}}</string>
+						<string key="NSFrame">{{85, 322}, {150, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -293,7 +293,7 @@ bS9oZXI</string>
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 367}</string>
+				<string key="NSFrameSize">{320, 416}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
@@ -304,7 +304,6 @@ bS9oZXI</string>
 					<int key="IBUIBarStyle">1</int>
 					<bool key="IBUIPrompted">NO</bool>
 				</object>
-				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -433,8 +432,8 @@ bS9oZXI</string>
 							<reference ref="826764031"/>
 							<reference ref="60792718"/>
 							<reference ref="597316747"/>
-							<reference ref="306735666"/>
 							<reference ref="432247571"/>
+							<reference ref="306735666"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

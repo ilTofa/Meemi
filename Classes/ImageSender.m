@@ -193,7 +193,8 @@
 												 destructiveButtonTitle:nil
 													  otherButtonTitles:@"Library", nil]
 								   autorelease];
-		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
+		[chooseIt showInView:self.view];
+//		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
 	}
 	else 
 	{

@@ -75,8 +75,8 @@
 	[super viewDidAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
 	// If the session is invalid, goto setting page!
-	if(![Meemi sharedSession].isValid)
-		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = kSettingsTab;	
+//	if(![Meemi sharedSession].isValid)
+//		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = kSettingsTab;	
 }
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
