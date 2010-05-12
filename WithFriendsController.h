@@ -14,6 +14,7 @@
 typedef enum {
 	FTAll = 0,
 	FTNew,
+	FTChg,
 	FTPvt,
 	FTSpecial,
 	FTReplyView

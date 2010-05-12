@@ -78,6 +78,9 @@
 			self.predicateString = @"reply_id == 0";
 			break;
 		case FTNew:
+			self.predicateString = [NSString stringWithFormat:@"new_meme == YES AND reply_id == 0"];
+			break;
+		case FTChg:
 			self.predicateString = [NSString stringWithFormat:@"(new_meme == YES OR new_replies == YES) AND reply_id == 0"];
 			break;
 		case FTPvt:
@@ -142,7 +145,7 @@
 
 -(void)filterSelected
 {
-	currentFetch = ((UISegmentedControl *) (((UIBarButtonItem *)[self.toolbarItems objectAtIndex:1]).customView)).selectedSegmentIndex;
+	currentFetch = ((UISegmentedControl *) (((UIBarButtonItem *)[self.toolbarItems objectAtIndex:2]).customView)).selectedSegmentIndex;
 	DLog(@"in filterSelected for %d selected, filtering on '%@'", currentFetch, self.searchString);
 	[self setupFetch];
 }
@@ -150,8 +153,17 @@
 -(void)loadMemePage
 {
 	DLog(@"loadMemePage called");
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemesRepliesOf:self.replyTo screenName:self.replyScreenName from:0 number:20];
+	if(self.replyTo != nil)
+	{
+		[Meemi sharedSession].delegate = self;
+		[[Meemi sharedSession] getNewMemesRepliesOf:self.replyTo screenName:self.replyScreenName from:0 number:20];
+	}
+	else 
+	{
+		if(![Meemi sharedSession].isBusy)
+			[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
+	}
+
 }
 
 #pragma mark MeemiDelegate
@@ -250,28 +262,29 @@
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
 		
-		UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" 
-																		   style:UIBarButtonItemStylePlain 
-																		  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
-																		  action:@selector(markReadMemes)];
-		self.navigationItem.rightBarButtonItem  = markReadButton;
-		[markReadButton release];
-		
-		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Private", @"Special", nil];
+		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithTitle:@"Read" 
+																  style:UIBarButtonItemStyleBordered 
+																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
+																 action:@selector(markReadMemes)];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Chg", @"Pvt", @"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
 		theSegment.tintColor = [UIColor darkGrayColor];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
-		currentFetch = FTAll;
+		for (int i = 0; i < 5; i++)
+			[theSegment setWidth:47.0 forSegmentAtIndex:i];
 		[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:
+								 readB,
 								 spacer,
-								 [[[UIBarButtonItem alloc] initWithCustomView:theSegment] autorelease], spacer, nil];
+								 [[[UIBarButtonItem alloc] initWithCustomView:theSegment] autorelease], 
+								 nil];
 		self.toolbarItems = toolbarItems;
 		[theSegment release];
 		[spacer release];
+		[readB release];
 		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 		currentFetch = FTAll;
 		[self setupFetch];
@@ -280,14 +293,14 @@
 	{
 		currentFetch = FTReplyView;
 		self.title = NSLocalizedString(@"Thread", @"");
-		// Add a right button for reply to the meme list
-		UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
-																					 target:self 
-																					 action:@selector(replyToMeme:)];
-		self.navigationItem.rightBarButtonItem = replyButton;
-		[replyButton release];
 		[self loadMemePage];
 	}
+	// Add a right button for reply to the meme list
+	UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
+																				 target:self 
+																				 action:@selector(replyToMeme:)];
+	self.navigationItem.rightBarButtonItem = replyButton;
+	[replyButton release];
 	
 	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 	 
@@ -421,7 +434,7 @@
     tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
 	[dateFormatter release];
 	
-	// avatar clickable image (this needs all user in a fixed section)
+	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
 	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
 	NSString *indexinController = [NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row];
