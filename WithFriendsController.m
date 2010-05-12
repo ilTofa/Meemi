@@ -423,7 +423,7 @@
 	
 	// avatar clickable image (this needs all user in a fixed section)
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
-	[tempButton setImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
+	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
 	NSString *indexinController = [NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row];
 	[tempButton setTitle:indexinController forState:UIControlStateNormal];
 	[tempButton addTarget:self action:@selector(avatarTouched:) forControlEvents:UIControlEventTouchUpInside];
