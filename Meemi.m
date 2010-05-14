@@ -258,7 +258,7 @@ static Meemi *sharedSession = nil;
 		// If it was a request for user validation, check return and inform delegate
 		NSString *codeString = [attributeDict objectForKey:@"code"];
 		int code = [codeString intValue];
-		NSAssert(codeString, @"In NSXMLParser: attribute code for <message> is missing");
+//		NSAssert(codeString, @"In NSXMLParser: attribute code for <message> is missing");
 		if(self.currentRequest == MmRValidateUser)
 		{
 			// if user is OK. Save it (both class and NSUserDefaults).
