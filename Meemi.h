@@ -61,7 +61,11 @@ typedef enum
 /* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
 #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
 
+#ifdef __IPHONE_4_0
 @interface Meemi : NSObject <CLLocationManagerDelegate, NSXMLParserDelegate>
+#else
+@interface Meemi : NSObject <CLLocationManagerDelegate>
+#endif
 {
 	BOOL valid;
 	NSString *screenName, *password;

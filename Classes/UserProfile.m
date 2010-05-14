@@ -74,7 +74,7 @@
 	birth.text = [dateFormatter stringFromDate:theUser.birth];
 	[dateFormatter release];
 	// Image
-	[theAvatar setImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
+	[theAvatar setBackgroundImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
 	[self infoSwapped];
 }
 
@@ -126,6 +126,26 @@
 - (void)viewWillAppear:(BOOL)animated 
 {
     [super viewWillAppear:animated];
+	// Setup toolbar
+	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	NSArray *tempStrings = [NSArray arrayWithObjects:@"Info", @"Profile", @"Extra", nil];
+	self.theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
+	self.theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
+	//		theSegment.tintColor = [UIColor darkGrayColor];
+	self.theSegment.momentary = NO;
+	self.theSegment.selectedSegmentIndex = 0;
+	for (int i = 0; i < 3; i++)
+		[self.theSegment setWidth:60.0 forSegmentAtIndex:i];
+	[self.theSegment addTarget:self action:@selector(infoSwapped) forControlEvents:UIControlEventValueChanged];
+	NSArray *toolbarItems = [NSArray arrayWithObjects:
+							 spacer,
+							 [[[UIBarButtonItem alloc] initWithCustomView:self.theSegment] autorelease], 
+							 spacer, nil];
+	self.toolbarItems = toolbarItems;
+	[theSegment release];
+	[spacer release];
+	self.navigationController.toolbarHidden = NO;
+	
 	// And register to be notified for shaking and busy/not busy of Meemi session
 	if([Meemi sharedSession].isBusy)
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUser:) name:kNowFree object:nil];
@@ -137,6 +157,7 @@
 {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.navigationController.toolbarHidden = YES;
 }
 
 /*
