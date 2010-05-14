@@ -35,6 +35,8 @@
 
 -(IBAction)infoSwapped
 {
+	NSDateFormatter *dateFormatter;
+	NSString *birthday;
 	switch (self.theSegment.selectedSegmentIndex) 
 	{
 		case 0:
@@ -48,7 +50,15 @@
 			followButton.hidden = YES;
 			break;
 		default:
-			info.text = [NSString stringWithFormat:@"Follows: %d\nFollowed: %d\n\n%@\n%@",
+			// dates...
+			dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setLocale:[NSLocale currentLocale]];
+			[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+			[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+			birthday = [dateFormatter stringFromDate:theUser.birth];
+			[dateFormatter release];			
+			info.text = [NSString stringWithFormat:@"Born %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@",
+						 birthday,
 						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],
 						 [theUser.follow_you boolValue] ? @"He/She follows you" : @"He/she don't follow you",
 						 [theUser.you_follow boolValue] ? @"You follow him/her" : @"You don't follow him/her"];
@@ -66,13 +76,6 @@
 	realName.text = theUser.real_name;
 	location.text = theUser.current_location;
 	info.text = theUser.info;
-	// dates...
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setLocale:[NSLocale currentLocale]];
-	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-	birth.text = [dateFormatter stringFromDate:theUser.birth];
-	[dateFormatter release];
 	// Image
 	[theAvatar setBackgroundImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
 	[self infoSwapped];
