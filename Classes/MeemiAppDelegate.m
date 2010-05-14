@@ -258,16 +258,13 @@ void uncaughtExceptionHandler(NSException *exception)
 	// reset mobileweb to goto home
 	self.urlToBeLoaded = @"";
 	
-	// If use is validated, start on first tab, else on settings.
-/*	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
-	{*/
+	// If user is validated, reload data. If not, the Meemi view will take care of this.
+	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
+	{
 		[[Meemi sharedSession] startSessionFromUserDefaults];
 		// now, load the new memes... ;)
 		[self reloadMemes];
-/*	}
-	else
-		self.tabBarController.selectedIndex = kSettingsTab;
- */
+	}
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

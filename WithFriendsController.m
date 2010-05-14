@@ -11,6 +11,7 @@
 #import "Meme.h"
 #import "MemeOnWeb.h"
 #import "UserProfile.h"
+#import "SettingsController.h"
 
 @implementation WithFriendsController
 
@@ -26,16 +27,20 @@
 
 -(void)meemiIsBusy:(NSNotification *)note
 {
-	DLog(@"meemiIsBusy: dimming navButtons");
-	self.navigationItem.leftBarButtonItem.enabled = NO;
+	DLog(@"meemiIsBusy:");
 }
 
 -(void)meemiIsFree:(NSNotification *)note
 {
-	DLog(@"meemiIsFree: enabling navButtons");
-	self.navigationItem.leftBarButtonItem.enabled = YES;
-	// While we are at it, probably the session could have read something. :)
-//	[self.tableView reloadData];
+	DLog(@"meemiIsFree:");
+}
+
+-(void)settingsView
+{
+	SettingsController *controller = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
+	controller = nil;	
 }
 
 -(IBAction)avatarTouched:(id)sender
@@ -181,8 +186,6 @@
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
-	// TODO: we can get this message when deallocated.
-	// As in 2010-05-12 23:21:11.345 Meemi[1134:207] *** -[WithFriendsController meemi:didFinishWithResult:]: message sent to deallocated instance 0x719f880
 	DLog(@"got replies");
 	// If returning from "get new replies", get avatars if needed.
 	if(request == MMGetNewReplies)
@@ -258,10 +261,10 @@
 	if(self.replyTo == nil)
 	{
 		// Add a left button for reloading the meme list
-		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]] 
+		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
 																		 style:UIBarButtonItemStylePlain 
-																		target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
-																		action:@selector(reloadMemes)];
+																		target:self 
+																		action:@selector(settingsView)];
 		
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
@@ -274,7 +277,6 @@
 		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Chg", @"Pvt", @"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-//		theSegment.tintColor = [UIColor darkGrayColor];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 5; i++)
@@ -289,7 +291,6 @@
 		[theSegment release];
 		[spacer release];
 		[readB release];
-//		self.navigationController.toolbar.barStyle = UIBarStyleBlack;
 		currentFetch = FTAll;
 		[self setupFetch];
 	}
@@ -310,6 +311,7 @@
 	 
 	self.searchString = @"";
 	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -325,6 +327,9 @@
 			[self meemiIsFree:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
+		// Load settings, if needed.
+		if(![Meemi sharedSession].isValid)
+			[self settingsView];		
 	}
 	else // reinit fetch only for replies...
 		[self setupFetch];
@@ -336,12 +341,6 @@
 	// toolBar only on "parent" list
 	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	[self.tableView reloadData];
-	// Only for replies...
-	if(self.replyTo != nil)
-	{
-		DLog(@"table appeared: now scroll it to %d, %d", self.currentPosition.section, self.currentPosition.row);
-		[self.tableView scrollToRowAtIndexPath:self.currentPosition atScrollPosition:UITableViewScrollPositionTop animated:NO];
-	}
 }
 
 

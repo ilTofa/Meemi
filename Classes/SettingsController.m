@@ -12,7 +12,7 @@
 
 @implementation SettingsController
 
-@synthesize screenName, password, testLabel, laRuota, rowNumber;
+@synthesize screenName, password, testLabel, laRuota;
 
 -(void)restoreDefaults
 {
@@ -48,6 +48,8 @@
 		[defaults setObject:self.password.text forKey:@"password"];
 		[defaults setInteger:1 forKey:@"userValidated"];
 		[[Meemi sharedSession] startSessionFromUserDefaults];
+		// and reload memes...
+		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 	}
 	else // restore base names and retry...
 	{
@@ -73,16 +75,6 @@
 	[self presentModalViewController:theBox animated:YES]; 
 }
 
--(IBAction)dismiss:(id)sender
-{
-//	if([Meemi sharedSession].isValid)
-//		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
-		return;
-	// else do not dismiss keyboard (and warn user)
-	self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
-	[self.screenName becomeFirstResponder];	
-}
-
 -(IBAction)killDB:(id)sender
 {
 	[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) removeCoreDataStore];
@@ -92,21 +84,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
 	NSLog(@"textFieldShouldReturn called");
-	if(theTextField == self.rowNumber)
-	{
-		// If reasonable...
-		if([theTextField.text intValue] > 9 && [theTextField.text intValue] < 101)
-		{
-			int value = [theTextField.text intValue] / 10 * 10;
-			ALog(@"setting rownumber default to %d", value);
-			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-			[defaults setInteger:value forKey:@"rowNumber"];
-			theTextField.text = [NSString stringWithFormat:@"%d", value];
-		}
-		else
-			theTextField.text = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"rowNumber"]];
-		return YES;
-	}
     if (theTextField == self.screenName)
         [self.screenName resignFirstResponder];
     if (theTextField == self.password)
@@ -139,6 +116,7 @@
 {
     [super viewDidLoad];
 	self.screenName.delegate = self.password.delegate = self;
+	self.title = NSLocalizedString(@"Settings", @"");
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -149,6 +127,14 @@
 	// if user was not tested, test it
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"] == 0)
 		[self testLogin:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated 
+{
+	[super viewWillDisappear:animated];
+	// It happens that we don't need any callback from Meemi anymore.
+	if([Meemi sharedSession].delegate == self)
+		[Meemi sharedSession].delegate = nil;
 }
 
 /*
