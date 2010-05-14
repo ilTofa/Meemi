@@ -161,8 +161,10 @@ typedef enum
 -(void)getNewPrivateMemes:(BOOL)fromScratch;
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch;
 -(void)markNewMemesRead;
+-(void)markThreadRead:(NSNumber *)memeID;
 -(void)markMemeRead:(NSNumber *)memeID;
 -(void)markMemeSpecial:(NSNumber *)memeID;
+-(void)loadAvatar:(NSString *)screen_name;
 -(void)getUser:(NSString *)withName;
 -(void)followUser:(NSString *)user;
 -(void)unfollowUser:(NSString *)user;

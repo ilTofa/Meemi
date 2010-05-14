@@ -116,7 +116,14 @@
 		theUser.you_follow = [NSNumber numberWithBool:YES];
 	if(result == MmUnfollowOK)
 		theUser.you_follow = [NSNumber numberWithBool:NO];
-	[self loadTextInView];
+	if(request == MMGetNewUser)
+	{ //update and reload avatar, just in case...
+		[self loadTextInView];
+		[Meemi sharedSession].delegate;
+		[[Meemi sharedSession] loadAvatar:theUser.screen_name];
+	}
+	// It could be MmGetNewUsers (then load the text, and do it on the main thread!).
+	[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:NO];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -160,6 +167,8 @@
 {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	if([Meemi sharedSession].delegate == self)
+		[Meemi sharedSession].delegate = nil;
 	self.navigationController.toolbarHidden = YES;
 }
 

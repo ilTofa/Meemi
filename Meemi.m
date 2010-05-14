@@ -823,6 +823,60 @@ static Meemi *sharedSession = nil;
 	}
 }
 
+-(void)getAvatarImage:(NSString *)userScreenName
+{
+	NSURL *url;
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name == %@", userScreenName];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		User *theOne = [fetchResults objectAtIndex:0];
+		if((url = [NSURL URLWithString:theOne.avatar_url]) != nil)
+		{
+			NSError *error;
+			// get avatar and store it
+			DLog(@"getting (in any case) avatar for %@ from %@", theOne.screen_name, theOne.avatar_url);
+			ASIHTTPRequest *netRequest = [ASIHTTPRequest requestWithURL:url];
+			[netRequest startSynchronous];
+			error = [netRequest error];
+			if (!error) {
+				theOne.avatar = [netRequest responseData];
+			}		
+			else {
+				ALog(@"Error %@ in getting %@", [error localizedDescription], theOne.avatar_url);
+			}
+		}
+	}
+	[request release];
+	
+	if([self.managedObjectContext hasChanges])
+	{
+		NSError *error;
+		if (![self.managedObjectContext save:&error])
+		{
+			ALog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					ALog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				ALog(@"  %@", [error userInfo]);
+		}	
+		DLog(@"saved %@", userScreenName);
+	}
+	else {
+		DLog(@"No needs to save %@", userScreenName);
+	}
+}
+
+
 -(void)getBackToDelegateAfterUpdateAvatars:(id)theDelegate
 {
 	ALog(@"in getBackToDelegateAfterUpdateAvatars:");
@@ -856,6 +910,24 @@ static Meemi *sharedSession = nil;
 		[newUsersQueue release];
 		newUsersQueue = nil;
 	}
+}
+
+-(void)loadAvatar:(NSString *)screen_name
+{
+	[theQueue setMaxConcurrentOperationCount:1];
+	DLog(@"Loading NSOperationQueue in loadAvatar");
+	[self nowBusy];
+	// load the requested avatar...
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
+																		 selector:@selector(getAvatarImage:) 
+																		   object:screen_name] autorelease];
+	[theQueue addOperation:theOp];
+	// ...then get back to the delegate...
+	theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
+												  selector:@selector(getBackToDelegateAfterUpdateAvatars:) 
+													object:self.delegate] autorelease];
+	[theQueue addOperation:theOp];
 }
 
 -(void)getUser:(NSString *)withName
@@ -1032,7 +1104,42 @@ static Meemi *sharedSession = nil;
 		}
 	}
 	[request release];
-}	
+}
+
+-(void)markThreadRead:(NSNumber *)memeID
+{
+	NSAssert(self.isValid, @"markNewMemesRead: called without valid session");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for all the new ones.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reply_id == %@ AND (new_meme == %@ OR new_replies == %@)", 
+							  memeID, [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+	[request setPredicate:predicate];
+	NSError *error;
+	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+	ALog(@"Got %d new replies to mark read", [fetchResults count]);
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		for(Meme *theOne in fetchResults)
+		{
+			theOne.new_meme = [NSNumber numberWithBool:NO];
+			theOne.new_replies = [NSNumber numberWithBool:NO];
+		}
+	}	
+	[request release];
+	// now commit.
+	if (![self.managedObjectContext save:&error])
+	{
+		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		if(detailedErrors != nil && [detailedErrors count] > 0) 
+			for(NSError* detailedError in detailedErrors) 
+				DLog(@"  DetailedError: %@", [detailedError userInfo]);
+		else 
+			DLog(@"  %@", [error userInfo]);
+	}	
+}
 
 -(void)markNewMemesRead
 {

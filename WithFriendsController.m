@@ -27,15 +27,15 @@
 -(void)meemiIsBusy:(NSNotification *)note
 {
 	DLog(@"meemiIsBusy: dimming navButtons");
-	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = NO;
+	self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 -(void)meemiIsFree:(NSNotification *)note
 {
 	DLog(@"meemiIsFree: enabling navButtons");
-	self.navigationItem.rightBarButtonItem.enabled = self.navigationItem.leftBarButtonItem.enabled = YES;
+	self.navigationItem.leftBarButtonItem.enabled = YES;
 	// While we are at it, probably the session could have read something. :)
-	[self.tableView reloadData];
+//	[self.tableView reloadData];
 }
 
 -(IBAction)avatarTouched:(id)sender
@@ -187,8 +187,8 @@
 	// If returning from "get new replies", get avatars if needed.
 	if(request == MMGetNewReplies)
 		[[Meemi sharedSession] updateAvatars];
-	else // It's OK, update...
-		[self.tableView reloadData];
+//	else // It's OK, update...
+//		[self.tableView reloadData];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -356,7 +356,12 @@
 		theMemeList.delegate = nil;
 		[theMemeList release];
 		theMemeList = nil;
+		// and mark the thread read...
+		[[Meemi sharedSession] markThreadRead:self.replyTo];
 	}
+	// It happens that we don't need any callback from Meemi anymore.
+	if([Meemi sharedSession].delegate == self)
+		[Meemi sharedSession].delegate = nil;
 }
 
 /*

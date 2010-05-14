@@ -49,7 +49,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC45MDk4MDM5ODY1IDAuODM1Mjk0MTg3MSAwLjUwMTk2MDgxNAA</bytes>
+							<bytes key="NSRGB">MSAwLjk5Mjg2MjU2NTkgMC45NzQ0NTI1NTQ3AA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -90,8 +90,8 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC4wMTU2ODYyNzU0NCAwLjQ1NDkwMTk5MzMgMC42MDM5MjE1OTIyAA</bytes>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -213,8 +213,8 @@ bS9oZXI</string>
 				<string key="NSFrameSize">{320, 372}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC45NDExNzY1MzM3IDAuOTQxMTc2NTMzNyAwLjU2MDc4NDMzOTkAA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC45MjMzNTc2NjQyIDAuOTIzMzU3NjY0MiAwLjgzNTc2NjQyMzQAA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
