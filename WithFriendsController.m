@@ -307,7 +307,7 @@
 	self.navigationItem.rightBarButtonItem = replyButton;
 	[replyButton release];
 	
-	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
 	 
 	self.searchString = @"";
 	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -430,7 +430,13 @@
 	// This is 172/209/245 the Meemi "formal" background
 //	cell.contentView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 //	cell.accessoryView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
-    Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
+	// Cell background
+//	UIImage *theOriginalCellBackground = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CellBackground" ofType:@"png"]];
+//	UIImage *cellBackground = [theOriginalCellBackground stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+//	UIImageView *tempView = (UIImageView *)[cell viewWithTag:25];
+//	tempView.image = cellBackground;
+    
+	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
     UILabel *tempLabel;
     tempLabel = (UILabel *)[cell viewWithTag:1];
     tempLabel.text = theFetchedMeme.screen_name;
