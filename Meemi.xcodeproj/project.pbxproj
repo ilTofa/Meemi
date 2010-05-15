@@ -16,6 +16,10 @@
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
+		C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */; };
+		C00ACDB6119F301B002C5CC0 /* BlackFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */; };
+		C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */; };
+		C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
 		C02C6B781185E81A007AF8BE /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = C02C6B771185E81A007AF8BE /* chat.png */; };
 		C02C6B7A1185E86D007AF8BE /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C02C6B791185E86D007AF8BE /* flag.png */; };
@@ -92,6 +96,10 @@
 		64876D631173659600F09B92 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		64876D641173659600F09B92 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockForSegmented.png; sourceTree = "<group>"; };
+		C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackFlagForSegmented.png; sourceTree = "<group>"; };
+		C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteFlagForSegmented.png; sourceTree = "<group>"; };
+		C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeForSegmented.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
 		C02C6B771185E81A007AF8BE /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
@@ -302,6 +310,10 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */,
+				C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */,
+				C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */,
+				C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */,
 				C047D42A119E8D8F00694A99 /* CellBackground.png */,
 				6467C6BC11907D3D00F86F0E /* star.png */,
 				C08DE7541188A1C00052237F /* icon-lock2.png */,
@@ -439,6 +451,10 @@
 				C08DE7551188A1C00052237F /* icon-lock2.png in Resources */,
 				6467C6BD11907D3D00F86F0E /* star.png in Resources */,
 				C047D42B119E8D8F00694A99 /* CellBackground.png in Resources */,
+				C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */,
+				C00ACDB6119F301B002C5CC0 /* BlackFlagForSegmented.png in Resources */,
+				C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */,
+				C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

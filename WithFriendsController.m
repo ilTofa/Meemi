@@ -274,7 +274,12 @@
 																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
 																 action:@selector(markReadMemes)];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		NSArray *tempStrings = [NSArray arrayWithObjects:@"All", @"New", @"Chg", @"Pvt", @"★", nil];
+		NSArray *tempStrings = [NSArray arrayWithObjects:
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlagForSegmented" ofType:@"png"]],
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlagForSegmented" ofType:@"png"]],
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LockForSegmented" ofType:@"png"]],
+								@"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
 		theSegment.tintColor = [UIColor lightGrayColor];
@@ -482,19 +487,19 @@
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
-	// Hide the "new" flags if meme is not new...
+	// Hide the "new" and "special" flags if meme is not new...
 	if([theFetchedMeme.new_meme boolValue])
-		((UIImageView *)[cell viewWithTag:8]).hidden = NO;
+		((UILabel *)[cell viewWithTag:8]).hidden = NO;
 	else
-		((UIImageView *)[cell viewWithTag:8]).hidden = YES;
+		((UILabel *)[cell viewWithTag:8]).hidden = YES;
 	if([theFetchedMeme.new_replies boolValue])
-		((UIImageView *)[cell viewWithTag:9]).hidden = NO;
+		((UILabel *)[cell viewWithTag:9]).hidden = NO;
 	else
-		((UIImageView *)[cell viewWithTag:9]).hidden = YES;
+		((UILabel *)[cell viewWithTag:9]).hidden = YES;
 	if([theFetchedMeme.special boolValue])
-		((UIImageView *)[cell viewWithTag:11]).hidden = NO;
+		((UILabel *)[cell viewWithTag:11]).hidden = NO;
 	else
-		((UIImageView *)[cell viewWithTag:11]).hidden = YES;
+		((UILabel *)[cell viewWithTag:11]).hidden = YES;
 	// "Private" memes
 	if([theFetchedMeme.private_meme boolValue])
 	{
