@@ -556,6 +556,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	// if we are at a meme list level, just push another controller, same kind of this one. :)
 	if(self.replyTo == nil)
