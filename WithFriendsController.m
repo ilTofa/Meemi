@@ -308,7 +308,7 @@
 	[replyButton release];
 	
 	self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-	 
+		 
 	self.searchString = @"";
 	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
 
