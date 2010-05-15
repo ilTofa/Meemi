@@ -1202,8 +1202,8 @@ static Meemi *sharedSession = nil;
 		NSString *temp = [NSString stringWithFormat:@"%@", replyID];
 		[request setPostValue:temp forKey:@"reply_meme_id"];
 	}
-	if(!canBeLocalized)
-		[request setPostValue:@"An unknown place, with an iPhone App still to be announced" forKey:@"location"];
+	if(!canBeLocalized) 
+		[request setPostValue:NSLocalizedString(@"An unknown place", @"") forKey:@"location"];
 	else
 		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
 	[request setPostValue:withDescription forKey:@"text_content"];
