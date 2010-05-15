@@ -57,7 +57,7 @@
 			[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 			birthday = [dateFormatter stringFromDate:theUser.birth];
 			[dateFormatter release];			
-			info.text = [NSString stringWithFormat:@"Born %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@",
+			info.text = [NSString stringWithFormat:@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@",
 						 birthday,
 						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],
 						 [theUser.follow_you boolValue] ? @"He/She follows you" : @"He/she don't follow you",
@@ -141,7 +141,7 @@
 	NSArray *tempStrings = [NSArray arrayWithObjects:@"Info", @"Profile", @"Extra", nil];
 	self.theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 	self.theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-	//		theSegment.tintColor = [UIColor darkGrayColor];
+	theSegment.tintColor = [UIColor lightGrayColor];
 	self.theSegment.momentary = NO;
 	self.theSegment.selectedSegmentIndex = 0;
 	for (int i = 0; i < 3; i++)

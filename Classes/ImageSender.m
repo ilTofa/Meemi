@@ -194,7 +194,6 @@
 													  otherButtonTitles:@"Library", nil]
 								   autorelease];
 		[chooseIt showInView:self.view];
-//		[chooseIt showFromTabBar:(UITabBar *)[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController view]];
 	}
 	else 
 	{

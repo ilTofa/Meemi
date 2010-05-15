@@ -1118,7 +1118,7 @@ static Meemi *sharedSession = nil;
 	[request setPredicate:predicate];
 	NSError *error;
 	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
-	ALog(@"Got %d new replies to mark read", [fetchResults count]);
+	DLog(@"Got %d new replies to mark read", [fetchResults count]);
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		for(Meme *theOne in fetchResults)

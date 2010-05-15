@@ -113,9 +113,9 @@
 							<double key="NSSize">18</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor">
+						<object class="NSColor" key="IBUITextColor" id="946737058">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC4yMjc0NTA5OTY2IDAuNjAwMDAwMDIzOCAwLjYxNTY4NjI5NzQAA</bytes>
+							<bytes key="NSRGB">MC4xODgyMzUzMTI3IDAuNDg2Mjc0NTQwNCAwLjc0OTAxOTYyMjgAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -139,7 +139,7 @@
 						</object>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC4yMjc0NTA5OTY2IDAuNjAwMDAwMDIzOCAwLjYxNTY4NjI5NzQAA</bytes>
+							<bytes key="NSRGB">MC4yOTQxMTc2NTkzIDAuNTM3MjU0OTI5NSAwLjc0OTAxOTYyMjgAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -162,10 +162,7 @@
 						<bool key="IBUIEditable">NO</bool>
 						<string type="base64-UTF8" key="IBUIText">Rm9sbG93czogMjMzCkZvbGxvd2VkOiAxOTcKCkhlL1NoZSBmb2xsb3dzIHlvdQpZb3UgZm9sbG93IGhp
 bS9oZXI</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC4yMjc0NTA5OTY2IDAuNjAwMDAwMDIzOCAwLjYxNTY4NjI5NzQAA</bytes>
-						</object>
+						<reference key="IBUITextColor" ref="946737058"/>
 						<reference key="IBUIFont" ref="108794468"/>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -213,8 +210,8 @@ bS9oZXI</string>
 				<string key="NSFrameSize">{320, 372}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC45MjMzNTc2NjQyIDAuOTIzMzU3NjY0MiAwLjgzNTc2NjQyMzQAA</bytes>
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MC45NQA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
@@ -394,7 +391,7 @@ bS9oZXI</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UserProfile</string>
 					<string>UIResponder</string>
-					<string>{{545, 214}, {320, 480}}</string>
+					<string>{{385, 214}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

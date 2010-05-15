@@ -449,7 +449,7 @@
     tempLabel = (UILabel *)[cell viewWithTag:5];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[NSLocale currentLocale]];
-	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
 	[dateFormatter release];
@@ -461,11 +461,19 @@
 	[tempButton setTitle:indexinController forState:UIControlStateNormal];
 	[tempButton addTarget:self action:@selector(avatarTouched:) forControlEvents:UIControlEventTouchUpInside];
 	
+	// Reply and disclosure
 	tempLabel = (UILabel *)[cell viewWithTag:4];
-	tempLabel.text = [NSString stringWithFormat:@"%@", theFetchedMeme.qta_replies];
-	// Hid the reply quantity number if it is a thread view (no reply for sure)
-	tempLabel.hidden = (self.replyTo != nil);
-	
+	if([theFetchedMeme.qta_replies intValue] == 0 || self.replyTo != nil)
+	{
+		// Hide also disclosure sign if simple text
+		if([theFetchedMeme.meme_type isEqualToString:@"text"])
+			tempLabel.text = @"";
+		else
+			tempLabel.text = @">";
+	}
+	else
+		tempLabel.text = [NSString stringWithFormat:@"%@ >", theFetchedMeme.qta_replies];
+
 	// things that depend on the kind of meme
 	
 	// This is the calculated size of "content"
@@ -513,7 +521,6 @@
 		tempLabel = (UILabel *)[cell viewWithTag:2];
 		tempLabel.text = theFetchedMeme.user.real_name;
 	}
-	
     return cell;
 }
 
@@ -559,8 +566,10 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
-	// if we are at a meme list level, just push another controller, same kind of this one. :)
-	if(self.replyTo == nil)
+		
+	// if we are at a meme list level, AND there are replies...
+	// just push another controller, same kind of this one. :)
+	if(self.replyTo == nil && [selectedMeme.qta_replies intValue] != 0)
 	{
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
@@ -569,7 +578,7 @@
 		[controller release];
 		controller = nil;
 	}
-	else // This is a reply thread list
+	else // This is a reply thread list OR a meme without replies (show directly if needed or do nothing if text)
 	{
 		// If meme is a link, simply push a browser Windows on it.
 		if([selectedMeme.meme_type isEqualToString:@"link"])
