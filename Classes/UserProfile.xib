@@ -206,6 +206,25 @@ bS9oZXI</string>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="219338782"/>
 					</object>
+					<object class="IBUIButton" id="1032981456">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{85, 277}, {150, 37}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="1032819256"/>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Send a Meme</string>
+						<reference key="IBUIHighlightedTitleColor" ref="709090242"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="219338782"/>
+					</object>
 				</object>
 				<string key="NSFrameSize">{320, 372}</string>
 				<reference key="NSSuperview"/>
@@ -298,6 +317,23 @@ bS9oZXI</string>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">sendPrivateMeme:</string>
+						<reference key="source" ref="1032981456"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">39</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">messageButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1032981456"/>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -320,6 +356,7 @@ bS9oZXI</string>
 							<reference ref="432247571"/>
 							<reference ref="306735666"/>
 							<reference ref="765331467"/>
+							<reference ref="1032981456"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -369,6 +406,11 @@ bS9oZXI</string>
 						<reference key="object" ref="432247571"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">38</int>
+						<reference key="object" ref="1032981456"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -384,6 +426,7 @@ bS9oZXI</string>
 					<string>31.IBPluginDependency</string>
 					<string>32.IBPluginDependency</string>
 					<string>35.IBPluginDependency</string>
+					<string>38.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 				</object>
@@ -391,7 +434,8 @@ bS9oZXI</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UserProfile</string>
 					<string>UIResponder</string>
-					<string>{{385, 214}, {320, 480}}</string>
+					<string>{{685, 293}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -418,7 +462,7 @@ bS9oZXI</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">40</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -433,9 +477,11 @@ bS9oZXI</string>
 							<string>followUnfollow:</string>
 							<string>infoSwapped</string>
 							<string>loadAvatar:</string>
+							<string>sendPrivateMeme:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -448,6 +494,7 @@ bS9oZXI</string>
 							<string>followUnfollow:</string>
 							<string>infoSwapped</string>
 							<string>loadAvatar:</string>
+							<string>sendPrivateMeme:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -463,6 +510,10 @@ bS9oZXI</string>
 								<string key="name">loadAvatar:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">sendPrivateMeme:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -473,6 +524,7 @@ bS9oZXI</string>
 							<string>followButton</string>
 							<string>info</string>
 							<string>location</string>
+							<string>messageButton</string>
 							<string>realName</string>
 							<string>screenName</string>
 							<string>theAvatar</string>
@@ -484,6 +536,7 @@ bS9oZXI</string>
 							<string>UIButton</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
@@ -498,6 +551,7 @@ bS9oZXI</string>
 							<string>followButton</string>
 							<string>info</string>
 							<string>location</string>
+							<string>messageButton</string>
 							<string>realName</string>
 							<string>screenName</string>
 							<string>theAvatar</string>
@@ -520,6 +574,10 @@ bS9oZXI</string>
 							<object class="IBToOneOutletInfo">
 								<string key="name">location</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">messageButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">realName</string>

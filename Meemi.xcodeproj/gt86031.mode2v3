@@ -289,11 +289,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>C01F5D7C11A0440200737D8B</string>
+						<string>C0DB6FB311A04B0B0057B627</string>
 						<key>history</key>
 						<array>
 							<string>C051895211A02CA600BA6F52</string>
-							<string>C003CB6F11A03BFC008AC4B1</string>
+							<string>C01F5D7C11A0440200737D8B</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -316,6 +316,47 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
+				<string>C0DB6F8311A047840057B627</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>UserProfile.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>C0DB6F8411A047840057B627</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>UserProfile.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>C0DB6FB411A04B0B0057B627</string>
+						<key>history</key>
+						<array>
+							<string>C0DB6F9111A047EA0057B627</string>
+							<string>C0DB6F9211A047EA0057B627</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {1191, 1015}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>236 122 1191 1056 0 0 1920 1178 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
 				<string>C0263117119F678F00D229D7</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>Meemi.m</string>
@@ -330,10 +371,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>C01F5D7D11A0440200737D8B</string>
+						<string>C0DB6FB511A04B0B0057B627</string>
 						<key>history</key>
 						<array>
-							<string>C003CB7011A03BFC008AC4B1</string>
+							<string>C0DB6F6E11A046290057B627</string>
+							<string>C0DB6F6F11A046290057B627</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -428,7 +470,7 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>51</integer>
+											<integer>49</integer>
 											<integer>38</integer>
 											<integer>0</integer>
 										</array>
@@ -596,8 +638,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>C01F5D7411A0437C00737D8B</string>
-				<string>C01F5D7511A0437C00737D8B</string>
+				<string>C0DB6F6011A044ED0057B627</string>
+				<string>C0DB6F6111A044ED0057B627</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -617,7 +659,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>295715842.95114702</real>
+	<real>295717643.90359598</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -634,9 +676,14 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>C0DB6FA511A048A40057B627</string>
+		<string>C0DB6F9D11A047EA0057B627</string>
+		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>C0263117119F678F00D229D7</string>
 		<string>/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi.xcodeproj</string>
+		<string>C0DB6F8311A047840057B627</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>C0D745191198BD0F008388BF</string>
 	</array>
 	<key>WindowString</key>
@@ -798,7 +845,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>UserProfile.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -815,6 +862,8 @@
 							<string>251pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -854,7 +903,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>C01F5D7811A0437C00737D8B</string>
+				<string>C0DB6F6411A044ED0057B627</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -976,13 +1025,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>C003CB6211A03BD6008AC4B1</string>
+				<string>C0DB6F9611A047EA0057B627</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>C003CB6311A03BD6008AC4B1</string>
-				<string>C003CB6411A03BD6008AC4B1</string>
-				<string>C003CB6511A03BD6008AC4B1</string>
-				<string>C003CB6611A03BD6008AC4B1</string>
-				<string>C003CB6711A03BD6008AC4B1</string>
+				<string>C0DB6F9711A047EA0057B627</string>
+				<string>C0DB6F9811A047EA0057B627</string>
+				<string>C0DB6F9911A047EA0057B627</string>
+				<string>C0DB6F9A11A047EA0057B627</string>
+				<string>C0DB6F9B11A047EA0057B627</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1101,6 +1150,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1136,7 +1187,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>C003CB6C11A03BE0008AC4B1</string>
+				<string>C0DB6F9011A047E90057B627</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1146,7 +1197,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D5B069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

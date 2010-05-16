@@ -29,6 +29,7 @@
 -(void)meemiIsBusy:(NSNotification *)note
 {
 	DLog(@"meemiIsBusy:");
+	self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 	self.headerLabel.text = NSLocalizedString(@"Reloading...", @"");
 	self.headerArrow.text = @" ";
 	[self.laRuota startAnimating];
@@ -37,6 +38,10 @@
 -(void)meemiIsFree:(NSNotification *)note
 {
 	DLog(@"meemiIsFree:");
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+	[UIView commitAnimations];	
 	[self.laRuota stopAnimating];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
@@ -265,16 +270,15 @@
 {
     [super viewDidLoad];
 
+	// Setup the "reload" view
+	[[NSBundle mainBundle] loadNibNamed:@"headerView" owner:self options:nil];
+	self.headerView.frame = CGRectMake(0.0f, -65.0f, 320.0f, 65.0f);
+	self.headerView.hidden = NO;
+	[self.view addSubview:self.headerView];
+	DLog(@"nib loaded. headerView is now: %@", self.headerView);
+	
 	if(self.replyTo == nil)
 	{
-		// "reload" view
-		[[NSBundle mainBundle] loadNibNamed:@"headerView" owner:self options:nil];
-		self.headerView.frame = CGRectMake(0.0f, -65.0f, 320.0f, 65.0f);
-		self.headerView.hidden = NO;
-		[self.view addSubview:self.headerView];
-		
-		NSLog(@"nib loaded. headerView is now: %@", self.headerView);
-		
 		// Add a left button for reloading the meme list
 		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
 																		 style:UIBarButtonItemStylePlain 
@@ -728,6 +732,10 @@
 		self.headerLabel.text = NSLocalizedString(@"Reloading...", @"");
 		self.headerArrow.text = @" ";
 		[self.laRuota startAnimating];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.2];
+		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+		[UIView commitAnimations];			
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 	}
 }

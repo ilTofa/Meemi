@@ -11,7 +11,7 @@
 
 @implementation UserProfile
 
-@synthesize theAvatar, screenName, realName, birth, location, info, theSegment, followButton;
+@synthesize theAvatar, screenName, realName, birth, location, info, theSegment, followButton, messageButton;
 @synthesize theUser;
 
 /*
@@ -33,6 +33,11 @@
 	controller = nil;	
 }
 
+-(IBAction)sendPrivateMeme:(id)sender
+{
+	DLog(@"Send a private meme to: %@", self.screenName.text);
+}
+
 -(IBAction)infoSwapped
 {
 	NSDateFormatter *dateFormatter;
@@ -42,12 +47,12 @@
 		case 0:
 			info.text = theUser.info;
 			info.textAlignment = UITextAlignmentLeft;
-			followButton.hidden = YES;
+			followButton.hidden = messageButton.hidden = YES;
 			break;
 		case 1:
 			info.text = theUser.profile;
 			info.textAlignment = UITextAlignmentLeft;
-			followButton.hidden = YES;
+			followButton.hidden = messageButton.hidden = YES;
 			break;
 		default:
 			// dates...
@@ -65,6 +70,7 @@
 			info.textAlignment = UITextAlignmentCenter;
 			followButton.hidden = NO;
 			[followButton setTitle:[theUser.you_follow boolValue] ? @"Unfollow" : @"Follow" forState:UIControlStateNormal];
+			messageButton.hidden = NO;
 			break;
 	}
 }

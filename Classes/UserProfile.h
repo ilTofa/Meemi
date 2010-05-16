@@ -18,6 +18,7 @@
 	UITextView *info;
 	UISegmentedControl *theSegment;
 	UIButton *followButton;
+	UIButton *messageButton;
 }
 
 @property (nonatomic, retain) User *theUser;
@@ -29,9 +30,11 @@
 @property (nonatomic, retain) IBOutlet UITextView *info;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *theSegment;
 @property (nonatomic, retain) IBOutlet UIButton *followButton;
+@property (nonatomic, retain) IBOutlet UIButton *messageButton;
 
 -(IBAction)infoSwapped;
 -(IBAction)followUnfollow:(id)sender;
 -(IBAction)loadAvatar:(id)sender;
+-(IBAction)sendPrivateMeme:(id)sender;
 
 @end

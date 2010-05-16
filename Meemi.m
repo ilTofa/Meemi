@@ -1177,7 +1177,7 @@ static Meemi *sharedSession = nil;
 }
 
 -(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever 
-			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID
+			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID privateTo:(NSString *)privateTo
 {
 	// accomodate different URLs for save and reply actions
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api/%@/%@", self.screenName,
@@ -1202,6 +1202,10 @@ static Meemi *sharedSession = nil;
 		NSString *temp = [NSString stringWithFormat:@"%@", replyID];
 		[request setPostValue:temp forKey:@"reply_meme_id"];
 	}
+	// If this is a private meme
+	if(privateTo != nil)
+		[request setPostValue:privateTo forKey:@"private_sn"];
+	// Localization
 	if(!canBeLocalized) 
 		[request setPostValue:NSLocalizedString(@"An unknown place", @"") forKey:@"location"];
 	else
@@ -1219,7 +1223,7 @@ static Meemi *sharedSession = nil;
 	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostImage;
-	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:nil replyNo:nil];
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:nil replyNo:nil privateTo:nil];
 }
 
 -(void)postImageAsReply:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized 
@@ -1229,7 +1233,7 @@ static Meemi *sharedSession = nil;
 	NSAssert(self.isValid, @"postImageAsReply:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostImage;
-	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:replyScreenName replyNo:replyID];
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:replyScreenName replyNo:replyID privateTo:nil];
 }
 
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized
@@ -1238,7 +1242,7 @@ static Meemi *sharedSession = nil;
 	NSAssert(self.isValid, @"postTextAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
-	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:nil replyNo:nil];
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:nil replyNo:nil privateTo:nil];
 }
 
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized 
@@ -1248,7 +1252,16 @@ static Meemi *sharedSession = nil;
 	NSAssert(self.isValid, @"postTextAsReply:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
-	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:replyScreenName replyNo:replyID];
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:replyScreenName replyNo:replyID privateTo:nil];
+}
+
+-(void)postTextAsPrivateMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized privateTo:(NSString *)privateTo
+{
+	// Sanity checks
+	NSAssert(self.isValid, @"postTextAsPrivateMeme: called without valid session");
+	// Set current request type
+	self.currentRequest = MmRPostText;
+	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:nil replyNo:nil privateTo:privateTo];
 }
 
 #pragma mark CLLocationManagerDelegate and its delegate
