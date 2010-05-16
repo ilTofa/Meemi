@@ -433,7 +433,7 @@
     return [sectionInfo numberOfObjects];
 }
 
-#define kTextWidth 263.0f
+#define kTextWidth 271.0f
 #define kHeigthBesideText 85.0f
 
 // Customize the appearance of table view cells.
@@ -449,14 +449,6 @@
         self.memeCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-	// This is 172/209/245 the Meemi "formal" background
-//	cell.contentView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
-//	cell.accessoryView.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
-	// Cell background
-//	UIImage *theOriginalCellBackground = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CellBackground" ofType:@"png"]];
-//	UIImage *cellBackground = [theOriginalCellBackground stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-//	UIImageView *tempView = (UIImageView *)[cell viewWithTag:25];
-//	tempView.image = cellBackground;
     
 	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
     UILabel *tempLabel;

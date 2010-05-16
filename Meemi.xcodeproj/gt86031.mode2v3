@@ -289,11 +289,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>C003CB6F11A03BFC008AC4B1</string>
+						<string>C01F5D7C11A0440200737D8B</string>
 						<key>history</key>
 						<array>
 							<string>C051895211A02CA600BA6F52</string>
-							<string>C05189DB11A03BA900BA6F52</string>
+							<string>C003CB6F11A03BFC008AC4B1</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -330,10 +330,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>C003CB7011A03BFC008AC4B1</string>
+						<string>C01F5D7D11A0440200737D8B</string>
 						<key>history</key>
 						<array>
-							<string>C05189DC11A03BA900BA6F52</string>
+							<string>C003CB7011A03BFC008AC4B1</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -428,7 +428,7 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>40</integer>
+											<integer>51</integer>
 											<integer>38</integer>
 											<integer>0</integer>
 										</array>
@@ -596,8 +596,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>C003CB6D11A03BFC008AC4B1</string>
-				<string>C003CB6E11A03BFC008AC4B1</string>
+				<string>C01F5D7411A0437C00737D8B</string>
+				<string>C01F5D7511A0437C00737D8B</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -617,7 +617,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>295713788.977759</real>
+	<real>295715842.95114702</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -634,10 +634,6 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>C003CB7111A03BFC008AC4B1</string>
-		<string>C003CB7211A03BFC008AC4B1</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>C0263117119F678F00D229D7</string>
 		<string>/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi.xcodeproj</string>
@@ -858,7 +854,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>C003CB6111A03BD6008AC4B1</string>
+				<string>C01F5D7811A0437C00737D8B</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
