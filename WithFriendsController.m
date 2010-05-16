@@ -567,9 +567,9 @@
 
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 		
-	// if we are at a meme list level, AND there are replies...
+	// if we are at a meme list level (we need it for reply), OR there are replies...
 	// just push another controller, same kind of this one. :)
-	if(self.replyTo == nil && [selectedMeme.qta_replies intValue] != 0)
+	if(self.replyTo == nil || [selectedMeme.qta_replies intValue] != 0)
 	{
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
