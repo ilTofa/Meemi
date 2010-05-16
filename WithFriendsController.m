@@ -282,7 +282,8 @@
 								@"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-		theSegment.tintColor = [UIColor lightGrayColor];
+		// That's 48, 124, 191 "meemi scuro"
+		theSegment.tintColor = [UIColor colorWithRed:0.18824 green:0.48627 blue:0.74902 alpha:1.0];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 5; i++)
