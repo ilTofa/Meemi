@@ -146,12 +146,12 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
-	NSLog(@"(MeemiRequest)request didFailWithError:");
+	DLog(@"(MeemiRequest)request didFailWithError:");
 }
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
-	NSLog(@"(MeemiRequest)request didFinishWithResult:");
+	DLog(@"(MeemiRequest)request didFinishWithResult:");
 	switch (request) 
 	{
 		// Flow through newMemes, newPrivateMemes and newPrivateMemesSent
@@ -159,12 +159,12 @@ void uncaughtExceptionHandler(NSException *exception)
 			// Continue to read new memes if result != 0
 			if(result)
 			{
-				NSLog(@"Still records to be read, continuing");
+				DLog(@"Still records to be read, continuing");
 				[[Meemi sharedSession] getNewMemes:NO];
 			}
 			else
 			{
-				NSLog(@"No other records to read or max number reached, now get private memes...");
+				DLog(@"No other records to read or max number reached, now get private memes...");
 				// Now get newUsers into db.
 				[[Meemi sharedSession] getNewPrivateMemes:YES];
 			}
@@ -173,12 +173,12 @@ void uncaughtExceptionHandler(NSException *exception)
 			// Continue to read new memes if result != 0
 			if(result)
 			{
-				NSLog(@"Still records to be read, continuing");
+				DLog(@"Still records to be read, continuing");
 				[[Meemi sharedSession] getNewPrivateMemes:NO];
 			}
 			else
 			{
-				NSLog(@"No other pvt records to read or max number reached, now get private sent memes...");
+				DLog(@"No other pvt records to read or max number reached, now get private sent memes...");
 				// Now get newUsers into db.
 				[[Meemi sharedSession] getNewPrivateMemesSent:YES];
 			}
@@ -187,21 +187,21 @@ void uncaughtExceptionHandler(NSException *exception)
 			// Continue to read new memes if result != 0
 			if(result)
 			{
-				NSLog(@"Still records to be read, continuing");
+				DLog(@"Still records to be read, continuing");
 				[[Meemi sharedSession] getNewPrivateMemesSent:NO];
 			}
 			else
 			{
-				NSLog(@"No other records to read or max number reached, now get users...");
+				DLog(@"No other records to read or max number reached, now get users...");
 				// Now get newUsers into db.
 				[[Meemi sharedSession] updateAvatars];
 			}
 			break;
 		case MmMarkNewRead:
-			NSLog(@"New memes marked read.");
+			DLog(@"New memes marked read.");
 			break;
 		case MmGetNewUsers:
-			NSLog(@"New users and avatars updated");
+			DLog(@"New users and avatars updated");
 			break;
 		default:
 			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in MeemiAppDelegate.m called with unknow request");

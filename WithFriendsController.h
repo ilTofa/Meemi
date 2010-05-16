@@ -32,12 +32,23 @@ typedef enum {
 	NSString *replyScreenName;
 	// Current position, for reloading. :)
 	NSIndexPath *currentPosition;
+	// Scrolling
+	BOOL checkForRefresh;
+	BOOL enoughDragging;
+	UIView *headerView;
+	UILabel *headerLabel;
+	UILabel *headerArrow;
+	UIActivityIndicatorView *laRuota;
 }
 
 -(IBAction)filterSelected;
 -(IBAction)avatarTouched:(id)sender;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
+@property (nonatomic, assign) IBOutlet UIView *headerView;
+@property (nonatomic, retain) IBOutlet UILabel *headerLabel;
+@property (nonatomic, retain) IBOutlet UILabel *headerArrow;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laRuota;
 @property (nonatomic, retain) NSString *predicateString;
 @property (nonatomic, retain) NSString *searchString;
 @property (nonatomic, retain) NSNumber *replyTo;

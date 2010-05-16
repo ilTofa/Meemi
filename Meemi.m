@@ -332,14 +332,14 @@ static Meemi *sharedSession = nil;
 			currentMemeIsNew = ![self isMemeAlreadyExisting:newMemeID];
 			if(currentMemeIsNew)
 			{
-				ALog(@"*** got a new meme");
+				DLog(@"*** got a new meme");
 				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
 				theMeme.id = newMemeID;
 				theMeme.new_meme = [NSNumber numberWithBool:YES];
 			}
 			else
 			{
-				ALog(@"*** Got an already read meme: %@", newMemeID);
+				DLog(@"*** Got an already read meme: %@", newMemeID);
 			}
 		}
 		// Other new memes things, only if the meme is new
@@ -464,7 +464,7 @@ static Meemi *sharedSession = nil;
 			if([theMeme.qta_replies compare:[NSNumber numberWithLongLong:[currentStringValue longLongValue]]] == NSOrderedAscending)
 			{
 				theMeme.new_replies = [NSNumber numberWithBool:YES];
-				ALog(@"### The meme have %d new reply(es).", [currentStringValue intValue] - [theMeme.qta_replies intValue]);
+				DLog(@"### The meme have %d new reply(es).", [currentStringValue intValue] - [theMeme.qta_replies intValue]);
 			}
 			theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 		}
@@ -505,7 +505,7 @@ static Meemi *sharedSession = nil;
 				}
 			}
 			// DEBUG: what we read
-			ALog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersQueue);
+			DLog(@"Read %d records from page %d\nNew users: %@", howMany, newMemesPageWatermark, newUsersQueue);
 			// return to delegate 1 if we should continue, 0 if we should stop here.
 			int retValue;
 			if(howManyRequestTotal >= self.memeNumber ||
@@ -879,7 +879,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getBackToDelegateAfterUpdateAvatars:(id)theDelegate
 {
-	ALog(@"in getBackToDelegateAfterUpdateAvatars:");
+	DLog(@"in getBackToDelegateAfterUpdateAvatars:");
 	[self nowFree];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[(id<MeemiDelegate>)theDelegate meemi:MmGetNewUsers didFinishWithResult:0];

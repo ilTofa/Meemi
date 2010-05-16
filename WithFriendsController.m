@@ -16,6 +16,7 @@
 @implementation WithFriendsController
 
 @synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
+@synthesize headerView, headerLabel, headerArrow, laRuota;
 
 -(void)deviceShaken:(NSNotification *)note
 {
@@ -28,11 +29,17 @@
 -(void)meemiIsBusy:(NSNotification *)note
 {
 	DLog(@"meemiIsBusy:");
+	self.headerLabel.text = NSLocalizedString(@"Reloading...", @"");
+	self.headerArrow.text = @" ";
+	[self.laRuota startAnimating];
 }
 
 -(void)meemiIsFree:(NSNotification *)note
 {
 	DLog(@"meemiIsFree:");
+	[self.laRuota stopAnimating];
+	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
+	self.headerArrow.text = @"☟";
 }
 
 -(void)settingsView
@@ -260,6 +267,14 @@
 
 	if(self.replyTo == nil)
 	{
+		// "reload" view
+		[[NSBundle mainBundle] loadNibNamed:@"headerView" owner:self options:nil];
+		self.headerView.frame = CGRectMake(0.0f, -65.0f, 320.0f, 65.0f);
+		self.headerView.hidden = NO;
+		[self.view addSubview:self.headerView];
+		
+		NSLog(@"nib loaded. headerView is now: %@", self.headerView);
+		
 		// Add a left button for reloading the meme list
 		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
 																		 style:UIBarButtonItemStylePlain 
@@ -282,8 +297,8 @@
 								@"★", nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-		// That's 48, 124, 191 "meemi scuro"
-		theSegment.tintColor = [UIColor colorWithRed:0.18824 green:0.48627 blue:0.74902 alpha:1.0];
+		// That's 138, 176, 218 "meemi chiaro"
+		theSegment.tintColor = [UIColor colorWithRed:0.54118 green:0.6902 blue:0.8549 alpha:1.0];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 5; i++)
@@ -670,6 +685,60 @@
     return YES;
 }
 */
+
+#pragma mark Scrolling Overrides
+
+
+// Labels: ☝☟
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	if([self.laRuota isAnimating])
+		checkForRefresh = NO;
+	else
+	{
+		checkForRefresh = YES;  //  only check offset when dragging
+		enoughDragging = NO;
+	}
+} 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (checkForRefresh) 
+	{
+		if(scrollView.contentOffset.y >= 0.0f)
+			return;
+
+		if(!enoughDragging && scrollView.contentOffset.y < -65.0f)
+		{
+			self.headerLabel.text = NSLocalizedString(@"Release to Reload", @"");
+			self.headerArrow.text = @"☝";
+			enoughDragging = YES;
+		}
+		if(enoughDragging && scrollView.contentOffset.y > -65.0f)
+		{
+			self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
+			self.headerArrow.text = @"☟";
+			enoughDragging = NO;
+		}
+	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+				  willDecelerate:(BOOL)decelerate
+{
+	DLog(@"Scrolldrag end");
+	enoughDragging = NO;
+	checkForRefresh = NO;	
+	if (scrollView.contentOffset.y <= - 65.0f) 
+	{
+		// start reloading, and reset controls...
+		self.headerLabel.text = NSLocalizedString(@"Reloading...", @"");
+		self.headerArrow.text = @" ";
+		[self.laRuota startAnimating];
+		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
+	}
+}
 
 
 - (void)dealloc {

@@ -141,8 +141,8 @@
 	NSArray *tempStrings = [NSArray arrayWithObjects:@"Info", @"Profile", @"Extra", nil];
 	self.theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 	self.theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-	// That's 48, 124, 191 "meemi scuro"
-	theSegment.tintColor = [UIColor colorWithRed:0.18824 green:0.48627 blue:0.74902 alpha:1.0];
+	// That's 138, 176, 218 "meemi chiaro"
+	theSegment.tintColor = [UIColor colorWithRed:0.54118 green:0.6902 blue:0.8549 alpha:1.0];
 	self.theSegment.momentary = NO;
 	self.theSegment.selectedSegmentIndex = 0;
 	for (int i = 0; i < 3; i++)

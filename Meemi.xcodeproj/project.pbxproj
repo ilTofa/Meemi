@@ -37,6 +37,7 @@
 		C045C277116F798600BEDCCC /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = C045C275116F798600BEDCCC /* UserProfile.m */; };
 		C045C278116F798600BEDCCC /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C276116F798600BEDCCC /* UserProfile.xib */; };
 		C047D42B119E8D8F00694A99 /* CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C047D42A119E8D8F00694A99 /* CellBackground.png */; };
+		C05188F111A016F700BA6F52 /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05188F011A016F700BA6F52 /* headerView.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
@@ -122,6 +123,7 @@
 		C045C275116F798600BEDCCC /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		C045C276116F798600BEDCCC /* UserProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserProfile.xib; path = Classes/UserProfile.xib; sourceTree = "<group>"; };
 		C047D42A119E8D8F00694A99 /* CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackground.png; sourceTree = "<group>"; };
+		C05188F011A016F700BA6F52 /* headerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = headerView.xib; path = Classes/headerView.xib; sourceTree = "<group>"; };
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
 		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
@@ -270,13 +272,14 @@
 				C03E6447115A560600CF2B91 /* AboutBox.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				C07ED93C1151470A00311726 /* SettingsController.xib */,
-				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
 				C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */,
 				C0918687115442BC00C2C5A4 /* ImageSender.xib */,
 				C0FB56841157B5DD003932F3 /* TextSender.xib */,
 				C045C221116F74F900BEDCCC /* UserDetail.xib */,
 				C045C276116F798600BEDCCC /* UserProfile.xib */,
+				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
 				6443B081116B824200C16EEF /* MemeCell.xib */,
+				C05188F011A016F700BA6F52 /* headerView.xib */,
 				C0CE759E11771F3900A6BBC3 /* PostMeme.xib */,
 			);
 			name = Resources;
@@ -455,6 +458,7 @@
 				C00ACDB6119F301B002C5CC0 /* BlackFlagForSegmented.png in Resources */,
 				C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */,
 				C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */,
+				C05188F111A016F700BA6F52 /* headerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
