@@ -219,8 +219,6 @@
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
 	imagePicker.sourceType = type;
-//	if(comesFromCamera)
-//		imagePicker.allowsEditing = YES;
 	[self presentModalViewController:imagePicker animated:YES];
 	[imagePicker release];		
 }

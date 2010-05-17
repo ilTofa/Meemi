@@ -53,11 +53,6 @@ typedef enum
 	MmUndefinedError = 999
 } MeemiResult;
 
-// Notification posted
-#define kGotLocation @"gotLocation"
-#define kNowBusy @"nowBusy"
-#define kNowFree @"nowFree"
-
 /* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
 #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
 
@@ -67,8 +62,6 @@ typedef enum
 @interface Meemi : NSObject <CLLocationManagerDelegate>
 #endif
 {
-	BOOL valid;
-	NSString *screenName, *password;
 	id<MeemiDelegate> delegate;
 	MeemiRequest currentRequest;
 	
@@ -84,16 +77,6 @@ typedef enum
 	Meme *theMeme;
 	User *theUser;
 
-	NSURLConnection *theReverseGeoConnection;
-	// How Many times have been denied Location use?
-	double distance;
-	BOOL needLocation, needG13N;
-	CLLocationManager *locationManager;
-	int nLocationUseDenies;
-	BOOL lcDenied;	
-	NSString *placeName, *state;
-	NSString *nearbyPlaceName;
-	
 	// mark how many records we got.
 	int howMany;
 	int howManyRequestTotal;
@@ -104,13 +87,6 @@ typedef enum
 	NSMutableString *sent_to;
 	// Maintain "last meme read" number (for use by updateQtaReply)
 	NSNumber *newMemeID; 
-	// limits on number and timing of new memes reads
-	int memeNumber;
-	int memeTime;
-	// last date
-	NSDate *lastMemeTimestamp;
-	NSDate *lastReadDate;
-
 	// Workaround <replies> data
 	NSNumber *replyTo;
 	NSString *replyUser;
@@ -121,55 +97,51 @@ typedef enum
 	ASINetworkQueue *networkQueue;
 	NSOperationQueue *theQueue;
 	
-	// Is the channel available?
-	BOOL busy;	
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied;
-@property (nonatomic, assign) int nLocationUseDenies;
-@property (nonatomic, assign) int memeNumber;
-@property (nonatomic, assign) int memeTime;
-@property (nonatomic, retain) NSDate *lastReadDate;
-@property (nonatomic, getter=isValid) BOOL valid;
-@property (nonatomic, copy) NSString *nearbyPlaceName;
-@property (nonatomic, copy) NSString *screenName;
-@property (nonatomic, copy) NSString *password;
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;
-@property (nonatomic, retain) NSString *placeName, *state;
 @property (retain) ASINetworkQueue *networkQueue;
-@property (nonatomic, assign, getter=isBusy) BOOL busy;
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyUser;
 
+// Main entry point
 +(Meemi *)sharedSession;
 
+// Location manager
 - (void)startLocation;
 - (void)stopLocation;
 
--(void)startSessionFromUserDefaults;
-
+// Get description of return code
 -(NSString *)getResponseDescription:(MeemiResult)response;
--(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
+
+// Post memes (requires a valid session)
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
 -(void)postImageAsReply:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)postTextAsPrivateMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized privateTo:(NSString *)privateTo;
+
+// Get Memes (requires a valid session)
 -(void)getNewMemes:(BOOL)fromScratch;
 -(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve;
 -(void)getNewPrivateMemes:(BOOL)fromScratch;
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch;
+
+// Memes state marking
 -(void)markNewMemesRead;
 -(void)markThreadRead:(NSNumber *)memeID;
 -(void)markMemeRead:(NSNumber *)memeID;
 -(void)markMemeSpecial:(NSNumber *)memeID;
+
+// User management
 -(void)loadAvatar:(NSString *)screen_name;
 -(void)getUser:(NSString *)withName;
 -(void)followUser:(NSString *)user;
 -(void)unfollowUser:(NSString *)user;
 
+// Private methods
 -(BOOL)parse:(NSData *)responseData;
 -(void)updateAvatars;
 -(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID;

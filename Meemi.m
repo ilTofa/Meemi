@@ -11,8 +11,6 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
-// #import "FlurryAPI.h"
-
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
 
@@ -79,36 +77,12 @@ static Meemi *sharedSession = nil;
 {
 	if(self = [super init])
 	{
-		self.valid = NO;
-		needLocation = YES;
-		needG13N = YES;
-		self.nearbyPlaceName = @"";
-		// At the moment, user have not denied anything
-		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
-		// mark ourselves not busy
-		self.busy = NO;
 		return self;
 	}
 	else
 		return nil;
-}
-
--(void)nowBusy
-{
-	// Notify the world that we are now busy...
-	DLog(@"Notify the world that we are now busy...");
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowBusy object:self]];
-	self.busy = YES;
-}
-
--(void)nowFree
-{
-	// Notify the world that we are now free...
-	DLog(@"Notify the world that we are now free...");
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowFree object:self]];
-	self.busy = NO;
 }
 
 #pragma mark ASIHTTPRequest delegate
@@ -137,35 +111,10 @@ static Meemi *sharedSession = nil;
 	self.valid = YES;
 }
 
--(void)startSessionFromUserDefaults
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName = [defaults stringForKey:@"screenName"];
-	self.password = [defaults stringForKey:@"password"];
-	// TODO: should be read from defaults too
-	self.memeNumber = [defaults integerForKey:@"rowNumber"];
-	if(self.memeNumber == 0)
-		self.memeNumber = 50;
-	self.memeTime = [defaults integerForKey:@"memeTime"];
-	if(self.memeTime == 0)
-		self.memeTime = 24;
-	// Last read meme...
-	self.lastReadDate = [defaults objectForKey:@"lastRead"];
-	// protect ourselves...
-	if(self.lastReadDate == nil)
-		self.lastReadDate = [NSDate distantPast];
-	// get number of times user denied location use..
-	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
-	self.valid = YES;
-}
-
 // Parse response string
 // returns YES if xml parsing succeeds, NO otherwise
 - (BOOL) parse:(NSData *)responseData
 {
-//	DLog(@"Starting parse of: %@", responseData);
-//	NSString *temp = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
-//	DLog(@"As string: \"%@\"", temp);
     if (addressParser) // addressParser is an NSXMLParser instance variable
         [addressParser release];
 	addressParser = [[NSXMLParser alloc] initWithData:responseData];
@@ -608,7 +557,6 @@ static Meemi *sharedSession = nil;
 
 #pragma mark API
 
-#define kAPIKey @"dd51e68acb28da24c221c8b1627be7e69c577985"
 // define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b" // standard
 
 -(NSString *)getResponseDescription:(MeemiResult)response
@@ -1000,7 +948,6 @@ static Meemi *sharedSession = nil;
 	{
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", self.screenName]];
-//		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
 	}
