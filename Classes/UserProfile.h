@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Meemi.h"
+#import "TextSender.h"
 
-@interface UserProfile : UIViewController <MeemiDelegate>
+@interface UserProfile : UIViewController <MeemiDelegate, TextSenderControllerDelegate>
 {
 	User *theUser;
 	UIButton *theAvatar;

@@ -25,6 +25,8 @@
 	id<TextSenderControllerDelegate> delegate;
 	NSNumber *replyTo;
 	NSString *replyScreenName;
+	NSString *recipientNames;
+	UILabel *privateMemeWarning;
 }
 
 @property (retain, nonatomic) IBOutlet UITextView *description;
@@ -34,6 +36,8 @@
 @property (assign) id<TextSenderControllerDelegate> delegate;
 @property (retain, nonatomic) NSNumber *replyTo;
 @property (retain, nonatomic) NSString *replyScreenName;
+@property (retain, nonatomic) NSString *recipientNames;
+@property (retain, nonatomic) IBOutlet UILabel *privateMemeWarning;
 
 -(IBAction)sendIt:(id)sender;
 -(IBAction)cancel:(id)sender;

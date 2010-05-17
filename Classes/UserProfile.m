@@ -24,6 +24,12 @@
 }
 */
 
+-(void)doneWithTextSender
+{
+	self.navigationController.navigationBarHidden = NO;
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)loadAvatar:(id)sender
 {
 	MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
@@ -36,6 +42,11 @@
 -(IBAction)sendPrivateMeme:(id)sender
 {
 	DLog(@"Send a private meme to: %@", self.screenName.text);
+	TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+	controller.delegate = self;
+	controller.recipientNames = self.screenName.text;
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
 }
 
 -(IBAction)infoSwapped

@@ -11,7 +11,7 @@
 
 @implementation TextSender
 
-@synthesize description, laRuota, delegate, channel, locationLabel, replyTo, replyScreenName;
+@synthesize description, laRuota, delegate, channel, locationLabel, replyTo, replyScreenName, recipientNames, privateMemeWarning;
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
@@ -58,7 +58,9 @@
 	[Meemi sharedSession].delegate = self;
 	// Send "edited" localization to session
 	[Meemi sharedSession].nearbyPlaceName = self.locationLabel.text;
-	if(self.replyScreenName == nil)
+	if(self.recipientNames != nil)
+		[[Meemi sharedSession] postTextAsPrivateMeme:self.description.text withChannel:nil withLocalization:canBeLocalized privateTo:self.recipientNames];
+	else if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
 	else // this is a reply
 		[[Meemi sharedSession] postTextReply:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized 
@@ -95,6 +97,13 @@
 	[super viewDidLoad];
 	// Hide toolbar
 	self.navigationController.navigationBarHidden = YES;
+	// If it's a private meme, setup
+	if(self.recipientNames != nil)
+	{
+		self.privateMemeWarning.hidden = NO;
+		self.channel.placeholder = NSLocalizedString(@"Recipients (mandatory)", @"");
+		self.channel.text = self.recipientNames;
+	}
 	// Activate keyboard
 	[self.description becomeFirstResponder];
 	// Disable localization if we don't have a position and register to be notified when it changes

@@ -145,7 +145,7 @@ static Meemi *sharedSession = nil;
 	// TODO: should be read from defaults too
 	self.memeNumber = [defaults integerForKey:@"rowNumber"];
 	if(self.memeNumber == 0)
-		self.memeNumber = 100;
+		self.memeNumber = 50;
 	self.memeTime = [defaults integerForKey:@"memeTime"];
 	if(self.memeTime == 0)
 		self.memeTime = 24;
@@ -511,7 +511,7 @@ static Meemi *sharedSession = nil;
 			if(howManyRequestTotal >= self.memeNumber ||
 				[lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending ||
 				[self.lastReadDate compare:lastMemeTimestamp] == NSOrderedDescending || 
-			    howMany < 10 ||
+			    howMany < 5 ||
 			    self.currentRequest == MMGetNewReplies)
 			{
 				retValue = 0;
@@ -972,7 +972,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5", self.screenName]];
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -981,7 +981,7 @@ static Meemi *sharedSession = nil;
 	{
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_10/page_%d", 
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5/page_%d", 
 				self.screenName, newMemesPageWatermark]];
 	}
 	
@@ -999,7 +999,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_10", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", self.screenName]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -1008,7 +1008,7 @@ static Meemi *sharedSession = nil;
 	{
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_10/page_%d", 
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5/page_%d", 
 				self.screenName, newMemesPageWatermark]];
 	}
 	
@@ -1026,7 +1026,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_10", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5", self.screenName]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -1035,7 +1035,7 @@ static Meemi *sharedSession = nil;
 	{
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_10/page_%d", 
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5/page_%d", 
 				self.screenName, newMemesPageWatermark]];
 	}
 	
