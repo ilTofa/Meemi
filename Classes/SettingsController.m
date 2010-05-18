@@ -39,9 +39,9 @@
 {
 	// if it was an user validation request (as it should be) set the result
 	if(request == MmRValidateUser)
-		self.testLabel.text = [[Meemi sharedSession] getResponseDescription:result];
+		self.testLabel.text = [Meemi getResponseDescription:result];
 	// If session is valid, save parameters into defaults
-	if([Meemi sharedSession].isValid)
+	if([Meemi isValid])
 	{
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:self.screenName.text forKey:@"screenName"];
@@ -89,7 +89,7 @@
     if (theTextField == self.password)
         [self.password resignFirstResponder];
 	// Select POST TAB (only if we have valid user and password)
-	if([Meemi sharedSession].isValid)
+	if([Meemi isValid])
 	{
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 //		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;

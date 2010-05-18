@@ -30,7 +30,7 @@
 
 	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
 
-	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
+	NSManagedObjectContext *context = [Meemi managedObjectContext];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];

@@ -34,7 +34,7 @@
 	if(result != MmPostOK)
 	{
 		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-															message:[[Meemi sharedSession] getResponseDescription:result]
+															message:[Meemi  getResponseDescription:result]
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
@@ -57,7 +57,7 @@
 	[self.laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
 	// Send "edited" localization to session
-	[Meemi sharedSession].nearbyPlaceName = self.locationLabel.text;
+	[Meemi setNearbyPlaceName:self.locationLabel.text];
 	if(self.recipientNames != nil)
 		[[Meemi sharedSession] postTextAsPrivateMeme:self.description.text withChannel:nil withLocalization:canBeLocalized privateTo:self.recipientNames];
 	else if(self.replyScreenName == nil)
@@ -76,8 +76,8 @@
 {
 	// enable localization, 'cause we have one
 	self.locationLabel.enabled = YES;
-	DLog(@"Setting location.text to %@", [Meemi sharedSession].nearbyPlaceName);
-	self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+	DLog(@"Setting location.text to %@", [Meemi nearbyPlaceName]);
+	self.locationLabel.text = [Meemi nearbyPlaceName];
 }
 
 /*
@@ -107,10 +107,10 @@
 	// Activate keyboard
 	[self.description becomeFirstResponder];
 	// Disable localization if we don't have a position and register to be notified when it changes
-	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
+	if([[Meemi nearbyPlaceName] isEqual:@""])
 		self.locationLabel.enabled = NO;
 	else
-		self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+		self.locationLabel.text = [Meemi nearbyPlaceName];
 	// Restart localization
 	[[Meemi sharedSession] startLocation];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];

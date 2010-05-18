@@ -220,7 +220,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)markReadMemes
 {
-	[[Meemi sharedSession] markNewMemesRead];
+	[Meemi markNewMemesRead];
 }
 
 #pragma mark -
@@ -253,7 +253,7 @@ void uncaughtExceptionHandler(NSException *exception)
     if (!context) {
         // Handle the error.
     }
-    [Meemi sharedSession].managedObjectContext = context;
+    [Meemi setManagedObjectContext:context];
 	
 	// reset mobileweb to goto home
 	self.urlToBeLoaded = @"";

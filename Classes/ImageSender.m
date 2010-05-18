@@ -47,7 +47,7 @@
 	if(result != MmPostOK)
 	{
 		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-															message:[[Meemi sharedSession] getResponseDescription:result]
+															message:[Meemi getResponseDescription:result]
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
@@ -141,7 +141,7 @@
 		[self removeOrientation];
 	}
 	// Send "edited" localization to session
-	[Meemi sharedSession].nearbyPlaceName = self.locationLabel.text;
+	[Meemi setNearbyPlaceName:self.locationLabel.text];
 	if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	else
@@ -159,8 +159,8 @@
 {
 	// enable localization, 'cause we now have one
 	self.locationLabel.enabled = YES;
-	DLog(@"Setting location.text to %@", [Meemi sharedSession].nearbyPlaceName);
-	self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+	DLog(@"Setting location.text to %@", [Meemi nearbyPlaceName]);
+	self.locationLabel.text = [Meemi nearbyPlaceName];
 }
 
 /*
@@ -238,10 +238,10 @@
 	}
 	self.theImageView.image = self.theThumbnail;
 	// Disable localization if we don't have a position (but register to be notified)
-	if([[Meemi sharedSession].nearbyPlaceName isEqual:@""])
+	if([[Meemi nearbyPlaceName] isEqual:@""])
 		self.locationLabel.enabled = NO;
 	else
-		self.locationLabel.text = [Meemi sharedSession].nearbyPlaceName;
+		self.locationLabel.text = [Meemi nearbyPlaceName];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGotLocalization:) name:kGotLocation object:nil];
 	self.wantSave.enabled = self.comesFromCamera;
 	self.wantSave.on = self.comesFromCamera;

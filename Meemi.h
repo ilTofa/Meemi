@@ -67,8 +67,6 @@ typedef enum
 @interface Meemi : NSObject <CLLocationManagerDelegate>
 #endif
 {
-	BOOL valid;
-	NSString *screenName, *password;
 	id<MeemiDelegate> delegate;
 	MeemiRequest currentRequest;
 	
@@ -77,9 +75,6 @@ typedef enum
 	NSMutableString *currentStringValue;
 	NSMutableData *xmlData;
 
-	// CoreData hook
-	NSManagedObjectContext *managedObjectContext;
-	
 	// Next three contain the current one
 	Meme *theMeme;
 	User *theUser;
@@ -92,7 +87,6 @@ typedef enum
 	int nLocationUseDenies;
 	BOOL lcDenied;	
 	NSString *placeName, *state;
-	NSString *nearbyPlaceName;
 	
 	// mark how many records we got.
 	int howMany;
@@ -120,28 +114,42 @@ typedef enum
 	// The Queue
 	ASINetworkQueue *networkQueue;
 	NSOperationQueue *theQueue;
-	
-	// Is the channel available?
-	BOOL busy;	
 }
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied;
-@property (nonatomic, assign) int nLocationUseDenies;
-@property (nonatomic, assign) int memeNumber;
+@property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied; //internal
+@property (nonatomic, assign) int nLocationUseDenies; //internal
+@property (nonatomic, assign) int memeNumber; 
 @property (nonatomic, assign) int memeTime;
 @property (nonatomic, retain) NSDate *lastReadDate;
-@property (nonatomic, getter=isValid) BOOL valid;
-@property (nonatomic, copy) NSString *nearbyPlaceName;
-@property (nonatomic, copy) NSString *screenName;
-@property (nonatomic, copy) NSString *password;
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;
 @property (nonatomic, retain) NSString *placeName, *state;
 @property (retain) ASINetworkQueue *networkQueue;
-@property (nonatomic, assign, getter=isBusy) BOOL busy;
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyUser;
+
+// Shared variables access methods
++(NSString *)password;
++(void)setPassword:(NSString *)newValue;
++(NSString *)screenName;
++(void)setScreenName:(NSString *)newValue;
++(BOOL)isValid;
++(NSManagedObjectContext *)managedObjectContext;
++(void)setManagedObjectContext:(NSManagedObjectContext *)newValue;
++(NSString *)nearbyPlaceName;
++(void)setNearbyPlaceName:(NSString *)newValue;
+
+// is the session already active?
++(BOOL)isBusy;
+
+// Not I/O bound methods
++(NSString *)getResponseDescription:(MeemiResult)response;
+
+// Set various meme status into db
++(void)markNewMemesRead;
++(void)markThreadRead:(NSNumber *)memeID;
++(void)markMemeRead:(NSNumber *)memeID;
++(void)markMemeSpecial:(NSNumber *)memeID;
 
 +(Meemi *)sharedSession;
 
@@ -150,8 +158,7 @@ typedef enum
 
 -(void)startSessionFromUserDefaults;
 
--(NSString *)getResponseDescription:(MeemiResult)response;
--(void)validateUser:(NSString *) meemi_id usingPassword:(NSString *)pwd;
+-(void)validateUser:(NSString *)meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
 -(void)postImageAsReply:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized;
@@ -161,10 +168,7 @@ typedef enum
 -(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve;
 -(void)getNewPrivateMemes:(BOOL)fromScratch;
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch;
--(void)markNewMemesRead;
--(void)markThreadRead:(NSNumber *)memeID;
--(void)markMemeRead:(NSNumber *)memeID;
--(void)markMemeSpecial:(NSNumber *)memeID;
+
 -(void)loadAvatar:(NSString *)screen_name;
 -(void)getUser:(NSString *)withName;
 -(void)followUser:(NSString *)user;

@@ -175,7 +175,7 @@
 	self.navigationController.toolbarHidden = NO;
 	
 	// And register to be notified for shaking and busy/not busy of Meemi session
-	if([Meemi sharedSession].isBusy)
+	if([Meemi isBusy])
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUser:) name:kNowFree object:nil];
 	else
 		[self loadUser:nil];

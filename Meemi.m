@@ -18,14 +18,98 @@
 
 static Meemi *sharedSession = nil;
 
+// Static variables for noting the common states
+// ie
+// Whatever is tied to the session in itself is on static variable accessed, if needed, from class methods
+// Whatever is tied to the connection is in a standard property
+
+// user credentials
+NSString *screenName, *password;
+// Session validity indicator
+BOOL valid;
+// CoreData hook
+NSManagedObjectContext *managedObjectContext;
+// Geolocation :)
+NSString *nearbyPlaceName;
+// Sessions active (used by isBusy)
+int activeSessionsCount;
+
 @implementation Meemi
 
-@synthesize valid, screenName, password, delegate, currentRequest;
-@synthesize lcDenied, nLocationUseDenies, nearbyPlaceName, placeName, state;
-@synthesize managedObjectContext;
-@synthesize networkQueue, busy;
+@synthesize delegate, currentRequest;
+@synthesize lcDenied, nLocationUseDenies, placeName, state;
+@synthesize networkQueue;
 @synthesize memeNumber, memeTime, lastReadDate;
 @synthesize replyTo, replyUser;
+
+#pragma mark Class Methods
+
+#pragma mark Variable Access
+
++(NSString *)password
+{
+	return password;
+}
+
++(void)setPassword:(NSString *)newValue
+{
+	if(password != newValue)
+	{
+		[password release];
+		password = [newValue retain];
+	}
+}
+
++(NSString *)screenName
+{
+	return screenName;
+}
+
++(void)setScreenName:(NSString *)newValue
+{
+	if(screenName != newValue)
+	{
+		[screenName release];
+		screenName = [newValue retain];
+	}
+}
+
++(BOOL)isValid
+{
+	return valid;
+}
+
++(NSManagedObjectContext *)managedObjectContext
+{
+	return managedObjectContext;
+}
+
++(void)setManagedObjectContext:(NSManagedObjectContext *)newValue
+{
+	[managedObjectContext release];
+	managedObjectContext = [newValue retain];
+}
+
++(NSString *)nearbyPlaceName
+{
+	return nearbyPlaceName;
+}
+
++(void)setNearbyPlaceName:(NSString *)newValue
+{
+	if(nearbyPlaceName != newValue)
+	{
+		[nearbyPlaceName release];
+		nearbyPlaceName = [newValue retain];
+	}
+}
+
+#pragma mark Class Status Query
+
++(BOOL)isBusy
+{
+	return activeSessionsCount > 0;
+}
 
 #pragma mark Singleton Class Setup
 
@@ -79,16 +163,14 @@ static Meemi *sharedSession = nil;
 {
 	if(self = [super init])
 	{
-		self.valid = NO;
+		valid = NO;
 		needLocation = YES;
 		needG13N = YES;
-		self.nearbyPlaceName = @"";
+		[Meemi setNearbyPlaceName:@""];
 		// At the moment, user have not denied anything
 		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
-		// mark ourselves not busy
-		self.busy = NO;
 		return self;
 	}
 	else
@@ -97,18 +179,24 @@ static Meemi *sharedSession = nil;
 
 -(void)nowBusy
 {
-	// Notify the world that we are now busy...
-	DLog(@"Notify the world that we are now busy...");
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowBusy object:self]];
-	self.busy = YES;
+	DLog(@"An I/O session started");
+	activeSessionsCount++;
+	if(activeSessionsCount == 1)
+	{
+		DLog(@"Notifying the world that we are now busy...");
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowBusy object:self]];
+	}
 }
 
 -(void)nowFree
 {
-	// Notify the world that we are now free...
-	DLog(@"Notify the world that we are now free...");
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowFree object:self]];
-	self.busy = NO;
+	DLog(@"An I/O session ended");
+	activeSessionsCount--;
+	if(activeSessionsCount == 0)
+	{
+		DLog(@"Notify the world that we are now free...");
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowFree object:self]];
+	}
 }
 
 #pragma mark ASIHTTPRequest delegate
@@ -132,16 +220,11 @@ static Meemi *sharedSession = nil;
 
 #pragma mark Helpers
 
--(void)markSessionValid
-{
-	self.valid = YES;
-}
-
 -(void)startSessionFromUserDefaults
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName = [defaults stringForKey:@"screenName"];
-	self.password = [defaults stringForKey:@"password"];
+	[Meemi setScreenName:[defaults stringForKey:@"screenName"]];
+	[Meemi setPassword:[defaults stringForKey:@"password"]];
 	// TODO: should be read from defaults too
 	self.memeNumber = [defaults integerForKey:@"rowNumber"];
 	if(self.memeNumber == 0)
@@ -156,7 +239,7 @@ static Meemi *sharedSession = nil;
 		self.lastReadDate = [NSDate distantPast];
 	// get number of times user denied location use..
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
-	self.valid = YES;
+	valid = YES;
 }
 
 // Parse response string
@@ -182,7 +265,7 @@ static Meemi *sharedSession = nil;
 	DLog(@"Now in setupMemeRelationshipsFrom");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
 	[request setPredicate:predicate];
@@ -199,7 +282,7 @@ static Meemi *sharedSession = nil;
 	{
 		// Create an User and add it to the managedObjectContext
 		// (and to the list of "new ones" for later processing
-		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:managedObjectContext];
 		theUser.screen_name = name;
 		[newUsersQueue addObject:name];
 		DLog(@"New user created for %@", name);
@@ -208,7 +291,7 @@ static Meemi *sharedSession = nil;
 	theMeme.user = theUser;
 	[theUser addMemeObject:theMeme];
 	// if the meme is from ourselves, mark it "Special"
-	theMeme.special = [NSNumber numberWithBool:[name isEqualToString:self.screenName]];
+	theMeme.special = [NSNumber numberWithBool:[name isEqualToString:[Meemi screenName]]];
 	[request release];
 }
 
@@ -217,7 +300,7 @@ static Meemi *sharedSession = nil;
 	DLog(@"Now in isMemeAlreadyExisting");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
 	[request setPredicate:predicate];
@@ -262,10 +345,7 @@ static Meemi *sharedSession = nil;
 		if(self.currentRequest == MmRValidateUser)
 		{
 			// if user is OK. Save it (both class and NSUserDefaults).
-			if(code == MmUserExists)
-				[self markSessionValid];
-			else // mark session not valid
-				self.valid = NO;
+			valid = (code == MmUserExists);
 			[self.delegate meemi:self.currentRequest didFinishWithResult:code];
 		}
 		// If it was a  post, check return and inform delegate
@@ -333,7 +413,7 @@ static Meemi *sharedSession = nil;
 			if(currentMemeIsNew)
 			{
 				DLog(@"*** got a new meme");
-				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+				theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 				theMeme.id = newMemeID;
 				theMeme.new_meme = [NSNumber numberWithBool:YES];
 			}
@@ -491,9 +571,9 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 		{
 			NSError *error;
-			if([self.managedObjectContext hasChanges])
+			if([managedObjectContext hasChanges])
 			{
-				if (![self.managedObjectContext save:&error])
+				if (![managedObjectContext save:&error])
 				{
 					DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 					NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -547,7 +627,7 @@ static Meemi *sharedSession = nil;
 			ALog(@"Now looking for the user %@ for update", name);
 			NSFetchRequest *request = [[NSFetchRequest alloc] init];
 			// We're looking for an User with this screen_name.
-			NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
 			[request setEntity:entity];
 			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
 			[request setPredicate:predicate];
@@ -587,7 +667,7 @@ static Meemi *sharedSession = nil;
 		if([elementName isEqualToString:@"user"])
 		{
 			NSError *error;
-			if (![self.managedObjectContext save:&error])
+			if (![managedObjectContext save:&error])
 			{
                 DLog(@"Failed to save to data store: %@", [error localizedDescription]);
                 NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -611,7 +691,7 @@ static Meemi *sharedSession = nil;
 #define kAPIKey @"dd51e68acb28da24c221c8b1627be7e69c577985"
 // define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b" // standard
 
--(NSString *)getResponseDescription:(MeemiResult)response
++(NSString *)getResponseDescription:(MeemiResult)response
 {
 	NSString *ret;
 	switch (response) 
@@ -682,14 +762,14 @@ static Meemi *sharedSession = nil;
 	NSAssert(delegate, @"delegate not set in Meemi");
 	// build the password using SHA-256
 	unsigned char hashedChars[32];
-	CC_SHA256([self.password UTF8String],
-			  [self.password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+	CC_SHA256([[Meemi password] UTF8String],
+			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
 			  hashedChars);
 	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
     hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
     hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
     hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
-	[request setPostValue:self.screenName forKey:@"meemi_id"];
+	[request setPostValue:[Meemi screenName] forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setDelegate:self];
@@ -704,8 +784,8 @@ static Meemi *sharedSession = nil;
 	// Sanity checks
 	NSAssert(delegate, @"delegate not set in Meemi");
 	// Remember user and pwd in our structures
-	self.screenName = meemi_id;
-	self.password = pwd;
+	[Meemi setScreenName:meemi_id];
+	[Meemi setPassword:pwd];
 	// Set current request type
 	self.currentRequest = MmRValidateUser;
 	
@@ -723,7 +803,7 @@ static Meemi *sharedSession = nil;
 	self.currentRequest = MMFollowUnfollow;
 	
 	// API for user testing
-	NSString *stringUrl = [NSString stringWithFormat:@"http://meemi.com/api/%@/%@/%@", self.screenName, follow ? @"follow" : @"unfollow", user];
+	NSString *stringUrl = [NSString stringWithFormat:@"http://meemi.com/api/%@/%@/%@", [Meemi screenName], follow ? @"follow" : @"unfollow", user];
 	NSURL *url = [NSURL URLWithString:stringUrl];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];
@@ -750,7 +830,7 @@ static Meemi *sharedSession = nil;
 	ALog(@"Queue finished");
 	// What read were the new users, save modifications and release the array...
 	NSError *error;
-	if (![self.managedObjectContext save:&error])
+	if (![managedObjectContext save:&error])
 	{
 		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -772,7 +852,7 @@ static Meemi *sharedSession = nil;
 {
 	NSURL *url;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name == %@", userScreenName];
 	[request setPredicate:predicate];
@@ -803,10 +883,10 @@ static Meemi *sharedSession = nil;
 	}
 	[request release];
 	
-	if([self.managedObjectContext hasChanges])
+	if([managedObjectContext hasChanges])
 	{
 		NSError *error;
-		if (![self.managedObjectContext save:&error])
+		if (![managedObjectContext save:&error])
 		{
 			ALog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -827,7 +907,7 @@ static Meemi *sharedSession = nil;
 {
 	NSURL *url;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name == %@", userScreenName];
 	[request setPredicate:predicate];
@@ -856,10 +936,10 @@ static Meemi *sharedSession = nil;
 	}
 	[request release];
 	
-	if([self.managedObjectContext hasChanges])
+	if([managedObjectContext hasChanges])
 	{
 		NSError *error;
-		if (![self.managedObjectContext save:&error])
+		if (![managedObjectContext save:&error])
 		{
 			ALog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -943,7 +1023,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve
 {
-	NSAssert(self.isValid, @"getNewMemesRepliesOf:from:number:");
+	NSAssert([Meemi isValid], @"getNewMemesRepliesOf:from:number:");
 	self.currentRequest = MMGetNewReplies;
 	
 	// Now setup the URI depending on the request
@@ -964,7 +1044,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getNewMemes:(BOOL)fromScratch
 {
-	NSAssert(self.isValid, @"getNewMemes: called without valid session");
+	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
 	self.currentRequest = MmGetNew;
 	
 	// Now setup the URI depending on the request
@@ -972,7 +1052,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5", [Meemi screenName]]];
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -982,7 +1062,7 @@ static Meemi *sharedSession = nil;
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5/page_%d", 
-				self.screenName, newMemesPageWatermark]];
+				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -991,7 +1071,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getNewPrivateMemes:(BOOL)fromScratch
 {
-	NSAssert(self.isValid, @"getNewPrivateMemes: called without valid session");
+	NSAssert([Meemi isValid], @"getNewPrivateMemes: called without valid session");
 	self.currentRequest = MMGetNewPvt;
 	
 	// Now setup the URI depending on the request
@@ -999,7 +1079,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", [Meemi screenName]]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -1009,7 +1089,7 @@ static Meemi *sharedSession = nil;
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5/page_%d", 
-				self.screenName, newMemesPageWatermark]];
+				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -1018,7 +1098,7 @@ static Meemi *sharedSession = nil;
 
 -(void)getNewPrivateMemesSent:(BOOL)fromScratch
 {
-	NSAssert(self.isValid, @"getNewPrivateMemes: called without valid session");
+	NSAssert([Meemi isValid], @"getNewPrivateMemes: called without valid session");
 	self.currentRequest = MMGetNewPvtSent;
 	
 	// Now setup the URI depending on the request
@@ -1026,7 +1106,7 @@ static Meemi *sharedSession = nil;
 	if(fromScratch)
 	{
 		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5", self.screenName]];
+			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5", [Meemi screenName]]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
 		newMemesPageWatermark = 1;
 		howManyRequestTotal = 0;
@@ -1036,19 +1116,19 @@ static Meemi *sharedSession = nil;
 		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5/page_%d", 
-				self.screenName, newMemesPageWatermark]];
+				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];
 }
 
--(void)markMemeSpecial:(NSNumber *)memeID
++(void)markMemeSpecial:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeSpecial");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
 	[request setPredicate:predicate];
@@ -1060,7 +1140,7 @@ static Meemi *sharedSession = nil;
 	{
 		Meme *theOne = [fetchResults objectAtIndex:0];
 		theOne.special = [NSNumber numberWithBool:YES];
-		if (![self.managedObjectContext save:&error])
+		if (![managedObjectContext save:&error])
 		{
 			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -1074,12 +1154,12 @@ static Meemi *sharedSession = nil;
 	[request release];
 }	
 
--(void)markMemeRead:(NSNumber *)memeID
++(void)markMemeRead:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeRead");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
 	[request setPredicate:predicate];
@@ -1092,7 +1172,7 @@ static Meemi *sharedSession = nil;
 		Meme *theOne = [fetchResults objectAtIndex:0];
 		theOne.new_meme = [NSNumber numberWithBool:NO];
 		theOne.new_replies = [NSNumber numberWithBool:NO];
-		if (![self.managedObjectContext save:&error])
+		if (![managedObjectContext save:&error])
 		{
 			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -1106,18 +1186,18 @@ static Meemi *sharedSession = nil;
 	[request release];
 }
 
--(void)markThreadRead:(NSNumber *)memeID
++(void)markThreadRead:(NSNumber *)memeID
 {
-	NSAssert(self.isValid, @"markNewMemesRead: called without valid session");
+	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reply_id == %@ AND (new_meme == %@ OR new_replies == %@)", 
 							  memeID, [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
 	[request setPredicate:predicate];
 	NSError *error;
-	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	DLog(@"Got %d new replies to mark read", [fetchResults count]);
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
@@ -1129,7 +1209,7 @@ static Meemi *sharedSession = nil;
 	}	
 	[request release];
 	// now commit.
-	if (![self.managedObjectContext save:&error])
+	if (![managedObjectContext save:&error])
 	{
 		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -1141,18 +1221,18 @@ static Meemi *sharedSession = nil;
 	}	
 }
 
--(void)markNewMemesRead
++(void)markNewMemesRead
 {
-	NSAssert(self.isValid, @"markNewMemesRead: called without valid session");
+	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"new_meme == %@ OR new_replies == %@", 
 							  [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
 	[request setPredicate:predicate];
 	NSError *error;
-	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	ALog(@"Got %d new memes to mark read", [fetchResults count]);
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
@@ -1164,7 +1244,7 @@ static Meemi *sharedSession = nil;
 	}	
 	[request release];
 	// now commit.
-	if (![self.managedObjectContext save:&error])
+	if (![managedObjectContext save:&error])
 	{
 		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -1180,7 +1260,7 @@ static Meemi *sharedSession = nil;
 			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID privateTo:(NSString *)privateTo
 {
 	// accomodate different URLs for save and reply actions
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api/%@/%@", self.screenName,
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api/%@/%@", [Meemi screenName],
 									   (replyScreenName == nil) ? @"save" : @"reply"]];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	if(self.currentRequest == MmRPostImage)
@@ -1209,18 +1289,18 @@ static Meemi *sharedSession = nil;
 	if(!canBeLocalized) 
 		[request setPostValue:NSLocalizedString(@"An unknown place", @"") forKey:@"location"];
 	else
-		[request setPostValue:self.nearbyPlaceName forKey:@"location"];
+		[request setPostValue:[Meemi nearbyPlaceName] forKey:@"location"];
 	[request setPostValue:withDescription forKey:@"text_content"];
 	[self startRequestToMeemi:request];
 	// If it's a reply, mark the parent meme as "special"
 	if(replyScreenName != nil)
-		[self markMemeSpecial:replyID];
+		[Meemi markMemeSpecial:replyID];
 }
 
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postImageAsMeme:withDescription called without valid session");
+	NSAssert([Meemi isValid], @"postImageAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostImage;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:nil replyNo:nil privateTo:nil];
@@ -1230,7 +1310,7 @@ static Meemi *sharedSession = nil;
 			   replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postImageAsReply:withDescription called without valid session");
+	NSAssert([Meemi isValid], @"postImageAsReply:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostImage;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:image replyWho:replyScreenName replyNo:replyID privateTo:nil];
@@ -1239,7 +1319,7 @@ static Meemi *sharedSession = nil;
 -(void)postTextAsMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postTextAsMeme:withDescription called without valid session");
+	NSAssert([Meemi isValid], @"postTextAsMeme:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:nil replyNo:nil privateTo:nil];
@@ -1249,7 +1329,7 @@ static Meemi *sharedSession = nil;
 			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postTextAsReply:withDescription called without valid session");
+	NSAssert([Meemi isValid], @"postTextAsReply:withDescription called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:replyScreenName replyNo:replyID privateTo:nil];
@@ -1258,7 +1338,7 @@ static Meemi *sharedSession = nil;
 -(void)postTextAsPrivateMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized privateTo:(NSString *)privateTo
 {
 	// Sanity checks
-	NSAssert(self.isValid, @"postTextAsPrivateMeme: called without valid session");
+	NSAssert([Meemi isValid], @"postTextAsPrivateMeme: called without valid session");
 	// Set current request type
 	self.currentRequest = MmRPostText;
 	[self postSomething:description withLocalization:canBeLocalized andOptionalArg:channel replyWho:nil replyNo:nil privateTo:privateTo];
@@ -1317,22 +1397,22 @@ static Meemi *sharedSession = nil;
 //		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
 		// init a safe value, if void and if we don't have a reverse location
-		if([self.nearbyPlaceName isEqualToString:@""])
+		if([[Meemi nearbyPlaceName] isEqualToString:@""])
 		{
-			self.nearbyPlaceName = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
-									newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy];
+			[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
+									newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy]];
 			ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still unknown.",
 				 newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy);
 		}
 			// Set the new position, in case we already have a reverse geolocation, but we have a new position
 		if(self.placeName != nil && self.state != nil)
 		{
-			self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
+			[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
 									[self.placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 									[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-									locationManager.location.horizontalAccuracy];
-			ALog(@"Got a new position (reverse geoloc already in place): %@", self.nearbyPlaceName);
+									locationManager.location.horizontalAccuracy]];
+			ALog(@"Got a new position (reverse geoloc already in place): %@", [Meemi nearbyPlaceName]);
 		}
 			
 		// Notify the world that we have found ourselves
@@ -1366,9 +1446,6 @@ static Meemi *sharedSession = nil;
 		self.lcDenied = YES;
 		// add one to Get how many times user refused and save to default
 		self.nLocationUseDenies = self.nLocationUseDenies + 1;
-		// if denied thrice... signal it!
-//		if(self.nLocationUseDenies >= 3)
-//			[[Beacon shared] startSubBeaconWithName:@"userRefusedLocation" timeSession:NO];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setInteger:self.nLocationUseDenies forKey:@"userDeny"];
 	}
@@ -1399,12 +1476,12 @@ static Meemi *sharedSession = nil;
     if([addressParser parse])
 	{
 		// Also trims strings
-		self.nearbyPlaceName = [NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
+		[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
 								[self.placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 								[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-								locationManager.location.horizontalAccuracy];
-		ALog(@"Got a full localization: %@", self.nearbyPlaceName);
+								locationManager.location.horizontalAccuracy]];
+		ALog(@"Got a full localization: %@", [Meemi nearbyPlaceName]);
 		needG13N = NO;
 		// Notify the world that we have found ourselves
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];

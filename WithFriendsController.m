@@ -22,7 +22,7 @@
 {
 	DLog(@"SHAKED!");
 	// If session is not busy, reload.
-	if(![Meemi sharedSession].isBusy)
+	if(![Meemi isBusy])
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 }
 
@@ -77,7 +77,7 @@
 
 -(void)setupFetch
 {
-	NSManagedObjectContext *context = [Meemi sharedSession].managedObjectContext;
+	NSManagedObjectContext *context = [Meemi managedObjectContext];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:context];
@@ -177,7 +177,7 @@
 	}
 	else 
 	{
-		if(![Meemi sharedSession].isBusy)
+		if(![Meemi isBusy])
 			[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 	}
 
@@ -347,14 +347,14 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
 	if(self.replyTo == nil)
 	{
-		if([Meemi sharedSession].isBusy)
+		if([Meemi isBusy])
 			[self meemiIsBusy:nil];
 		else
 			[self meemiIsFree:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
 		// Load settings, if needed.
-		if(![Meemi sharedSession].isValid)
+		if(![Meemi isValid])
 			[self settingsView];		
 	}
 	else // reinit fetch only for replies...
@@ -382,7 +382,7 @@
 		[theMemeList release];
 		theMemeList = nil;
 		// and mark the thread read...
-		[[Meemi sharedSession] markThreadRead:self.replyTo];
+		[Meemi markThreadRead:self.replyTo];
 	}
 	// It happens that we don't need any callback from Meemi anymore.
 	if([Meemi sharedSession].delegate == self)
@@ -638,7 +638,7 @@
 		}
 	}
 	// Mark it read and remember where we were, btw...
-	[[Meemi sharedSession] markMemeRead:selectedMeme.id];
+	[Meemi markMemeRead:selectedMeme.id];
 	self.currentPosition = indexPath;
 }
 
