@@ -58,6 +58,7 @@
 		C0918688115442BC00C2C5A4 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0918686115442BC00C2C5A4 /* ImageSender.m */; };
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
+		C0A9C4E711A535CC0057F082 /* LoadAgainMemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */; };
 		C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C0BD043A11649D3800391138 /* Meme.xcdatamodel */; };
 		C0CE759F11771F3900A6BBC3 /* PostMeme.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CE759E11771F3900A6BBC3 /* PostMeme.xib */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
@@ -148,6 +149,7 @@
 		C0918686115442BC00C2C5A4 /* ImageSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSender.m; sourceTree = "<group>"; };
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadAgainMemeCell.xib; sourceTree = "<group>"; };
 		C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Meme.xcdatamodel; sourceTree = "<group>"; };
 		C0CE759E11771F3900A6BBC3 /* PostMeme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMeme.xib; sourceTree = "<group>"; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				6443B081116B824200C16EEF /* MemeCell.xib */,
 				C05188F011A016F700BA6F52 /* headerView.xib */,
 				C0CE759E11771F3900A6BBC3 /* PostMeme.xib */,
+				C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */,
 				C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */,
 				C05188F111A016F700BA6F52 /* headerView.xib in Resources */,
+				C0A9C4E711A535CC0057F082 /* LoadAgainMemeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

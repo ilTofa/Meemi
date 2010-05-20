@@ -44,6 +44,8 @@ typedef enum {
 -(IBAction)filterSelected;
 -(IBAction)avatarTouched:(id)sender;
 
+-(IBAction)loadMore:(id)sender;
+
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, assign) IBOutlet UIView *headerView;
 @property (nonatomic, retain) IBOutlet UILabel *headerLabel;

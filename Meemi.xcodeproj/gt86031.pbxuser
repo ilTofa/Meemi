@@ -56,7 +56,7 @@
 		breakpoints = (
 			C02743EB1156DF4600C818F9 /* malloc_error_break */,
 			C0619C4F115ED3CB00EFA27E /* MeemiWebAppController.m:31 */,
-			C045C3C5116F998800BEDCCC /* WithFriendsController.m:394 */,
+			C045C3C5116F998800BEDCCC /* WithFriendsController.m:399 */,
 			C034510A1181EBA8005DBA24 /* Meemi.m:323 */,
 		);
 		codeSenseManager = C01D8706115141AA00608D7E /* Code sense */;
@@ -67,13 +67,16 @@
 			info,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 295881475;
-			PBXWorkspaceStateSaveDate = 295881475;
+			PBXPerProjectTemplateStateSaveDate = 296039708;
+			PBXWorkspaceStateSaveDate = 296039708;
 		};
 		perUserProjectItems = {
 			C04A63AA11A2CDB700C9DB45 /* PBXTextBookmark */ = C04A63AA11A2CDB700C9DB45 /* PBXTextBookmark */;
-			C04A63AB11A2CDB700C9DB45 /* PBXTextBookmark */ = C04A63AB11A2CDB700C9DB45 /* PBXTextBookmark */;
 			C04A63E411A2D57D00C9DB45 /* PBXTextBookmark */ = C04A63E411A2D57D00C9DB45 /* PBXTextBookmark */;
+			C0A9C51E11A53E9B0057F082 /* PBXTextBookmark */ = C0A9C51E11A53E9B0057F082 /* PBXTextBookmark */;
+			C0A9C51F11A53E9B0057F082 /* PBXTextBookmark */ = C0A9C51F11A53E9B0057F082 /* PBXTextBookmark */;
+			C0A9C52311A53EBA0057F082 /* PBXTextBookmark */ = C0A9C52311A53EBA0057F082 /* PBXTextBookmark */;
+			C0A9C52411A53EBA0057F082 /* PBXTextBookmark */ = C0A9C52411A53EBA0057F082 /* PBXTextBookmark */;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -170,7 +173,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 295883090.129948;
+		modificationTime = 296042140.879589;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 		symbolName = malloc_error_break;
@@ -204,7 +207,7 @@
 		ignoreCount = 0;
 		lineNumber = 323;
 		location = Meemi;
-		modificationTime = 295883090.129608;
+		modificationTime = 296042140.879368;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -268,7 +271,7 @@
 			sepNavWindowFrame = "{{122, 66}, {1191, 1112}}";
 		};
 	};
-	C045C3C5116F998800BEDCCC /* WithFriendsController.m:394 */ = {
+	C045C3C5116F998800BEDCCC /* WithFriendsController.m:399 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -280,9 +283,9 @@
 		functionName = "-searchBarSearchButtonClicked:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 394;
+		lineNumber = 399;
 		location = Meemi;
-		modificationTime = 295883090.129595;
+		modificationTime = 296042140.879188;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -295,16 +298,6 @@
 		rType = 0;
 		vrLen = 2276;
 		vrLoc = 1602;
-	};
-	C04A63AB11A2CDB700C9DB45 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
-		name = "Meemi.m: 223";
-		rLen = 0;
-		rLoc = 4528;
-		rType = 0;
-		vrLen = 1275;
-		vrLoc = 1890;
 	};
 	C04A63E411A2D57D00C9DB45 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -319,16 +312,16 @@
 	C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1356, 951}}";
-			sepNavSelRange = "{1389, 0}";
-			sepNavVisRange = "{0, 1683}";
+			sepNavSelRange = "{1111, 0}";
+			sepNavVisRange = "{0, 1716}";
 			sepNavWindowFrame = "{{283, 74}, {1058, 1102}}";
 		};
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {3092, 9464}}";
-			sepNavSelRange = "{23418, 0}";
-			sepNavVisRange = "{22612, 1807}";
+			sepNavIntBoundsRect = "{{0, 0}, {1242, 10010}}";
+			sepNavSelRange = "{761, 0}";
+			sepNavVisRange = "{0, 1102}";
 			sepNavWindowFrame = "{{257, 76}, {1058, 1102}}";
 		};
 	};
@@ -346,7 +339,7 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = Meemi;
-		modificationTime = 295883090.129548;
+		modificationTime = 296042140.879151;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -402,6 +395,46 @@
 			sepNavVisRange = "{623, 1359}";
 			sepNavWindowFrame = "{{24, 79}, {1060, 1094}}";
 		};
+	};
+	C0A9C51E11A53E9B0057F082 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C71165DA91001AC0B6 /* WithFriendsController.h */;
+		name = "WithFriendsController.h: 47";
+		rLen = 0;
+		rLoc = 1111;
+		rType = 0;
+		vrLen = 1716;
+		vrLoc = 0;
+	};
+	C0A9C51F11A53E9B0057F082 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 466";
+		rLen = 4;
+		rLoc = 15436;
+		rType = 0;
+		vrLen = 2586;
+		vrLoc = 14109;
+	};
+	C0A9C52311A53EBA0057F082 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 466";
+		rLen = 4;
+		rLoc = 15436;
+		rType = 0;
+		vrLen = 2611;
+		vrLoc = 14109;
+	};
+	C0A9C52411A53EBA0057F082 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 203";
+		rLen = 0;
+		rLoc = 3715;
+		rType = 0;
+		vrLen = 3435;
+		vrLoc = 8648;
 	};
 	C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {
 		uiCtxt = {
@@ -625,9 +658,9 @@
 	};
 	C0E620421152E36800E6C079 /* Meemi.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1132, 20930}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1258, 20852}}";
 			sepNavSelRange = "{3715, 0}";
-			sepNavVisRange = "{2770, 1631}";
+			sepNavVisRange = "{8648, 3435}";
 			sepNavWindowFrame = "{{157, 66}, {1191, 1112}}";
 		};
 	};

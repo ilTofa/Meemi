@@ -26,6 +26,11 @@
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 }
 
+-(IBAction)loadMore:(id)sender
+{
+	DLog(@"loadMore: clicked");
+}
+
 -(void)meemiIsBusy:(NSNotification *)note
 {
 	DLog(@"meemiIsBusy:");
@@ -440,15 +445,24 @@
 #define kTextWidth 271.0f
 #define kHeigthBesideText 85.0f
 
+// TODO: fake variable
+#define watermark 20
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"MemeCell";
+    NSString *cellIdentifier;
+	
+	if(indexPath.row != watermark)
+		cellIdentifier = @"MemeCell";
+	else
+		cellIdentifier = @"LoadAgainMemeCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	
     if (cell == nil) 
 	{
-		[[NSBundle mainBundle] loadNibNamed:@"MemeCell" owner:self options:nil];
+		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = memeCell;
         self.memeCell = nil;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -533,6 +547,7 @@
 		tempLabel = (UILabel *)[cell viewWithTag:2];
 		tempLabel.text = theFetchedMeme.user.real_name;
 	}
+	
     return cell;
 }
 
