@@ -101,12 +101,6 @@
 		case FTAll:
 			self.predicateString = @"reply_id == 0";
 			break;
-		case FTNew:
-			self.predicateString = [NSString stringWithFormat:@"new_meme == YES AND reply_id == 0"];
-			break;
-		case FTChg:
-			self.predicateString = [NSString stringWithFormat:@"(new_meme == YES OR new_replies == YES) AND reply_id == 0"];
-			break;
 		case FTPvt:
 			self.predicateString = [NSString stringWithFormat:@"private_meme == YES AND reply_id == 0"];
 			break;
@@ -294,17 +288,15 @@
 		
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
-		
+#define kButtonWidth 60.0f
 		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
 																 action:@selector(markReadMemes)];
-//		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithTitle:@"☑" 
+		[readB setWidth:kButtonWidth];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		NSArray *tempStrings = [NSArray arrayWithObjects:
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlagForSegmented" ofType:@"png"]],
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlagForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LockForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]]
 								, nil];
@@ -314,8 +306,8 @@
 		theSegment.tintColor = [UIColor colorWithRed:0.54118 green:0.6902 blue:0.8549 alpha:1.0];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
-		for (int i = 0; i < 5; i++)
-			[theSegment setWidth:47.0 forSegmentAtIndex:i];
+		for (int i = 0; i < 3; i++)
+			[theSegment setWidth:kButtonWidth forSegmentAtIndex:i];
 		[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:
 								 readB,

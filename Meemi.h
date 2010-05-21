@@ -89,6 +89,9 @@ typedef enum
 	BOOL lcDenied;	
 	NSString *placeName, *state;
 	
+	// This is the last laoded page
+	int lastLoadedPage;
+	
 	// mark how many records we got.
 	int howMany;
 	int howManyRequestTotal;
@@ -121,6 +124,7 @@ typedef enum
 @property (nonatomic, assign) int nLocationUseDenies; //internal
 @property (nonatomic, assign) int memeNumber; 
 @property (nonatomic, assign) int memeTime;
+@property (nonatomic, assign) int lastLoadedPage;
 @property (nonatomic, retain) NSDate *lastReadDate;
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;

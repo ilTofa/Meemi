@@ -41,6 +41,8 @@ NSManagedObjectContext *managedObjectContext;
 NSString *nearbyPlaceName;
 // Sessions active (used by isBusy)
 int activeSessionsCount;
+// page size for loading data
+static int pageSize = 20;
 
 @implementation Meemi
 
@@ -49,6 +51,7 @@ int activeSessionsCount;
 @synthesize networkQueue;
 @synthesize memeNumber, memeTime, lastReadDate;
 @synthesize replyTo, replyUser;
+@synthesize lastLoadedPage;
 
 #pragma mark Class Methods
 
@@ -179,6 +182,7 @@ int activeSessionsCount;
 		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
+		self.lastLoadedPage = 0;
 		return self;
 	}
 	else
@@ -1096,6 +1100,33 @@ int activeSessionsCount;
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];
+}
+
+-(void)getMemes
+{
+	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
+	self.currentRequest = MmGetNew;
+	// Now setup the URI depending on the request
+	NSURL *url;
+	if(self.lastLoadedPage == 0)
+	{
+		url = [NSURL URLWithString:
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d", [Meemi screenName], pageSize]];
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+		newMemesPageWatermark = 1;
+		howManyRequestTotal = 0;
+	}
+	else 
+	{
+		newMemesPageWatermark++;
+		url = [NSURL URLWithString:
+			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
+				[Meemi screenName], pageSize, self.lastLoadedPage]];
+	}
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];
+	
 }
 
 -(void)getNewPrivateMemes:(BOOL)fromScratch
