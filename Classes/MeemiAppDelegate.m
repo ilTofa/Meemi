@@ -214,8 +214,10 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)reloadMemes
 {
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getNewMemes:YES];	
+	DLog(@"appDelegate reloadMemes called. Ignoring it");
+	
+//	[Meemi sharedSession].delegate = self;
+//	[[Meemi sharedSession] getNewMemes:YES];	
 }
 
 -(void)markReadMemes
