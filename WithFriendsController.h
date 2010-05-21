@@ -38,12 +38,15 @@ typedef enum {
 	UILabel *headerArrow;
 	UIActivityIndicatorView *laRuota;
 	Meemi *ourPersonalMeemi;
+	int watermark;
 }
 
 -(IBAction)filterSelected;
 -(IBAction)avatarTouched:(id)sender;
 
 -(IBAction)loadMore:(id)sender;
+
+-(void)loadMemePage;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, assign) IBOutlet UIView *headerView;

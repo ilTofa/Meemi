@@ -135,42 +135,42 @@ static int pageSize = 20;
     return sharedSession;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
-    @synchronized(self) {
-        if (sharedSession == nil) {
-            sharedSession = [super allocWithZone:zone];
-            return sharedSession;  // assignment and return on first allocation
-        }
-    }
-    return nil; //on subsequent allocation attempts return nil
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (unsigned)retainCount
-{
-    return UINT_MAX;  //denotes an object that cannot be released
-}
-
-- (void)release
-{
-    //do nothing
-}
-
-- (id)autorelease
-{
-    return self;
-}
-
+//+ (id)allocWithZone:(NSZone *)zone
+//{
+//    @synchronized(self) {
+//        if (sharedSession == nil) {
+//            sharedSession = [super allocWithZone:zone];
+//            return sharedSession;  // assignment and return on first allocation
+//        }
+//    }
+//    return nil; //on subsequent allocation attempts return nil
+//}
+//
+//- (id)copyWithZone:(NSZone *)zone
+//{
+//    return self;
+//}
+//
+//- (id)retain
+//{
+//    return self;
+//}
+//
+//- (unsigned)retainCount
+//{
+//    return UINT_MAX;  //denotes an object that cannot be released
+//}
+//
+//- (void)release
+//{
+//    //do nothing
+//}
+//
+//- (id)autorelease
+//{
+//    return self;
+//}
+//
 -(id) init
 {
 	if(self = [super init])
@@ -528,12 +528,13 @@ static int pageSize = 20;
 		// now call update avatars (if needed, else get back to delegate)
 		if([newUsersQueue count] != 0)
 			[self updateAvatars];
-		else // get back, before mark session free and release all.
+		else // get back with watermark, before mark session free and release all.
 		{
 			[localManagedObjectContext release];
 			localManagedObjectContext = nil;
 			[self nowFree];
-			[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
+			self.lastLoadedPage++;
+			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.lastLoadedPage];
 		}
 	}
 }
@@ -1113,7 +1114,7 @@ static int pageSize = 20;
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
 				[Meemi screenName], pageSize, self.lastLoadedPage]];
 	}
-	
+	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	
 }

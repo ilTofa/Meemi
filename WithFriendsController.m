@@ -178,6 +178,8 @@
 	else 
 	{
 		ourPersonalMeemi = [[Meemi alloc] init];
+		if(!ourPersonalMeemi)
+			ALog(@"Meemi session init failed. Shit...");
 		ourPersonalMeemi.delegate = self;
 		[ourPersonalMeemi getMemes];
 	}
@@ -207,7 +209,7 @@
 	// if new memes, set watermark.
 	if(request == MmGetNew)
 	{
-		
+		watermark = result;
 	}
 }
 
@@ -447,9 +449,6 @@
 #define kTextWidth 271.0f
 #define kHeigthBesideText 85.0f
 #define kExtraHeightForReload 50.0f
-
-// TODO: fake variable
-#define watermark 20
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
