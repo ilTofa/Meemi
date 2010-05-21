@@ -60,6 +60,7 @@ typedef enum
 
 /* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
 #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
+#define kNewMeemiDatesFormat @"yyyy-MM-ddTHH:mm:ssZ"
 
 #ifdef __IPHONE_4_0
 @interface Meemi : NSObject <CLLocationManagerDelegate, NSXMLParserDelegate>

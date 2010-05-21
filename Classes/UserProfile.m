@@ -9,6 +9,8 @@
 #import "UserProfile.h"
 #import "MemeOnWeb.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation UserProfile
 
 @synthesize theAvatar, screenName, realName, birth, location, info, theSegment, followButton, messageButton;
@@ -173,6 +175,13 @@
 	[theSegment release];
 	[spacer release];
 	self.navigationController.toolbarHidden = NO;
+	
+	//corners and borders to avatar image
+	CALayer * l = [theAvatar layer];
+	l.cornerRadius = 5.0;
+	l.masksToBounds = YES;
+	l.borderColor = [UIColor darkGrayColor].CGColor;
+	l.borderWidth = 1.0;	
 	
 	// And register to be notified for shaking and busy/not busy of Meemi session
 	if([Meemi isBusy])

@@ -362,12 +362,17 @@ int activeSessionsCount;
 		if([elementName isEqualToString:@"date_time"])
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-			[dateFormatter setLocale:usLocale];
-			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-			[dateFormatter release];
-			[usLocale release];
+			[dateFormatter setDateFormat:kNewMeemiDatesFormat];
+			theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
+			if(theMeme.date_time == nil)
+			{
+				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+				[dateFormatter setLocale:usLocale];
+				[dateFormatter setDateFormat:kMeemiDatesFormat];
+				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+				[dateFormatter release];
+				[usLocale release];
+			}
 		}
 		if([elementName isEqualToString:@"meme_type"])
 		{
@@ -436,12 +441,17 @@ int activeSessionsCount;
 		if([elementName isEqualToString:@"when"])
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-			[dateFormatter setLocale:usLocale];
-			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-			[dateFormatter release];
-			[usLocale release];
+			[dateFormatter setDateFormat:kNewMeemiDatesFormat];
+			theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
+			if(theMeme.event_when == nil)
+			{
+				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+				[dateFormatter setLocale:usLocale];
+				[dateFormatter setDateFormat:kMeemiDatesFormat];
+				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+				[dateFormatter release];
+				[usLocale release];
+			}
 		}
 		if([elementName isEqualToString:@"where"])
 			theMeme.event_where = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -485,14 +495,19 @@ int activeSessionsCount;
 			lastMemeTimestamp = nil;
 		}
 		NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-		NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-		[dateFormatter setLocale:usLocale];
-		[dateFormatter setDateFormat:kMeemiDatesFormat];
-		lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-		theMeme.dt_last_movement = lastMemeTimestamp;
-		[lastMemeTimestamp retain];
-		[dateFormatter release];
-		[usLocale release];
+		[dateFormatter setDateFormat:kNewMeemiDatesFormat];
+		theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
+		if(theMeme.dt_last_movement == nil)
+		{
+			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+			[dateFormatter setLocale:usLocale];
+			[dateFormatter setDateFormat:kMeemiDatesFormat];
+			lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+			theMeme.dt_last_movement = lastMemeTimestamp;
+			[lastMemeTimestamp retain];
+			[dateFormatter release];
+			[usLocale release];
+		}
 	}
 	
 	// should end? If YES, commit the CoreData objects to the db

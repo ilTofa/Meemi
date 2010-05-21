@@ -13,6 +13,8 @@
 #import "UserProfile.h"
 #import "SettingsController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation WithFriendsController
 
 @synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
@@ -293,17 +295,19 @@
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
 		
-		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithTitle:@"Read" 
+		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
-																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) 
+																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
 																 action:@selector(markReadMemes)];
+//		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithTitle:@"☑" 
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		NSArray *tempStrings = [NSArray arrayWithObjects:
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlagForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlagForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LockForSegmented" ofType:@"png"]],
-								@"★", nil];
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]]
+								, nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
 		// That's 138, 176, 218 "meemi chiaro"
@@ -444,6 +448,7 @@
 
 #define kTextWidth 271.0f
 #define kHeigthBesideText 85.0f
+#define kExtraHeightForReload 50.0f
 
 // TODO: fake variable
 #define watermark 20
@@ -482,6 +487,11 @@
 	
 	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
+	CALayer * l = [tempButton layer];
+	l.cornerRadius = 5.0;
+	l.masksToBounds = YES;
+	l.borderColor = [UIColor darkGrayColor].CGColor;
+	l.borderWidth = 1.0;
 	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
 	NSString *indexinController = [NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row];
 	[tempButton setTitle:indexinController forState:UIControlStateNormal];
@@ -554,17 +564,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	float retVal;
 	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];
 	if(theFetchedMeme)
 	{
 		CGSize theSize = [theFetchedMeme.content sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:CGSizeMake(kTextWidth, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-		return theSize.height + kHeigthBesideText;
+		retVal = theSize.height + kHeigthBesideText;
 	}
 	else
 	{
 		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@", indexPath);
-		return kHeigthBesideText;
+		retVal = kHeigthBesideText;
 	}
+	if(indexPath.row == watermark)
+		retVal += kExtraHeightForReload;
+	return retVal;
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

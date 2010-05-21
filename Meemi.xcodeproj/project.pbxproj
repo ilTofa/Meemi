@@ -40,6 +40,8 @@
 		C05188F111A016F700BA6F52 /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05188F011A016F700BA6F52 /* headerView.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
+		C0574FBA11A67BD700572B73 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FB911A67BD700572B73 /* Checkmark.png */; };
+		C0574FC411A67CD300572B73 /* StartForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FC311A67CD300572B73 /* StartForSegmented.png */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
@@ -76,6 +78,7 @@
 		C0E620431152E36800E6C079 /* Meemi.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620421152E36800E6C079 /* Meemi.m */; };
 		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
 		C0E7B8211199AC230082F1AE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E7B8201199AC230082F1AE /* User.m */; };
+		C0F33EEE11A696B400510AEE /* TableBreak.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F33EED11A696B400510AEE /* TableBreak.png */; };
 		C0FB56851157B5DD003932F3 /* TextSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FB56831157B5DD003932F3 /* TextSender.m */; };
 		C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FB56841157B5DD003932F3 /* TextSender.xib */; };
 		C0FB57181157CD9D003932F3 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = C0FB57171157CD9D003932F3 /* 103-map.png */; };
@@ -128,6 +131,8 @@
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
 		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
+		C0574FB911A67BD700572B73 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
+		C0574FC311A67CD300572B73 /* StartForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartForSegmented.png; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C07ED92B1151429000311726 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C07ED93A1151470A00311726 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		C0E620491152E4E100E6C079 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C0E7B81F1199AC230082F1AE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C0E7B8201199AC230082F1AE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C0F33EED11A696B400510AEE /* TableBreak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableBreak.png; sourceTree = "<group>"; };
 		C0FB56821157B5DD003932F3 /* TextSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSender.h; sourceTree = "<group>"; };
 		C0FB56831157B5DD003932F3 /* TextSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSender.m; sourceTree = "<group>"; };
 		C0FB56841157B5DD003932F3 /* TextSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TextSender.xib; path = Classes/TextSender.xib; sourceTree = "<group>"; };
@@ -316,6 +322,9 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C0F33EED11A696B400510AEE /* TableBreak.png */,
+				C0574FC311A67CD300572B73 /* StartForSegmented.png */,
+				C0574FB911A67BD700572B73 /* Checkmark.png */,
 				C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */,
 				C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */,
 				C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */,
@@ -463,6 +472,9 @@
 				C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */,
 				C05188F111A016F700BA6F52 /* headerView.xib in Resources */,
 				C0A9C4E711A535CC0057F082 /* LoadAgainMemeCell.xib in Resources */,
+				C0574FBA11A67BD700572B73 /* Checkmark.png in Resources */,
+				C0574FC411A67CD300572B73 /* StartForSegmented.png in Resources */,
+				C0F33EEE11A696B400510AEE /* TableBreak.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
