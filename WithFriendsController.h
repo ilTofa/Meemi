@@ -37,6 +37,7 @@ typedef enum {
 	UILabel *headerLabel;
 	UILabel *headerArrow;
 	UIActivityIndicatorView *laRuota;
+	Meemi *ourPersonalMeemi;
 }
 
 -(IBAction)filterSelected;

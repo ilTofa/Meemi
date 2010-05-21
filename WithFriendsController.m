@@ -24,8 +24,7 @@
 {
 	DLog(@"SHAKED!");
 	// If session is not busy, reload.
-	if(![Meemi isBusy])
-		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
+	[self loadMemePage];
 }
 
 -(IBAction)loadMore:(id)sender
@@ -178,10 +177,10 @@
 	}
 	else 
 	{
-		if(![Meemi isBusy])
-			[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
+		ourPersonalMeemi = [[Meemi alloc] init];
+		ourPersonalMeemi.delegate = self;
+		[ourPersonalMeemi getMemes];
 	}
-
 }
 
 #pragma mark MeemiDelegate
@@ -199,12 +198,17 @@
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
-	DLog(@"got replies");
 	// If returning from "get new replies", get avatars if needed.
 	if(request == MMGetNewReplies)
+	{
+		DLog(@"got replies");
 		[[Meemi sharedSession] updateAvatars];
-//	else // It's OK, update...
-//		[self.tableView reloadData];
+	}
+	// if new memes, set watermark.
+	if(request == MmGetNew)
+	{
+		
+	}
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -280,6 +284,8 @@
 	
 	if(self.replyTo == nil)
 	{
+		[self loadMemePage];
+		
 		// Add a left button for reloading the meme list
 		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
 																		 style:UIBarButtonItemStylePlain 
@@ -757,7 +763,7 @@
 		[UIView setAnimationDuration:0.2];
 		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 		[UIView commitAnimations];			
-		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
+		[self loadMemePage];
 	}
 }
 
