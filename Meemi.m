@@ -7,6 +7,7 @@
 //
 
 #import "Meemi.h"
+#import "MeemiAppDelegate.h"
 
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
@@ -49,9 +50,9 @@ static int pageSize = 20;
 @synthesize delegate, currentRequest;
 @synthesize lcDenied, nLocationUseDenies, placeName, state;
 @synthesize networkQueue;
-@synthesize memeNumber, memeTime, lastReadDate;
+@synthesize memeNumber, memeTime;
 @synthesize replyTo, replyUser;
-@synthesize lastLoadedPage;
+@synthesize lastLoadedPage, lastReadMemeTimestamp;
 
 #pragma mark Class Methods
 
@@ -195,6 +196,7 @@ static int pageSize = 20;
 	DLog(@"An I/O session started: count is %d", activeSessionsCount);
 	if(activeSessionsCount == 1)
 	{
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		DLog(@"Notifying the world that we are now busy...");
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowBusy object:self]];
 	}
@@ -206,6 +208,7 @@ static int pageSize = 20;
 	DLog(@"An I/O session ended: count is %d", activeSessionsCount);
 	if(activeSessionsCount == 0)
 	{
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		DLog(@"Notify the world that we are now free...");
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowFree object:self]];
 	}
@@ -217,7 +220,6 @@ static int pageSize = 20;
 {
 	NSData *responseData = [request responseData];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[self nowFree];
 	DLog(@"request sent and answer received. Calling parser for processing\n");
 	[self parse:responseData];
 }
@@ -244,11 +246,6 @@ static int pageSize = 20;
 	self.memeTime = [defaults integerForKey:@"memeTime"];
 	if(self.memeTime == 0)
 		self.memeTime = 24;
-	// Last read meme...
-	self.lastReadDate = [defaults objectForKey:@"lastRead"];
-	// protect ourselves...
-	if(self.lastReadDate == nil)
-		self.lastReadDate = [NSDate distantPast];
 	// get number of times user denied location use..
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 	valid = YES;
@@ -258,9 +255,6 @@ static int pageSize = 20;
 // returns YES if xml parsing succeeds, NO otherwise
 - (BOOL) parse:(NSData *)responseData
 {
-//	DLog(@"Starting parse of: %@", responseData);
-//	NSString *temp = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
-//	DLog(@"As string: \"%@\"", temp);
     if (addressParser) // addressParser is an NSXMLParser instance variable
         [addressParser release];
 	addressParser = [[NSXMLParser alloc] initWithData:responseData];
@@ -277,14 +271,14 @@ static int pageSize = 20;
 	DLog(@"Now in setupMemeRelationshipsFrom");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:localManagedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name like %@", name];
 	[request setPredicate:predicate];
 	// We're only looking for one.
 	[request setFetchLimit:1];
 	NSError *error;
-	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *fetchResults = [localManagedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		theUser = [fetchResults objectAtIndex:0];
@@ -294,7 +288,7 @@ static int pageSize = 20;
 	{
 		// Create an User and add it to the managedObjectContext
 		// (and to the list of "new ones" for later processing
-		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:managedObjectContext];
+		theUser = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:localManagedObjectContext];
 		theUser.screen_name = name;
 		[newUsersQueue addObject:name];
 		DLog(@"New user created for %@", name);
@@ -311,7 +305,7 @@ static int pageSize = 20;
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:localManagedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
 	[request setPredicate:predicate];
@@ -319,7 +313,7 @@ static int pageSize = 20;
 	[request setFetchLimit:1];
 	NSError *error;
 	BOOL retValue;
-	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *fetchResults = [localManagedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		// Set theMeme for further processing (if any)
@@ -345,7 +339,7 @@ static int pageSize = 20;
 		if(currentMemeIsNew)
 		{
 			DLog(@"*** got a new meme");
-			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+			theMeme = (Meme *)[NSEntityDescription insertNewObjectForEntityForName:@"Meme" inManagedObjectContext:localManagedObjectContext];
 			theMeme.id = newMemeID;
 			theMeme.new_meme = [NSNumber numberWithBool:YES];
 		}
@@ -453,9 +447,9 @@ static int pageSize = 20;
 				[dateFormatter setLocale:usLocale];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
 				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-				[dateFormatter release];
 				[usLocale release];
 			}
+			[dateFormatter release];
 		}
 		if([elementName isEqualToString:@"where"])
 			theMeme.event_where = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -493,11 +487,6 @@ static int pageSize = 20;
 	// Get the timestamp in any case for checking end (and set it just in case)
 	if([elementName isEqualToString:@"dt_last_movement"])
 	{
-		if(lastMemeTimestamp != nil)
-		{
-			[lastMemeTimestamp release];
-			lastMemeTimestamp = nil;
-		}
 		NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:kNewMeemiDatesFormat];
 		theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
@@ -506,21 +495,23 @@ static int pageSize = 20;
 			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 			[dateFormatter setLocale:usLocale];
 			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			lastMemeTimestamp = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
-			theMeme.dt_last_movement = lastMemeTimestamp;
-			[lastMemeTimestamp retain];
-			[dateFormatter release];
+			theMeme.dt_last_movement = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
 			[usLocale release];
 		}
+		[dateFormatter release];
 	}
 	
-	// should end? If YES, commit the CoreData objects to the db
+	// Parsing ended: commit the CoreData objects to the db
 	if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 	{
+		// If we're parsing new memes, save last read timestamp of the meme (they're guaranteed come in reverse date)
+		if(self.currentRequest = MmGetNew)
+			self.lastReadMemeTimestamp = [theMeme.dt_last_movement copy];
+		// Commit (if needed)
 		NSError *error;
-		if([managedObjectContext hasChanges])
+		if([localManagedObjectContext hasChanges])
 		{
-			if (![managedObjectContext save:&error])
+			if (![localManagedObjectContext save:&error])
 			{
 				DLog(@"Failed to save to data store: %@", [error localizedDescription]);
 				NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -529,31 +520,21 @@ static int pageSize = 20;
 						DLog(@"  DetailedError: %@", [detailedError userInfo]);
 				else 
 					DLog(@"  %@", [error userInfo]);
+				// Get back the error to the delegate
+				[self.delegate meemi:self.currentRequest didFailWithError:error];
 			}
 		}
-		// DEBUG: what we read
-		DLog(@"Read %d records from page %d with %d new users", howMany, newMemesPageWatermark, [newUsersQueue count]);
-		// return to delegate 1 if we should continue, 0 if we should stop here.
-		int retValue;
-		if(howManyRequestTotal >= self.memeNumber ||
-		   [lastMemeTimestamp compare:[NSDate dateWithTimeIntervalSinceNow:self.memeTime * 3600]] == NSOrderedDescending ||
-		   [self.lastReadDate compare:lastMemeTimestamp] == NSOrderedDescending || 
-		   howMany < 5 ||
-		   self.currentRequest == MMGetNewReplies)
+		DLog(@"Read %d records from page %d with %d new users", howMany, self.lastLoadedPage, [newUsersQueue count]);
+		// now call update avatars (if needed, else get back to delegate)
+		if([newUsersQueue count] != 0)
+			[self updateAvatars];
+		else // get back, before mark session free and release all.
 		{
-			retValue = 0;
-			// remember last date for "public" memes (allow 30 seconds less to account for network processing)
-			if(self.currentRequest == MmGetNew)
-				self.lastReadDate = [NSDate dateWithTimeIntervalSinceNow:-30];
-			// Unmark busy...
+			[localManagedObjectContext release];
+			localManagedObjectContext = nil;
 			[self nowFree];
-			// Mark lastread... ONLY if we are at PvtSent (the last one we read)
-			if(self.currentRequest == MMGetNewPvtSent)
-				[[NSUserDefaults standardUserDefaults] setObject:self.lastReadDate forKey:@"lastRead"];
+			[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
 		}
-		else
-			retValue = 1;
-		[self.delegate meemi:self.currentRequest didFinishWithResult:retValue];
 	}
 }
 
@@ -668,13 +649,23 @@ static int pageSize = 20;
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
+		{
 			howMany = 0;
+			// This is a good point to instantiate a local ManagedObjectContext if it not already exists
+			if (localManagedObjectContext == nil)
+			{
+				
+				NSPersistentStoreCoordinator *coordinator = [((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) persistentStoreCoordinator];
+				if (coordinator != nil) 
+				{
+					localManagedObjectContext = [[NSManagedObjectContext alloc] init];
+					[localManagedObjectContext setPersistentStoreCoordinator:coordinator];
+				}
+			}			
+		}
 		// if a meme is coming increment meme count
 		if([elementName isEqualToString:@"meme"])
-		{
-			howMany++;
-			howManyRequestTotal++;
-		}
+			howMany++;		
 		if([elementName isEqualToString:@"sent_to"])
 		{
 			if(sent_to != nil)
@@ -885,14 +876,14 @@ static int pageSize = 20;
 {
 	NSURL *url;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:localManagedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"screen_name == %@", userScreenName];
 	[request setPredicate:predicate];
 	// We're only looking for one.
 	[request setFetchLimit:1];
 	NSError *error;
-	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *fetchResults = [localManagedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		User *theOne = [fetchResults objectAtIndex:0];
@@ -903,6 +894,9 @@ static int pageSize = 20;
 			// get avatar and store it
 			DLog(@"getting avatar for %@ from %@", theOne.screen_name, temp);
 			ASIHTTPRequest *netRequest = [ASIHTTPRequest requestWithURL:url];
+			if([NSThread isMainThread])
+				ALog(@"****!!!!**** we're blocking the main thread! ****!!!!****");
+			
 			[netRequest startSynchronous];
 			error = [netRequest error];
 			if (!error) {
@@ -916,10 +910,10 @@ static int pageSize = 20;
 	}
 	[request release];
 	
-	if([managedObjectContext hasChanges])
+	if([localManagedObjectContext hasChanges])
 	{
 		NSError *error;
-		if (![managedObjectContext save:&error])
+		if (![localManagedObjectContext save:&error])
 		{
 			ALog(@"Failed to save to data store: %@", [error localizedDescription]);
 			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
@@ -993,9 +987,11 @@ static int pageSize = 20;
 -(void)getBackToDelegateAfterUpdateAvatars:(id)theDelegate
 {
 	DLog(@"in getBackToDelegateAfterUpdateAvatars:");
+	// Cleanup
 	[self nowFree];
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[(id<MeemiDelegate>)theDelegate meemi:MmGetNewUsers didFinishWithResult:0];
+	[localManagedObjectContext release];
+	localManagedObjectContext = nil;
+	[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
 }
 
 -(void)updateAvatars
@@ -1087,15 +1083,12 @@ static int pageSize = 20;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5", [Meemi screenName]]];
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-		newMemesPageWatermark = 1;
-		howManyRequestTotal = 0;
 	}
 	else 
 	{
-		newMemesPageWatermark++;
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5/page_%d", 
-				[Meemi screenName], newMemesPageWatermark]];
+//		url = [NSURL URLWithString:
+//			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5/page_%d", 
+//				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -1106,27 +1099,23 @@ static int pageSize = 20;
 {
 	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
 	self.currentRequest = MmGetNew;
+	newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	// Now setup the URI depending on the request
 	NSURL *url;
 	if(self.lastLoadedPage == 0)
 	{
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d", [Meemi screenName], pageSize]];
-		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-		newMemesPageWatermark = 1;
-		howManyRequestTotal = 0;
 	}
 	else 
 	{
-		newMemesPageWatermark++;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
 				[Meemi screenName], pageSize, self.lastLoadedPage]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[self startRequestToMeemi:request];
-	
+	[self startRequestToMeemi:request];	
 }
 
 -(void)getNewPrivateMemes:(BOOL)fromScratch
@@ -1141,15 +1130,15 @@ static int pageSize = 20;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", [Meemi screenName]]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
-		newMemesPageWatermark = 1;
-		howManyRequestTotal = 0;
+//		newMemesPageWatermark = 1;
+//		howManyRequestTotal = 0;
 	}
 	else 
 	{
-		newMemesPageWatermark++;
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5/page_%d", 
-				[Meemi screenName], newMemesPageWatermark]];
+//		newMemesPageWatermark++;
+//		url = [NSURL URLWithString:
+//			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5/page_%d", 
+//				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -1168,15 +1157,15 @@ static int pageSize = 20;
 		url = [NSURL URLWithString:
 			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5", [Meemi screenName]]];
 //		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
-		newMemesPageWatermark = 1;
-		howManyRequestTotal = 0;
+//		newMemesPageWatermark = 1;
+//		howManyRequestTotal = 0;
 	}
 	else 
 	{
-		newMemesPageWatermark++;
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5/page_%d", 
-				[Meemi screenName], newMemesPageWatermark]];
+//		newMemesPageWatermark++;
+//		url = [NSURL URLWithString:
+//			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5/page_%d", 
+//				[Meemi screenName], newMemesPageWatermark]];
 	}
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

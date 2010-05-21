@@ -89,13 +89,14 @@ typedef enum
 	BOOL lcDenied;	
 	NSString *placeName, *state;
 	
-	// This is the last laoded page
+	// This is the last laoded page (1-based. 0 means "no pages loaded")
 	int lastLoadedPage;
-	
-	// mark how many records we got.
+	// And this is the last timestamp read (for new meme, standard type)
+	NSDate *lastReadMemeTimestamp;
+	// mark how many records we got in this request.
 	int howMany;
-	int howManyRequestTotal;
-	int newMemesPageWatermark;
+	NSManagedObjectContext *localManagedObjectContext;
+	
 	// Temporary workaround for no "mark read" bug of meemi
 	BOOL currentMemeIsNew;
 	// Accumulator for recipient of private memes
@@ -107,7 +108,6 @@ typedef enum
 	int memeTime;
 	// last date
 	NSDate *lastMemeTimestamp;
-	NSDate *lastReadDate;
 
 	// Workaround <replies> data
 	NSNumber *replyTo;
@@ -125,7 +125,8 @@ typedef enum
 @property (nonatomic, assign) int memeNumber; 
 @property (nonatomic, assign) int memeTime;
 @property (nonatomic, assign) int lastLoadedPage;
-@property (nonatomic, retain) NSDate *lastReadDate;
+@property (nonatomic, retain) NSDate *lastReadMemeTimestamp;
+
 @property (assign) id<MeemiDelegate> delegate;
 @property (assign) MeemiRequest currentRequest;
 @property (nonatomic, retain) NSString *placeName, *state;
@@ -162,6 +163,9 @@ typedef enum
 - (void)stopLocation;
 
 -(void)startSessionFromUserDefaults;
+
+// Function for getting new memes into the system
+-(void)getMemes;
 
 -(void)validateUser:(NSString *)meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
