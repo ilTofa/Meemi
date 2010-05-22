@@ -37,6 +37,8 @@ typedef enum {
 	UILabel *headerLabel;
 	UILabel *headerArrow;
 	UIActivityIndicatorView *laRuota;
+	UIActivityIndicatorView *laPiccolaRuota;
+	UIButton *reloadButtonInBreakTable;
 	Meemi *ourPersonalMeemi;
 	int watermark;
 }
@@ -53,6 +55,8 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel *headerLabel;
 @property (nonatomic, retain) IBOutlet UILabel *headerArrow;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laRuota;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laPiccolaRuota;
+@property (nonatomic, retain) IBOutlet UIButton *reloadButtonInBreakTable;
 @property (nonatomic, retain) NSString *predicateString;
 @property (nonatomic, retain) NSString *searchString;
 @property (nonatomic, retain) NSNumber *replyTo;

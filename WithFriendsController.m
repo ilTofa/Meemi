@@ -18,7 +18,7 @@
 @implementation WithFriendsController
 
 @synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
-@synthesize headerView, headerLabel, headerArrow, laRuota;
+@synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
 
 -(void)deviceShaken:(NSNotification *)note
 {
@@ -30,15 +30,29 @@
 -(IBAction)loadMore:(id)sender
 {
 	DLog(@"loadMore: clicked");
+	if(!ourPersonalMeemi)
+	{
+		ALog(@"*** Abnormal condition: loadMore: called without a valid ourPersonalMeemi. Reverting to a standard reload");
+		ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
+		if(!ourPersonalMeemi)
+			ALog(@"Meemi session init failed. Shit...");
+	}
+	ourPersonalMeemi.delegate = self;
+	[ourPersonalMeemi getMemes];	
 }
 
 -(void)meemiIsBusy:(NSNotification *)note
 {
 	DLog(@"meemiIsBusy:");
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
 	self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 	self.headerLabel.text = NSLocalizedString(@"Reloading...", @"");
 	self.headerArrow.text = @" ";
+	[UIView commitAnimations];	
 	[self.laRuota startAnimating];
+	[self.reloadButtonInBreakTable setTitle:NSLocalizedString(@"", @"") forState:UIControlStateNormal];
+	[self.laPiccolaRuota startAnimating];
 }
 
 -(void)meemiIsFree:(NSNotification *)note
@@ -49,6 +63,8 @@
 	self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
 	[UIView commitAnimations];	
 	[self.laRuota stopAnimating];
+	[self.laPiccolaRuota stopAnimating];
+	[self.reloadButtonInBreakTable setTitle:NSLocalizedString(@"Touch to load more...", @"") forState:UIControlStateNormal];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
 }
@@ -57,6 +73,7 @@
 {
 	DLog(@"Calling mergeChangesFromContextDidSaveNotification: on Meemi context");
 	[[Meemi managedObjectContext] mergeChangesFromContextDidSaveNotification:note];
+	// reload fetchcontroller, so to resize cells.
 	[self.tableView reloadData];
 }
 
@@ -216,6 +233,7 @@
 	// if new memes, set watermark.
 	if(request == MmGetNew)
 	{
+		DLog(@"Back from Meemi. Watermark is @ %d.", result);
 		watermark = result;
 	}
 }
@@ -289,6 +307,7 @@
 	self.headerView.frame = CGRectMake(0.0f, -65.0f, 320.0f, 65.0f);
 	self.headerView.hidden = NO;
 	[self.view addSubview:self.headerView];
+	watermark = INT_MAX;
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
 	
 	if(self.replyTo == nil)
@@ -578,9 +597,10 @@
 	}
 	else
 	{
-		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@", indexPath);
+		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@. Watermark: %d", indexPath.row, watermark);
 		retVal = kHeigthBesideText;
 	}
+	ALog(@"heightForRowAtIndexPath for row %d. Watermark: %d", indexPath.row, watermark);
 	if(indexPath.row == watermark)
 		retVal += kExtraHeightForReload;
 	return retVal;

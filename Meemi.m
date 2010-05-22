@@ -51,7 +51,7 @@ static int pageSize = 20;
 @synthesize lcDenied, nLocationUseDenies, placeName, state;
 @synthesize networkQueue;
 @synthesize replyTo, replyUser;
-@synthesize lastLoadedPage, lastReadMemeTimestamp;
+@synthesize nextPageToLoad, lastReadMemeTimestamp;
 
 #pragma mark Class Methods
 
@@ -157,7 +157,7 @@ static int pageSize = 20;
 		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
-		self.lastLoadedPage = 0;
+		self.nextPageToLoad = 1;
 		return self;
 	}
 	else
@@ -176,7 +176,7 @@ static int pageSize = 20;
 		self.lcDenied = NO;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
-		self.lastLoadedPage = 0;
+		self.nextPageToLoad = 1;
 		[Meemi setScreenName:[[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"]];
 		[Meemi setPassword:[[NSUserDefaults standardUserDefaults] stringForKey:@"password"]];
 		self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
@@ -513,7 +513,7 @@ static int pageSize = 20;
 				[self.delegate meemi:self.currentRequest didFailWithError:error];
 			}
 		}
-		DLog(@"Read %d records from page %d with %d new users", howMany, self.lastLoadedPage, [newUsersQueue count]);
+		DLog(@"Read %d records from page %d with %d new users", howMany, self.nextPageToLoad, [newUsersQueue count]);
 		// now call update avatars (if needed, else get back to delegate)
 		if([newUsersQueue count] != 0)
 			[self updateAvatars];
@@ -522,8 +522,9 @@ static int pageSize = 20;
 			[localManagedObjectContext release];
 			localManagedObjectContext = nil;
 			[self nowFree];
-			self.lastLoadedPage++;
-			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.lastLoadedPage];
+			// get back the last loaded meme (0-based, so count is -1)
+			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.nextPageToLoad - 1];
+			self.nextPageToLoad++;
 		}
 	}
 }
@@ -1015,7 +1016,6 @@ static int pageSize = 20;
 {
 	[theQueue setMaxConcurrentOperationCount:1];
 	DLog(@"Loading NSOperationQueue in loadAvatar");
-	[self nowBusy];
 	// load the requested avatar...
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
@@ -1090,19 +1090,9 @@ static int pageSize = 20;
 	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
 	self.currentRequest = MmGetNew;
 	newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	// Now setup the URI depending on the request
-	NSURL *url;
-	if(self.lastLoadedPage == 0)
-	{
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d", [Meemi screenName], pageSize]];
-	}
-	else 
-	{
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
-				[Meemi screenName], pageSize, self.lastLoadedPage]];
-	}
+	NSURL *url = [NSURL URLWithString:
+				  [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
+				   [Meemi screenName], pageSize, self.nextPageToLoad]];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	

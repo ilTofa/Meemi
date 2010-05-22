@@ -366,6 +366,22 @@
 					</object>
 					<int key="connectionID">19</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">laPiccolaRuota</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="130496624"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">reloadButtonInBreakTable</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="44018236"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -515,7 +531,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{653, 506}, {323, 180}}</string>
+					<string>{{616, 506}, {323, 180}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -540,7 +556,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -594,8 +610,10 @@
 							<string>headerArrow</string>
 							<string>headerLabel</string>
 							<string>headerView</string>
+							<string>laPiccolaRuota</string>
 							<string>laRuota</string>
 							<string>memeCell</string>
+							<string>reloadButtonInBreakTable</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -603,7 +621,9 @@
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UIActivityIndicatorView</string>
+							<string>UIActivityIndicatorView</string>
 							<string>UITableViewCell</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -613,8 +633,10 @@
 							<string>headerArrow</string>
 							<string>headerLabel</string>
 							<string>headerView</string>
+							<string>laPiccolaRuota</string>
 							<string>laRuota</string>
 							<string>memeCell</string>
+							<string>reloadButtonInBreakTable</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -631,12 +653,20 @@
 								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">laPiccolaRuota</string>
+								<string key="candidateClassName">UIActivityIndicatorView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">laRuota</string>
 								<string key="candidateClassName">UIActivityIndicatorView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">memeCell</string>
 								<string key="candidateClassName">UITableViewCell</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">reloadButtonInBreakTable</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 						</object>
 					</object>

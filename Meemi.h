@@ -89,8 +89,8 @@ typedef enum
 	BOOL lcDenied;	
 	NSString *placeName, *state;
 	
-	// This is the last laoded page (1-based. 0 means "no pages loaded")
-	int lastLoadedPage;
+	// This is the last laoded page (1 means "no pages loaded")
+	int nextPageToLoad;
 	// And this is the last timestamp read (for new meme, standard type)
 	NSDate *lastReadMemeTimestamp;
 	// mark how many records we got in this request.
@@ -119,7 +119,7 @@ typedef enum
 
 @property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied; //internal
 @property (nonatomic, assign) int nLocationUseDenies; //internal
-@property (nonatomic, assign) int lastLoadedPage;
+@property (nonatomic, assign) int nextPageToLoad;
 @property (nonatomic, retain) NSDate *lastReadMemeTimestamp;
 
 @property (assign) id<MeemiDelegate> delegate;

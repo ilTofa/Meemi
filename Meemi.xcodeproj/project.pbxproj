@@ -286,9 +286,9 @@
 				C045C221116F74F900BEDCCC /* UserDetail.xib */,
 				C045C276116F798600BEDCCC /* UserProfile.xib */,
 				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
-				6443B081116B824200C16EEF /* MemeCell.xib */,
 				C05188F011A016F700BA6F52 /* headerView.xib */,
 				C0CE759E11771F3900A6BBC3 /* PostMeme.xib */,
+				6443B081116B824200C16EEF /* MemeCell.xib */,
 				C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */,
 			);
 			name = Resources;
