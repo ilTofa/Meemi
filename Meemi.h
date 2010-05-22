@@ -103,9 +103,6 @@ typedef enum
 	NSMutableString *sent_to;
 	// Maintain "last meme read" number (for use by updateQtaReply)
 	NSNumber *newMemeID; 
-	// limits on number and timing of new memes reads
-	int memeNumber;
-	int memeTime;
 	// last date
 	NSDate *lastMemeTimestamp;
 
@@ -122,8 +119,6 @@ typedef enum
 
 @property (nonatomic, assign, getter=isLCDenied) BOOL lcDenied; //internal
 @property (nonatomic, assign) int nLocationUseDenies; //internal
-@property (nonatomic, assign) int memeNumber; 
-@property (nonatomic, assign) int memeTime;
 @property (nonatomic, assign) int lastLoadedPage;
 @property (nonatomic, retain) NSDate *lastReadMemeTimestamp;
 
@@ -163,6 +158,8 @@ typedef enum
 - (void)stopLocation;
 
 -(void)startSessionFromUserDefaults;
+// Init function for use by private memes
+-(id)initFromUserDefault;
 
 // Function for getting new memes into the system
 -(void)getMemes;

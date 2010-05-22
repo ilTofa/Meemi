@@ -234,8 +234,7 @@ void uncaughtExceptionHandler(NSException *exception)
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDate *tempDate = [NSDate distantPast];
 	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
-								 0, @"userValidated", 0, @"userDeny", 100, "rowNumber", 24, "memeTime", 
-								 tempDate, @"lastRead", nil];
+								 0, @"userValidated", 0, @"userDeny", tempDate, @"lastRead", nil];
     [defaults registerDefaults:appDefaults];
 }
 

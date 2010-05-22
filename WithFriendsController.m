@@ -53,6 +53,13 @@
 	self.headerArrow.text = @"☟";
 }
 
+-(void)mergeNewData:(NSNotification *)note
+{
+	DLog(@"Calling mergeChangesFromContextDidSaveNotification: on Meemi context");
+	[[Meemi managedObjectContext] mergeChangesFromContextDidSaveNotification:note];
+	[self.tableView reloadData];
+}
+
 -(void)settingsView
 {
 	SettingsController *controller = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
@@ -177,7 +184,7 @@
 	}
 	else 
 	{
-		ourPersonalMeemi = [[Meemi alloc] init];
+		ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
 		if(!ourPersonalMeemi)
 			ALog(@"Meemi session init failed. Shit...");
 		ourPersonalMeemi.delegate = self;
@@ -368,6 +375,7 @@
 	}
 	else // reinit fetch only for replies...
 		[self setupFetch];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextWillSaveNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated 

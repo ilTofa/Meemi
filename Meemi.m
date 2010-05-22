@@ -50,7 +50,6 @@ static int pageSize = 20;
 @synthesize delegate, currentRequest;
 @synthesize lcDenied, nLocationUseDenies, placeName, state;
 @synthesize networkQueue;
-@synthesize memeNumber, memeTime;
 @synthesize replyTo, replyUser;
 @synthesize lastLoadedPage, lastReadMemeTimestamp;
 
@@ -135,32 +134,6 @@ static int pageSize = 20;
     return sharedSession;
 }
 
-//+ (id)allocWithZone:(NSZone *)zone
-//{
-//    @synchronized(self) {
-//        if (sharedSession == nil) {
-//            sharedSession = [super allocWithZone:zone];
-//            return sharedSession;  // assignment and return on first allocation
-//        }
-//    }
-//    return nil; //on subsequent allocation attempts return nil
-//}
-//
-//- (id)copyWithZone:(NSZone *)zone
-//{
-//    return self;
-//}
-//
-//- (id)retain
-//{
-//    return self;
-//}
-//
-//- (unsigned)retainCount
-//{
-//    return UINT_MAX;  //denotes an object that cannot be released
-//}
-//
 //- (void)release
 //{
 //    //do nothing
@@ -170,7 +143,8 @@ static int pageSize = 20;
 //{
 //    return self;
 //}
-//
+
+// init routine for use by sharedSession
 -(id) init
 {
 	if(self = [super init])
@@ -184,6 +158,29 @@ static int pageSize = 20;
 		// init the Queue
 		theQueue = [[NSOperationQueue alloc] init];
 		self.lastLoadedPage = 0;
+		return self;
+	}
+	else
+		return nil;
+}
+
+-(id)initFromUserDefault
+{
+	if(self = [super init])
+	{
+		valid = NO;
+		needLocation = YES;
+		needG13N = YES;
+		[Meemi setNearbyPlaceName:@""];
+		// At the moment, user have not denied anything
+		self.lcDenied = NO;
+		// init the Queue
+		theQueue = [[NSOperationQueue alloc] init];
+		self.lastLoadedPage = 0;
+		[Meemi setScreenName:[[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"]];
+		[Meemi setPassword:[[NSUserDefaults standardUserDefaults] stringForKey:@"password"]];
+		self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
+		valid = YES;
 		return self;
 	}
 	else
@@ -239,14 +236,6 @@ static int pageSize = 20;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[Meemi setScreenName:[defaults stringForKey:@"screenName"]];
 	[Meemi setPassword:[defaults stringForKey:@"password"]];
-	// TODO: should be read from defaults too
-	self.memeNumber = [defaults integerForKey:@"rowNumber"];
-	if(self.memeNumber == 0)
-		self.memeNumber = 50;
-	self.memeTime = [defaults integerForKey:@"memeTime"];
-	if(self.memeTime == 0)
-		self.memeTime = 24;
-	// get number of times user denied location use..
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
 	valid = YES;
 }
@@ -282,7 +271,7 @@ static int pageSize = 20;
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		theUser = [fetchResults objectAtIndex:0];
-		DLog(@"User %@ for the meme already existing: %@", name);
+		DLog(@"User %@ already existing.", name);
 	}
 	else
 	{
