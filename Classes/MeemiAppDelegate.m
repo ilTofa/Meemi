@@ -159,18 +159,9 @@ void uncaughtExceptionHandler(NSException *exception)
 	{
 		// Flow through newMemes, newPrivateMemes and newPrivateMemesSent
 		case MmGetNew:
-			// Continue to read new memes if result != 0
-			if(result)
-			{
-				DLog(@"Still records to be read, continuing");
-				[[Meemi sharedSession] getNewMemes:NO];
-			}
-			else
-			{
-				DLog(@"No other records to read or max number reached, now get private memes...");
-				// Now get newUsers into db.
-				[[Meemi sharedSession] getNewPrivateMemes:YES];
-			}
+			DLog(@"No other records to read or max number reached, now get private memes...");
+			// Now get newUsers into db.
+			[[Meemi sharedSession] getNewPrivateMemes:YES];
 			break;
 		case MMGetNewPvt:
 			// Continue to read new memes if result != 0

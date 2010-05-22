@@ -211,14 +211,12 @@
 	DLog(@"loadMemePage called");
 	if(self.replyTo != nil)
 	{
+		// TODO: CHANGE HERE!
 		[Meemi sharedSession].delegate = self;
 		[[Meemi sharedSession] getNewMemesRepliesOf:self.replyTo screenName:self.replyScreenName from:0 number:20];
 	}
 	else 
 	{
-		ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
-		if(!ourPersonalMeemi)
-			ALog(@"Meemi session init failed. Shit...");
 		ourPersonalMeemi.delegate = self;
 		[ourPersonalMeemi getMemes];
 	}
@@ -329,6 +327,12 @@
 	[self.view addSubview:self.headerView];
 	self.watermark = INT_MAX;
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
+	
+	// Setup the Meemi "agent"
+	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
+	if(!ourPersonalMeemi)
+		ALog(@"Meemi session init failed. Shit...");
+	ourPersonalMeemi.delegate = self;
 	
 	if(self.replyTo == nil)
 	{
@@ -468,7 +472,11 @@
 
 - (void)viewDidUnload 
 {
+	ourPersonalMeemi.delegate = nil;
+	[ourPersonalMeemi release];
+	ourPersonalMeemi = nil;
 	[theMemeList release];
+	theMemeList = nil;
 }
 
 #pragma mark NSFetchedResultsControllerDelegate
@@ -620,9 +628,11 @@
 		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@. Watermark: %d", indexPath.row, self.watermark);
 		retVal = kHeigthBesideText;
 	}
-	ALog(@"heightForRowAtIndexPath for row %d. Watermark: %d", indexPath.row, self.watermark);
 	if(indexPath.row == self.watermark)
+	{
+		DLog(@"heightForRowAtIndexPath set watermark st row %d", self.watermark);
 		retVal += kExtraHeightForReload;
+	}
 	return retVal;
 }
 

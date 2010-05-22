@@ -399,15 +399,6 @@ static int pageSize = 20;
 			theMeme.user.avatar = [[currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] dataUsingEncoding:NSUTF8StringEncoding];
 			theMeme.user.avatar_url = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		}
-		// TODO: Still to be managed.
-		//			<channels>
-		//			<channel>google</channel>
-		//			<channel>doodle</channel>
-		//			<channel>logo</channel>
-		//			</channels>
-		//			<preferite_this/>
-		//			<reshare_this/>
-		
 		// Here a meme is ended, should be saved.
 		// For perfomance reason, we save at <memes/> below
 		if([elementName isEqualToString:@"meme"])
@@ -516,17 +507,16 @@ static int pageSize = 20;
 			}
 		}
 		DLog(@"Read %d records from page %d with %d new users", howMany, self.nextPageToLoad, [newUsersQueue count]);
+		self.nextPageToLoad++;
 		// now call update avatars (if needed, else get back to delegate)
+		[self nowFree];
 		if([newUsersQueue count] != 0)
 			[self updateAvatars];
 		else // get back with watermark, before mark session free and release all.
 		{
 			[localManagedObjectContext release];
 			localManagedObjectContext = nil;
-			[self nowFree];
 			[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
-//			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.nextPageToLoad - 1];
-			self.nextPageToLoad++;
 		}
 	}
 }
@@ -1063,35 +1053,30 @@ static int pageSize = 20;
 	[self startRequestToMeemi:request];
 }
 
--(void)getNewMemes:(BOOL)fromScratch
+-(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user
 {
-	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
-	self.currentRequest = MmGetNew;
-	
-	// Now setup the URI depending on the request
-	NSURL *url;
-	if(fromScratch)
-	{
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5", [Meemi screenName]]];
+	NSAssert([Meemi isValid], @"getNewMemesRepliesOf:from:number:");
+	self.currentRequest = MMGetNewReplies;
+	// Workaround <replies> data...
+	self.replyTo = memeID;
+	self.replyUser = user;
+	// Init user DB
+	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	}
-	else 
-	{
-//		url = [NSURL URLWithString:
-//			   [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_5/page_%d", 
-//				[Meemi screenName], newMemesPageWatermark]];
-	}
-	
+	int startMeme = (self.nextPageToLoad - 1) * pageSize;
+	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
+						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], pageSize];
+	NSURL *url = [NSURL URLWithString:urlString];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[self startRequestToMeemi:request];
+	[self startRequestToMeemi:request];	
 }
 
 -(void)getMemes
 {
 	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
 	self.currentRequest = MmGetNew;
-	newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSURL *url = [NSURL URLWithString:
 				  [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
 				   [Meemi screenName], pageSize, self.nextPageToLoad]];
