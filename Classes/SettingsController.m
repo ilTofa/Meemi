@@ -60,6 +60,9 @@
 		[laRuota stopAnimating];
 }
 
+-(void)setWatermark:(int)watermark
+{ }
+
 - (IBAction)testLogin:(id)sender
 {
 	// call back us above.

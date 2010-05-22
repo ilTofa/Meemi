@@ -20,6 +20,19 @@
 @synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
 @synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
 
+-(void)setWatermark:(int)uff
+{
+	DLog(@"setWatermark: called with %d", uff);
+	watermark = uff;
+//	[self.tableView beginUpdates];
+//	[self.tableView endUpdates];
+}
+
+-(int)watermark
+{
+	return watermark;
+}
+
 -(void)deviceShaken:(NSNotification *)note
 {
 	DLog(@"SHAKED!");
@@ -51,7 +64,8 @@
 	self.headerArrow.text = @" ";
 	[UIView commitAnimations];	
 	[self.laRuota startAnimating];
-	[self.reloadButtonInBreakTable setTitle:NSLocalizedString(@"", @"") forState:UIControlStateNormal];
+	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]]
+								   forState:UIControlStateNormal];
 	[self.laPiccolaRuota startAnimating];
 }
 
@@ -64,7 +78,8 @@
 	[UIView commitAnimations];	
 	[self.laRuota stopAnimating];
 	[self.laPiccolaRuota stopAnimating];
-	[self.reloadButtonInBreakTable setTitle:NSLocalizedString(@"Touch to load more...", @"") forState:UIControlStateNormal];
+	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]]
+								   forState:UIControlStateNormal];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
 }
@@ -233,8 +248,13 @@
 	// if new memes, set watermark.
 	if(request == MmGetNew)
 	{
-		DLog(@"Back from Meemi. Watermark is @ %d.", result);
-		watermark = result;
+//		if(self.watermark != result)
+//		{
+//			DLog(@"Changed watermark (new one is %d, old was %d), recalculating heights.", result, self.watermark);
+//			self.watermark = result;
+//		}
+//		else
+//			DLog(@"Back from Meemi. Watermark is the same @ %d.", self.watermark);
 	}
 }
 
@@ -307,7 +327,7 @@
 	self.headerView.frame = CGRectMake(0.0f, -65.0f, 320.0f, 65.0f);
 	self.headerView.hidden = NO;
 	[self.view addSubview:self.headerView];
-	watermark = INT_MAX;
+	self.watermark = INT_MAX;
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
 	
 	if(self.replyTo == nil)
@@ -482,7 +502,7 @@
     
     NSString *cellIdentifier;
 	
-	if(indexPath.row != watermark)
+	if(indexPath.row != self.watermark)
 		cellIdentifier = @"MemeCell";
 	else
 		cellIdentifier = @"LoadAgainMemeCell";
@@ -597,11 +617,11 @@
 	}
 	else
 	{
-		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@. Watermark: %d", indexPath.row, watermark);
+		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@. Watermark: %d", indexPath.row, self.watermark);
 		retVal = kHeigthBesideText;
 	}
-	ALog(@"heightForRowAtIndexPath for row %d. Watermark: %d", indexPath.row, watermark);
-	if(indexPath.row == watermark)
+	ALog(@"heightForRowAtIndexPath for row %d. Watermark: %d", indexPath.row, self.watermark);
+	if(indexPath.row == self.watermark)
 		retVal += kExtraHeightForReload;
 	return retVal;
 }

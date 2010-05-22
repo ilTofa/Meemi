@@ -46,6 +46,9 @@
 	[self.delegate doneWithTextSender];
 }
 
+-(void)setWatermark:(int)watermark
+{ }
+
 -(IBAction)sendIt:(id)sender
 {
 	// Dismiss keyboard if needed

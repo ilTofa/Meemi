@@ -296,17 +296,25 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="789185494"/>
-								<string key="IBUINormalTitle">Touch to load more...</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">36</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<string key="IBUITitleShadowOffset">{1, 1}</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4xODgyMzUzMTI3IDAuNDg2Mjc0NTQwNCAwLjc0OTAxOTYyMjgAA</bytes>
+									<bytes key="NSRGB">MC45NDExNzY1MzM3IDAuOTQ1MDk4MTAyMSAwLjk0OTAxOTY3MDUAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="201917332"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">02-redo.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">TableBreak.png</string>
@@ -320,7 +328,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">21</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIStyle">2</int>
 							</object>
 						</object>
 						<string key="NSFrameSize">{323, 180}</string>
@@ -531,7 +538,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{616, 506}, {323, 180}}</string>
+					<string>{{285, 605}, {323, 180}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -916,6 +923,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>02-redo.png</string>
 				<string>CellBackground.png</string>
 				<string>TableBreak.png</string>
 				<string>icon-lock2.png</string>
@@ -923,6 +931,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{24, 24}</string>
 				<string>{5, 120}</string>
 				<string>{320, 44}</string>
 				<string>{16, 16}</string>

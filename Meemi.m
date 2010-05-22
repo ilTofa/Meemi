@@ -500,6 +500,8 @@ static int pageSize = 20;
 		NSError *error;
 		if([localManagedObjectContext hasChanges])
 		{
+			// get back the last loaded meme (0-based, so count is -1) 
+			[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
 			if (![localManagedObjectContext save:&error])
 			{
 				DLog(@"Failed to save to data store: %@", [error localizedDescription]);
@@ -522,8 +524,8 @@ static int pageSize = 20;
 			[localManagedObjectContext release];
 			localManagedObjectContext = nil;
 			[self nowFree];
-			// get back the last loaded meme (0-based, so count is -1)
-			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.nextPageToLoad - 1];
+			[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
+//			[self.delegate meemi:self.currentRequest didFinishWithResult:howMany * self.nextPageToLoad - 1];
 			self.nextPageToLoad++;
 		}
 	}

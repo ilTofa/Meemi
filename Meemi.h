@@ -190,5 +190,6 @@ typedef enum
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error;
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result;
+-(void)setWatermark:(int)watermark;
 
 @end

@@ -145,6 +145,9 @@
 	[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:NO];
 }
 
+-(void)setWatermark:(int)watermark
+{ }
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {

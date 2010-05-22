@@ -144,6 +144,9 @@ void uncaughtExceptionHandler(NSException *exception)
 
 #pragma mark MeemiDelegate
 
+-(void)setWatermark:(int)watermark
+{ }
+
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
 	DLog(@"(MeemiRequest)request didFailWithError:");

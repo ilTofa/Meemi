@@ -59,6 +59,9 @@
 	[self.delegate doneWithImageSender];
 }
 
+-(void)setWatermark:(int)watermark
+{ }
+
 #pragma mark Image scaling
 
 // make a scaled copy (constrained to targetSize size) of self.theImage into self.theThumbnail for display purpose
