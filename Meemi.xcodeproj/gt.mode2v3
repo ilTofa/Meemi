@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>643974CA11A7E9A4000332CC</string>
+						<string>64C28DEB11A94040003BE39E</string>
 						<key>history</key>
 						<array>
 							<string>643974B011A7E534000332CC</string>
-							<string>643974BB11A7E60D000332CC</string>
+							<string>643974CA11A7E9A4000332CC</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,11 +257,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>643974CB11A7E9A4000332CC</string>
+						<string>64C28DEC11A94040003BE39E</string>
 						<key>history</key>
 						<array>
 							<string>6439749811A7E215000332CC</string>
-							<string>6439749911A7E215000332CC</string>
+							<string>643974CB11A7E9A4000332CC</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -360,7 +360,7 @@
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 584}, {332, 342}}</string>
+									<string>{{0, 478}, {332, 342}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -522,8 +522,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6439745E11A7D98A000332CC</string>
-				<string>6439745F11A7D98A000332CC</string>
+				<string>64C28DE911A94040003BE39E</string>
+				<string>64C28DEA11A94040003BE39E</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -560,14 +560,9 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6439749411A7E212000332CC</string>
-		<string>6439746D11A7D98A000332CC</string>
-		<string>6439746E11A7D98A000332CC</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
+		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>64DE33531188749B00828EA1</string>
 		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
-		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>6439746211A7D98A000332CC</string>
 	</array>
 	<key>WindowString</key>
@@ -724,14 +719,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>WithFriendsController.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -787,7 +780,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>6439746511A7D98A000332CC</string>
+				<string>64C28DED11A94040003BE39E</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -800,7 +793,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D52069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

@@ -23,9 +23,11 @@
 -(void)setWatermark:(int)uff
 {
 	DLog(@"setWatermark: called with %d", uff);
-	watermark = uff;
-//	[self.tableView beginUpdates];
-//	[self.tableView endUpdates];
+	if(currentFetch = FTReplyView)
+		// In case of reply, the load again is on first cell, if needed.
+		watermark = (uff != INT_MAX) ? 0 : INT_MAX;
+	else
+		watermark = uff;
 }
 
 -(int)watermark
@@ -211,9 +213,8 @@
 	DLog(@"loadMemePage called");
 	if(self.replyTo != nil)
 	{
-		// TODO: CHANGE HERE!
-		[Meemi sharedSession].delegate = self;
-		[[Meemi sharedSession] getNewMemesRepliesOf:self.replyTo screenName:self.replyScreenName from:0 number:20];
+		ourPersonalMeemi.delegate = self;
+		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName];
 	}
 	else 
 	{
@@ -241,18 +242,7 @@
 	if(request == MMGetNewReplies)
 	{
 		DLog(@"got replies");
-		[[Meemi sharedSession] updateAvatars];
-	}
-	// if new memes, set watermark.
-	if(request == MmGetNew)
-	{
-//		if(self.watermark != result)
-//		{
-//			DLog(@"Changed watermark (new one is %d, old was %d), recalculating heights.", result, self.watermark);
-//			self.watermark = result;
-//		}
-//		else
-//			DLog(@"Back from Meemi. Watermark is the same @ %d.", self.watermark);
+//		[[Meemi sharedSession] updateAvatars];
 	}
 }
 
