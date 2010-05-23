@@ -91,7 +91,8 @@
 	DLog(@"Calling mergeChangesFromContextDidSaveNotification: on Meemi context");
 	[[Meemi managedObjectContext] mergeChangesFromContextDidSaveNotification:note];
 	// reload fetchcontroller, so to resize cells.
-	[self.tableView reloadData];
+//	[self.tableView beginUpdates];
+//	[self.tableView endUpdates];
 }
 
 -(void)settingsView
@@ -244,6 +245,7 @@
 		DLog(@"got replies");
 //		[[Meemi sharedSession] updateAvatars];
 	}
+//	[self.tableView reloadData];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -408,7 +410,7 @@
 	}
 	else // reinit fetch only for replies...
 		[self setupFetch];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextWillSaveNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated 

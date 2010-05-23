@@ -17,7 +17,7 @@
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
 
-// #define XMLLOG 1
+//#define XMLLOG 1
 
 #ifdef XMLLOG
 #    define XLog(...) NSLog(__VA_ARGS__)
@@ -179,7 +179,11 @@ static int replyPageSize = 30;
 		theQueue = [[NSOperationQueue alloc] init];
 		self.nextPageToLoad = 1;
 		[Meemi setScreenName:[[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"]];
+		if([[Meemi screenName] isEqual:@""])
+			[Meemi setScreenName:@"ilTofa"];
 		[Meemi setPassword:[[NSUserDefaults standardUserDefaults] stringForKey:@"password"]];
+		if([[Meemi password] isEqual:@""])
+			[Meemi setPassword:@"Zucchinone"];
 		self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 		valid = YES;
 		return self;
