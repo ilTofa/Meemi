@@ -44,6 +44,7 @@ NSString *nearbyPlaceName;
 int activeSessionsCount;
 // page size for loading data
 static int pageSize = 20;
+static int replyPageSize = 30;
 
 @implementation Meemi
 
@@ -484,15 +485,20 @@ static int pageSize = 20;
 	// Parsing ended: commit the CoreData objects to the db
 	if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 	{
-		// If we're parsing new memes, save last read timestamp of the meme (they're guaranteed come in reverse date)
+		// If we're parsing new memes, save last read timestamp of the meme (they're guaranteed to come in reverse date)
 		if(self.currentRequest = MmGetNew)
 			self.lastReadMemeTimestamp = [theMeme.dt_last_movement copy];
 		// Commit (if needed)
 		NSError *error;
 		if([localManagedObjectContext hasChanges])
 		{
-			// get back the last loaded meme (0-based, so count is -1) 
-			[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
+			// if we're reading replies and count is less than replyPageSize, then we read all the replies
+			if(self.currentRequest = MMGetNewReplies && howMany < replyPageSize)
+				[self.delegate setWatermark:INT_MAX];
+			else
+				// else get back the last loaded meme (0-based, so count is -1) 
+				[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
+			
 			if (![localManagedObjectContext save:&error])
 			{
 				DLog(@"Failed to save to data store: %@", [error localizedDescription]);
@@ -1065,7 +1071,7 @@ static int pageSize = 20;
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	int startMeme = (self.nextPageToLoad - 1) * pageSize;
 	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
-						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], pageSize];
+						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], replyPageSize];
 	NSURL *url = [NSURL URLWithString:urlString];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	
