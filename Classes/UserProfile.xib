@@ -138,6 +138,7 @@ bS9oZXI</string>
 							<int key="IBUIAutocapitalizationType">2</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
+						<int key="IBUIDataDetectorTypes">2</int>
 					</object>
 					<object class="IBUIButton" id="306735666">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -406,7 +407,7 @@ bS9oZXI</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UserProfile</string>
 					<string>UIResponder</string>
-					<string>{{685, 293}, {320, 480}}</string>
+					<string>{{476, 553}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -23,9 +23,9 @@
 -(void)setWatermark:(int)uff
 {
 	DLog(@"setWatermark: called with %d", uff);
-	if(currentFetch = FTReplyView)
-		// In case of reply, the load again is on first cell, if needed.
-		watermark = (uff != INT_MAX) ? 0 : INT_MAX;
+	if(currentFetch == FTReplyView)
+		// In case of reply, if received memes is the maximum allowed no need to mark the reload.
+		watermark = (uff == 19) ? 0 : INT_MAX;
 	else
 		watermark = uff;
 }
@@ -53,7 +53,9 @@
 			ALog(@"Meemi session init failed. Shit...");
 	}
 	ourPersonalMeemi.delegate = self;
-	[ourPersonalMeemi getMemes];	
+	if(currentFetch != FTReplyView)
+		[ourPersonalMeemi getMemes];
+	// TODO: SET HERE the "load all thread" structure
 }
 
 -(void)meemiIsBusy:(NSNotification *)note

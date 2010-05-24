@@ -44,7 +44,7 @@ NSString *nearbyPlaceName;
 int activeSessionsCount;
 // page size for loading data
 static int pageSize = 20;
-static int replyPageSize = 30;
+static int replyPageSize = 20;
 
 @implementation Meemi
 
@@ -497,8 +497,12 @@ static int replyPageSize = 30;
 		if([localManagedObjectContext hasChanges])
 		{
 			// if we're reading replies and count is less than replyPageSize, then we read all the replies
-			if(self.currentRequest = MMGetNewReplies && howMany < replyPageSize)
-				[self.delegate setWatermark:INT_MAX];
+			if(self.currentRequest = MMGetNewReplies)
+				DLog(@"calling setWatermark: on delegate. Read %d records on a page of %d", howMany, replyPageSize);
+//			if(self.currentRequest = MMGetNewReplies && howMany < replyPageSize)
+//				[self.delegate setWatermark:INT_MAX];
+			if(self.currentRequest = MMGetNewReplies)
+				[self.delegate setWatermark:howMany];
 			else
 				// else get back the last loaded meme (0-based, so count is -1) 
 				[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
@@ -1088,6 +1092,7 @@ static int replyPageSize = 30;
 	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
 						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], replyPageSize];
 	NSURL *url = [NSURL URLWithString:urlString];
+	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	
 }
