@@ -26,7 +26,8 @@ typedef enum {
 	MMGetNewPvtSent,
 	MMGetNewReplies,
 	MMGetNewUser,
-	MMFollowUnfollow
+	MMFollowUnfollow,
+	MMGetAvatar
 } MeemiRequest;
 
 typedef enum

@@ -65,9 +65,11 @@
 
 - (IBAction)testLogin:(id)sender
 {
+	DLog(@"testLogin called.");
 	// call back us above.
 	[laRuota startAnimating];
 	[Meemi sharedSession].delegate = self;
+	DLog(@"sharedSession is %@", [Meemi sharedSession]);
 	[[Meemi sharedSession] validateUser:self.screenName.text usingPassword:self.password.text];
 }
 

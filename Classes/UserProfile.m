@@ -130,19 +130,31 @@
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
 {
-	DLog(@"got info (or followed/unfollowed), reloading the user. New infos are: %@", self.theUser);
+	DLog(@"didFinishWithResult in UserProfile. Request is: %d. Result is %d. New infos are: %@", request, result, self.theUser);
 	if(result == MmFollowOK)
+	{
+		DLog(@"didFinishWithResult in UserProfile: MmFollowOK");
 		theUser.you_follow = [NSNumber numberWithBool:YES];
+	}
 	if(result == MmUnfollowOK)
+	{
+		DLog(@"didFinishWithResult in UserProfile: MmUnfollowOK");
 		theUser.you_follow = [NSNumber numberWithBool:NO];
+	}
 	if(request == MMGetNewUser)
 	{ //update and reload avatar, just in case...
-		[self loadTextInView];
+		DLog(@"didFinishWithResult in UserProfile: MMGetNewUser");
+		[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:YES];
 		[Meemi sharedSession].delegate;
 		[[Meemi sharedSession] loadAvatar:theUser.screen_name];
 	}
 	// It could be MmGetNewUsers (then load the text, and do it on the main thread!).
-	[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:NO];
+	if(request == MmGetNewUsers)
+	{
+		DLog(@"didFinishWithResult in UserProfile: MmGetNewUsers");
+		[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:NO];
+	}
+	// else do nothing... :)
 }
 
 -(void)setWatermark:(int)watermark

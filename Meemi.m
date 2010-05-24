@@ -129,7 +129,7 @@ static int replyPageSize = 30;
 {
 	@synchronized(self) {
         if (sharedSession == nil) {
-            [[self alloc] init]; // assignment not done here
+            sharedSession = [[self alloc] init];
         }
     }
     return sharedSession;
@@ -179,11 +179,11 @@ static int replyPageSize = 30;
 		theQueue = [[NSOperationQueue alloc] init];
 		self.nextPageToLoad = 1;
 		[Meemi setScreenName:[[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"]];
-		if([[Meemi screenName] isEqual:@""])
-			[Meemi setScreenName:@"ilTofa"];
+//		if([[Meemi screenName] isEqual:@""])
+//			[Meemi setScreenName:@"ilTofa"];
 		[Meemi setPassword:[[NSUserDefaults standardUserDefaults] stringForKey:@"password"]];
-		if([[Meemi password] isEqual:@""])
-			[Meemi setPassword:@"Zucchinone"];
+//		if([[Meemi password] isEqual:@""])
+//			[Meemi setPassword:@"Zucchinone"];
 		self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 		valid = YES;
 		return self;
@@ -608,6 +608,11 @@ static int replyPageSize = 30;
 	{
 		XLog(@"attribute \"%@\" is \"%@\"", key, [attributeDict objectForKey:key]);
 	}
+	if([elementName isEqualToString:@"error"])
+	{
+		[self nowFree];
+		[self.delegate meemi:self.currentRequest didFailWithError:nil];
+	}
 	if([elementName isEqualToString:@"message"])
 	{
 		// If it was a request for user validation, check return and inform delegate
@@ -617,6 +622,7 @@ static int replyPageSize = 30;
 		{
 			// if user is OK. Save it (both class and NSUserDefaults).
 			valid = (code == MmUserExists);
+			[self nowFree];
 			[self.delegate meemi:self.currentRequest didFinishWithResult:code];
 		}
 		// If it was a  post, check return and inform delegate
@@ -624,11 +630,15 @@ static int replyPageSize = 30;
 		{
 			// if return code is OK, get back to delegate
 			if(code == MmPostOK)
+			{
+				[self nowFree];
 				[self.delegate meemi:self.currentRequest didFinishWithResult:code];
+			}
 		}
 		// if it's a follow/unfollow request
 		if(self.currentRequest == MMFollowUnfollow)
 		{
+			[self nowFree];
 			// if return code is OK, get back to delegate
 			if(code == MmFollowOK || code == MmUnfollowOK)
 				[self.delegate meemi:self.currentRequest didFinishWithResult:code];
@@ -1018,6 +1028,7 @@ static int replyPageSize = 30;
 {
 	[theQueue setMaxConcurrentOperationCount:1];
 	DLog(@"Loading NSOperationQueue in loadAvatar");
+	self.currentRequest = MMGetAvatar;
 	// load the requested avatar...
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 

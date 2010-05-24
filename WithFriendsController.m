@@ -228,13 +228,18 @@
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-														message:@"Error loading data, please try again later"
-													   delegate:nil
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil] 
-							 autorelease];
-	[theAlert show];
+	// if error == nil we, probably, are called because of a wrong username
+	DLog(@"in WithFriendsCOnrtoller didFailWithError. Error is %@", error);
+	if(error != nil)
+	{
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+															message:@"Error loading data, please try again later"
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+	}
 }	
 
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
@@ -320,6 +325,10 @@
 	self.watermark = INT_MAX;
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
 	
+	// If no standard user push settings view
+	if(![[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
+		[self settingsView];
+	
 	// Setup the Meemi "agent"
 	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
 	if(!ourPersonalMeemi)
@@ -404,7 +413,7 @@
 			[self meemiIsFree:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
-		// Load settings, if needed.
+		// Load settings, if still needed.
 		if(![Meemi isValid])
 			[self settingsView];		
 	}
