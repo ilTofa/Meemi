@@ -165,6 +165,8 @@ typedef enum
 // Function for getting new memes into the system
 -(void)getMemes;
 -(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user;
+-(void)getMemePrivateReceived;
+-(void)getMemePrivateSent;
 
 -(void)validateUser:(NSString *)meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;

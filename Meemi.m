@@ -490,20 +490,18 @@ static int replyPageSize = 20;
 	if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
 	{
 		// If we're parsing new memes, save last read timestamp of the meme (they're guaranteed to come in reverse date)
-		if(self.currentRequest = MmGetNew)
+		if(self.currentRequest == MmGetNew)
 			self.lastReadMemeTimestamp = [theMeme.dt_last_movement copy];
 		// Commit (if needed)
 		NSError *error;
 		if([localManagedObjectContext hasChanges])
 		{
 			// if we're reading replies and count is less than replyPageSize, then we read all the replies
-			if(self.currentRequest = MMGetNewReplies)
+			if(self.currentRequest == MMGetNewReplies)
 				DLog(@"calling setWatermark: on delegate. Read %d records on a page of %d", howMany, replyPageSize);
-//			if(self.currentRequest = MMGetNewReplies && howMany < replyPageSize)
-//				[self.delegate setWatermark:INT_MAX];
-			if(self.currentRequest = MMGetNewReplies)
+			if(self.currentRequest == MMGetNewReplies)
 				[self.delegate setWatermark:howMany];
-			else
+			else if(self.currentRequest == MmGetNew)
 				// else get back the last loaded meme (0-based, so count is -1) 
 				[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
 			
@@ -1088,7 +1086,8 @@ static int replyPageSize = 20;
 	// Init user DB
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	int startMeme = (self.nextPageToLoad - 1) * pageSize;
+	// FIXME: pagesize - 1 because API returns 19 memes instead on 20
+	int startMeme = (self.nextPageToLoad - 1) * (pageSize - 1);
 	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
 						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], replyPageSize];
 	NSURL *url = [NSURL URLWithString:urlString];
@@ -1099,13 +1098,37 @@ static int replyPageSize = 20;
 
 -(void)getMemes
 {
-	NSAssert([Meemi isValid], @"getNewMemes: called without valid session");
+	NSAssert([Meemi isValid], @"getMemes: called without valid session");
 	self.currentRequest = MmGetNew;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSURL *url = [NSURL URLWithString:
 				  [NSString stringWithFormat:@"http://meemi.com/api3/%@/wf/limit_%d/page_%d", 
 				   [Meemi screenName], pageSize, self.nextPageToLoad]];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
+-(void)getMemePrivateReceived
+{
+	NSAssert([Meemi isValid], @"getMemePrivateReceived: called without valid session");
+	self.currentRequest = MMGetNewPvt;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/private"];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
+-(void)getMemePrivateSent
+{
+	NSAssert([Meemi isValid], @"getMemePrivateSent: called without valid session");
+	self.currentRequest = MMGetNewPvtSent;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/private_sent"];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	

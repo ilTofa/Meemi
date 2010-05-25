@@ -24,8 +24,10 @@
 {
 	DLog(@"setWatermark: called with %d", uff);
 	if(currentFetch == FTReplyView)
-		// In case of reply, if received memes is the maximum allowed no need to mark the reload.
+	{
+		// In case of reply, if 19 read (a full page), set the watermark to the first (because we're reading it backwards)
 		watermark = (uff == 19) ? 0 : INT_MAX;
+	}
 	else
 		watermark = uff;
 }
@@ -55,7 +57,8 @@
 	ourPersonalMeemi.delegate = self;
 	if(currentFetch != FTReplyView)
 		[ourPersonalMeemi getMemes];
-	// TODO: SET HERE the "load all thread" structure
+	else
+		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName];
 }
 
 -(void)meemiIsBusy:(NSNotification *)note
@@ -92,9 +95,6 @@
 {
 	DLog(@"Calling mergeChangesFromContextDidSaveNotification: on Meemi context");
 	[[Meemi managedObjectContext] mergeChangesFromContextDidSaveNotification:note];
-	// reload fetchcontroller, so to resize cells.
-//	[self.tableView beginUpdates];
-//	[self.tableView endUpdates];
 }
 
 -(void)settingsView
@@ -202,6 +202,25 @@
 		[theAlert show];
 	}
 	[self.tableView reloadData];
+	
+	// If we're selecting the "private" view, it's time to reload
+	// Alloc a new Meemi for that, and release it on return
+	if(currentFetch == FTPvt)
+	{
+		// Setup the Meemi "agent"
+		// If already existing, a query is still running, leave it alone
+		if(privateFetchMeemi == nil)
+		{
+			privateFetchMeemi = [[Meemi alloc] initFromUserDefault];
+			if(!privateFetchMeemi)
+				ALog(@"Meemi privateFetch session init failed. Shit...");
+			else
+			{
+				privateFetchMeemi.delegate = self;
+				[privateFetchMeemi getMemePrivateReceived];
+			}
+		}
+	}
 }	
 
 -(void)filterSelected
@@ -251,6 +270,16 @@
 	{
 		DLog(@"got replies");
 //		[[Meemi sharedSession] updateAvatars];
+	}
+	// If pvt received, call pvtSent...
+	if(request == MMGetNewPvt)
+		[privateFetchMeemi getMemePrivateSent];
+	// if private sent, kill private Meemi session
+	if(request == MMGetNewPvtSent)
+	{
+		privateFetchMeemi.delegate = nil;
+		[privateFetchMeemi release];
+		privateFetchMeemi = nil;
 	}
 //	[self.tableView reloadData];
 }

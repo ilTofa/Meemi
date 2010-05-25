@@ -40,6 +40,7 @@ typedef enum {
 	UIActivityIndicatorView *laPiccolaRuota;
 	UIButton *reloadButtonInBreakTable;
 	Meemi *ourPersonalMeemi;
+	Meemi *privateFetchMeemi;
 	int watermark;
 }
 
