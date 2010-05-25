@@ -59,8 +59,8 @@ typedef enum
 #define kNowBusy @"nowBusy"
 #define kNowFree @"nowFree"
 
-/* #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ" */
-#define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
+#define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ"
+// #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
 #define kNewMeemiDatesFormat @"yyyy-MM-ddTHH:mm:ssZ"
 
 #ifdef __IPHONE_4_0

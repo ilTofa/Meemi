@@ -361,7 +361,7 @@ static int replyPageSize = 20;
 				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 				[dateFormatter setLocale:usLocale];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.date_time = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+				theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
 				[dateFormatter release];
 				[usLocale release];
 			}
@@ -431,7 +431,7 @@ static int replyPageSize = 20;
 				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 				[dateFormatter setLocale:usLocale];
 				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.event_when = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+				theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
 				[usLocale release];
 			}
 			[dateFormatter release];
@@ -480,7 +480,7 @@ static int replyPageSize = 20;
 			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 			[dateFormatter setLocale:usLocale];
 			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			theMeme.dt_last_movement = [dateFormatter dateFromString:[currentStringValue substringFromIndex:5]];
+			theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
 			[usLocale release];
 		}
 		[dateFormatter release];

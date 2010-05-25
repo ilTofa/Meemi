@@ -26,7 +26,7 @@
 	if(currentFetch == FTReplyView)
 	{
 		// In case of reply, if 19 read (a full page), set the watermark to the first (because we're reading it backwards)
-		watermark = (uff == 19) ? 0 : INT_MAX;
+		watermark = (uff == 19) ? 1 : INT_MAX;
 	}
 	else
 		watermark = uff;
@@ -89,6 +89,7 @@
 								   forState:UIControlStateNormal];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
+	[self.tableView reloadData];
 }
 
 -(void)mergeNewData:(NSNotification *)note
@@ -142,7 +143,7 @@
 	switch(currentFetch)
 	{
 		case FTAll:
-			self.predicateString = @"reply_id == 0";
+			self.predicateString = @"reply_id == 0 AND private_meme == NO";
 			break;
 		case FTPvt:
 			self.predicateString = [NSString stringWithFormat:@"private_meme == YES AND reply_id == 0"];
@@ -434,6 +435,10 @@
 - (void)viewWillAppear:(BOOL)animated 
 {
     [super viewWillAppear:animated];
+	// Add notifications observers
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextDidSaveNotification object:nil];
 	// And register to be notified for shaking and busy/not busy of Meemi session
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
 	if(self.replyTo == nil)
@@ -442,15 +447,12 @@
 			[self meemiIsBusy:nil];
 		else
 			[self meemiIsFree:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
 		// Load settings, if still needed.
 		if(![Meemi isValid])
 			[self settingsView];		
 	}
 	else // reinit fetch only for replies...
 		[self setupFetch];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated 
@@ -542,7 +544,7 @@
     
     NSString *cellIdentifier;
 	
-	if(indexPath.row != self.watermark)
+	if(indexPath.row != (self.watermark - 1) || currentFetch == FTAll || currentFetch == FTReplyView)
 		cellIdentifier = @"MemeCell";
 	else
 		cellIdentifier = @"LoadAgainMemeCell";
@@ -660,7 +662,7 @@
 		ALog(@"### Invalid Fetched Meme @ heightForRowAtIndexPath:%@. Watermark: %d", indexPath.row, self.watermark);
 		retVal = kHeigthBesideText;
 	}
-	if(indexPath.row == self.watermark)
+	if((currentFetch == FTAll || currentFetch == FTReplyView) && indexPath.row == (self.watermark - 1))
 	{
 		DLog(@"heightForRowAtIndexPath set watermark st row %d", self.watermark);
 		retVal += kExtraHeightForReload;
@@ -695,11 +697,8 @@
 
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 		
-	// if we are at a meme list level (we need it for reply), AND there are replies...
-	// we cannot do this, the logic is broken...
-//	if(self.replyTo == nil && [selectedMeme.qta_replies intValue] != 0)
+	// if we are at a meme list level (we need it for reply) just push another controller, same kind of this one. :)
 	if(self.replyTo == nil)
-	// just push another controller, same kind of this one. :)
 	{
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
