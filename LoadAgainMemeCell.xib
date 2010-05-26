@@ -140,7 +140,6 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<int key="IBUITag">3</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">This is a sample text, representing a meme text. A bit longer to attain the 3 rows I was thinking about.</string>
 								<reference key="IBUIFont" ref="390735844"/>

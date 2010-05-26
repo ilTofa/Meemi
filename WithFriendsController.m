@@ -234,16 +234,13 @@
 -(void)loadMemePage
 {
 	DLog(@"loadMemePage called");
+	// reset nextPageToLoad, we want a complete retry
+	ourPersonalMeemi.nextPageToLoad = 1;
+	ourPersonalMeemi.delegate = self;
 	if(self.replyTo != nil)
-	{
-		ourPersonalMeemi.delegate = self;
 		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName];
-	}
 	else 
-	{
-		ourPersonalMeemi.delegate = self;
 		[ourPersonalMeemi getMemes];
-	}
 }
 
 #pragma mark MeemiDelegate
@@ -544,10 +541,10 @@
     
     NSString *cellIdentifier;
 	
-	if(indexPath.row != (self.watermark - 1) || currentFetch == FTAll || currentFetch == FTReplyView)
-		cellIdentifier = @"MemeCell";
-	else
+	if((currentFetch == FTAll || currentFetch == FTReplyView) && indexPath.row == (self.watermark - 1))
 		cellIdentifier = @"LoadAgainMemeCell";
+	else
+		cellIdentifier = @"MemeCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	

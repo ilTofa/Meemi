@@ -262,7 +262,6 @@ static int replyPageSize = 20;
 
 -(void)setupMemeRelationshipsFrom:(NSString *)name
 {
-	DLog(@"Now in setupMemeRelationshipsFrom");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:localManagedObjectContext];
@@ -276,7 +275,6 @@ static int replyPageSize = 20;
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		theUser = [fetchResults objectAtIndex:0];
-		DLog(@"User %@ already existing.", name);
 	}
 	else
 	{
@@ -416,7 +414,8 @@ static int replyPageSize = 20;
 				if(theMeme.reply_screen_name == nil)
 					theMeme.reply_screen_name = self.replyUser;
 			}
-			DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
+			DLog(@"*** new meme ended ID: %@ ***", theMeme.id);
+//			DLog(@"*** meme ended ***\n%@\n*** **** ***", theMeme);
 		}
 		// event meme_type
 		if([elementName isEqualToString:@"name"])

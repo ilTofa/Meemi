@@ -223,7 +223,7 @@
 								</object>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwIDAAA</bytes>
+									<bytes key="NSRGB">MSAwIDAgMAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
@@ -452,7 +452,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{557, 143}, {323, 132}}</string>
+					<string>{{507, 224}, {323, 132}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -533,8 +533,10 @@
 							<string>headerArrow</string>
 							<string>headerLabel</string>
 							<string>headerView</string>
+							<string>laPiccolaRuota</string>
 							<string>laRuota</string>
 							<string>memeCell</string>
+							<string>reloadButtonInBreakTable</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -542,7 +544,9 @@
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UIActivityIndicatorView</string>
+							<string>UIActivityIndicatorView</string>
 							<string>UITableViewCell</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -552,8 +556,10 @@
 							<string>headerArrow</string>
 							<string>headerLabel</string>
 							<string>headerView</string>
+							<string>laPiccolaRuota</string>
 							<string>laRuota</string>
 							<string>memeCell</string>
+							<string>reloadButtonInBreakTable</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -570,12 +576,20 @@
 								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">laPiccolaRuota</string>
+								<string key="candidateClassName">UIActivityIndicatorView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">laRuota</string>
 								<string key="candidateClassName">UIActivityIndicatorView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">memeCell</string>
 								<string key="candidateClassName">UITableViewCell</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">reloadButtonInBreakTable</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 						</object>
 					</object>
