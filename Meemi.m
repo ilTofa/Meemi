@@ -1320,6 +1320,42 @@ static int replyPageSize = 20;
 	}	
 }
 
++(void)purgeOldMemes
+{
+	// TODO: mettere a posto...
+	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for all the new ones.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"new_meme == %@ OR new_replies == %@", 
+							  [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+	[request setPredicate:predicate];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	ALog(@"Got %d new memes to mark read", [fetchResults count]);
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		for(Meme *theOne in fetchResults)
+		{
+			theOne.new_meme = [NSNumber numberWithBool:NO];
+			theOne.new_replies = [NSNumber numberWithBool:NO];
+		}
+	}	
+	[request release];
+	// now commit.
+	if (![managedObjectContext save:&error])
+	{
+		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		if(detailedErrors != nil && [detailedErrors count] > 0) 
+			for(NSError* detailedError in detailedErrors) 
+				DLog(@"  DetailedError: %@", [detailedError userInfo]);
+		else 
+			DLog(@"  %@", [error userInfo]);
+	}	
+}
+
 -(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever 
 			replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID privateTo:(NSString *)privateTo
 {

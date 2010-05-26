@@ -20,6 +20,7 @@
 		C00ACDB6119F301B002C5CC0 /* BlackFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */; };
 		C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */; };
 		C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */; };
+		C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C00DDAA311AD649000363B95 /* RegexKitLite.m */; };
 		C0256C8F11A8037900DF4706 /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = C0256C8E11A8037900DF4706 /* Nothing.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
 		C02C6B781185E81A007AF8BE /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = C02C6B771185E81A007AF8BE /* chat.png */; };
@@ -106,6 +107,8 @@
 		C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackFlagForSegmented.png; sourceTree = "<group>"; };
 		C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteFlagForSegmented.png; sourceTree = "<group>"; };
 		C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeForSegmented.png; sourceTree = "<group>"; };
+		C00DDAA211AD649000363B95 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		C00DDAA311AD649000363B95 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		C0256C8E11A8037900DF4706 /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
@@ -251,6 +254,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
+				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
 				64876D621173659600F09B92 /* FlurryLibWithLocation */,
 				C0E620161152E11A00E6C079 /* Meemi API */,
@@ -319,6 +323,15 @@
 				64876D641173659600F09B92 /* libFlurryWithLocation.a */,
 			);
 			path = FlurryLibWithLocation;
+			sourceTree = "<group>";
+		};
+		C00DDA9911AD647900363B95 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				C00DDAA211AD649000363B95 /* RegexKitLite.h */,
+				C00DDAA311AD649000363B95 /* RegexKitLite.m */,
+			);
+			name = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		C0881B5711650E2800A83951 /* Images */ = {
@@ -512,6 +525,7 @@
 				C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */,
 				C091077E11929E570067CFD2 /* Meme.m in Sources */,
 				C0E7B8211199AC230082F1AE /* User.m in Sources */,
+				C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +585,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
 			};
@@ -585,6 +600,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = "";
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "120C4DAD-3082-48A5-AA57-75F027C92EBA";
 				SDKROOT = iphoneos3.1;
@@ -600,6 +616,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1;

@@ -14,6 +14,7 @@
 #import "SettingsController.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "RegexKitLite.h"
 
 @implementation WithFriendsController
 
@@ -715,7 +716,7 @@
 			[controller release];
 			controller = nil;
 		}
-		if([selectedMeme.meme_type isEqualToString:@"image"])
+		else if([selectedMeme.meme_type isEqualToString:@"image"])
 		{
 			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 			controller.urlToBeLoaded = [selectedMeme.image_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -723,7 +724,7 @@
 			[controller release];
 			controller = nil;
 		}
-		if([selectedMeme.meme_type isEqualToString:@"video"])
+		else if([selectedMeme.meme_type isEqualToString:@"video"])
 		{
 			DLog(@"video meme: %@", selectedMeme.video);
 			// Check if the URl is valid
@@ -736,18 +737,49 @@
 				controller = nil;
 			}
 			else
-			{	// tell user that the video cannot be shown
-				// TODO: find the way to show this kind of video...
-				// <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/GSFPQDEkc-k&hl=it_IT&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/GSFPQDEkc-k&hl=it_IT&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
-				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-																	message:@"This video cannot be shown on this device"
-																   delegate:nil
-														  cancelButtonTitle:@"OK" 
-														  otherButtonTitles:nil] 
-										 autorelease];
-				[theAlert show];				
+			{
+				// try to decode
+				NSString *urlRegex = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";	
+				if([selectedMeme.video isMatchedByRegex:urlRegex])
+				{
+					NSArray *matchedURLsArray = [selectedMeme.video componentsMatchedByRegex:urlRegex];
+					DLog(@"matchedURLsArray: %@", matchedURLsArray);
+					MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+					controller.urlToBeLoaded = [[matchedURLsArray objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+					[self.navigationController pushViewController:controller animated:YES];
+					[controller release];
+					controller = nil;					
+				}
+				else
+				{
+					// tell user that the video cannot be shown
+					UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+																		message:@"This video cannot be shown on this device"
+																	   delegate:nil
+															  cancelButtonTitle:@"OK" 
+															  otherButtonTitles:nil] 
+											 autorelease];
+					[theAlert show];
+				}
 			}
 		}
+		else 
+		{
+			// try to decode the content to see if an URL is present.
+			NSString *urlRegex = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";	
+			if([selectedMeme.content isMatchedByRegex:urlRegex])
+			{
+				NSArray *matchedURLsArray = [selectedMeme.content componentsMatchedByRegex:urlRegex];
+				DLog(@"matchedURLsArray: %@", matchedURLsArray);
+				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
+				controller.urlToBeLoaded = [[matchedURLsArray objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+				[self.navigationController pushViewController:controller animated:YES];
+				[controller release];
+				controller = nil;					
+			}
+			
+		}
+
 	}
 	// Mark it read and remember where we were, btw...
 	[Meemi markMemeRead:selectedMeme.id];

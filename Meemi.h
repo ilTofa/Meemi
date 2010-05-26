@@ -152,6 +152,7 @@ typedef enum
 +(void)markThreadRead:(NSNumber *)memeID;
 +(void)markMemeRead:(NSNumber *)memeID;
 +(void)markMemeSpecial:(NSNumber *)memeID;
++(void)purgeOldMemes;
 
 +(Meemi *)sharedSession;
 
