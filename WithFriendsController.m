@@ -433,7 +433,6 @@
 		 
 	self.searchString = @"";
 	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -560,7 +559,7 @@
 		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = memeCell;
         self.memeCell = nil;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
 	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];

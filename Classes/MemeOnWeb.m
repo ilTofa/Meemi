@@ -43,6 +43,7 @@
 		[noWay show];
 		[noWay release];
 	}
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 #pragma mark Reload
@@ -95,6 +96,7 @@
 	[super viewWillDisappear:animated];
 	self.theView.delegate = nil;
 	[self.theView stopLoading];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
