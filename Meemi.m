@@ -353,16 +353,9 @@ static int replyPageSize = 20;
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setDateFormat:kNewMeemiDatesFormat];
-			theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
-			if(theMeme.date_time == nil)
-			{
-				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-				[dateFormatter setLocale:usLocale];
-				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.date_time = [dateFormatter dateFromString:currentStringValue];
-				[dateFormatter release];
-				[usLocale release];
-			}
+			NSString *tempStringValue = [NSString stringWithFormat:@"%@+0000", [currentStringValue substringToIndex:[currentStringValue length] - 1]];
+			theMeme.date_time = [dateFormatter dateFromString:tempStringValue];
+			[dateFormatter release];
 		}
 		if([elementName isEqualToString:@"meme_type"])
 		{
@@ -424,15 +417,8 @@ static int replyPageSize = 20;
 		{
 			NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setDateFormat:kNewMeemiDatesFormat];
-			theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
-			if(theMeme.event_when == nil)
-			{
-				NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-				[dateFormatter setLocale:usLocale];
-				[dateFormatter setDateFormat:kMeemiDatesFormat];
-				theMeme.event_when = [dateFormatter dateFromString:currentStringValue];
-				[usLocale release];
-			}
+			NSString *tempStringValue = [NSString stringWithFormat:@"%@+0000", [currentStringValue substringToIndex:[currentStringValue length] - 1]];
+			theMeme.event_when = [dateFormatter dateFromString:tempStringValue];
 			[dateFormatter release];
 		}
 		if([elementName isEqualToString:@"where"])
@@ -473,15 +459,8 @@ static int replyPageSize = 20;
 	{
 		NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:kNewMeemiDatesFormat];
-		theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
-		if(theMeme.dt_last_movement == nil)
-		{
-			NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-			[dateFormatter setLocale:usLocale];
-			[dateFormatter setDateFormat:kMeemiDatesFormat];
-			theMeme.dt_last_movement = [dateFormatter dateFromString:currentStringValue];
-			[usLocale release];
-		}
+		NSString *tempStringValue = [NSString stringWithFormat:@"%@+0000", [currentStringValue substringToIndex:[currentStringValue length] - 1]];
+		theMeme.dt_last_movement = [dateFormatter dateFromString:tempStringValue];
 		[dateFormatter release];
 	}
 	
@@ -1075,7 +1054,7 @@ static int replyPageSize = 20;
 	[self startRequestToMeemi:request];
 }
 
--(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user
+-(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user total:(int)repliesQuantity
 {
 	NSAssert([Meemi isValid], @"getNewMemesRepliesOf:from:number:");
 	self.currentRequest = MMGetNewReplies;
@@ -1085,10 +1064,19 @@ static int replyPageSize = 20;
 	// Init user DB
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	// FIXME: pagesize - 1 because API returns 19 memes instead on 20
-	int startMeme = (self.nextPageToLoad - 1) * (pageSize - 1);
-	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%@/%d", 
-						   user, memeID, (startMeme == 0) ? @"-" : [[NSNumber numberWithInt:startMeme] stringValue], replyPageSize];
+	NSString *urlString;
+	if(repliesQuantity <= 20)
+	{
+		urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/-/%d", user, memeID, replyPageSize];
+	}
+	else
+	{
+		int startMeme = repliesQuantity - (pageSize * self.nextPageToLoad);
+		if(startMeme < 0)
+			startMeme = 1;
+		urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/%d/%d", user, memeID, startMeme, replyPageSize];
+	}		
+	
 	NSURL *url = [NSURL URLWithString:urlString];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

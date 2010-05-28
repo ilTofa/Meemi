@@ -28,6 +28,8 @@ typedef enum {
 	// Is this the "main list", or a detail? :)
 	NSNumber *replyTo;
 	NSString *replyScreenName;
+	NSNumber *replyQuantity;
+	int readMemes;
 	// Current position, for reloading. :)
 	NSIndexPath *currentPosition;
 	// Scrolling
@@ -62,6 +64,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *searchString;
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyScreenName;
+@property (nonatomic, retain) NSNumber *replyQuantity;
 @property (nonatomic, retain) NSIndexPath *currentPosition;
 
 @end

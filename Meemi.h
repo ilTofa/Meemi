@@ -61,7 +61,7 @@ typedef enum
 
 #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ"
 // #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"
-#define kNewMeemiDatesFormat @"yyyy-MM-ddTHH:mm:ssZ"
+#define kNewMeemiDatesFormat @"yyyy-MM-dd'T'HH:mm:ssZZZZ"
 
 #ifdef __IPHONE_4_0
 @interface Meemi : NSObject <CLLocationManagerDelegate, NSXMLParserDelegate>
@@ -165,7 +165,7 @@ typedef enum
 
 // Function for getting new memes into the system
 -(void)getMemes;
--(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user;
+-(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user total:(int)repliesQuantity;
 -(void)getMemePrivateReceived;
 -(void)getMemePrivateSent;
 

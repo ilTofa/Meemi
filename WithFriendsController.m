@@ -18,7 +18,7 @@
 
 @implementation WithFriendsController
 
-@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, currentPosition;
+@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, replyQuantity, currentPosition;
 @synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
 
 -(void)setWatermark:(int)uff
@@ -26,8 +26,13 @@
 	DLog(@"setWatermark: called with %d", uff);
 	if(currentFetch == FTReplyView)
 	{
-		// In case of reply, if 19 read (a full page), set the watermark to the first (because we're reading it backwards)
-		watermark = (uff == 19) ? 1 : INT_MAX;
+		readMemes += uff;
+		// In case of reply, if 20 read (a full page), and we're still not read all...
+		// set the watermark to the first (because we're reading it backwards)
+		if(uff == 20 && readMemes < [self.replyQuantity intValue])
+			watermark = 1;
+		else
+			watermark = INT_MAX;
 	}
 	else
 		watermark = uff;
@@ -59,7 +64,7 @@
 	if(currentFetch != FTReplyView)
 		[ourPersonalMeemi getMemes];
 	else
-		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName];
+		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName total:[self.replyQuantity intValue]];
 }
 
 -(void)meemiIsBusy:(NSNotification *)note
@@ -239,7 +244,7 @@
 	ourPersonalMeemi.nextPageToLoad = 1;
 	ourPersonalMeemi.delegate = self;
 	if(self.replyTo != nil)
-		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName];
+		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName total:[self.replyQuantity intValue]];
 	else 
 		[ourPersonalMeemi getMemes];
 }
@@ -413,6 +418,7 @@
 	else
 	{
 		currentFetch = FTReplyView;
+		readMemes = 0;
 		self.title = NSLocalizedString(@"Thread", @"");
 		[self loadMemePage];
 	}
@@ -615,15 +621,14 @@
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
-	// Hide the "new" and "special" flags if meme is not new...
+	// Set the "new"s' and hide "special" flags if needed...
+	tempLabel = (UILabel *)[cell viewWithTag:8];
 	if([theFetchedMeme.new_meme boolValue])
-		((UILabel *)[cell viewWithTag:8]).hidden = NO;
+		tempLabel.text = @"⚑";
+	else if([theFetchedMeme.new_replies boolValue])
+		tempLabel.text = @"⚐";
 	else
-		((UILabel *)[cell viewWithTag:8]).hidden = YES;
-	if([theFetchedMeme.new_replies boolValue])
-		((UILabel *)[cell viewWithTag:9]).hidden = NO;
-	else
-		((UILabel *)[cell viewWithTag:9]).hidden = YES;
+		tempLabel.text = @" ";
 	if([theFetchedMeme.special boolValue])
 		((UILabel *)[cell viewWithTag:11]).hidden = NO;
 	else
@@ -701,6 +706,7 @@
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
 		controller.replyScreenName = selectedMeme.screen_name;
+		controller.replyQuantity = selectedMeme.qta_replies;
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];
 		controller = nil;
