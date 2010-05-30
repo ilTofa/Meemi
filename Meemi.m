@@ -371,9 +371,13 @@ static int replyPageSize = 20;
 		{
 			if(self.currentRequest != MMGetNewReplies)
 			{
-				theMeme.sent_to = [sent_to substringToIndex:([sent_to length] - 2)];
-				// It's private, I'm seeing it, so it must be special. :)
-				theMeme.special = [NSNumber numberWithBool:YES];
+				// Workaround to protect the Veggyver crashes
+				if(sent_to != nil && [sent_to length > 2])
+				{
+					theMeme.sent_to = [sent_to substringToIndex:([sent_to length] - 2)];
+					// It's private, I'm seeing it, so it must be special. :)
+					theMeme.special = [NSNumber numberWithBool:YES];
+				}
 			}
 			theMeme.private_meme = [NSNumber numberWithBool:YES];
 		}
