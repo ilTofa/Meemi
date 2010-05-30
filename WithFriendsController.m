@@ -18,7 +18,7 @@
 
 @implementation WithFriendsController
 
-@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, replyQuantity, currentPosition;
+@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, replyQuantity;
 @synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
 
 -(void)setWatermark:(int)uff
@@ -432,7 +432,6 @@
 	self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
 		 
 	self.searchString = @"";
-	self.currentPosition = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -571,7 +570,10 @@
 	[dateFormatter setLocale:[NSLocale currentLocale]];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
+	if(currentFetch == FTReplyView)
+		tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.date_time];
+	else
+		tempLabel.text = [dateFormatter stringFromDate:theFetchedMeme.dt_last_movement];
 	[dateFormatter release];
 	
 	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
@@ -698,6 +700,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
+	[Meemi markMemeRead:selectedMeme.id];
 		
 	// if we are at a meme list level (we need it for reply) just push another controller, same kind of this one. :)
 	if(self.replyTo == nil)
@@ -786,9 +789,6 @@
 		}
 
 	}
-	// Mark it read and remember where we were, btw...
-	[Meemi markMemeRead:selectedMeme.id];
-	self.currentPosition = indexPath;
 }
 
 

@@ -30,8 +30,6 @@ typedef enum {
 	NSString *replyScreenName;
 	NSNumber *replyQuantity;
 	int readMemes;
-	// Current position, for reloading. :)
-	NSIndexPath *currentPosition;
 	// Scrolling
 	BOOL checkForRefresh;
 	BOOL enoughDragging;
@@ -65,6 +63,5 @@ typedef enum {
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyScreenName;
 @property (nonatomic, retain) NSNumber *replyQuantity;
-@property (nonatomic, retain) NSIndexPath *currentPosition;
 
 @end
