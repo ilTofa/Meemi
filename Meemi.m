@@ -1069,7 +1069,7 @@ static int replyPageSize = 20;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSString *urlString;
-	if(repliesQuantity <= 20)
+	if(repliesQuantity <= 20 || self.nextPageToLoad == 1)
 	{
 		urlString = [NSString stringWithFormat:@"http://meemi.com/api3/%@/%@/replies/-/%d", user, memeID, replyPageSize];
 	}

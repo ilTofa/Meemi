@@ -21,21 +21,21 @@
 @synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, replyQuantity;
 @synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
 
--(void)setWatermark:(int)uff
+-(void)setWatermark:(int)numberRead
 {
-	DLog(@"setWatermark: called with %d", uff);
+	DLog(@"setWatermark: called with %d", numberRead);
 	if(currentFetch == FTReplyView)
 	{
-		readMemes += uff;
+		readMemes += numberRead;
 		// In case of reply, if 20 read (a full page), and we're still not read all...
 		// set the watermark to the first (because we're reading it backwards)
-		if(uff == 20 && readMemes < [self.replyQuantity intValue])
+		if(numberRead == 20 && readMemes < [self.replyQuantity intValue])
 			watermark = 1;
 		else
 			watermark = INT_MAX;
 	}
 	else
-		watermark = uff;
+		watermark = numberRead;
 }
 
 -(int)watermark
