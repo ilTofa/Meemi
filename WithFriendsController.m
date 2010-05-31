@@ -640,7 +640,10 @@
 	{
 		((UILabel *)[cell viewWithTag:11]).hidden = NO;
 		if(currentFetch == FTReplyView)
+		{
 			specialThread = YES;
+			DLog(@"Set specialThread to YES");
+		}
 	}
 	else
 		((UILabel *)[cell viewWithTag:11]).hidden = YES;

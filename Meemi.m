@@ -289,7 +289,11 @@ static int replyPageSize = 20;
 	theMeme.user = theUser;
 	[theUser addMemeObject:theMeme];
 	// if the meme is from ourselves, mark it "Special"
-	theMeme.special = [NSNumber numberWithBool:[name isEqualToString:[Meemi screenName]]];
+	if([name isEqualToString:[Meemi screenName]])
+	{
+		DLog(@"#found a meme from myself! Marking special");
+		theMeme.special = [NSNumber numberWithBool:YES];
+	}
 	[request release];
 }
 
@@ -1181,7 +1185,7 @@ static int replyPageSize = 20;
 
 +(void)markMemeSpecial:(NSNumber *)memeID
 {
-	DLog(@"Now in markMemeSpecial");
+	DLog(@"Now in markMemeSpecial to mark meme %@", memeID);
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for an User with this screen_name.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
