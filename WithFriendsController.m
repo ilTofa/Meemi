@@ -462,6 +462,7 @@
     [super viewDidAppear:animated];
 	// toolBar only on "parent" list
 	self.navigationController.toolbarHidden = (self.replyTo != nil);
+	specialThread = NO;
 	[self.tableView reloadData];
 }
 
@@ -471,6 +472,9 @@
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.navigationController.toolbarHidden = YES;
+	// if this is a specialThread, mark the parent "Special"
+	if(specialThread && self.replyTo != nil)
+		[Meemi markMemeSpecial:self.replyTo];
 	// if this is the detail view, reset fetchcontroller...
 	if(self.replyTo != nil && theMemeList != nil)
 	{
@@ -622,16 +626,22 @@
 		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
 	else // should be "text" only, but who knows
 		tempView.image = nil;
-	// Set the "new"s' and hide "special" flags if needed...
-	tempLabel = (UILabel *)[cell viewWithTag:8];
+	
+	// Set the "new"s'...
+	tempView = (UIImageView *)[cell viewWithTag:8];
 	if([theFetchedMeme.new_meme boolValue])
-		tempLabel.text = @"⚑";
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlag" ofType:@"png"]];
 	else if([theFetchedMeme.new_replies boolValue])
-		tempLabel.text = @"⚐";
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlag" ofType:@"png"]];
 	else
-		tempLabel.text = @" ";
+		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
+	// "Special". Mark also state for parent marking (if needed)
 	if([theFetchedMeme.special boolValue])
+	{
 		((UILabel *)[cell viewWithTag:11]).hidden = NO;
+		if(currentFetch == FTReplyView)
+			specialThread = YES;
+	}
 	else
 		((UILabel *)[cell viewWithTag:11]).hidden = YES;
 	// "Private" memes

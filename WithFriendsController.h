@@ -42,6 +42,7 @@ typedef enum {
 	Meemi *ourPersonalMeemi;
 	Meemi *privateFetchMeemi;
 	int watermark;
+	BOOL specialThread;
 }
 
 -(IBAction)filterSelected;
