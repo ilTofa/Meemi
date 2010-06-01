@@ -18,8 +18,9 @@
 
 @implementation WithFriendsController
 
-@synthesize memeCell, predicateString, searchString, replyTo, replyScreenName, replyQuantity;
+@synthesize memeCell, predicateString, replyTo, replyScreenName, replyQuantity;
 @synthesize headerView, headerLabel, headerArrow, laRuota, laPiccolaRuota, reloadButtonInBreakTable;
+@synthesize searchString, searchScope, theSearchBar;
 
 -(void)setWatermark:(int)numberRead
 {
@@ -155,11 +156,33 @@
 			self.predicateString = [NSString stringWithFormat:@"private_meme == YES AND reply_id == 0"];
 			break;
 		case FTSpecial:
-			self.predicateString = [NSString stringWithFormat:@"special == YES and reply_id == 0"];
+			self.predicateString = [NSString stringWithFormat:@"private_meme == NO AND special == YES and reply_id == 0"];
 			break;
 		case FTReplyView:
 			self.predicateString = [NSString stringWithFormat:@"reply_id == %@ OR id == %@", self.replyTo, self.replyTo];
 			break;
+	}
+	
+	// Get (and add) search parameters if we have a search running
+	if(![self.searchString isEqualToString:@""])
+	{
+		NSString *tempString;
+		if(self.searchScope == 0)
+		{
+			DLog(@"searching on sender");
+			tempString = [NSString stringWithFormat:@"%@ AND user.screen_name like[c] \"%@*\"", self.predicateString, self.searchString];
+		}
+		if(self.searchScope == 1)
+		{
+			DLog(@"searching on text");
+			tempString = [NSString stringWithFormat:@"%@ AND content like[c] \"*%@*\"", self.predicateString, self.searchString];
+		}
+		if(self.searchScope == 2)
+		{
+			DLog(@"searching on channel");
+			tempString = [NSString stringWithFormat:@"%@ AND channels like[c] \"%@*\"", self.predicateString, self.searchString];
+		}
+		self.predicateString = tempString;
 	}
 
 	DLog(@"In setupFetch. Type of fetch: %d. Filter: %@", currentFetch, self.predicateString);
@@ -257,8 +280,10 @@
 	DLog(@"in WithFriendsCOnrtoller didFailWithError. Error is %@", error);
 	if(error != nil)
 	{
+		NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""),
+								[error localizedDescription]];
 		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-															message:@"Error loading data, please try again later"
+															message:theMessage
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
@@ -308,18 +333,75 @@
 -(IBAction)replyToMeme:(id)sender
 {
 	DLog(@"replyToMeme: called");
-	// Make user choose if (s)he wants to reply with text or image
-	UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
-														   delegate:self 
-												  cancelButtonTitle:@"Cancel"
-											 destructiveButtonTitle:nil
-												  otherButtonTitles:@"Text", @"Image", nil]
-							   autorelease];
-	if(self.navigationController.toolbar.hidden)
-		[chooseIt showInView:self.view];
-	else // we have a toolbar, use it!
-		[chooseIt showFromToolbar:self.navigationController.toolbar];
+	// If we are on private messages view (not reply) go on with a private message
+	if(currentFetch == FTPvt)
+	{
+		DLog(@"Send a private meme to ourselves: %@", [Meemi screenName]);
+		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+		controller.delegate = self;
+		controller.recipientNames = [Meemi screenName];
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else
+	{
+		// Make user choose if (s)he wants to reply with text or image
+		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
+															   delegate:self 
+													  cancelButtonTitle:@"Cancel"
+												 destructiveButtonTitle:nil
+													  otherButtonTitles:@"Text", @"Image", nil]
+								   autorelease];
+		if(self.navigationController.toolbar.hidden)
+			[chooseIt showInView:self.view];
+		else // we have a toolbar, use it!
+			[chooseIt showFromToolbar:self.navigationController.toolbar];
+	}
 }	
+
+#pragma mark Searchbar & delegate
+
+-(void)dismissSearch
+{
+	self.tableView.tableHeaderView = nil;
+	barPresent = NO;
+	searchString = @"";
+	[self setupFetch];
+}
+
+-(IBAction)searchClicked:(id)sender
+{
+	if(!barPresent)
+	{
+		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
+							  atScrollPosition:UITableViewScrollPositionTop 
+									  animated:NO];
+		self.tableView.tableHeaderView = self.theSearchBar;
+		barPresent = YES;
+		[self.theSearchBar becomeFirstResponder];
+	}
+	else 
+	{
+		[self dismissSearch];
+	}
+
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[self dismissSearch];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	DLog(@"searchBarSearchButtonClicked here");
+	DLog(@"text to search: \"%@\"", searchBar.text);
+	DLog(@"Scope is %d", searchBar.selectedScopeButtonIndex);
+	self.searchString = searchBar.text;
+	self.searchScope = searchBar.selectedScopeButtonIndex;
+	[searchBar resignFirstResponder];
+	[self setupFetch];
+}
 
 #pragma mark UIActionSheetDelegate
 
@@ -364,11 +446,31 @@
 	if(![[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
 		[self settingsView];
 	
+	// "Cache" the UIImages
+	imgCamera = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
+	[imgCamera retain];
+	imgVideo = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"video-verysmall" ofType:@"png"]];
+	[imgVideo retain];
+	imgLink= [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
+	[imgLink retain];
+	imgBlackFlag = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlag" ofType:@"png"]];
+	[imgBlackFlag retain];
+	imgWhiteFlag = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlag" ofType:@"png"]];
+	[imgWhiteFlag retain];
+	imgNothing = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
+	[imgNothing retain];
+	imgLock = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-lock2.png" ofType:@"png"]];
+	[imgLock retain];
+	imgStar = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]];
+	[imgStar retain];
+	
 	// Setup the Meemi "agent"
 	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
 	if(!ourPersonalMeemi)
 		ALog(@"Meemi session init failed. Shit...");
 	ourPersonalMeemi.delegate = self;
+	
+	self.searchString = @"";
 	
 	if(self.replyTo == nil)
 	{
@@ -382,12 +484,16 @@
 		
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
-#define kButtonWidth 60.0f
+#define kButtonWidth 55.0f
 		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
 																 action:@selector(markReadMemes)];
 		[readB setWidth:kButtonWidth];
+		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch 
+																			   target:self 
+																			   action:@selector(searchClicked:)];
+		[srchB setWidth:kButtonWidth];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		NSArray *tempStrings = [NSArray arrayWithObjects:
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
@@ -407,10 +513,13 @@
 								 readB,
 								 spacer,
 								 [[[UIBarButtonItem alloc] initWithCustomView:theSegment] autorelease], 
+								 spacer,
+								 srchB,
 								 nil];
 		self.toolbarItems = toolbarItems;
 		[theSegment release];
 		[spacer release];
+		[srchB release];
 		[readB release];
 		currentFetch = FTAll;
 		[self setupFetch];
@@ -422,6 +531,9 @@
 		self.title = NSLocalizedString(@"Thread", @"");
 		[self loadMemePage];
 	}
+	// hid the search bar...
+	self.tableView.tableHeaderView = nil;
+
 	// Add a right button for reply to the meme list
 	UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
 																				 target:self 
@@ -430,8 +542,6 @@
 	[replyButton release];
 	
 	self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-		 
-	self.searchString = @"";
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -512,6 +622,26 @@
 
 - (void)viewDidUnload 
 {
+	// release the "Cache" the UIImages
+	[imgCamera release];
+	imgCamera = nil;
+	[imgVideo release];
+	imgVideo = nil;
+	[imgLink release];
+	imgLink = nil;
+	[imgBlackFlag release];
+	imgBlackFlag = nil;
+	[imgWhiteFlag release];
+	imgWhiteFlag = nil;
+	[imgNothing release];
+	imgNothing = nil;
+	[imgLock release];
+	imgLock = nil;
+	[imgStar release];
+	imgStar = nil;
+	// Release other...
+	[self.theSearchBar release];
+	self.theSearchBar = nil;
 	ourPersonalMeemi.delegate = nil;
 	[ourPersonalMeemi release];
 	ourPersonalMeemi = nil;
@@ -619,46 +749,45 @@
 	
 	UIImageView *tempView = (UIImageView *)[cell viewWithTag:7];
 	if([theFetchedMeme.meme_type isEqualToString:@"image"])
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
+		tempView.image = imgCamera;
 	else if([theFetchedMeme.meme_type isEqualToString:@"video"])
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"video-verysmall" ofType:@"png"]];
+		tempView.image = imgVideo;
 	else if([theFetchedMeme.meme_type isEqualToString:@"link"])
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
+		tempView.image = imgLink;
 	else // should be "text" only, but who knows
 		tempView.image = nil;
 	
 	// Set the "new"s'...
 	tempView = (UIImageView *)[cell viewWithTag:8];
 	if([theFetchedMeme.new_meme boolValue])
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlag" ofType:@"png"]];
+		tempView.image = imgBlackFlag;
 	else if([theFetchedMeme.new_replies boolValue])
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlag" ofType:@"png"]];
+		tempView.image = imgWhiteFlag;
 	else
-		tempView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
-	// "Special". Mark also state for parent marking (if needed)
-	if([theFetchedMeme.special boolValue])
-	{
-		((UILabel *)[cell viewWithTag:11]).hidden = NO;
-		if(currentFetch == FTReplyView)
-		{
-			specialThread = YES;
-			DLog(@"Set specialThread to YES");
-		}
-	}
-	else
-		((UILabel *)[cell viewWithTag:11]).hidden = YES;
+		tempView.image = imgNothing;
 	// "Private" memes
 	if([theFetchedMeme.private_meme boolValue])
 	{
-		((UIImageView *)[cell viewWithTag:10]).hidden = NO;
+		((UIImageView *)[cell viewWithTag:10]).image = imgLock;
 		tempLabel = (UILabel *)[cell viewWithTag:2];
 		tempLabel.text = theFetchedMeme.sent_to;
 	}
 	else
 	{
-		((UIImageView *)[cell viewWithTag:10]).hidden = YES;
 		tempLabel = (UILabel *)[cell viewWithTag:2];
 		tempLabel.text = theFetchedMeme.user.real_name;
+		// "Special" only if not private! Mark also state for parent marking (if needed)
+		if([theFetchedMeme.special boolValue])
+		{
+			((UIImageView *)[cell viewWithTag:10]).image = imgStar;
+			if(currentFetch == FTReplyView)
+			{
+				specialThread = YES;
+				DLog(@"Set specialThread to YES");
+			}
+		}
+		else
+			((UIImageView *)[cell viewWithTag:10]).image = imgNothing;
 	}
 	
     return cell;

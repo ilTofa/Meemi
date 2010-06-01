@@ -222,8 +222,13 @@ static int replyPageSize = 20;
 {
 	NSData *responseData = [request responseData];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	DLog(@"request sent and answer received. Calling parser for processing\n");
-	[self parse:responseData];
+	if(self.currentRequest == MMMarkRead)
+		DLog(@"Mark read finished, it's OK to pass");
+	else
+	{
+		DLog(@"request sent and answer received. Calling parser for processing\n");
+		[self parse:responseData];
+	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -477,16 +482,20 @@ static int replyPageSize = 20;
 	{
 		// If we're parsing new memes, save last read timestamp of the meme (they're guaranteed to come in reverse date)
 		if(self.currentRequest == MmGetNew)
-			self.lastReadMemeTimestamp = [theMeme.dt_last_movement copy];
+			self.lastReadMemeTimestamp = [theMeme.dt_last_movement copy]; // !
 		// Commit (if needed)
 		NSError *error;
 		if([localManagedObjectContext hasChanges])
 		{
-			// if we're reading replies and count is less than replyPageSize, then we read all the replies
 			if(self.currentRequest == MMGetNewReplies)
+			{
 				DLog(@"calling setWatermark: on delegate. Read %d records on a page of %d", howMany, replyPageSize);
-			if(self.currentRequest == MMGetNewReplies)
-				[self.delegate setWatermark:howMany];
+				// Protect a bunch of unknown chrashes (not a solution, just a workaround)
+				if([self.delegate respondsToSelector:@selector(setWatermark:)])
+					[self.delegate setWatermark:howMany];
+				else
+					ALog(@"***!!!*** the delegate do not responds to setWatermark: ***!!!***");
+			}
 			else if(self.currentRequest == MmGetNew)
 				// else get back the last loaded meme (0-based, so count is -1) 
 				[self.delegate setWatermark:howMany * self.nextPageToLoad - 1];
@@ -589,6 +598,7 @@ static int replyPageSize = 20;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
+#ifdef XMLLOG
 	XLog(@"Element Start: <%@>", elementName);
 	NSEnumerator *enumerator = [attributeDict keyEnumerator];
 	id key;
@@ -596,6 +606,7 @@ static int replyPageSize = 20;
 	{
 		XLog(@"attribute \"%@\" is \"%@\"", key, [attributeDict objectForKey:key]);
 	}
+#endif
 	if([elementName isEqualToString:@"error"])
 	{
 		[self nowFree];
@@ -774,7 +785,6 @@ static int replyPageSize = 20;
 
 -(void)startRequestToMeemi:(ASIFormDataRequest *)request
 {
-	NSAssert(delegate, @"delegate not set in Meemi");
 	// build the password using SHA-256
 	unsigned char hashedChars[32];
 	CC_SHA256([[Meemi password] UTF8String],
@@ -1129,60 +1139,6 @@ static int replyPageSize = 20;
 	[self startRequestToMeemi:request];	
 }
 
--(void)getNewPrivateMemes:(BOOL)fromScratch
-{
-	NSAssert([Meemi isValid], @"getNewPrivateMemes: called without valid session");
-	self.currentRequest = MMGetNewPvt;
-	
-	// Now setup the URI depending on the request
-	NSURL *url;
-	if(fromScratch)
-	{
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5", [Meemi screenName]]];
-//		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
-//		newMemesPageWatermark = 1;
-//		howManyRequestTotal = 0;
-	}
-	else 
-	{
-//		newMemesPageWatermark++;
-//		url = [NSURL URLWithString:
-//			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private/limit_5/page_%d", 
-//				[Meemi screenName], newMemesPageWatermark]];
-	}
-	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[self startRequestToMeemi:request];
-}
-
--(void)getNewPrivateMemesSent:(BOOL)fromScratch
-{
-	NSAssert([Meemi isValid], @"getNewPrivateMemes: called without valid session");
-	self.currentRequest = MMGetNewPvtSent;
-	
-	// Now setup the URI depending on the request
-	NSURL *url;
-	if(fromScratch)
-	{
-		url = [NSURL URLWithString:
-			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5", [Meemi screenName]]];
-//		newUsersFromNewMemes = [[NSMutableArray alloc] initWithCapacity:10];
-//		newMemesPageWatermark = 1;
-//		howManyRequestTotal = 0;
-	}
-	else 
-	{
-//		newMemesPageWatermark++;
-//		url = [NSURL URLWithString:
-//			   [NSString stringWithFormat:@"http://meemi.com/api3/p/private_sent/limit_5/page_%d", 
-//				[Meemi screenName], newMemesPageWatermark]];
-	}
-	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[self startRequestToMeemi:request];
-}
-
 +(void)markMemeSpecial:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeSpecial to mark meme %@", memeID);
@@ -1214,6 +1170,45 @@ static int replyPageSize = 20;
 	[request release];
 }	
 
++ (void)returnOKFromMarkRead:(ASIHTTPRequest *)request
+{
+	DLog(@"returned from mark read something");
+}
+
++ (void)returnFailedFromMarkRead:(ASIHTTPRequest *)request
+{
+	DLog(@"Failed when marking read something");
+}
+
++(void)reallyMarkRead:(NSString *)nilOrCommaSeparatedMemeList
+{
+	NSString *urlString;
+	// If we have to mark all...
+	if(nilOrCommaSeparatedMemeList == nil)
+		urlString = [NSString stringWithString:@"http://meemi.com/api3/p/mark/all_memes"];
+	else
+		urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/mark/multi_meme/%@", nilOrCommaSeparatedMemeList];
+		NSURL *url = [NSURL URLWithString:urlString];
+	DLog(@"In reallyMarkRead. Sending %@", urlString);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([[Meemi password] UTF8String],
+			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	[request setPostValue:[Meemi screenName] forKey:@"meemi_id"];
+	[request setPostValue:hashedData forKey:@"pwd"];
+	[request setPostValue:kAPIKey forKey:@"app_key"];
+	[request setDelegate:self];
+	[request setDidFinishSelector:@selector(returnOKFromMarkRead:)];
+	[request setDidFailSelector:@selector(returnFailedFromMarkRead:)];
+	[request startAsynchronous];			
+}
+
 +(void)markMemeRead:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeRead");
@@ -1244,11 +1239,14 @@ static int replyPageSize = 20;
 		}
 	}
 	[request release];
+	NSString *param = [NSString stringWithFormat:@"%@", memeID];
+	[self reallyMarkRead:param];
 }
 
 +(void)markThreadRead:(NSNumber *)memeID
 {
 	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
+	NSMutableString *param = [[NSMutableString alloc] initWithCapacity:30];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
@@ -1265,6 +1263,7 @@ static int replyPageSize = 20;
 		{
 			theOne.new_meme = [NSNumber numberWithBool:NO];
 			theOne.new_replies = [NSNumber numberWithBool:NO];
+			[param appendFormat:@", %@", theOne.id];
 		}
 	}	
 	[request release];
@@ -1278,7 +1277,9 @@ static int replyPageSize = 20;
 				DLog(@"  DetailedError: %@", [detailedError userInfo]);
 		else 
 			DLog(@"  %@", [error userInfo]);
-	}	
+	}
+	[self reallyMarkRead:param];
+	[param release];
 }
 
 +(void)markNewMemesRead
@@ -1313,7 +1314,8 @@ static int replyPageSize = 20;
 				DLog(@"  DetailedError: %@", [detailedError userInfo]);
 		else 
 			DLog(@"  %@", [error userInfo]);
-	}	
+	}
+	[self reallyMarkRead:nil];
 }
 
 +(void)purgeOldMemes

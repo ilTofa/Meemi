@@ -18,12 +18,11 @@ typedef enum {
 	FTReplyView
 } FetchTypes;
 
-@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate, TextSenderControllerDelegate, ImageSenderControllerDelegate, UIActionSheetDelegate>
+@interface WithFriendsController : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate, TextSenderControllerDelegate, ImageSenderControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate>
 {
 	NSFetchedResultsController *theMemeList;
 	UITableViewCell *memeCell;
 	NSString *predicateString;
-	NSString *searchString;
 	FetchTypes currentFetch;
 	// Is this the "main list", or a detail? :)
 	NSNumber *replyTo;
@@ -41,8 +40,23 @@ typedef enum {
 	UIButton *reloadButtonInBreakTable;
 	Meemi *ourPersonalMeemi;
 	Meemi *privateFetchMeemi;
+	// the search bar
+	UISearchBar *theSearchBar;
+	BOOL barPresent;
+	NSString *searchString;
+	NSInteger searchScope;
+	// Other
 	int watermark;
 	BOOL specialThread;
+	// UIImage caches
+	UIImage *imgCamera;
+	UIImage *imgVideo;
+	UIImage *imgLink;
+	UIImage *imgBlackFlag;
+	UIImage *imgWhiteFlag;
+	UIImage *imgNothing;
+	UIImage *imgLock;
+	UIImage *imgStar;	
 }
 
 -(IBAction)filterSelected;
@@ -54,15 +68,17 @@ typedef enum {
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, assign) IBOutlet UIView *headerView;
+@property (nonatomic, retain) IBOutlet UISearchBar *theSearchBar;
 @property (nonatomic, retain) IBOutlet UILabel *headerLabel;
 @property (nonatomic, retain) IBOutlet UILabel *headerArrow;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laRuota;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *laPiccolaRuota;
 @property (nonatomic, retain) IBOutlet UIButton *reloadButtonInBreakTable;
 @property (nonatomic, retain) NSString *predicateString;
-@property (nonatomic, retain) NSString *searchString;
 @property (nonatomic, retain) NSNumber *replyTo;
 @property (nonatomic, retain) NSString *replyScreenName;
 @property (nonatomic, retain) NSNumber *replyQuantity;
+@property (nonatomic, retain) NSString *searchString;
+@property (nonatomic, assign) NSInteger searchScope;
 
 @end

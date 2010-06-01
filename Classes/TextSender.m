@@ -104,7 +104,9 @@
 	if(self.recipientNames != nil)
 	{
 		self.privateMemeWarning.hidden = NO;
-		self.channel.placeholder = NSLocalizedString(@"Recipients (mandatory)", @"");
+		if([self.recipientNames isEqualToString:[Meemi screenName]])
+			self.recipientNames = @"";
+		self.channel.placeholder = NSLocalizedString(@"Recipient list (required to send private)", @"");
 		self.channel.text = self.recipientNames;
 	}
 	// Activate keyboard

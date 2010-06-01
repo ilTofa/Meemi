@@ -27,7 +27,8 @@ typedef enum {
 	MMGetNewReplies,
 	MMGetNewUser,
 	MMFollowUnfollow,
-	MMGetAvatar
+	MMGetAvatar,
+	MMMarkRead
 } MeemiRequest;
 
 typedef enum
@@ -69,7 +70,7 @@ typedef enum
 @interface Meemi : NSObject <CLLocationManagerDelegate>
 #endif
 {
-	id<MeemiDelegate> delegate;
+	id<MeemiDelegate,NSObject> delegate;
 	MeemiRequest currentRequest;
 	
 	// for use by NSXMLParser and its delegates
@@ -123,7 +124,7 @@ typedef enum
 @property (nonatomic, assign) int nextPageToLoad;
 @property (nonatomic, retain) NSDate *lastReadMemeTimestamp;
 
-@property (assign) id<MeemiDelegate> delegate;
+@property (assign) id<MeemiDelegate,NSObject> delegate;
 @property (assign) MeemiRequest currentRequest;
 @property (nonatomic, retain) NSString *placeName, *state;
 @property (retain) ASINetworkQueue *networkQueue;
@@ -176,8 +177,6 @@ typedef enum
 -(void)postTextReply:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized replyWho:(NSString *)replyScreenName replyNo:(NSNumber *)replyID;
 -(void)postTextAsPrivateMeme:(NSString *)description withChannel:(NSString *)channel withLocalization:(BOOL)canBeLocalized privateTo:(NSString *)privateTo;
 -(void)getNewMemesRepliesOf:(NSNumber *)memeID screenName:(NSString *)user from:(int)startMeme number:(int)nMessagesToRetrieve;
--(void)getNewPrivateMemes:(BOOL)fromScratch;
--(void)getNewPrivateMemesSent:(BOOL)fromScratch;
 
 -(void)loadAvatar:(NSString *)screen_name;
 -(void)getUser:(NSString *)withName;

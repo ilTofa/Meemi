@@ -142,66 +142,6 @@ void uncaughtExceptionHandler(NSException *exception)
 //	[FlurryAPI logError:@"Uncaught exception." message:@"Crash!" exception:exception];
 }                                       
 
-#pragma mark MeemiDelegate
-
--(void)setWatermark:(int)watermark
-{ }
-
--(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
-{
-	DLog(@"(MeemiRequest)request didFailWithError:");
-}
-
--(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
-{
-	DLog(@"(MeemiRequest)request didFinishWithResult:");
-	switch (request) 
-	{
-		// Flow through newMemes, newPrivateMemes and newPrivateMemesSent
-		case MmGetNew:
-			DLog(@"No other records to read or max number reached, now get private memes...");
-			// Now get newUsers into db.
-			[[Meemi sharedSession] getNewPrivateMemes:YES];
-			break;
-		case MMGetNewPvt:
-			// Continue to read new memes if result != 0
-			if(result)
-			{
-				DLog(@"Still records to be read, continuing");
-				[[Meemi sharedSession] getNewPrivateMemes:NO];
-			}
-			else
-			{
-				DLog(@"No other pvt records to read or max number reached, now get private sent memes...");
-				// Now get newUsers into db.
-				[[Meemi sharedSession] getNewPrivateMemesSent:YES];
-			}
-			break;
-		case MMGetNewPvtSent:
-			// Continue to read new memes if result != 0
-			if(result)
-			{
-				DLog(@"Still records to be read, continuing");
-				[[Meemi sharedSession] getNewPrivateMemesSent:NO];
-			}
-			else
-			{
-				DLog(@"No other records to read or max number reached, now get users...");
-				// Now get newUsers into db.
-				[[Meemi sharedSession] updateAvatars];
-			}
-			break;
-		case MmMarkNewRead:
-			DLog(@"New memes marked read.");
-			break;
-		case MmGetNewUsers:
-			DLog(@"New users and avatars updated");
-			break;
-		default:
-			NSAssert(YES, @"(MeemiRequest)request didFinishWithResult: in MeemiAppDelegate.m called with unknow request");
-			break;
-	}
-}
 
 #pragma mark -
 #pragma mark Meemi Actions
@@ -209,9 +149,6 @@ void uncaughtExceptionHandler(NSException *exception)
 -(void)reloadMemes
 {
 	DLog(@"appDelegate reloadMemes called. Ignoring it");
-	
-//	[Meemi sharedSession].delegate = self;
-//	[[Meemi sharedSession] getNewMemes:YES];	
 }
 
 -(void)markReadMemes

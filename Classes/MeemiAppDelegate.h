@@ -12,7 +12,7 @@
 #define kSettingsTab 3
 #define kWebTab 4
 
-@interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, MeemiDelegate> 
+@interface MeemiAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
 {
     UIWindow *window;
     UINavigationController *navigationController;
