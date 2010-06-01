@@ -472,6 +472,8 @@
 	
 	self.searchString = @"";
 	
+#define kButtonWidth 55.0f
+
 	if(self.replyTo == nil)
 	{
 		[self loadMemePage];
@@ -481,18 +483,17 @@
 																		 style:UIBarButtonItemStylePlain 
 																		target:self 
 																		action:@selector(settingsView)];
-		
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
-#define kButtonWidth 55.0f
 		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
 																 action:@selector(markReadMemes)];
 		[readB setWidth:kButtonWidth];
-		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch 
-																			   target:self 
-																			   action:@selector(searchClicked:)];
+		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"magnifying-glass" ofType:@"png"]] 
+																  style:UIBarButtonItemStyleBordered 
+																 target:self 
+																 action:@selector(searchClicked:)];
 		[srchB setWidth:kButtonWidth];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		NSArray *tempStrings = [NSArray arrayWithObjects:

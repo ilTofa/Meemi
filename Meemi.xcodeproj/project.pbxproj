@@ -16,6 +16,7 @@
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
+		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
 		C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */; };
 		C00ACDB6119F301B002C5CC0 /* BlackFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */; };
 		C00ACDC6119F3158002C5CC0 /* WhiteFlagForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDC5119F3158002C5CC0 /* WhiteFlagForSegmented.png */; };
@@ -104,6 +105,7 @@
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		64876D631173659600F09B92 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		64876D641173659600F09B92 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
+		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockForSegmented.png; sourceTree = "<group>"; };
 		C00ACDB5119F301B002C5CC0 /* BlackFlagForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackFlagForSegmented.png; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				64BA4A6C11B580A3003EE522 /* magnifying-glass.png */,
 				C033E31111B32B5400233505 /* BlackFlag.png */,
 				C033E31211B32B5400233505 /* WhiteFlag.png */,
 				C0256C8E11A8037900DF4706 /* Nothing.png */,
@@ -500,6 +503,7 @@
 				C0256C8F11A8037900DF4706 /* Nothing.png in Resources */,
 				C033E31311B32B5400233505 /* BlackFlag.png in Resources */,
 				C033E31411B32B5400233505 /* WhiteFlag.png in Resources */,
+				64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
