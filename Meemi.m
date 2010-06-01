@@ -293,12 +293,6 @@ static int replyPageSize = 20;
 	// Whatever theUser is (new or pre-existing) now it's time to set the relationship with theMeme
 	theMeme.user = theUser;
 	[theUser addMemeObject:theMeme];
-	// if the meme is from ourselves, mark it "Special"
-	if([name isEqualToString:[Meemi screenName]])
-	{
-		DLog(@"#found a meme from myself! Marking special");
-		theMeme.special = [NSNumber numberWithBool:YES];
-	}
 	[request release];
 }
 
@@ -457,6 +451,17 @@ static int replyPageSize = 20;
 		if([elementName isEqualToString:@"video"])
 			theMeme.video = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	}
+	// Check for "our memes"
+	if([elementName isEqualToString:@"screen_name"])
+	{
+		// if the meme is from ourselves, mark it "Special"
+		if([currentStringValue caseInsensitiveCompare:[Meemi screenName]] == NSOrderedSame)
+		{
+			DLog(@"#found a meme from myself! Marking special");
+			theMeme.special = [NSNumber numberWithBool:YES];
+		}
+	}
+	
 	// It's not a newMeme, but with different qta_reply?
 	if([elementName isEqualToString:@"qta_replies"])
 	{

@@ -57,7 +57,7 @@
 			C02743EB1156DF4600C818F9 /* malloc_error_break */,
 			C0619C4F115ED3CB00EFA27E /* MeemiWebAppController.m:31 */,
 			C045C3C5116F998800BEDCCC /* WithFriendsController.m:563 */,
-			C034510A1181EBA8005DBA24 /* Meemi.m:318 */,
+			C034510A1181EBA8005DBA24 /* Meemi.m:312 */,
 			C09E1E1F11AAB592004FEEE6 /* SettingsController.m:70 */,
 		);
 		codeSenseManager = C01D8706115141AA00608D7E /* Code sense */;
@@ -455,6 +455,27 @@
 			C0AE265411B56D40007DB855 /* PBXTextBookmark */ = C0AE265411B56D40007DB855 /* PBXTextBookmark */;
 			C0AE265511B56D40007DB855 /* PBXTextBookmark */ = C0AE265511B56D40007DB855 /* PBXTextBookmark */;
 			C0AE265611B56D40007DB855 /* PBXTextBookmark */ = C0AE265611B56D40007DB855 /* PBXTextBookmark */;
+			C0AE265C11B570E6007DB855 /* PBXTextBookmark */ = C0AE265C11B570E6007DB855 /* PBXTextBookmark */;
+			C0AE265D11B570E6007DB855 /* PBXTextBookmark */ = C0AE265D11B570E6007DB855 /* PBXTextBookmark */;
+			C0AE266011B572E9007DB855 /* PBXTextBookmark */ = C0AE266011B572E9007DB855 /* PBXTextBookmark */;
+			C0AE266111B572E9007DB855 /* PBXTextBookmark */ = C0AE266111B572E9007DB855 /* PBXTextBookmark */;
+			C0AE266411B572EB007DB855 /* PBXTextBookmark */ = C0AE266411B572EB007DB855 /* PBXTextBookmark */;
+			C0AE266511B572EB007DB855 /* PBXTextBookmark */ = C0AE266511B572EB007DB855 /* PBXTextBookmark */;
+			C0AE266611B572F2007DB855 /* PBXTextBookmark */ = C0AE266611B572F2007DB855 /* PBXTextBookmark */;
+			C0AE266711B572F2007DB855 /* PBXTextBookmark */ = C0AE266711B572F2007DB855 /* PBXTextBookmark */;
+			C0AE266811B572F2007DB855 /* PBXTextBookmark */ = C0AE266811B572F2007DB855 /* PBXTextBookmark */;
+			C0AE266C11B574E1007DB855 /* PBXTextBookmark */ = C0AE266C11B574E1007DB855 /* PBXTextBookmark */;
+			C0AE266D11B574E1007DB855 /* PBXTextBookmark */ = C0AE266D11B574E1007DB855 /* PBXTextBookmark */;
+			C0AE266E11B57514007DB855 /* PBXTextBookmark */ = C0AE266E11B57514007DB855 /* PBXTextBookmark */;
+			C0AE266F11B57514007DB855 /* PBXTextBookmark */ = C0AE266F11B57514007DB855 /* PBXTextBookmark */;
+			C0AE267211B57553007DB855 /* PBXTextBookmark */ = C0AE267211B57553007DB855 /* PBXTextBookmark */;
+			C0AE267311B57553007DB855 /* PBXTextBookmark */ = C0AE267311B57553007DB855 /* PBXTextBookmark */;
+			C0AE267611B575A5007DB855 /* PBXTextBookmark */ = C0AE267611B575A5007DB855 /* PBXTextBookmark */;
+			C0AE267711B575A5007DB855 /* PBXTextBookmark */ = C0AE267711B575A5007DB855 /* PBXTextBookmark */;
+			C0AE267A11B57624007DB855 /* PBXTextBookmark */ = C0AE267A11B57624007DB855 /* PBXTextBookmark */;
+			C0AE267B11B57624007DB855 /* PBXTextBookmark */ = C0AE267B11B57624007DB855 /* PBXTextBookmark */;
+			C0AE267C11B57626007DB855 /* PBXTextBookmark */ = C0AE267C11B57626007DB855 /* PBXTextBookmark */;
+			C0AE267D11B57626007DB855 /* PBXTextBookmark */ = C0AE267D11B57626007DB855 /* PBXTextBookmark */;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -580,7 +601,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1182";
 		rLen = 0;
-		rLoc = 40205;
+		rLoc = 40333;
 		rType = 0;
 		vrLen = 2869;
 		vrLoc = 40679;
@@ -596,7 +617,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 297102648.720792;
+		modificationTime = 297104942.196781;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 		symbolName = malloc_error_break;
@@ -671,12 +692,12 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1182";
 		rLen = 0;
-		rLoc = 40205;
+		rLoc = 40333;
 		rType = 0;
 		vrLen = 2742;
 		vrLoc = 40751;
 	};
-	C034510A1181EBA8005DBA24 /* Meemi.m:318 */ = {
+	C034510A1181EBA8005DBA24 /* Meemi.m:312 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -688,9 +709,9 @@
 		functionName = "-parser:didStartElement:namespaceURI:qualifiedName:attributes:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 318;
+		lineNumber = 312;
 		location = Meemi;
-		modificationTime = 297102648.200018;
+		modificationTime = 297104941.922327;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -768,7 +789,7 @@
 		ignoreCount = 0;
 		lineNumber = 563;
 		location = Meemi;
-		modificationTime = 297102648.199775;
+		modificationTime = 297104941.922083;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -782,9 +803,9 @@
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1026, 13702}}";
-			sepNavSelRange = "{9648, 0}";
-			sepNavVisRange = "{8408, 2208}";
+			sepNavIntBoundsRect = "{{0, 0}, {1265, 12883}}";
+			sepNavSelRange = "{20601, 14}";
+			sepNavVisRange = "{15633, 2794}";
 			sepNavWindowFrame = "{{257, 76}, {1058, 1102}}";
 		};
 	};
@@ -802,7 +823,7 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = Meemi;
-		modificationTime = 297102648.19973;
+		modificationTime = 297104941.922032;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -873,7 +894,7 @@
 		ignoreCount = 0;
 		lineNumber = 70;
 		location = Meemi;
-		modificationTime = 297102648.200148;
+		modificationTime = 297104941.922447;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -882,7 +903,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 513";
 		rLen = 77;
-		rLoc = 17395;
+		rLoc = 17523;
 		rType = 0;
 		vrLen = 3446;
 		vrLoc = 13990;
@@ -902,7 +923,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 492";
 		rLen = 0;
-		rLoc = 16362;
+		rLoc = 16490;
 		rType = 0;
 		vrLen = 3481;
 		vrLoc = 14054;
@@ -932,7 +953,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16187;
+		rLoc = 16315;
 		rType = 0;
 		vrLen = 3456;
 		vrLoc = 14054;
@@ -942,7 +963,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16187;
+		rLoc = 16315;
 		rType = 0;
 		vrLen = 3470;
 		vrLoc = 14054;
@@ -991,7 +1012,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16187;
+		rLoc = 16315;
 		rType = 0;
 		vrLen = 3481;
 		vrLoc = 14054;
@@ -1001,7 +1022,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16187;
+		rLoc = 16315;
 		rType = 0;
 		vrLen = 3481;
 		vrLoc = 14054;
@@ -1022,7 +1043,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 489;
+		rLoc = 494;
 		rType = 1;
 	};
 	C0AE23F111B502C7007DB855 /* PBXTextBookmark */ = {
@@ -1030,7 +1051,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 485";
 		rLen = 0;
-		rLoc = 15930;
+		rLoc = 16058;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 15367;
@@ -1040,7 +1061,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 485";
 		rLen = 0;
-		rLoc = 15930;
+		rLoc = 16058;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 15367;
@@ -1050,7 +1071,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16187;
+		rLoc = 16315;
 		rType = 0;
 		vrLen = 3481;
 		vrLoc = 14054;
@@ -1090,7 +1111,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 485";
 		rLen = 0;
-		rLoc = 15930;
+		rLoc = 16058;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 15367;
@@ -1100,7 +1121,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16232;
+		rLoc = 16360;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 15367;
@@ -1111,7 +1132,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 493;
+		rLoc = 498;
 		rType = 1;
 	};
 	C0AE240611B503EA007DB855 /* PBXTextBookmark */ = {
@@ -1119,7 +1140,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16165;
+		rLoc = 16293;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 15630;
@@ -1129,7 +1150,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16165;
+		rLoc = 16293;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 15630;
@@ -1139,7 +1160,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16232;
+		rLoc = 16360;
 		rType = 0;
 		vrLen = 3481;
 		vrLoc = 14054;
@@ -1189,7 +1210,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 489";
 		rLen = 0;
-		rLoc = 16232;
+		rLoc = 16360;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 193;
@@ -1209,7 +1230,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1138";
 		rLen = 0;
-		rLoc = 40205;
+		rLoc = 40333;
 		rType = 0;
 		vrLen = 3198;
 		vrLoc = 39415;
@@ -1240,7 +1261,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 1141;
+		rLoc = 1146;
 		rType = 1;
 	};
 	C0AE241C11B51AB2007DB855 /* PBXTextBookmark */ = {
@@ -1248,7 +1269,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1138";
 		rLen = 0;
-		rLoc = 40205;
+		rLoc = 40333;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 40155;
@@ -1295,7 +1316,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 2889;
 		vrLoc = 42663;
@@ -1316,7 +1337,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 602;
+		rLoc = 607;
 		rType = 1;
 	};
 	C0AE242711B51FD4007DB855 /* PBXTextBookmark */ = {
@@ -1324,7 +1345,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1344,7 +1365,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1364,7 +1385,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1374,7 +1395,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1384,7 +1405,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1404,7 +1425,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 2936;
 		vrLoc = 41222;
@@ -1414,7 +1435,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1434,7 +1455,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1454,7 +1475,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1464,7 +1485,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1484,7 +1505,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1494,7 +1515,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1514,7 +1535,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1554,7 +1575,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3248;
 		vrLoc = 41410;
@@ -1564,7 +1585,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1574,7 +1595,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1614,7 +1635,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3248;
 		vrLoc = 41410;
@@ -1624,7 +1645,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1644,7 +1665,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3248;
 		vrLoc = 41410;
@@ -1654,7 +1675,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1674,7 +1695,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1684,7 +1705,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1704,7 +1725,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1714,7 +1735,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1734,7 +1755,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1748,7 +1769,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1758,7 +1779,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1808,7 +1829,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1838,7 +1859,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3248;
 		vrLoc = 41410;
@@ -1858,7 +1879,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3248;
 		vrLoc = 41410;
@@ -1872,7 +1893,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1882,7 +1903,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1912,7 +1933,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1236";
 		rLen = 0;
-		rLoc = 46131;
+		rLoc = 46259;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 41410;
@@ -1922,7 +1943,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 597";
 		rLen = 0;
-		rLoc = 21069;
+		rLoc = 21197;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 20542;
@@ -1933,7 +1954,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 1193;
+		rLoc = 1198;
 		rType = 1;
 	};
 	C0AE249F11B5451C007DB855 /* PBXTextBookmark */ = {
@@ -1941,7 +1962,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1184";
 		rLen = 0;
-		rLoc = 42213;
+		rLoc = 42341;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 41434;
@@ -1951,7 +1972,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1190";
 		rLen = 0;
-		rLoc = 43126;
+		rLoc = 43254;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 41434;
@@ -1971,7 +1992,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1006";
 		rLen = 236;
-		rLoc = 35036;
+		rLoc = 35164;
 		rType = 0;
 		vrLen = 2382;
 		vrLoc = 33297;
@@ -1981,7 +2002,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1198";
 		rLen = 0;
-		rLoc = 43093;
+		rLoc = 43221;
 		rType = 0;
 		vrLen = 3403;
 		vrLoc = 39920;
@@ -2001,7 +2022,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1198";
 		rLen = 0;
-		rLoc = 43092;
+		rLoc = 43220;
 		rType = 0;
 		vrLen = 3413;
 		vrLoc = 39920;
@@ -2021,7 +2042,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1202";
 		rLen = 0;
-		rLoc = 43092;
+		rLoc = 43220;
 		rType = 0;
 		vrLen = 3294;
 		vrLoc = 39920;
@@ -2041,7 +2062,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1207";
 		rLen = 0;
-		rLoc = 42972;
+		rLoc = 43100;
 		rType = 0;
 		vrLen = 3141;
 		vrLoc = 39984;
@@ -2061,7 +2082,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1212";
 		rLen = 0;
-		rLoc = 43126;
+		rLoc = 43254;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 41212;
@@ -2088,7 +2109,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1210";
 		rLen = 0;
-		rLoc = 43126;
+		rLoc = 43254;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 41070;
@@ -2108,7 +2129,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1242";
 		rLen = 0;
-		rLoc = 44495;
+		rLoc = 44623;
 		rType = 0;
 		vrLen = 3189;
 		vrLoc = 41460;
@@ -2128,7 +2149,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3108;
 		vrLoc = 44621;
@@ -2149,7 +2170,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 1265;
+		rLoc = 1270;
 		rType = 1;
 	};
 	C0AE24BF11B54C16007DB855 /* PBXTextBookmark */ = {
@@ -2157,7 +2178,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2177,7 +2198,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2197,7 +2218,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2237,7 +2258,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2267,7 +2288,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2277,7 +2298,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2297,7 +2318,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2327,7 +2348,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2337,7 +2358,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2367,7 +2388,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2377,7 +2398,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2407,7 +2428,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2427,7 +2448,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2437,7 +2458,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2467,7 +2488,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2477,7 +2498,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 44912;
@@ -2507,7 +2528,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2517,7 +2538,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 44912;
@@ -2547,7 +2568,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2587,7 +2608,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2607,7 +2628,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2617,7 +2638,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1271";
 		rLen = 0;
-		rLoc = 45681;
+		rLoc = 45809;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 44912;
@@ -2706,7 +2727,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2746,7 +2767,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2766,7 +2787,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2826,7 +2847,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2886,7 +2907,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2916,7 +2937,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -2956,7 +2977,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -2996,7 +3017,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3036,7 +3057,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3076,7 +3097,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3116,7 +3137,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3156,7 +3177,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3196,7 +3217,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3236,7 +3257,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3256,7 +3277,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3276,7 +3297,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3316,7 +3337,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3366,7 +3387,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3436,7 +3457,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3496,7 +3517,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -3536,7 +3557,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3596,7 +3617,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3636,7 +3657,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3676,7 +3697,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3716,7 +3737,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3756,7 +3777,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3796,7 +3817,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3836,7 +3857,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3876,7 +3897,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3916,7 +3937,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -3996,7 +4017,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3191;
 		vrLoc = 43744;
@@ -4036,7 +4057,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4076,7 +4097,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4116,7 +4137,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4176,7 +4197,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4216,7 +4237,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4256,7 +4277,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4310,7 +4331,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4360,7 +4381,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4430,7 +4451,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4500,7 +4521,7 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
@@ -4566,10 +4587,220 @@
 		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
 		name = "Meemi.m: 1318";
 		rLen = 0;
-		rLoc = 47528;
+		rLoc = 47656;
 		rType = 0;
 		vrLen = 3151;
 		vrLoc = 43744;
+	};
+	C0AE265C11B570E6007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE265D11B570E6007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE266011B572E9007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE266111B572E9007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE266411B572EB007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE266511B572EB007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE266611B572F2007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 357";
+		rLen = 0;
+		rLoc = 9175;
+		rType = 0;
+		vrLen = 3454;
+		vrLoc = 8817;
+	};
+	C0AE266711B572F2007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 286";
+		rLen = 0;
+		rLoc = 9648;
+		rType = 0;
+		vrLen = 2491;
+		vrLoc = 18894;
+	};
+	C0AE266811B572F2007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 785";
+		rLen = 13;
+		rLoc = 26795;
+		rType = 0;
+		vrLen = 2286;
+		vrLoc = 25635;
+	};
+	C0AE266C11B574E1007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE266D11B574E1007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE266E11B57514007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE266F11B57514007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE267211B57553007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE267311B57553007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE267611B575A5007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 888;
+		vrLoc = 0;
+	};
+	C0AE267711B575A5007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
+	};
+	C0AE267A11B57624007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 899";
+		rLen = 0;
+		rLoc = 31169;
+		rType = 0;
+		vrLen = 2918;
+		vrLoc = 29268;
+	};
+	C0AE267B11B57624007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C0E620421152E36800E6C079 /* Meemi.m */;
+		name = "Meemi.m: 463";
+		rLen = 0;
+		rLoc = 14585;
+		rType = 0;
+		vrLen = 3712;
+		vrLoc = 11852;
+	};
+	C0AE267C11B57626007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 21";
+		rLen = 0;
+		rLoc = 456;
+		rType = 0;
+		vrLen = 1054;
+		vrLoc = 0;
+	};
+	C0AE267D11B57626007DB855 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 595";
+		rLen = 14;
+		rLoc = 20601;
+		rType = 0;
+		vrLen = 2794;
+		vrLoc = 15633;
 	};
 	C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {
 		uiCtxt = {
@@ -4793,9 +5024,9 @@
 	};
 	C0E620421152E36800E6C079 /* Meemi.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1132, 20488}}";
-			sepNavSelRange = "{47528, 0}";
-			sepNavVisRange = "{43744, 3151}";
+			sepNavIntBoundsRect = "{{0, 0}, {1258, 20371}}";
+			sepNavSelRange = "{14585, 0}";
+			sepNavVisRange = "{11852, 3712}";
 			sepNavWindowFrame = "{{157, 66}, {1191, 1112}}";
 		};
 	};

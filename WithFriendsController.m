@@ -888,29 +888,14 @@
 			}
 			else
 			{
-				// try to decode
-				NSString *urlRegex = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";	
-				if([selectedMeme.video isMatchedByRegex:urlRegex])
-				{
-					NSArray *matchedURLsArray = [selectedMeme.video componentsMatchedByRegex:urlRegex];
-					DLog(@"matchedURLsArray: %@", matchedURLsArray);
-					MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
-					controller.urlToBeLoaded = [[matchedURLsArray objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-					[self.navigationController pushViewController:controller animated:YES];
-					[controller release];
-					controller = nil;					
-				}
-				else
-				{
-					// tell user that the video cannot be shown
-					UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-																		message:@"This video cannot be shown on this device"
-																	   delegate:nil
-															  cancelButtonTitle:@"OK" 
-															  otherButtonTitles:nil] 
-											 autorelease];
-					[theAlert show];
-				}
+				// tell user that the video cannot be shown
+				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+																	message:@"This video cannot be shown on this device"
+																   delegate:nil
+														  cancelButtonTitle:@"OK" 
+														  otherButtonTitles:nil] 
+										 autorelease];
+				[theAlert show];
 			}
 		}
 		else 
