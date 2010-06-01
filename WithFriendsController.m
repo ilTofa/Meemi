@@ -472,6 +472,9 @@
 	
 	self.searchString = @"";
 	
+	self.parentViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondino.png"]];
+	self.tableView.backgroundColor = [UIColor clearColor];
+	
 #define kButtonWidth 55.0f
 
 	if(self.replyTo == nil)
@@ -541,8 +544,6 @@
 																				 action:@selector(replyToMeme:)];
 	self.navigationItem.rightBarButtonItem = replyButton;
 	[replyButton release];
-	
-	self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -693,7 +694,6 @@
 		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = memeCell;
         self.memeCell = nil;
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
 	Meme *theFetchedMeme = [theMemeList objectAtIndexPath:indexPath];

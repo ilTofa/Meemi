@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1024</int>
 		<string key="IBDocument.SystemVersion">10D573</string>
-		<string key="IBDocument.InterfaceBuilderVersion">786</string>
+		<string key="IBDocument.InterfaceBuilderVersion">789</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">112</string>
+			<string key="NS.object.0">116</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,6 +42,18 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="192460950">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 460}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">fondino.png</string>
+						</object>
+					</object>
 					<object class="IBUILabel" id="772539808">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -271,6 +283,7 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 							<reference ref="473233409"/>
 							<reference ref="600104498"/>
 							<reference ref="88654735"/>
+							<reference ref="192460950"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -320,6 +333,11 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 						<reference key="object" ref="473233409"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">15</int>
+						<reference key="object" ref="192460950"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -332,6 +350,7 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 					<string>1.IBPluginDependency</string>
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
+					<string>15.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -342,7 +361,8 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AboutBox</string>
 					<string>UIResponder</string>
-					<string>{{641, 499}, {320, 480}}</string>
+					<string>{{500, 153}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -369,7 +389,7 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">15</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -655,9 +675,18 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../Meemi.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">logo.png</string>
-			<string key="NS.object.0">{314, 115}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>fondino.png</string>
+				<string>logo.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{320, 480}</string>
+				<string>{314, 115}</string>
+			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">112</string>
+		<string key="IBCocoaTouchPluginVersion">116</string>
 	</data>
 </archive>

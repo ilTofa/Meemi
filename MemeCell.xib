@@ -47,20 +47,6 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="392817793">
-								<reference key="NSNextResponder" ref="169265716"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{320, 132}</string>
-								<reference key="NSSuperview" ref="169265716"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">CellBackground.png</string>
-								</object>
-							</object>
 							<object class="IBUILabel" id="558739935">
 								<reference key="NSNextResponder" ref="169265716"/>
 								<int key="NSvFlags">292</int>
@@ -262,7 +248,6 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
-				<int key="IBUISelectionStyle">2</int>
 				<reference key="IBUIContentView" ref="169265716"/>
 				<string key="IBUIReuseIdentifier">MemeCell</string>
 			</object>
@@ -311,7 +296,6 @@
 							<reference ref="1010151539"/>
 							<reference ref="954536510"/>
 							<reference ref="251931933"/>
-							<reference ref="392817793"/>
 							<reference ref="769054828"/>
 							<reference ref="878978835"/>
 						</object>
@@ -355,11 +339,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
 						<reference key="object" ref="954536510"/>
-						<reference key="parent" ref="738838464"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="392817793"/>
 						<reference key="parent" ref="738838464"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -478,6 +457,7 @@
 							<string>laRuota</string>
 							<string>memeCell</string>
 							<string>reloadButtonInBreakTable</string>
+							<string>theSearchBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -488,6 +468,7 @@
 							<string>UIActivityIndicatorView</string>
 							<string>UITableViewCell</string>
 							<string>UIButton</string>
+							<string>UISearchBar</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -501,6 +482,7 @@
 							<string>laRuota</string>
 							<string>memeCell</string>
 							<string>reloadButtonInBreakTable</string>
+							<string>theSearchBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -531,6 +513,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">reloadButtonInBreakTable</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">theSearchBar</string>
+								<string key="candidateClassName">UISearchBar</string>
 							</object>
 						</object>
 					</object>
@@ -781,14 +767,12 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>BlackFlag.png</string>
-				<string>CellBackground.png</string>
 				<string>icon-lock2.png</string>
 				<string>link-verysmall.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{18, 18}</string>
-				<string>{5, 120}</string>
 				<string>{16, 16}</string>
 				<string>{25, 25}</string>
 			</object>

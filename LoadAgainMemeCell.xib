@@ -47,20 +47,6 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="57801584">
-								<reference key="NSNextResponder" ref="845550992"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{1, 0}, {320, 182}}</string>
-								<reference key="NSSuperview" ref="845550992"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">CellBackground.png</string>
-								</object>
-							</object>
 							<object class="IBUILabel" id="878558553">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">292</int>
@@ -271,6 +257,7 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">21</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">2</int>
 							</object>
 							<object class="IBUIImageView" id="731774840">
 								<reference key="NSNextResponder" ref="845550992"/>
@@ -304,7 +291,6 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
-				<int key="IBUISelectionStyle">2</int>
 				<reference key="IBUIContentView" ref="845550992"/>
 				<string key="IBUIReuseIdentifier">LoadAgainMemeCell</string>
 			</object>
@@ -373,7 +359,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="652229424"/>
 							<reference ref="777837534"/>
-							<reference ref="57801584"/>
 							<reference ref="773216369"/>
 							<reference ref="919508989"/>
 							<reference ref="522916285"/>
@@ -394,11 +379,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="777837534"/>
-						<reference key="parent" ref="223960667"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="57801584"/>
 						<reference key="parent" ref="223960667"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -481,7 +461,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{478, 895}, {323, 180}}</string>
+					<string>{{326, 385}, {323, 180}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -561,6 +541,7 @@
 							<string>laRuota</string>
 							<string>memeCell</string>
 							<string>reloadButtonInBreakTable</string>
+							<string>theSearchBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -571,6 +552,7 @@
 							<string>UIActivityIndicatorView</string>
 							<string>UITableViewCell</string>
 							<string>UIButton</string>
+							<string>UISearchBar</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -584,6 +566,7 @@
 							<string>laRuota</string>
 							<string>memeCell</string>
 							<string>reloadButtonInBreakTable</string>
+							<string>theSearchBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -614,6 +597,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">reloadButtonInBreakTable</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">theSearchBar</string>
+								<string key="candidateClassName">UISearchBar</string>
 							</object>
 						</object>
 					</object>
@@ -865,7 +852,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>02-redo.png</string>
 				<string>BlackFlag.png</string>
-				<string>CellBackground.png</string>
 				<string>TableBreak.png</string>
 				<string>icon-lock2.png</string>
 				<string>link-verysmall.png</string>
@@ -874,7 +860,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{24, 24}</string>
 				<string>{18, 18}</string>
-				<string>{5, 120}</string>
 				<string>{320, 44}</string>
 				<string>{16, 16}</string>
 				<string>{25, 25}</string>
