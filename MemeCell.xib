@@ -219,7 +219,7 @@
 							<object class="IBUIImageView" id="878978835">
 								<reference key="NSNextResponder" ref="169265716"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{48, 108}, {18, 18}}</string>
+								<string key="NSFrame">{{47, 107}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="169265716"/>
 								<int key="IBUITag">8</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -623,7 +623,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="641905531">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="587583593">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
 					</object>
@@ -671,7 +671,7 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UIResponder</string>
 					<string key="superclassName">NSObject</string>
-					<reference key="sourceIdentifier" ref="641905531"/>
+					<reference key="sourceIdentifier" ref="587583593"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UISearchBar</string>
@@ -781,7 +781,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{18, 18}</string>
+				<string>{20, 20}</string>
 				<string>{16, 16}</string>
 				<string>{25, 25}</string>
 			</object>
