@@ -713,15 +713,8 @@
 	
 	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
-	CALayer * l = [tempButton layer];
-	l.cornerRadius = 5.0;
-	l.masksToBounds = YES;
-	l.borderColor = [UIColor darkGrayColor].CGColor;
-	l.borderWidth = 1.0;
-	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar] forState:UIControlStateNormal];
-	NSString *indexinController = [NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row];
-	[tempButton setTitle:indexinController forState:UIControlStateNormal];
-	[tempButton addTarget:self action:@selector(avatarTouched:) forControlEvents:UIControlEventTouchUpInside];
+	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar_44] forState:UIControlStateNormal];
+	[tempButton setTitle:[NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row] forState:UIControlStateNormal];
 	
 	// Reply and disclosure
 	tempLabel = (UILabel *)[cell viewWithTag:4];

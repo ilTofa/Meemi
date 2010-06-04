@@ -2,7 +2,7 @@
 //  User.m
 //  Meemi
 //
-//  Created by Giacomo Tufano on 11/05/10.
+//  Created by Giacomo Tufano on 04/06/10.
 //  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @dynamic birth;
 @dynamic follow_you;
 @dynamic avatar;
+@dynamic avatar_44;
 @dynamic since;
 @dynamic info;
 @dynamic screen_name;

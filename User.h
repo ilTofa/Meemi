@@ -2,7 +2,7 @@
 //  User.h
 //  Meemi
 //
-//  Created by Giacomo Tufano on 11/05/10.
+//  Created by Giacomo Tufano on 04/06/10.
 //  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSDate * birth;
 @property (nonatomic, retain) NSNumber * follow_you;
 @property (nonatomic, retain) NSData * avatar;
+@property (nonatomic, retain) NSData * avatar_44;
 @property (nonatomic, retain) NSDate * since;
 @property (nonatomic, retain) NSString * info;
 @property (nonatomic, retain) NSString * screen_name;

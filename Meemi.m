@@ -12,6 +12,9 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
+#import "UIImage+Resize.h"
+#import "UIImage+RoundedCorner.h"
+
 // #import "FlurryAPI.h"
 
 // for SHA-256
@@ -907,6 +910,11 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
+				CGSize theSmallSize = CGSizeMake(kAvatar44, kAvatar44);
+				UIImage *tempImage = [[[UIImage imageWithData:[netRequest responseData]] 
+									   resizedImage:theSmallSize interpolationQuality:kCGInterpolationDefault] 
+									  roundedCornerImage:8 borderSize:1];
+				theOne.avatar_44 = UIImagePNGRepresentation(tempImage);				
 			}		
 			else {
 				ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -961,6 +969,11 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
+				CGSize theSmallSize = CGSizeMake(kAvatar44, kAvatar44);
+				UIImage *tempImage = [[[UIImage imageWithData:[netRequest responseData]] 
+									   resizedImage:theSmallSize interpolationQuality:kCGInterpolationDefault] 
+									  roundedCornerImage:8 borderSize:1];
+				theOne.avatar_44 = UIImagePNGRepresentation(tempImage);
 			}		
 			else {
 				ALog(@"Error %@ in getting %@", [error localizedDescription], theOne.avatar_url);

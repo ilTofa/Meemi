@@ -110,19 +110,20 @@
 - (UIImage *)resizedImage:(CGSize)newSize
                 transform:(CGAffineTransform)transform
            drawTransposed:(BOOL)transpose
-     interpolationQuality:(CGInterpolationQuality)quality {
+     interpolationQuality:(CGInterpolationQuality)quality 
+{
     CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
     CGRect transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
     CGImageRef imageRef = self.CGImage;
     
     // Build a context that's the same dimensions as the new size
     CGContextRef bitmap = CGBitmapContextCreate(NULL,
-                                                newRect.size.width,
-                                                newRect.size.height,
+                                                (int)newRect.size.width,
+                                                (int)newRect.size.height,
                                                 CGImageGetBitsPerComponent(imageRef),
                                                 0,
                                                 CGImageGetColorSpace(imageRef),
-                                                CGImageGetBitmapInfo(imageRef));
+                                                kCGImageAlphaPremultipliedLast);
     
     // Rotate and/or flip the image if required by its orientation
     CGContextConcatCTM(bitmap, transform);
