@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64BA4A8B11B583FE003EE522</string>
+						<string>64ABD54F11BBB13100BC9014</string>
 						<key>history</key>
 						<array>
 							<string>640BB67D11B4281F00AEFF9A</string>
-							<string>640BB68811B42A4D00AEFF9A</string>
+							<string>64BA4A8B11B583FE003EE522</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,11 +257,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64BA4A8C11B583FE003EE522</string>
+						<string>64ABD55011BBB13100BC9014</string>
 						<key>history</key>
 						<array>
 							<string>6448471911B31406008CF12F</string>
-							<string>640BB68711B42A4D00AEFF9A</string>
+							<string>64BA4A8C11B583FE003EE522</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -356,7 +356,6 @@
 									<array>
 										<array>
 											<integer>37</integer>
-											<integer>36</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -523,8 +522,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>64BA4A7211B581F0003EE522</string>
-				<string>64BA4A7311B581F0003EE522</string>
+				<string>64ABD52B11BBACFD00BC9014</string>
+				<string>64ABD52C11BBACFD00BC9014</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -561,14 +560,14 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>64BA4A7F11B581F0003EE522</string>
-		<string>64BA4A8011B581F0003EE522</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>64ABD53C11BBAD0E00BC9014</string>
+		<string>64ABD53811BBACFD00BC9014</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>64DE33531188749B00828EA1</string>
-		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
 		<string>6439746211A7D98A000332CC</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
@@ -785,7 +784,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>64BA4A7611B581F0003EE522</string>
+				<string>64ABD52F11BBACFD00BC9014</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -829,8 +828,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {530, 329}}</string>
-											<string>{{530, 0}, {603, 329}}</string>
+											<string>{{0, 0}, {530, 336}}</string>
+											<string>{{530, 0}, {603, 336}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -845,8 +844,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {1133, 329}}</string>
-											<string>{{0, 329}, {1133, 313}}</string>
+											<string>{{0, 0}, {1133, 336}}</string>
+											<string>{{0, 336}, {1133, 306}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -879,7 +878,7 @@
 										<real>283</real>
 									</array>
 									<key>Frame</key>
-									<string>{{530, 0}, {603, 329}}</string>
+									<string>{{530, 0}, {603, 336}}</string>
 									<key>RubberWindowFrame</key>
 									<string>87 72 1133 683 0 0 1280 778 </string>
 								</dict>
@@ -907,13 +906,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>64BA4A7711B581F0003EE522</string>
+				<string>64ABD53011BBACFD00BC9014</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>64BA4A7811B581F0003EE522</string>
-				<string>64BA4A7911B581F0003EE522</string>
-				<string>64BA4A7A11B581F0003EE522</string>
-				<string>64BA4A7B11B581F0003EE522</string>
-				<string>64BA4A7C11B581F0003EE522</string>
+				<string>64ABD53111BBACFD00BC9014</string>
+				<string>64ABD53211BBACFD00BC9014</string>
+				<string>64ABD53311BBACFD00BC9014</string>
+				<string>64ABD53411BBACFD00BC9014</string>
+				<string>64ABD53511BBACFD00BC9014</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1032,6 +1031,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1067,7 +1068,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>64BA4A7D11B581F0003EE522</string>
+				<string>64ABD53611BBACFD00BC9014</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1077,7 +1078,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D5B069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
