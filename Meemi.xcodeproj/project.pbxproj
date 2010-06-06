@@ -23,6 +23,12 @@
 		C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C00DDAA311AD649000363B95 /* RegexKitLite.m */; };
 		C0256C8F11A8037900DF4706 /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = C0256C8E11A8037900DF4706 /* Nothing.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
+		C0327FD611BBC450008A3591 /* FavoriteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD211BBC450008A3591 /* FavoriteButton.png */; };
+		C0327FD711BBC450008A3591 /* FavoriteSign.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD311BBC450008A3591 /* FavoriteSign.png */; };
+		C0327FD811BBC450008A3591 /* ReshareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD411BBC450008A3591 /* ReshareButton.png */; };
+		C0327FD911BBC450008A3591 /* ReshareSign.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD511BBC450008A3591 /* ReshareSign.png */; };
+		C032800F11BBD401008A3591 /* UserForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C032800E11BBD401008A3591 /* UserForSegmented.png */; };
+		C032802211BBD83B008A3591 /* memeSemplice.png in Resources */ = {isa = PBXBuildFile; fileRef = C032802111BBD83B008A3591 /* memeSemplice.png */; };
 		C033E31311B32B5400233505 /* BlackFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = C033E31111B32B5400233505 /* BlackFlag.png */; };
 		C033E31411B32B5400233505 /* WhiteFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = C033E31211B32B5400233505 /* WhiteFlag.png */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
@@ -105,6 +111,12 @@
 		C0256C8E11A8037900DF4706 /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
+		C0327FD211BBC450008A3591 /* FavoriteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoriteButton.png; sourceTree = "<group>"; };
+		C0327FD311BBC450008A3591 /* FavoriteSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoriteSign.png; sourceTree = "<group>"; };
+		C0327FD411BBC450008A3591 /* ReshareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReshareButton.png; sourceTree = "<group>"; };
+		C0327FD511BBC450008A3591 /* ReshareSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReshareSign.png; sourceTree = "<group>"; };
+		C032800E11BBD401008A3591 /* UserForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserForSegmented.png; sourceTree = "<group>"; };
+		C032802111BBD83B008A3591 /* memeSemplice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = memeSemplice.png; sourceTree = "<group>"; };
 		C033E31111B32B5400233505 /* BlackFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackFlag.png; sourceTree = "<group>"; };
 		C033E31211B32B5400233505 /* WhiteFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteFlag.png; sourceTree = "<group>"; };
 		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
@@ -325,6 +337,11 @@
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C032800E11BBD401008A3591 /* UserForSegmented.png */,
+				C0327FD211BBC450008A3591 /* FavoriteButton.png */,
+				C0327FD311BBC450008A3591 /* FavoriteSign.png */,
+				C0327FD411BBC450008A3591 /* ReshareButton.png */,
+				C0327FD511BBC450008A3591 /* ReshareSign.png */,
 				C00C6C3211B5C3FD00F55726 /* fondino.png */,
 				64BA4A6C11B580A3003EE522 /* magnifying-glass.png */,
 				C033E31111B32B5400233505 /* BlackFlag.png */,
@@ -336,6 +353,7 @@
 				C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */,
 				C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */,
 				6467C6BC11907D3D00F86F0E /* star.png */,
+				C032802111BBD83B008A3591 /* memeSemplice.png */,
 				C08DE7541188A1C00052237F /* icon-lock2.png */,
 				C045C06B116F59B400BEDCCC /* link-verysmall.png */,
 				C045C065116F57C300BEDCCC /* 02-redo.png */,
@@ -473,6 +491,12 @@
 				C033E31411B32B5400233505 /* WhiteFlag.png in Resources */,
 				64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */,
 				C00C6C3311B5C3FD00F55726 /* fondino.png in Resources */,
+				C0327FD611BBC450008A3591 /* FavoriteButton.png in Resources */,
+				C0327FD711BBC450008A3591 /* FavoriteSign.png in Resources */,
+				C0327FD811BBC450008A3591 /* ReshareButton.png in Resources */,
+				C0327FD911BBC450008A3591 /* ReshareSign.png in Resources */,
+				C032800F11BBD401008A3591 /* UserForSegmented.png in Resources */,
+				C032802211BBD83B008A3591 /* memeSemplice.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

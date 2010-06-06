@@ -211,7 +211,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	if([Meemi sharedSession].delegate == self)
 		[Meemi sharedSession].delegate = nil;
-	self.navigationController.toolbarHidden = YES;
 }
 
 /*

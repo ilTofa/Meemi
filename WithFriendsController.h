@@ -55,6 +55,7 @@ typedef enum {
 	UIImage *imgBlackFlag;
 	UIImage *imgWhiteFlag;
 	UIImage *imgNothing;
+	UIImage *imgSemplice;
 	UIImage *imgLock;
 	UIImage *imgStar;	
 }
@@ -63,6 +64,7 @@ typedef enum {
 -(IBAction)avatarTouched:(id)sender;
 
 -(IBAction)loadMore:(id)sender;
+-(IBAction)doNothing:(id)sender;
 
 -(void)loadMemePage;
 

@@ -133,6 +133,10 @@
 	}
 }
 
+-(IBAction)doNothing:(id)sender
+{
+}
+
 -(void)setupFetch
 {
 	NSManagedObjectContext *context = [Meemi managedObjectContext];
@@ -359,6 +363,31 @@
 	}
 }	
 
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"Picked button #%d", buttonIndex);
+	if(buttonIndex == 0) // Text
+	{
+		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else if(buttonIndex == 1) // Image
+	{
+		ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+		controller.delegate = self;
+		controller.replyTo = self.replyTo;
+		controller.replyScreenName = self.replyScreenName;
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
+
 #pragma mark Searchbar & delegate
 
 -(void)dismissSearch
@@ -384,7 +413,7 @@
 	{
 		[self dismissSearch];
 	}
-
+	
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -401,31 +430,6 @@
 	self.searchScope = searchBar.selectedScopeButtonIndex;
 	[searchBar resignFirstResponder];
 	[self setupFetch];
-}
-
-#pragma mark UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	NSLog(@"Picked button #%d", buttonIndex);
-	if(buttonIndex == 0) // Text
-	{
-		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
-		controller.delegate = self;
-		controller.replyTo = self.replyTo;
-		controller.replyScreenName = self.replyScreenName;
-		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];
-	}
-	else if(buttonIndex == 1) // Image
-	{
-		ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
-		controller.delegate = self;
-		controller.replyTo = self.replyTo;
-		controller.replyScreenName = self.replyScreenName;
-		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];
-	}
 }
 
 #pragma mark Standard Stuff
@@ -457,6 +461,8 @@
 	[imgBlackFlag retain];
 	imgWhiteFlag = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlag" ofType:@"png"]];
 	[imgWhiteFlag retain];
+	imgSemplice = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"memeSemplice" ofType:@"png"]];
+	[imgSemplice retain];
 	imgNothing = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
 	[imgNothing retain];
 	imgLock = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-lock2.png" ofType:@"png"]];
@@ -502,7 +508,7 @@
 		NSArray *tempStrings = [NSArray arrayWithObjects:
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
 								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LockForSegmented" ofType:@"png"]],
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]]
+								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserForSegmented" ofType:@"png"]]
 								, nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -534,10 +540,35 @@
 		readMemes = 0;
 		self.title = NSLocalizedString(@"Thread", @"");
 		[self loadMemePage];
+		// Toolbar buttons
+		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
+																   style:UIBarButtonItemStyleBordered 
+																  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																  action:@selector(doNothing:)];
+		[specialB setWidth:kButtonWidth];
+		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
+																  style:UIBarButtonItemStyleBordered 
+																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																 action:@selector(doNothing:)];
+		[favB setWidth:kButtonWidth];
+		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
+																  style:UIBarButtonItemStyleBordered 
+																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																 action:@selector(doNothing:)];
+		[shareB setWidth:kButtonWidth];
+		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, spacer, favB, spacer, shareB, nil];
+		self.toolbarItems = toolbarItems;
+		[shareB release];
+		[favB release];
+		[specialB release];
+		[spacer release];
 	}
 	// hid the search bar...
 	self.tableView.tableHeaderView = nil;
-
+	// Show the toolbar
+	self.navigationController.toolbarHidden = NO;
+	
 	// Add a right button for reply to the meme list
 	UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
 																				 target:self 
@@ -549,6 +580,8 @@
 - (void)viewWillAppear:(BOOL)animated 
 {
     [super viewWillAppear:animated];
+	// Show the toolbar
+	self.navigationController.toolbarHidden = NO;
 	// Add notifications observers
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
@@ -566,14 +599,15 @@
 			[self settingsView];		
 	}
 	else // reinit fetch only for replies...
+	{
+//		[self loadMemePage];
 		[self setupFetch];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated 
 {
     [super viewDidAppear:animated];
-	// toolBar only on "parent" list
-	self.navigationController.toolbarHidden = (self.replyTo != nil);
 	specialThread = NO;
 	[self.tableView reloadData];
 }
@@ -583,7 +617,6 @@
 {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	self.navigationController.toolbarHidden = YES;
 	// if this is a specialThread, mark the parent "Special"
 	if(specialThread && self.replyTo != nil)
 		[Meemi markMemeSpecial:self.replyTo];
@@ -639,6 +672,8 @@
 	imgWhiteFlag = nil;
 	[imgNothing release];
 	imgNothing = nil;
+	[imgSemplice release];
+	imgSemplice = nil;
 	[imgLock release];
 	imgLock = nil;
 	[imgStar release];
@@ -760,7 +795,7 @@
 	else if([theFetchedMeme.new_replies boolValue])
 		tempView.image = imgWhiteFlag;
 	else
-		tempView.image = imgNothing;
+		tempView.image = imgSemplice;
 	// "Private" memes
 	if([theFetchedMeme.private_meme boolValue])
 	{
@@ -785,6 +820,9 @@
 		else
 			((UIImageView *)[cell viewWithTag:10]).image = imgNothing;
 	}
+	
+	// 11 is "reshared"
+	// 12 is "favorite"
 	
     return cell;
 }
