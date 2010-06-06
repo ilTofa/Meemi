@@ -83,6 +83,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	self.navigationController.toolbarHidden = YES;
 	DLog(@"URL is %@", self.urlToBeLoaded);
 	// Set delegate of web view to us
 	self.theView.delegate = self;

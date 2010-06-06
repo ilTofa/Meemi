@@ -138,7 +138,7 @@
 							<object class="IBUILabel" id="652229424">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{169, 113}, {148, 18}}</string>
+								<string key="NSFrame">{{156, 113}, {161, 18}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -160,7 +160,7 @@
 							<object class="IBUIImageView" id="919508989">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{8, 110}, {25, 25}}</string>
+								<string key="NSFrame">{{38, 112}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<int key="IBUITag">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -173,7 +173,7 @@
 							<object class="IBUIImageView" id="59622981">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{77, 112}, {20, 20}}</string>
+								<string key="NSFrame">{{68, 112}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<int key="IBUITag">10</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -262,7 +262,7 @@
 							<object class="IBUIImageView" id="731774840">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrame">{{45, 112}, {20, 20}}</string>
+								<string key="NSFrame">{{8, 112}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<int key="IBUITag">8</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -275,7 +275,7 @@
 							<object class="IBUIImageView" id="1017326010">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">-2147483379</int>
-								<string key="NSFrame">{{109, 112}, {20, 20}}</string>
+								<string key="NSFrame">{{98, 112}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<int key="IBUITag">12</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -288,7 +288,7 @@
 							<object class="IBUIImageView" id="341704060">
 								<reference key="NSNextResponder" ref="845550992"/>
 								<int key="NSvFlags">-2147483379</int>
-								<string key="NSFrame">{{141, 112}, {20, 20}}</string>
+								<string key="NSFrame">{{128, 112}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="845550992"/>
 								<int key="IBUITag">11</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -701,7 +701,7 @@
 				<string>{20, 20}</string>
 				<string>{320, 44}</string>
 				<string>{16, 16}</string>
-				<string>{25, 25}</string>
+				<string>{20, 20}</string>
 				<string>{20, 20}</string>
 			</object>
 		</object>

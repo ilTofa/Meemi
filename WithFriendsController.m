@@ -544,17 +544,17 @@
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
 																   style:UIBarButtonItemStyleBordered 
-																  target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																  target:self
 																  action:@selector(doNothing:)];
 		[specialB setWidth:kButtonWidth];
 		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
-																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																 target:self
 																 action:@selector(doNothing:)];
 		[favB setWidth:kButtonWidth];
 		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
-																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																 target:self
 																 action:@selector(doNothing:)];
 		[shareB setWidth:kButtonWidth];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, spacer, favB, spacer, shareB, nil];

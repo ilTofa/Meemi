@@ -127,6 +127,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	self.navigationController.toolbarHidden = YES;
 	// load user defaults
 	[self restoreDefaults];
 	// if user was not tested, test it

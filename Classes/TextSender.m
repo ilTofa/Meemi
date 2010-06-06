@@ -100,6 +100,7 @@
 	[super viewDidLoad];
 	// Hide toolbar
 	self.navigationController.navigationBarHidden = YES;
+	self.navigationController.toolbarHidden = YES;
 	// If it's a private meme, setup
 	if(self.recipientNames != nil)
 	{

@@ -182,6 +182,7 @@
     [super viewDidLoad];
 	// Hide toolbar
 	self.navigationController.navigationBarHidden = YES;
+	self.navigationController.toolbarHidden = YES;
 	// Restart localization
 	[[Meemi sharedSession] startLocation];
 	// What the client have?
