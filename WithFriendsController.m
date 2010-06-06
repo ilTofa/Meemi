@@ -541,23 +541,25 @@
 		self.title = NSLocalizedString(@"Thread", @"");
 		[self loadMemePage];
 		// Toolbar buttons
+#define kThreadButtonWidth 75.0
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
 																   style:UIBarButtonItemStyleBordered 
 																  target:self
 																  action:@selector(doNothing:)];
-		[specialB setWidth:kButtonWidth];
+		[specialB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:self
 																 action:@selector(doNothing:)];
-		[favB setWidth:kButtonWidth];
+		[favB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:self
 																 action:@selector(doNothing:)];
-		[shareB setWidth:kButtonWidth];
+		[shareB setWidth:kThreadButtonWidth];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, spacer, favB, spacer, shareB, nil];
+//		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, favB, shareB, nil];
 		self.toolbarItems = toolbarItems;
 		[shareB release];
 		[favB release];
