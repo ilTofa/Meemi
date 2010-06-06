@@ -599,6 +599,8 @@
 	// It happens that we don't need any callback from Meemi anymore.
 	if([Meemi sharedSession].delegate == self)
 		[Meemi sharedSession].delegate = nil;
+	if(ourPersonalMeemi.delegate = self)
+		ourPersonalMeemi.delegate = nil;
 }
 
 /*

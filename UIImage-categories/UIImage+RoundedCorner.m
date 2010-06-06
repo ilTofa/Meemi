@@ -4,19 +4,49 @@
 // No warranty is expressed or implied.
 
 #import "UIImage+RoundedCorner.h"
-#import "UIImage+Alpha.h"
 
 // Private helper methods
 @interface UIImage ()
 - (void)addRoundedRectToPath:(CGRect)rect context:(CGContextRef)context ovalWidth:(CGFloat)ovalWidth ovalHeight:(CGFloat)ovalHeight;
+- (BOOL)hasAlpha ;
+- (UIImage *)imageWithAlpha ;
 @end
 
 @implementation UIImage (RoundedCorner)
 
+-(UIImage *)roundedThumbnail:(int)sideSize cornerSize:(NSInteger)cornerSize borderSize:(NSInteger)borderSize
+{
+	// Create a graphics image context
+	CGSize newSize = CGSizeMake(sideSize, sideSize);
+	UIGraphicsBeginImageContext(newSize);
+	// Tell the old image to draw in this new context, with the desired size
+	[self drawInRect:CGRectMake(0, 0, sideSize, sideSize)];
+	// Get the new image from the context
+	UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+	// End the context
+	UIGraphicsEndImageContext();
+	return [thumbnailImage roundedCornerImage:cornerSize borderSize:borderSize];
+}
+
+-(UIImage *)squaredThumbnail:(int)sideSize
+{
+	// Create a graphics image context
+	CGSize newSize = CGSizeMake(sideSize, sideSize);
+	UIGraphicsBeginImageContext(newSize);
+	// Tell the old image to draw in this new context, with the desired size
+	[self drawInRect:CGRectMake(0, 0, sideSize, sideSize)];
+	// Get the new image from the context
+	UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+	// End the context
+	UIGraphicsEndImageContext();
+	return thumbnailImage;
+}
+
 // Creates a copy of this image with rounded corners
 // If borderSize is non-zero, a transparent border of the given size will also be added
 // Original author: Björn Sållarp. Used with permission. See: http://blog.sallarp.com/iphone-uiimage-round-corners/
-- (UIImage *)roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize {
+- (UIImage *)roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize 
+{
     // If the image does not have an alpha layer, add one
     UIImage *image = [self imageWithAlpha];
     
@@ -57,8 +87,10 @@
 
 // Adds a rectangular path to the given context and rounds its corners by the given extents
 // Original author: Björn Sållarp. Used with permission. See: http://blog.sallarp.com/iphone-uiimage-round-corners/
-- (void)addRoundedRectToPath:(CGRect)rect context:(CGContextRef)context ovalWidth:(CGFloat)ovalWidth ovalHeight:(CGFloat)ovalHeight {
-    if (ovalWidth == 0 || ovalHeight == 0) {
+- (void)addRoundedRectToPath:(CGRect)rect context:(CGContextRef)context ovalWidth:(CGFloat)ovalWidth ovalHeight:(CGFloat)ovalHeight 
+{
+    if (ovalWidth == 0 || ovalHeight == 0) 
+	{
         CGContextAddRect(context, rect);
         return;
     }
@@ -74,6 +106,48 @@
     CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
     CGContextClosePath(context);
     CGContextRestoreGState(context);
+}
+
+// Returns true if the image has an alpha layer
+- (BOOL)hasAlpha 
+{
+    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(self.CGImage);
+    return (alpha == kCGImageAlphaFirst ||
+            alpha == kCGImageAlphaLast ||
+            alpha == kCGImageAlphaPremultipliedFirst ||
+            alpha == kCGImageAlphaPremultipliedLast);
+}
+
+// Returns a copy of the given image, adding an alpha channel if it doesn't already have one
+- (UIImage *)imageWithAlpha 
+{
+    if ([self hasAlpha]) {
+        return self;
+    }
+    
+    CGImageRef imageRef = self.CGImage;
+    size_t width = CGImageGetWidth(imageRef);
+    size_t height = CGImageGetHeight(imageRef);
+    
+    // The bitsPerComponent and bitmapInfo values are hard-coded to prevent an "unsupported parameter combination" error
+    CGContextRef offscreenContext = CGBitmapContextCreate(NULL,
+                                                          width,
+                                                          height,
+                                                          8,
+                                                          0,
+                                                          CGImageGetColorSpace(imageRef),
+                                                          kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+    
+    // Draw the image into the context and retrieve the new image, which will now have an alpha layer
+    CGContextDrawImage(offscreenContext, CGRectMake(0, 0, width, height), imageRef);
+    CGImageRef imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext);
+    UIImage *imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha];
+    
+    // Clean up
+    CGContextRelease(offscreenContext);
+    CGImageRelease(imageRefWithAlpha);
+    
+    return imageWithAlpha;
 }
 
 @end

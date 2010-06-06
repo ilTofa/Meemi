@@ -67,8 +67,6 @@
 		C0918689115442BC00C2C5A4 /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0918687115442BC00C2C5A4 /* ImageSender.xib */; };
 		C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A1D54F11582F1200071314 /* CoreLocation.framework */; };
 		C0A9C4E711A535CC0057F082 /* LoadAgainMemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */; };
-		C0B51D8911B94B22007C6662 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D8411B94B22007C6662 /* UIImage+Alpha.m */; };
-		C0B51D8A11B94B22007C6662 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D8611B94B22007C6662 /* UIImage+Resize.m */; };
 		C0B51D8B11B94B22007C6662 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D8811B94B22007C6662 /* UIImage+RoundedCorner.m */; };
 		C0B51D9711B957CF007C6662 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D9611B957CF007C6662 /* User.m */; };
 		C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C0BD043A11649D3800391138 /* Meme.xcdatamodel */; };
@@ -171,10 +169,6 @@
 		C0918687115442BC00C2C5A4 /* ImageSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSender.xib; path = Classes/ImageSender.xib; sourceTree = "<group>"; };
 		C0A1D54F11582F1200071314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadAgainMemeCell.xib; sourceTree = "<group>"; };
-		C0B51D8311B94B22007C6662 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		C0B51D8411B94B22007C6662 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		C0B51D8511B94B22007C6662 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		C0B51D8611B94B22007C6662 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		C0B51D8711B94B22007C6662 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		C0B51D8811B94B22007C6662 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		C0B51D9511B957CF007C6662 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -417,10 +411,6 @@
 		C0B51D8211B94B22007C6662 /* UIImage-categories */ = {
 			isa = PBXGroup;
 			children = (
-				C0B51D8311B94B22007C6662 /* UIImage+Alpha.h */,
-				C0B51D8411B94B22007C6662 /* UIImage+Alpha.m */,
-				C0B51D8511B94B22007C6662 /* UIImage+Resize.h */,
-				C0B51D8611B94B22007C6662 /* UIImage+Resize.m */,
 				C0B51D8711B94B22007C6662 /* UIImage+RoundedCorner.h */,
 				C0B51D8811B94B22007C6662 /* UIImage+RoundedCorner.m */,
 			);
@@ -564,8 +554,6 @@
 				C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */,
 				C091077E11929E570067CFD2 /* Meme.m in Sources */,
 				C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */,
-				C0B51D8911B94B22007C6662 /* UIImage+Alpha.m in Sources */,
-				C0B51D8A11B94B22007C6662 /* UIImage+Resize.m in Sources */,
 				C0B51D8B11B94B22007C6662 /* UIImage+RoundedCorner.m in Sources */,
 				C0B51D9711B957CF007C6662 /* User.m in Sources */,
 			);
