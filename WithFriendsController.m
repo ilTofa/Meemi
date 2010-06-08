@@ -137,6 +137,16 @@
 {
 }
 
+-(IBAction)toggleSpecial:(id)sender
+{
+	// Get the first meme
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
+	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
+	specialThread = ![selectedMeme.special boolValue];
+	[Meemi toggleMemeSpecial:selectedMeme.id];
+}
+
 -(void)setupFetch
 {
 	NSManagedObjectContext *context = [Meemi managedObjectContext];
@@ -465,7 +475,7 @@
 	[imgSemplice retain];
 	imgNothing = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
 	[imgNothing retain];
-	imgLock = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-lock2.png" ofType:@"png"]];
+	imgLock = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-lock2" ofType:@"png"]];
 	[imgLock retain];
 	imgStar = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]];
 	[imgStar retain];
@@ -546,7 +556,7 @@
 		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
 																   style:UIBarButtonItemStyleBordered 
 																  target:self
-																  action:@selector(doNothing:)];
+																  action:@selector(toggleSpecial:)];
 		[specialB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
@@ -822,9 +832,10 @@
 		else
 			((UIImageView *)[cell viewWithTag:10]).image = imgNothing;
 	}
-	
 	// 11 is "reshared"
+	((UIImageView *)[cell viewWithTag:11]).hidden = ![theFetchedMeme.is_reshare boolValue];
 	// 12 is "favorite"
+	((UIImageView *)[cell viewWithTag:12]).hidden = ![theFetchedMeme.is_favorite boolValue];
 	
     return cell;
 }

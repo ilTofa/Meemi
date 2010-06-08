@@ -155,6 +155,7 @@ typedef enum
 +(void)markThreadRead:(NSNumber *)memeID;
 +(void)markMemeRead:(NSNumber *)memeID;
 +(void)markMemeSpecial:(NSNumber *)memeID;
++(void)toggleMemeSpecial:(NSNumber *)memeID;
 +(void)toggleMemeFavorite:(NSNumber *)memeID;
 +(void)toggleMemeReshare:(NSNumber *)memeID;
 

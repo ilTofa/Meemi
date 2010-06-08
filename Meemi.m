@@ -1186,6 +1186,37 @@ static int replyPageSize = 20;
 	[request release];
 }	
 
++(void)toggleMemeSpecial:(NSNumber *)memeID
+{
+	DLog(@"Now in toggleMemeSpecial to toggle meme %@", memeID);
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for an User with this screen_name.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		Meme *theOne = [fetchResults objectAtIndex:0];
+		theOne.special = [NSNumber numberWithBool:(![theOne.special boolValue])];;
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+	}
+	[request release];
+}	
+
 + (void)returnOKFromToggleMemeReshare:(ASIHTTPRequest *)request
 {
 	DLog(@"returned from toggleMemeReshare");
@@ -1213,7 +1244,7 @@ static int replyPageSize = 20;
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		Meme *theOne = [fetchResults objectAtIndex:0];
-		if(theOne.is_reshare)
+		if([theOne.is_reshare boolValue])
 		{
 			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/unreshare/screen_name/%@", memeID];
 			theOne.is_reshare = [NSNumber numberWithBool:NO];
@@ -1282,7 +1313,7 @@ static int replyPageSize = 20;
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		Meme *theOne = [fetchResults objectAtIndex:0];
-		theOne.is_favorite = [NSNumber numberWithBool:(!theOne.is_favorite)];
+		theOne.is_favorite = [NSNumber numberWithBool:(![theOne.is_favorite boolValue])];
 		if (![managedObjectContext save:&error])
 		{
 			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
