@@ -474,6 +474,11 @@ static int replyPageSize = 20;
 		}
 		theMeme.qta_replies = [NSNumber numberWithLongLong:[currentStringValue longLongValue]];
 	}
+	// Get reshare and favorites state in any case, because we cannot easily check for the of our requests
+	if([elementName isEqualToString:@"is_reshare"])
+		theMeme.is_reshare = [NSNumber numberWithBool:[currentStringValue isEqualToString:@"1"]];
+	if([elementName isEqualToString:@"is_preferite"])
+		theMeme.is_favorite = [NSNumber numberWithBool:[currentStringValue isEqualToString:@"1"]];
 	// Get the timestamp in any case for checking end (and set it just in case)
 	if([elementName isEqualToString:@"dt_last_movement"])
 	{
@@ -1181,6 +1186,137 @@ static int replyPageSize = 20;
 	[request release];
 }	
 
++ (void)returnOKFromToggleMemeReshare:(ASIHTTPRequest *)request
+{
+	DLog(@"returned from toggleMemeReshare");
+}
+
++ (void)returnFailedFromToggleMemeReshare:(ASIHTTPRequest *)request
+{
+	DLog(@"Failed in toggleMemeReshare");
+}
+
++(void)toggleMemeReshare:(NSNumber *)memeID
+{
+	DLog(@"Now in markMemeRead");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for a meme with this id.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSString *urlString;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		Meme *theOne = [fetchResults objectAtIndex:0];
+		if(theOne.is_reshare)
+		{
+			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/unreshare/screen_name/%@", memeID];
+			theOne.is_reshare = [NSNumber numberWithBool:NO];
+		}
+		else
+		{
+			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/reshare/screen_name/%@", memeID];
+			theOne.is_reshare = [NSNumber numberWithBool:YES];
+		}
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+	}	
+	[request release];
+	NSURL *url = [NSURL URLWithString:urlString];
+	DLog(@"In toggleMemeReshare. Sending %@", urlString);
+	ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([[Meemi password] UTF8String],
+			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
+	[netRequest setPostValue:hashedData forKey:@"pwd"];
+	[netRequest setPostValue:kAPIKey forKey:@"app_key"];
+	[netRequest setDelegate:self];
+	[netRequest setDidFinishSelector:@selector(returnOKFromToggleMemeReshare:)];
+	[netRequest setDidFailSelector:@selector(returnFailedFromToggleMemeReshare:)];
+	[netRequest startAsynchronous];			
+}
+
++ (void)returnOKFromToggleFavorite:(ASIHTTPRequest *)request
+{
+	DLog(@"returned from toggleMemeFavorite");
+}
+
++ (void)returnFailedFromToggleFavorite:(ASIHTTPRequest *)request
+{
+	DLog(@"Failed in toggleMemeFavorite");
+}
+
++(void)toggleMemeFavorite:(NSNumber *)memeID
+{
+	DLog(@"Now in markMemeRead");
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	// We're looking for a meme with this id.
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];
+	[request setPredicate:predicate];
+	// We're only looking for one.
+	[request setFetchLimit:1];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		Meme *theOne = [fetchResults objectAtIndex:0];
+		theOne.is_favorite = [NSNumber numberWithBool:(!theOne.is_favorite)];
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+	}
+	[request release];
+	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/fav/screen_name/%@", memeID];
+	NSURL *url = [NSURL URLWithString:urlString];
+	DLog(@"In toggleMemeFavorite. Sending %@", urlString);
+	ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
+	// build the password using SHA-256
+	unsigned char hashedChars[32];
+	CC_SHA256([[Meemi password] UTF8String],
+			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+			  hashedChars);
+	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+	[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
+	[netRequest setPostValue:hashedData forKey:@"pwd"];
+	[netRequest setPostValue:kAPIKey forKey:@"app_key"];
+	[netRequest setDelegate:self];
+	[netRequest setDidFinishSelector:@selector(returnOKFromToggleFavorite:)];
+	[netRequest setDidFailSelector:@selector(returnFailedFromToggleFavorite:)];
+	[netRequest startAsynchronous];			
+}
+
 + (void)returnOKFromMarkRead:(ASIHTTPRequest *)request
 {
 	DLog(@"returned from mark read something");
@@ -1224,7 +1360,7 @@ static int replyPageSize = 20;
 {
 	DLog(@"Now in markMemeRead");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	// We're looking for an User with this screen_name.
+	// We're looking for a meme with this id.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", memeID];

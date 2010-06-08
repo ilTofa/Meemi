@@ -49,11 +49,11 @@
 		C0574FBA11A67BD700572B73 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FB911A67BD700572B73 /* Checkmark.png */; };
 		C0574FC411A67CD300572B73 /* StartForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FC311A67CD300572B73 /* StartForSegmented.png */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
+		C078B4AB11BE8EB20048BC70 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C078B4AA11BE8EB20048BC70 /* Meme.m */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
 		C07ED93D1151470A00311726 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ED93B1151470A00311726 /* SettingsController.m */; };
 		C07ED93E1151470A00311726 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07ED93C1151470A00311726 /* SettingsController.xib */; };
 		C08DE7551188A1C00052237F /* icon-lock2.png in Resources */ = {isa = PBXBuildFile; fileRef = C08DE7541188A1C00052237F /* icon-lock2.png */; };
-		C091077E11929E570067CFD2 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C091077C11929E570067CFD2 /* Meme.m */; };
 		C091860B11542D0D00C2C5A4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860A11542D0D00C2C5A4 /* logo.png */; };
 		C091860F11542EC400C2C5A4 /* ToolBar-Meemi.png in Resources */ = {isa = PBXBuildFile; fileRef = C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */; };
 		C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0918610115431C600C2C5A4 /* 20-gear2.png */; };
@@ -142,13 +142,13 @@
 		C0574FB911A67BD700572B73 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		C0574FC311A67CD300572B73 /* StartForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartForSegmented.png; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C078B4A911BE8EB20048BC70 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
+		C078B4AA11BE8EB20048BC70 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C07ED92B1151429000311726 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C07ED93A1151470A00311726 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		C07ED93B1151470A00311726 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		C07ED93C1151470A00311726 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
 		C08DE7541188A1C00052237F /* icon-lock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-lock2.png"; sourceTree = "<group>"; };
-		C091077B11929E570067CFD2 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
-		C091077C11929E570067CFD2 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
 		C091860A11542D0D00C2C5A4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolBar-Meemi.png"; sourceTree = "<group>"; };
 		C0918610115431C600C2C5A4 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
@@ -402,10 +402,10 @@
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;
 			children = (
+				C078B4A911BE8EB20048BC70 /* Meme.h */,
+				C078B4AA11BE8EB20048BC70 /* Meme.m */,
 				C0B51D9511B957CF007C6662 /* User.h */,
 				C0B51D9611B957CF007C6662 /* User.m */,
-				C091077B11929E570067CFD2 /* Meme.h */,
-				C091077C11929E570067CFD2 /* Meme.m */,
 				C0BD043A11649D3800391138 /* Meme.xcdatamodel */,
 				C0E620411152E36800E6C079 /* Meemi.h */,
 				C0E620421152E36800E6C079 /* Meemi.m */,
@@ -528,10 +528,10 @@
 				C045C222116F74F900BEDCCC /* UserDetail.m in Sources */,
 				C045C277116F798600BEDCCC /* UserProfile.m in Sources */,
 				C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */,
-				C091077E11929E570067CFD2 /* Meme.m in Sources */,
 				C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */,
 				C0B51D8B11B94B22007C6662 /* UIImage+RoundedCorner.m in Sources */,
 				C0B51D9711B957CF007C6662 /* User.m in Sources */,
+				C078B4AB11BE8EB20048BC70 /* Meme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

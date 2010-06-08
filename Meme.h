@@ -2,7 +2,7 @@
 //  Meme.h
 //  Meemi
 //
-//  Created by Giacomo Tufano on 06/05/10.
+//  Created by Giacomo Tufano on 08/06/10.
 //  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
@@ -25,8 +25,10 @@
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * image_medium_url;
 @property (nonatomic, retain) NSData * image_small;
-@property (nonatomic, retain) NSString * image_url;
+@property (nonatomic, retain) NSNumber * new_replies;
+@property (nonatomic, retain) NSNumber * is_favorite;
 @property (nonatomic, retain) NSString * event_where;
+@property (nonatomic, retain) NSNumber * is_reshare;
 @property (nonatomic, retain) NSString * reply_screen_name;
 @property (nonatomic, retain) NSString * quote_source;
 @property (nonatomic, retain) NSString * image_small_url;
@@ -42,7 +44,7 @@
 @property (nonatomic, retain) NSString * meme_type;
 @property (nonatomic, retain) NSNumber * special;
 @property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSNumber * new_replies;
+@property (nonatomic, retain) NSString * image_url;
 @property (nonatomic, retain) User * user;
 
 @end

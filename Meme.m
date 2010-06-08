@@ -2,7 +2,7 @@
 //  Meme.m
 //  Meemi
 //
-//  Created by Giacomo Tufano on 06/05/10.
+//  Created by Giacomo Tufano on 08/06/10.
 //  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
 //
 
@@ -23,8 +23,10 @@
 @dynamic image;
 @dynamic image_medium_url;
 @dynamic image_small;
-@dynamic image_url;
+@dynamic new_replies;
+@dynamic is_favorite;
 @dynamic event_where;
+@dynamic is_reshare;
 @dynamic reply_screen_name;
 @dynamic quote_source;
 @dynamic image_small_url;
@@ -40,7 +42,7 @@
 @dynamic meme_type;
 @dynamic special;
 @dynamic content;
-@dynamic new_replies;
+@dynamic image_url;
 @dynamic user;
 
 @end
