@@ -156,9 +156,8 @@ typedef enum
 +(void)markMemeRead:(NSNumber *)memeID;
 +(void)markMemeSpecial:(NSNumber *)memeID;
 +(void)toggleMemeSpecial:(NSNumber *)memeID;
-+(void)toggleMemeFavorite:(NSNumber *)memeID;
-+(void)toggleMemeReshare:(NSNumber *)memeID;
-
++(void)toggleMemeFavorite:(NSNumber *)memeID screenName:(NSString *)screenName;
++(void)toggleMemeReshare:(NSNumber *)memeID screenName:(NSString *)screenName;
 +(void)purgeOldMemes;
 
 +(Meemi *)sharedSession;

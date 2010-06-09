@@ -154,7 +154,7 @@
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
 	specialThread = ![selectedMeme.is_reshare boolValue];
-	[Meemi toggleMemeReshare:selectedMeme.id];
+	[Meemi toggleMemeReshare:selectedMeme.id screenName:selectedMeme.screen_name];
 }
 
 -(IBAction)toggleFavorite:(id)sender
@@ -164,7 +164,7 @@
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
 	specialThread = ![selectedMeme.is_favorite boolValue];
-	[Meemi toggleMemeFavorite:selectedMeme.id];
+	[Meemi toggleMemeFavorite:selectedMeme.id screenName:selectedMeme.screen_name];
 }
 
 -(void)setupFetch

@@ -1227,7 +1227,7 @@ static int replyPageSize = 20;
 	DLog(@"Failed in toggleMemeReshare");
 }
 
-+(void)toggleMemeReshare:(NSNumber *)memeID
++(void)toggleMemeReshare:(NSNumber *)memeID screenName:(NSString *)screenName
 {
 	DLog(@"Now in markMemeRead");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -1246,12 +1246,12 @@ static int replyPageSize = 20;
 		Meme *theOne = [fetchResults objectAtIndex:0];
 		if([theOne.is_reshare boolValue])
 		{
-			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/unreshare/screen_name/%@", memeID];
+			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/unreshare/%@/%@", screenName, memeID];
 			theOne.is_reshare = [NSNumber numberWithBool:NO];
 		}
 		else
 		{
-			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/reshare/screen_name/%@", memeID];
+			urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/reshare/%@/%@", screenName, memeID];
 			theOne.is_reshare = [NSNumber numberWithBool:YES];
 		}
 		if (![managedObjectContext save:&error])
@@ -1297,7 +1297,7 @@ static int replyPageSize = 20;
 	DLog(@"Failed in toggleMemeFavorite");
 }
 
-+(void)toggleMemeFavorite:(NSNumber *)memeID
++(void)toggleMemeFavorite:(NSNumber *)memeID screenName:(NSString *)screenName
 {
 	DLog(@"Now in markMemeRead");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -1326,7 +1326,7 @@ static int replyPageSize = 20;
 		}
 	}
 	[request release];
-	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/fav/screen_name/%@", memeID];
+	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/fav/%@/%@", screenName, memeID];
 	NSURL *url = [NSURL URLWithString:urlString];
 	DLog(@"In toggleMemeFavorite. Sending %@", urlString);
 	ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];

@@ -539,10 +539,7 @@
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
 				INFOPLIST_FILE = "Meemi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryLibWithLocation\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = Meemi;
 				SDKROOT = iphoneos4.0;
@@ -560,10 +557,7 @@
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
 				INFOPLIST_FILE = "Meemi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryLibWithLocation\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.0;
@@ -630,10 +624,7 @@
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
 				INFOPLIST_FILE = "Meemi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryLibWithLocation\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1;
