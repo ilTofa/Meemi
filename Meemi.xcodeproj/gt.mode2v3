@@ -202,6 +202,47 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
+				<string>6416F8D711C024EB008BC5FE</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>MeemiAppDelegate.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>6416F8D811C024EB008BC5FE</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>MeemiAppDelegate.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>6416F94811C02D4B008BC5FE</string>
+						<key>history</key>
+						<array>
+							<string>6416F91911C02944008BC5FE</string>
+							<string>6416F91A11C02944008BC5FE</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {937, 678}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>53 56 937 719 0 0 1280 778 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
 				<string>6439746211A7D98A000332CC</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>WithFriendsController.m</string>
@@ -216,11 +257,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64E723DB11C012D300DE68F8</string>
+						<string>6416F94911C02D4B008BC5FE</string>
 						<key>history</key>
 						<array>
 							<string>640BB67D11B4281F00AEFF9A</string>
-							<string>6459F95C11C0109500CEA7A6</string>
+							<string>64E723DB11C012D300DE68F8</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,11 +298,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64E723DC11C012D300DE68F8</string>
+						<string>6416F94A11C02D4B008BC5FE</string>
 						<key>history</key>
 						<array>
 							<string>6448471911B31406008CF12F</string>
-							<string>6459F95B11C0109500CEA7A6</string>
+							<string>64E723DC11C012D300DE68F8</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -355,12 +396,11 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>37</integer>
 											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 436}, {332, 342}}</string>
+									<string>{{0, 582}, {332, 342}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -522,8 +562,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>64E723D911C012D300DE68F8</string>
-				<string>64E723DA11C012D300DE68F8</string>
+				<string>6416F8D511C024EB008BC5FE</string>
+				<string>6416F8D611C024EB008BC5FE</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -560,10 +600,15 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>6416F8E511C024EB008BC5FE</string>
+		<string>6416F8E611C024EB008BC5FE</string>
+		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>64DE33531188749B00828EA1</string>
-		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
 		<string>6439746211A7D98A000332CC</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
+		<string>6416F8D711C024EB008BC5FE</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
@@ -719,12 +764,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>MeemiAppDelegate.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -780,7 +827,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>64E723DD11C012D300DE68F8</string>
+				<string>6416F8DC11C024EB008BC5FE</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -824,8 +871,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {530, 336}}</string>
-											<string>{{530, 0}, {603, 336}}</string>
+											<string>{{0, 0}, {530, 340}}</string>
+											<string>{{530, 0}, {603, 340}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -840,8 +887,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {1133, 336}}</string>
-											<string>{{0, 336}, {1133, 306}}</string>
+											<string>{{0, 0}, {1133, 340}}</string>
+											<string>{{0, 340}, {1133, 302}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -874,7 +921,7 @@
 										<real>283</real>
 									</array>
 									<key>Frame</key>
-									<string>{{530, 0}, {603, 336}}</string>
+									<string>{{530, 0}, {603, 340}}</string>
 									<key>RubberWindowFrame</key>
 									<string>87 72 1133 683 0 0 1280 778 </string>
 								</dict>
@@ -902,13 +949,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>64ABD53011BBACFD00BC9014</string>
+				<string>6416F8DD11C024EB008BC5FE</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>64ABD53111BBACFD00BC9014</string>
-				<string>64ABD53211BBACFD00BC9014</string>
-				<string>64ABD53311BBACFD00BC9014</string>
-				<string>64ABD53411BBACFD00BC9014</string>
-				<string>64ABD53511BBACFD00BC9014</string>
+				<string>6416F8DE11C024EB008BC5FE</string>
+				<string>6416F8DF11C024EB008BC5FE</string>
+				<string>6416F8E011C024EB008BC5FE</string>
+				<string>6416F8E111C024EB008BC5FE</string>
+				<string>6416F8E211C024EB008BC5FE</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1064,7 +1111,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>64ABD53611BBACFD00BC9014</string>
+				<string>6416F8E311C024EB008BC5FE</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

@@ -17,6 +17,13 @@
 @synthesize urlToBeLoaded;
 
 #pragma mark -
+#pragma mark UIAlertViewDelegate (kill the application)
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	abort();
+}
+
+#pragma mark -
 #pragma mark Core Data stack
 
 /**
@@ -58,7 +65,8 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator 
+{
 	
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
@@ -86,10 +94,15 @@
 		 model
 		 Check the error message to determine what the actual problem was.
 		 */
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
-	}    
-	
+		NSString *message = [NSString stringWithFormat:@"Unrecoverable error: %@\nOK to exit and then restart app.", [[error userInfo] objectForKey:@"reason"]];
+		UIAlertView *fankulo = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
+														  message:message
+														 delegate:self 
+												cancelButtonTitle:@"OK"
+												otherButtonTitles:nil];
+		[fankulo show];
+		[self removeCoreDataStore];
+	}
 	return persistentStoreCoordinator;
 }
 
@@ -102,7 +115,7 @@
 		NSLog(@"Error in removeCoreDataStore: %@", error);
 		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
 															message:[error localizedDescription]
-														   delegate:nil
+														   delegate:self
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
 								 autorelease];
@@ -113,12 +126,11 @@
 		NSLog(@"Store deleted, exiting application");
 		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Quitting"
 															message:@"Store deleted, exiting application"
-														   delegate:nil
+														   delegate:self
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
 								 autorelease];
 		[theAlert show];
-		abort();
 	}
 }
 	   
@@ -183,7 +195,7 @@ void uncaughtExceptionHandler(NSException *exception)
 	// Setup CoreData and pass info to Meemi singleton.
     NSManagedObjectContext *context = [self managedObjectContext];
     if (!context) {
-        // Handle the error.
+        ;
     }
     [Meemi setManagedObjectContext:context];
 	

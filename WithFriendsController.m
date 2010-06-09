@@ -147,6 +147,26 @@
 	[Meemi toggleMemeSpecial:selectedMeme.id];
 }
 
+-(IBAction)toggleReshare:(id)sender
+{
+	// Get the first meme
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
+	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
+	specialThread = ![selectedMeme.is_reshare boolValue];
+	[Meemi toggleMemeReshare:selectedMeme.id];
+}
+
+-(IBAction)toggleFavorite:(id)sender
+{
+	// Get the first meme
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
+	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
+	specialThread = ![selectedMeme.is_favorite boolValue];
+	[Meemi toggleMemeFavorite:selectedMeme.id];
+}
+
 -(void)setupFetch
 {
 	NSManagedObjectContext *context = [Meemi managedObjectContext];
@@ -561,12 +581,12 @@
 		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:self
-																 action:@selector(doNothing:)];
+																 action:@selector(toggleFavorite:)];
 		[favB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
 																 target:self
-																 action:@selector(doNothing:)];
+																 action:@selector(toggleReshare:)];
 		[shareB setWidth:kThreadButtonWidth];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, spacer, favB, spacer, shareB, nil];
 //		NSArray *toolbarItems = [NSArray arrayWithObjects:specialB, favB, shareB, nil];

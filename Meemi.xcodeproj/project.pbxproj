@@ -99,8 +99,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		64876D631173659600F09B92 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
-		64876D641173659600F09B92 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockForSegmented.png; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 				C0B51D8211B94B22007C6662 /* UIImage-categories */,
 				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
-				64876D621173659600F09B92 /* FlurryLibWithLocation */,
 				C0E620161152E11A00E6C079 /* Meemi API */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -314,15 +311,6 @@
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		64876D621173659600F09B92 /* FlurryLibWithLocation */ = {
-			isa = PBXGroup;
-			children = (
-				64876D631173659600F09B92 /* FlurryAPI.h */,
-				64876D641173659600F09B92 /* libFlurryWithLocation.a */,
-			);
-			path = FlurryLibWithLocation;
 			sourceTree = "<group>";
 		};
 		C00DDA9911AD647900363B95 /* RegexKitLite */ = {
