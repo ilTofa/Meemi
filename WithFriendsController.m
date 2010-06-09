@@ -550,7 +550,7 @@
 		readMemes = 0;
 		self.title = NSLocalizedString(@"Thread", @"");
 		[self loadMemePage];
-		// Toolbar buttons
+		// Toolbar buttons (only if not private)
 #define kThreadButtonWidth 75.0
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 

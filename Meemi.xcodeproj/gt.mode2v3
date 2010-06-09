@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64ABD54F11BBB13100BC9014</string>
+						<string>64E723DB11C012D300DE68F8</string>
 						<key>history</key>
 						<array>
 							<string>640BB67D11B4281F00AEFF9A</string>
-							<string>64BA4A8B11B583FE003EE522</string>
+							<string>6459F95C11C0109500CEA7A6</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -257,11 +257,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64ABD55011BBB13100BC9014</string>
+						<string>64E723DC11C012D300DE68F8</string>
 						<key>history</key>
 						<array>
 							<string>6448471911B31406008CF12F</string>
-							<string>64BA4A8C11B583FE003EE522</string>
+							<string>6459F95B11C0109500CEA7A6</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -522,8 +522,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>64ABD52B11BBACFD00BC9014</string>
-				<string>64ABD52C11BBACFD00BC9014</string>
+				<string>64E723D911C012D300DE68F8</string>
+				<string>64E723DA11C012D300DE68F8</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -560,14 +560,10 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>64ABD53C11BBAD0E00BC9014</string>
-		<string>64ABD53811BBACFD00BC9014</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>64DE33531188749B00828EA1</string>
-		<string>6439746211A7D98A000332CC</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
+		<string>6439746211A7D98A000332CC</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
@@ -784,7 +780,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>64ABD52F11BBACFD00BC9014</string>
+				<string>64E723DD11C012D300DE68F8</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
