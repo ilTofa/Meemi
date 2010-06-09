@@ -61,8 +61,12 @@
 	[Meemi sharedSession].delegate = self;
 	// Send "edited" localization to session
 	[Meemi setNearbyPlaceName:self.locationLabel.text];
-	if(self.recipientNames != nil)
+	if(self.privateMemeWarning.hidden == NO)
+	{
+		self.recipientNames = self.channel.text;
+		DLog(@"Sending a private meme to: '%@'", self.recipientNames);
 		[[Meemi sharedSession] postTextAsPrivateMeme:self.description.text withChannel:nil withLocalization:canBeLocalized privateTo:self.recipientNames];
+	}
 	else if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postTextAsMeme:self.description.text withChannel:self.channel.text withLocalization:canBeLocalized];
 	else // this is a reply
