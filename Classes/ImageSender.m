@@ -183,38 +183,42 @@
 	// Hide toolbar
 	self.navigationController.navigationBarHidden = YES;
 	self.navigationController.toolbarHidden = YES;
-	// Restart localization
-	[[Meemi sharedSession] startLocation];
-	// What the client have?
-	BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-	BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-	// if both, allow the user to choose between camera and library
-	if(library && camera)
+	// Protect from being recalled for a low memory condition
+	if(self.theImage == nil)
 	{
-		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Image from?" 
-															   delegate:self 
-													  cancelButtonTitle:@"Camera"
-												 destructiveButtonTitle:nil
-													  otherButtonTitles:@"Library", nil]
-								   autorelease];
-		[chooseIt showInView:self.view];
-	}
-	else 
-	{
-		// use what client have
-		if(library)
+		// Restart localization
+		[[Meemi sharedSession] startLocation];
+		// What the client have?
+		BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+		BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+		// if both, allow the user to choose between camera and library
+		if(library && camera)
 		{
-			comesFromCamera = NO;
-			[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+			UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Image from?" 
+																   delegate:self 
+														  cancelButtonTitle:@"Camera"
+													 destructiveButtonTitle:nil
+														  otherButtonTitles:@"Library", nil]
+									   autorelease];
+			[chooseIt showInView:self.view];
 		}
-		else if(camera)
+		else 
 		{
-			comesFromCamera = YES;
-			[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+			// use what client have
+			if(library)
+			{
+				comesFromCamera = NO;
+				[self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+			}
+			else if(camera)
+			{
+				comesFromCamera = YES;
+				[self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+			}
+			else
+				// TODO: gray Image button if no camera, nor library
+				;
 		}
-		else
-			// TODO: gray Image button if no camera, nor library
-			;
 	}
 }
 
@@ -281,6 +285,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+	[laRuota stopAnimating];
 	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
     // can get the URL to the actual file itself. This example only looks for images.
     NSLog(@"info: %@", info);
@@ -316,6 +321,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	[laRuota startAnimating];
 	NSLog(@"Picked button #%d", buttonIndex);
 	if(buttonIndex == 0)
 	{

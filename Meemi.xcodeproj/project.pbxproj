@@ -598,7 +598,7 @@
 		C0D67CAF115921F8009EA92B /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -607,7 +607,7 @@
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-Hoc";
@@ -616,7 +616,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -627,7 +627,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-Hoc";

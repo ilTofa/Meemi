@@ -163,7 +163,16 @@
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
-	specialThread = ![selectedMeme.is_favorite boolValue];
+	DLog(@"meme is: %@", selectedMeme);
+	if([selectedMeme.is_favorite boolValue])
+	{
+		// This will reset the favorite status
+		specialThread = NO;
+	}
+	else 
+	{
+		specialThread = YES;
+	}
 	[Meemi toggleMemeFavorite:selectedMeme.id screenName:selectedMeme.screen_name];
 }
 
