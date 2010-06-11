@@ -241,6 +241,44 @@ static int replyPageSize = 20;
 	[self.delegate meemi:self.currentRequest didFailWithError:error];
 }
 
++(void)returnOKFromRequestReturningStatus:(ASIHTTPRequest *)request
+{
+	NSString *retText = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+	NSRange statusRange = [retText rangeOfString:@"<status>1</status>"];
+	// if there is not <status>1 we got an error
+	if(statusRange.location == NSNotFound)
+	{
+		ALog(@"Got an error in a request:\n%@", retText);
+		NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""), retText];
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+															message:theMessage
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];	
+	}
+	else
+	{
+		DLog(@"Succesfully returned from a request");
+	}
+	[retText release];	
+}
+
++(void)returnFailedFromRequestReturningStatus:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""),
+							[error localizedDescription]];
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+														message:theMessage
+													   delegate:nil
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil] 
+							 autorelease];
+	[theAlert show];	
+}
+
 #pragma mark Helpers
 
 -(void)startSessionFromUserDefaults
@@ -344,6 +382,9 @@ static int replyPageSize = 20;
 		{
 			DLog(@"*** Got an already read meme: %@", newMemeID);
 		}
+		// If it's a new mention or a new reply, mark it special (even if it's a "old one")
+		if(self.currentRequest == MMGetNewMentions)
+			theMeme.special = [NSNumber numberWithBool:YES];
 	}
 	// Other new memes things, only if the meme is new
 	if(currentMemeIsNew)
@@ -659,7 +700,8 @@ static int replyPageSize = 20;
 	}
 	// parse memes
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
-	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies)
+	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
+	   self.currentRequest == MMGetNewMentions)
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
@@ -705,8 +747,10 @@ static int replyPageSize = 20;
 
 	// new_memes processing 
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
-	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies)
+	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
+	   self.currentRequest == MMGetNewMentions)
 		[self parseElementsForMemes:elementName];
+	
     if ([elementName isEqualToString:@"name"])
 		self.placeName = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
@@ -1155,6 +1199,18 @@ static int replyPageSize = 20;
 	[self startRequestToMeemi:request];	
 }
 
+-(void)getNewMentions
+{
+	NSAssert([Meemi isValid], @"getNewMentions: called without valid session");
+	self.currentRequest = MMGetNewMentions;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/only_new_mentions"];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
 +(void)markMemeSpecial:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeSpecial to mark meme %@", memeID);
@@ -1217,16 +1273,6 @@ static int replyPageSize = 20;
 	[request release];
 }	
 
-+ (void)returnOKFromToggleMemeReshare:(ASIHTTPRequest *)request
-{
-	DLog(@"returned from toggleMemeReshare");
-}
-
-+ (void)returnFailedFromToggleMemeReshare:(ASIHTTPRequest *)request
-{
-	DLog(@"Failed in toggleMemeReshare");
-}
-
 +(void)toggleMemeReshare:(NSNumber *)memeID screenName:(NSString *)screenName
 {
 	DLog(@"Now in markMemeRead");
@@ -1282,22 +1328,12 @@ static int replyPageSize = 20;
 	[netRequest setPostValue:hashedData forKey:@"pwd"];
 	[netRequest setPostValue:kAPIKey forKey:@"app_key"];
 	[netRequest setDelegate:self];
-	[netRequest setDidFinishSelector:@selector(returnOKFromToggleMemeReshare:)];
-	[netRequest setDidFailSelector:@selector(returnFailedFromToggleMemeReshare:)];
+	[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
+	[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
 	[netRequest startAsynchronous];			
 }
 
-+ (void)returnOKFromToggleFavorite:(ASIHTTPRequest *)request
-{
-	DLog(@"returned from toggleMemeFavorite");
-}
-
-+ (void)returnFailedFromToggleFavorite:(ASIHTTPRequest *)request
-{
-	DLog(@"Failed in toggleMemeFavorite");
-}
-
-+(void)toggleMemeFavorite:(NSNumber *)memeID screenName:(NSString *)screenName
++(void)toggleMemeFavorite:(NSNumber *)memeID
 {
 	DLog(@"Now in markMemeRead");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -1324,38 +1360,32 @@ static int replyPageSize = 20;
 			else 
 				DLog(@"  %@", [error userInfo]);
 		}
+		NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/fav/%@/%@", theOne.screen_name, theOne.id];
+		NSURL *url = [NSURL URLWithString:urlString];
+		DLog(@"In toggleMemeFavorite. Sending %@", urlString);
+		ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
+		// build the password using SHA-256
+		unsigned char hashedChars[32];
+		CC_SHA256([[Meemi password] UTF8String],
+				  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+				  hashedChars);
+		NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+		[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
+		[netRequest setPostValue:hashedData forKey:@"pwd"];
+		[netRequest setPostValue:kAPIKey forKey:@"app_key"];
+		[netRequest setDelegate:self];
+		[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
+		[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
+		[netRequest startAsynchronous];			
 	}
+	else {
+		ALog(@"Meme %@ not found! :-O", memeID);
+	}
+
 	[request release];
-	NSString *urlString = [NSString stringWithFormat:@"http://meemi.com/api3/p/fav/%@/%@", screenName, memeID];
-	NSURL *url = [NSURL URLWithString:urlString];
-	DLog(@"In toggleMemeFavorite. Sending %@", urlString);
-	ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
-	// build the password using SHA-256
-	unsigned char hashedChars[32];
-	CC_SHA256([[Meemi password] UTF8String],
-			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-			  hashedChars);
-	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
-	[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
-	[netRequest setPostValue:hashedData forKey:@"pwd"];
-	[netRequest setPostValue:kAPIKey forKey:@"app_key"];
-	[netRequest setDelegate:self];
-	[netRequest setDidFinishSelector:@selector(returnOKFromToggleFavorite:)];
-	[netRequest setDidFailSelector:@selector(returnFailedFromToggleFavorite:)];
-	[netRequest startAsynchronous];			
-}
-
-+ (void)returnOKFromMarkRead:(ASIHTTPRequest *)request
-{
-	DLog(@"returned from mark read something");
-}
-
-+ (void)returnFailedFromMarkRead:(ASIHTTPRequest *)request
-{
-	DLog(@"Failed when marking read something");
 }
 
 +(void)reallyMarkRead:(NSString *)nilOrCommaSeparatedMemeList
@@ -1382,8 +1412,8 @@ static int replyPageSize = 20;
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setDelegate:self];
-	[request setDidFinishSelector:@selector(returnOKFromMarkRead:)];
-	[request setDidFailSelector:@selector(returnFailedFromMarkRead:)];
+	[request setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
+	[request setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
 	[request startAsynchronous];			
 }
 
@@ -1441,23 +1471,26 @@ static int replyPageSize = 20;
 		{
 			theOne.new_meme = [NSNumber numberWithBool:NO];
 			theOne.new_replies = [NSNumber numberWithBool:NO];
-			[param appendFormat:@", %@", theOne.id];
+			[param appendFormat:@"%@,", theOne.id];
 		}
-	}	
-	[request release];
-	// now commit.
-	if (![managedObjectContext save:&error])
-	{
-		DLog(@"Failed to save to data store: %@", [error localizedDescription]);
-		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-		if(detailedErrors != nil && [detailedErrors count] > 0) 
-			for(NSError* detailedError in detailedErrors) 
-				DLog(@"  DetailedError: %@", [detailedError userInfo]);
-		else 
-			DLog(@"  %@", [error userInfo]);
+		// cut the last ','
+		if([param length] > 0)
+			[param replaceCharactersInRange:NSMakeRange([param length]-1, 1) withString:@""];
+		// now commit.
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Failed to save to data store: %@", [error localizedDescription]);
+			NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+			if(detailedErrors != nil && [detailedErrors count] > 0) 
+				for(NSError* detailedError in detailedErrors) 
+					DLog(@"  DetailedError: %@", [detailedError userInfo]);
+			else 
+				DLog(@"  %@", [error userInfo]);
+		}
+		[self reallyMarkRead:param];
+		[param release];
 	}
-	[self reallyMarkRead:param];
-	[param release];
+	[request release];
 }
 
 +(void)markNewMemesRead

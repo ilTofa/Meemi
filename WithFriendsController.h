@@ -40,6 +40,7 @@ typedef enum {
 	UIButton *reloadButtonInBreakTable;
 	Meemi *ourPersonalMeemi;
 	Meemi *privateFetchMeemi;
+	Meemi *mentionFetchMeemi;
 	// the search bar
 	UISearchBar *theSearchBar;
 	BOOL barPresent;
@@ -57,7 +58,8 @@ typedef enum {
 	UIImage *imgNothing;
 	UIImage *imgSemplice;
 	UIImage *imgLock;
-	UIImage *imgStar;	
+	UIImage *imgStar;
+	BOOL thatsTheMemeKindChoice;
 }
 
 -(IBAction)filterSelected;

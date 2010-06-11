@@ -62,10 +62,10 @@
 			ALog(@"Meemi session init failed. Shit...");
 	}
 	ourPersonalMeemi.delegate = self;
-	if(currentFetch != FTReplyView)
-		[ourPersonalMeemi getMemes];
-	else
+	if(currentFetch == FTReplyView)
 		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName total:[self.replyQuantity intValue]];
+	else
+		[ourPersonalMeemi getMemes];
 }
 
 -(void)meemiIsBusy:(NSNotification *)note
@@ -163,7 +163,7 @@
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	// and toggle the Special flag on it (marking the thread as "not special" anymore if needed)... :)
-	DLog(@"meme is: %@", selectedMeme);
+	DLog(@"toggleFavorite: Meme is: %@, currently favorite is %@", selectedMeme, selectedMeme.is_favorite);
 	if([selectedMeme.is_favorite boolValue])
 	{
 		// This will reset the favorite status
@@ -173,7 +173,7 @@
 	{
 		specialThread = YES;
 	}
-	[Meemi toggleMemeFavorite:selectedMeme.id screenName:selectedMeme.screen_name];
+	[Meemi toggleMemeFavorite:selectedMeme.id];
 }
 
 -(void)setupFetch
@@ -276,7 +276,7 @@
 	}
 	[self.tableView reloadData];
 	
-	// If we're selecting the "private" view, it's time to reload
+	// If we're selecting the "private" or the "special" view, it's time to reload
 	// Alloc a new Meemi for that, and release it on return
 	if(currentFetch == FTPvt)
 	{
@@ -294,6 +294,22 @@
 			}
 		}
 	}
+	if(currentFetch == FTSpecial)
+	{
+		// Setup the Meemi "agent"
+		// If already existing, a query is still running, leave it alone
+		if(mentionFetchMeemi == nil)
+		{
+			mentionFetchMeemi = [[Meemi alloc] initFromUserDefault];
+			if(!mentionFetchMeemi)
+				ALog(@"Meemi mentionFetch session init failed. Shit...");
+			else
+			{
+				mentionFetchMeemi.delegate = self;
+				[mentionFetchMeemi getNewMentions];
+			}
+		}
+	}	
 }	
 
 -(void)filterSelected
@@ -315,6 +331,18 @@
 		[ourPersonalMeemi getMemes];
 }
 
+-(void)markReadMemes
+{
+	thatsTheMemeKindChoice = NO;
+	UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Mark Memes Read?", @"")
+														   delegate:self 
+												  cancelButtonTitle:@"Cancel"
+											 destructiveButtonTitle:@"Mark"
+												  otherButtonTitles:nil]
+							   autorelease];
+	[chooseIt showFromToolbar:self.navigationController.toolbar];
+}
+
 #pragma mark MeemiDelegate
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
@@ -332,6 +360,19 @@
 												  otherButtonTitles:nil] 
 								 autorelease];
 		[theAlert show];
+	}
+	// release special meemi
+	if(request == MMGetNewPvt || request == MMGetNewPvtSent)
+	{
+		privateFetchMeemi.delegate = nil;
+		[privateFetchMeemi release];
+		privateFetchMeemi = nil;
+	}
+	if(request == MMGetNewMentions)
+	{
+		mentionFetchMeemi.delegate = nil;
+		[mentionFetchMeemi release];
+		mentionFetchMeemi = nil;
 	}
 }	
 
@@ -352,6 +393,12 @@
 		privateFetchMeemi.delegate = nil;
 		[privateFetchMeemi release];
 		privateFetchMeemi = nil;
+	}
+	if(request == MMGetNewMentions)
+	{
+		mentionFetchMeemi.delegate = nil;
+		[mentionFetchMeemi release];
+		mentionFetchMeemi = nil;
 	}
 //	[self.tableView reloadData];
 }
@@ -389,16 +436,14 @@
 	else
 	{
 		// Make user choose if (s)he wants to reply with text or image
+		thatsTheMemeKindChoice = YES;
 		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
 															   delegate:self 
 													  cancelButtonTitle:@"Cancel"
 												 destructiveButtonTitle:nil
 													  otherButtonTitles:@"Text", @"Image", nil]
 								   autorelease];
-		if(self.navigationController.toolbar.hidden)
-			[chooseIt showInView:self.view];
-		else // we have a toolbar, use it!
-			[chooseIt showFromToolbar:self.navigationController.toolbar];
+		[chooseIt showFromToolbar:self.navigationController.toolbar];
 	}
 }	
 
@@ -406,25 +451,41 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	NSLog(@"Picked button #%d", buttonIndex);
-	if(buttonIndex == 0) // Text
+	if(thatsTheMemeKindChoice)
 	{
-		TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
-		controller.delegate = self;
-		controller.replyTo = self.replyTo;
-		controller.replyScreenName = self.replyScreenName;
-		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];
+		NSLog(@"Kind of meme chosen. Clicked button #%d", buttonIndex);
+		if(buttonIndex == 0) // Text
+		{
+			TextSender *controller = [[TextSender alloc] initWithNibName:@"TextSender" bundle:nil];
+			controller.delegate = self;
+			controller.replyTo = self.replyTo;
+			controller.replyScreenName = self.replyScreenName;
+			[self.navigationController pushViewController:controller animated:YES];
+			[controller release];
+		}
+		else if(buttonIndex == 1) // Image
+		{
+			ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
+			controller.delegate = self;
+			controller.replyTo = self.replyTo;
+			controller.replyScreenName = self.replyScreenName;
+			[self.navigationController pushViewController:controller animated:YES];
+			[controller release];
+		}
 	}
-	else if(buttonIndex == 1) // Image
+	else 
 	{
-		ImageSender *controller = [[ImageSender alloc] initWithNibName:@"ImageSender" bundle:nil];
-		controller.delegate = self;
-		controller.replyTo = self.replyTo;
-		controller.replyScreenName = self.replyScreenName;
-		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];
+		if(buttonIndex == 1) // cancel
+		{
+			DLog(@"Mark read cancelled");
+		}
+		else
+		{
+			DLog(@"Mark read chosen");
+			[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) markReadMemes];
+		}
 	}
+
 }
 
 #pragma mark Searchbar & delegate
@@ -535,7 +596,7 @@
 		[reloadButton release];
 		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
 																  style:UIBarButtonItemStyleBordered 
-																 target:((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate])
+																 target:self
 																 action:@selector(markReadMemes)];
 		[readB setWidth:kButtonWidth];
 		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"magnifying-glass" ofType:@"png"]] 

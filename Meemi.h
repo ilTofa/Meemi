@@ -28,7 +28,8 @@ typedef enum {
 	MMGetNewUser,
 	MMFollowUnfollow,
 	MMGetAvatar,
-	MMMarkRead
+	MMMarkRead,
+	MMGetNewMentions
 } MeemiRequest;
 
 typedef enum
@@ -156,7 +157,7 @@ typedef enum
 +(void)markMemeRead:(NSNumber *)memeID;
 +(void)markMemeSpecial:(NSNumber *)memeID;
 +(void)toggleMemeSpecial:(NSNumber *)memeID;
-+(void)toggleMemeFavorite:(NSNumber *)memeID screenName:(NSString *)screenName;
++(void)toggleMemeFavorite:(NSNumber *)memeID;
 +(void)toggleMemeReshare:(NSNumber *)memeID screenName:(NSString *)screenName;
 +(void)purgeOldMemes;
 
@@ -174,6 +175,7 @@ typedef enum
 -(void)getMemeRepliesOf:(NSNumber *)memeID screenName:(NSString *)user total:(int)repliesQuantity;
 -(void)getMemePrivateReceived;
 -(void)getMemePrivateSent;
+-(void)getNewMentions;
 
 -(void)validateUser:(NSString *)meemi_id usingPassword:(NSString *)pwd;
 -(void)postImageAsMeme:(UIImage *)image withDescription:(NSString *)description withLocalization:(BOOL)canBeLocalized;
