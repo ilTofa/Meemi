@@ -383,8 +383,16 @@ static int replyPageSize = 20;
 			DLog(@"*** Got an already read meme: %@", newMemeID);
 		}
 		// If it's a new mention or a new reply, mark it special (even if it's a "old one")
-		if(self.currentRequest == MMGetNewMentions)
+		if(self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
+		{
+			DLog(@"Marking special the meme: %@", newMemeID);
 			theMeme.special = [NSNumber numberWithBool:YES];
+			if(!currentMemeIsNew)
+			{
+				theMeme.new_replies = [NSNumber numberWithBool:YES];
+				DLog(@"Marking with new replies the already read meme: %@", newMemeID);
+			}
+		}
 	}
 	// Other new memes things, only if the meme is new
 	if(currentMemeIsNew)
@@ -701,7 +709,7 @@ static int replyPageSize = 20;
 	// parse memes
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
 	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
-	   self.currentRequest == MMGetNewMentions)
+	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
@@ -748,7 +756,7 @@ static int replyPageSize = 20;
 	// new_memes processing 
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
 	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
-	   self.currentRequest == MMGetNewMentions)
+	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
 		[self parseElementsForMemes:elementName];
 	
     if ([elementName isEqualToString:@"name"])
@@ -1206,6 +1214,18 @@ static int replyPageSize = 20;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/only_new_mentions"];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
+-(void)getNewPersonalReplies
+{ 
+	NSAssert([Meemi isValid], @"getNewPersonalReplies: called without valid session");
+	self.currentRequest = MMGetNewPersonalReplies;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/only_new_replies"];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	

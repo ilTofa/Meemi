@@ -367,12 +367,17 @@
 		privateFetchMeemi.delegate = nil;
 		[privateFetchMeemi release];
 		privateFetchMeemi = nil;
-	}
-	if(request == MMGetNewMentions)
+	} 
+	if(request == MMGetNewPersonalReplies)
 	{
 		mentionFetchMeemi.delegate = nil;
 		[mentionFetchMeemi release];
 		mentionFetchMeemi = nil;
+	}
+	if(request == MMGetNewMentions)
+	{
+		// Get new private replies
+		[mentionFetchMeemi getNewPersonalReplies];
 	}
 }	
 
@@ -394,13 +399,18 @@
 		[privateFetchMeemi release];
 		privateFetchMeemi = nil;
 	}
-	if(request == MMGetNewMentions)
+	if(request == MMGetNewPersonalReplies)
 	{
 		mentionFetchMeemi.delegate = nil;
 		[mentionFetchMeemi release];
 		mentionFetchMeemi = nil;
 	}
-//	[self.tableView reloadData];
+	if(request == MMGetNewMentions)
+	{
+		// Get new private replies
+		[mentionFetchMeemi getNewPersonalReplies];
+	}
+	//	[self.tableView reloadData];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate

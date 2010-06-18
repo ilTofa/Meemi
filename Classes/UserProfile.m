@@ -135,11 +135,13 @@
 	{
 		DLog(@"didFinishWithResult in UserProfile: MmFollowOK");
 		theUser.you_follow = [NSNumber numberWithBool:YES];
+		[self infoSwapped];
 	}
 	if(result == MmUnfollowOK)
 	{
 		DLog(@"didFinishWithResult in UserProfile: MmUnfollowOK");
 		theUser.you_follow = [NSNumber numberWithBool:NO];
+		[self infoSwapped];
 	}
 	if(request == MMGetNewUser)
 	{ //update and reload avatar, just in case...
