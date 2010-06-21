@@ -12,6 +12,8 @@
 #import "ASIFormDataRequest.h"
 #import "ASINetworkQueue.h"
 
+#import "SFHFKeychainUtils.h"
+
 #import "UIImage+RoundedCorner.h"
 
 // #import "FlurryAPI.h"
@@ -181,13 +183,16 @@ static int replyPageSize = 20;
 		theQueue = [[NSOperationQueue alloc] init];
 		self.nextPageToLoad = 1;
 		[Meemi setScreenName:[[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"]];
-//		if([[Meemi screenName] isEqual:@""])
-//			[Meemi setScreenName:@"ilTofa"];
-		[Meemi setPassword:[[NSUserDefaults standardUserDefaults] stringForKey:@"password"]];
-//		if([[Meemi password] isEqual:@""])
-//			[Meemi setPassword:@"Zucchinone"];
 		self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
-		valid = YES;
+		NSError *err;
+		[Meemi setPassword:[SFHFKeychainUtils getPasswordForUsername:[Meemi screenName] andServiceName:@"Meemi" error:&err]];
+		if([Meemi password] != nil)
+			valid = YES;
+		else
+		{
+			DLog(@"invalid password for %@ is %@", [Meemi screenName], [Meemi password]);
+			valid = NO;
+		}
 		return self;
 	}
 	else
@@ -285,9 +290,16 @@ static int replyPageSize = 20;
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[Meemi setScreenName:[defaults stringForKey:@"screenName"]];
-	[Meemi setPassword:[defaults stringForKey:@"password"]];
 	self.nLocationUseDenies = [defaults integerForKey:@"userDeny"];
-	valid = YES;
+	NSError *err;
+	[Meemi setPassword:[SFHFKeychainUtils getPasswordForUsername:[Meemi screenName] andServiceName:@"Meemi" error:&err]];
+	if([Meemi password] == nil)
+	{
+		valid = NO;
+		[defaults setInteger:0 forKey:@"userValidated"];
+	}
+	else
+		valid = YES;
 }
 
 // Parse response string

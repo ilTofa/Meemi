@@ -597,7 +597,7 @@
 	{
 		[self loadMemePage];
 		
-		// Add a left button for reloading the meme list
+		// Add a left button for the settings
 		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
 																		 style:UIBarButtonItemStylePlain 
 																		target:self 
@@ -605,12 +605,12 @@
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
 		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
-																  style:UIBarButtonItemStyleBordered 
+																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(markReadMemes)];
 		[readB setWidth:kButtonWidth];
 		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"magnifying-glass" ofType:@"png"]] 
-																  style:UIBarButtonItemStyleBordered 
+																  style:UIBarButtonItemStylePlain 
 																 target:self 
 																 action:@selector(searchClicked:)];
 		[srchB setWidth:kButtonWidth];
@@ -654,17 +654,17 @@
 #define kThreadButtonWidth 75.0
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
-																   style:UIBarButtonItemStyleBordered 
+																   style:UIBarButtonItemStylePlain 
 																  target:self
 																  action:@selector(toggleSpecial:)];
 		[specialB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
-																  style:UIBarButtonItemStyleBordered 
+																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(toggleFavorite:)];
 		[favB setWidth:kThreadButtonWidth];
 		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
-																  style:UIBarButtonItemStyleBordered 
+																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(toggleReshare:)];
 		[shareB setWidth:kThreadButtonWidth];
@@ -694,6 +694,7 @@
     [super viewWillAppear:animated];
 	// Show the toolbar
 	self.navigationController.toolbarHidden = NO;
+	self.navigationController.navigationBarHidden = NO;
 	// Add notifications observers
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
@@ -702,17 +703,12 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
 	if(self.replyTo == nil)
 	{
-		if([Meemi isBusy])
-			[self meemiIsBusy:nil];
-		else
-			[self meemiIsFree:nil];
 		// Load settings, if still needed.
 		if(![Meemi isValid])
 			[self settingsView];		
 	}
-	else // reinit fetch only for replies...
+	else 
 	{
-//		[self loadMemePage];
 		[self setupFetch];
 	}
 }

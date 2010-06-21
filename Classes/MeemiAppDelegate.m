@@ -176,7 +176,7 @@ void uncaughtExceptionHandler(NSException *exception)
 {	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDate *tempDate = [NSDate distantPast];
-	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", @"", @"password", 
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"screenName", 
 								 0, @"userValidated", 0, @"userDeny", tempDate, @"lastRead", nil];
     [defaults registerDefaults:appDefaults];
 }
@@ -206,8 +206,9 @@ void uncaughtExceptionHandler(NSException *exception)
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
 	{
 		[[Meemi sharedSession] startSessionFromUserDefaults];
-		// now, load the new memes... ;)
-		[self reloadMemes];
+		if([Meemi isValid])
+			// now, load the new memes... ;)
+			[self reloadMemes];
 	}
 }
 

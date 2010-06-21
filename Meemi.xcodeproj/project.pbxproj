@@ -68,6 +68,8 @@
 		C0CE759F11771F3900A6BBC3 /* PostMeme.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CE759E11771F3900A6BBC3 /* PostMeme.xib */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
+		C0DDFCCE11CFAA2400C2AEA2 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */; };
+		C0DDFCD411CFAD2600C2AEA2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DDFCD311CFAD2600C2AEA2 /* Security.framework */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -164,6 +166,9 @@
 		C0CE759E11771F3900A6BBC3 /* PostMeme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMeme.xib; sourceTree = "<group>"; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		C0DDFCCC11CFAA2400C2AEA2 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		C0DDFCD311CFAD2600C2AEA2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -205,6 +210,7 @@
 				C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */,
 				C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */,
 				C06512531161F4E300B68198 /* CoreData.framework in Frameworks */,
+				C0DDFCD411CFAD2600C2AEA2 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +267,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				C0DDFCD311CFAD2600C2AEA2 /* Security.framework */,
 			);
 			name = Meemi;
 			sourceTree = "<group>";
@@ -359,6 +366,8 @@
 		C0A1BFFB117BC4EB0064AF2A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C0DDFCCC11CFAA2400C2AEA2 /* SFHFKeychainUtils.h */,
+				C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */,
 				C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */,
 				C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */,
 				C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */,
@@ -520,6 +529,7 @@
 				C0B51D8B11B94B22007C6662 /* UIImage+RoundedCorner.m in Sources */,
 				C0B51D9711B957CF007C6662 /* User.m in Sources */,
 				C078B4AB11BE8EB20048BC70 /* Meme.m in Sources */,
+				C0DDFCCE11CFAA2400C2AEA2 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

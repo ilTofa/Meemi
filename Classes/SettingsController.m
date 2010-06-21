@@ -9,16 +9,17 @@
 #import "SettingsController.h"
 #import "MeemiAppDelegate.h"
 #import "AboutBox.h"
+#import "SFHFKeychainUtils.h"
 
 @implementation SettingsController
 
-@synthesize screenName, password, testLabel, laRuota;
+@synthesize screenName, password, testLabel, laRuota, dismissButton;
 
 -(void)restoreDefaults
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	self.screenName.text = [defaults stringForKey:@"screenName"];
-	self.password.text = [defaults stringForKey:@"password"];
+	NSError *err;
+	self.screenName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"screenName"];
+	self.password.text = [SFHFKeychainUtils getPasswordForUsername:self.screenName.text andServiceName:@"Meemi" error:&err];
 }
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
@@ -45,9 +46,12 @@
 	{
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:self.screenName.text forKey:@"screenName"];
-		[defaults setObject:self.password.text forKey:@"password"];
+		NSError *err;
+		[SFHFKeychainUtils storeUsername:self.screenName.text andPassword:self.password.text 
+						  forServiceName:@"Meemi" updateExisting:YES error:&err];
 		[defaults setInteger:1 forKey:@"userValidated"];
 		[[Meemi sharedSession] startSessionFromUserDefaults];
+		self.dismissButton.enabled = YES;
 		// and reload memes...
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
 	}
@@ -55,6 +59,7 @@
 	{
 		[self restoreDefaults];
 		[self.screenName becomeFirstResponder];
+		self.dismissButton.enabled = NO;
 	}
 	if([laRuota isAnimating])
 		[laRuota stopAnimating];
@@ -80,9 +85,14 @@
 	[self presentModalViewController:theBox animated:YES]; 
 }
 
--(IBAction)killDB:(id)sender
+- (IBAction)signupUser:(id)sender
 {
-	[((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]) removeCoreDataStore];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://meemi.com/p/signup"]];
+}
+
+- (IBAction)dismissSettings:(id)sender
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 // dismiss keyboard
@@ -97,7 +107,7 @@
 	if([Meemi isValid])
 	{
 		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
-//		((MeemiAppDelegate *)[[UIApplication sharedApplication] delegate]).tabBarController.selectedIndex = 0;
+		[self.navigationController popViewControllerAnimated:YES];
 		return YES;
 	}
 	// else do not dismiss keyboard (and warn user)
@@ -121,18 +131,21 @@
 {
     [super viewDidLoad];
 	self.screenName.delegate = self.password.delegate = self;
+	self.navigationController.navigationBarHidden = YES;
+	self.navigationController.toolbarHidden = YES;
 	self.title = NSLocalizedString(@"Settings", @"");
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	self.navigationController.toolbarHidden = YES;
 	// load user defaults
 	[self restoreDefaults];
 	// if user was not tested, test it
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"] == 0)
 		[self testLogin:nil];
+	else
+		self.dismissButton.enabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated 
