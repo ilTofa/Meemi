@@ -207,8 +207,12 @@ void uncaughtExceptionHandler(NSException *exception)
 	{
 		[[Meemi sharedSession] startSessionFromUserDefaults];
 		if([Meemi isValid])
+		{
 			// now, load the new memes... ;)
 			[self reloadMemes];
+			// and purge the cache
+			[Meemi purgeOldMemes];
+		}
 	}
 }
 

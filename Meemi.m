@@ -1367,7 +1367,7 @@ static int replyPageSize = 20;
 
 +(void)toggleMemeFavorite:(NSNumber *)memeID
 {
-	DLog(@"Now in markMemeRead");
+	DLog(@"Now in toggleMemeFavorite");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for a meme with this id.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
@@ -1485,7 +1485,7 @@ static int replyPageSize = 20;
 
 +(void)markThreadRead:(NSNumber *)memeID
 {
-	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
+	NSAssert([Meemi isValid], @"markThreadRead: called without valid session");
 	NSMutableString *param = [[NSMutableString alloc] initWithCapacity:30];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
@@ -1564,26 +1564,29 @@ static int replyPageSize = 20;
 +(void)purgeOldMemes
 {
 	// TODO: mettere a posto...
-	NSAssert([Meemi isValid], @"markNewMemesRead: called without valid session");
+	NSAssert([Meemi isValid], @"purgeOldMemes: called without valid session");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"new_meme == %@ OR new_replies == %@", 
-							  [NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES]];
+	NSTimeInterval normalDaysBefore = -5.0 * 24.0 * 60.0 * 60.0;	// 5 days in seconds: 432.000 seconds
+	NSTimeInterval specialDaysBefore = 10.0 * normalDaysBefore;		// 50 days for "specials"
+	NSDate *normalDate = [NSDate dateWithTimeIntervalSinceNow:normalDaysBefore];
+	NSDate *specialDate = [NSDate dateWithTimeIntervalSinceNow:specialDaysBefore];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dt_last_movement < %@ AND special == NO AND private_meme = NO) OR (dt_last_movement < %@)", normalDate, specialDate];
+	DLog(@"predicate is: %@", predicate);
 	[request setPredicate:predicate];
 	NSError *error;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-	ALog(@"Got %d new memes to mark read", [fetchResults count]);
+	DLog(@"Got %d new memes to delete because old", [fetchResults count]);
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
 		for(Meme *theOne in fetchResults)
 		{
-			theOne.new_meme = [NSNumber numberWithBool:NO];
-			theOne.new_replies = [NSNumber numberWithBool:NO];
+			DLog(@"Deleting meme %@", theOne.id);
+			[managedObjectContext deleteObject:theOne];
 		}
 	}	
-	[request release];
 	// now commit.
 	if (![managedObjectContext save:&error])
 	{
@@ -1595,6 +1598,7 @@ static int replyPageSize = 20;
 		else 
 			DLog(@"  %@", [error userInfo]);
 	}	
+	[request release];
 }
 
 -(void)postSomething:(NSString *)withDescription withLocalization:(BOOL)canBeLocalized andOptionalArg:(id)whatever 
