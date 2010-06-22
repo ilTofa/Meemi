@@ -93,6 +93,7 @@
 - (IBAction)dismissSettings:(id)sender
 {
 	[self.navigationController popViewControllerAnimated:YES];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kNewUser object:nil];
 }
 
 // dismiss keyboard
@@ -103,17 +104,21 @@
         [self.screenName resignFirstResponder];
     if (theTextField == self.password)
         [self.password resignFirstResponder];
-	// Select POST TAB (only if we have valid user and password)
+	// Dismiss box (only if we have valid user and password)
 	if([Meemi isValid])
 	{
-		[(MeemiAppDelegate *)[[UIApplication sharedApplication] delegate] reloadMemes];
-		[self.navigationController popViewControllerAnimated:YES];
+		DLog(@"Meemi valid in textFieldShouldReturn");
+		[self dismissSettings:nil];
 		return YES;
 	}
-	// else do not dismiss keyboard (and warn user)
-	self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
-	[theTextField becomeFirstResponder];
-	return NO;
+	else
+	{
+		// else do not dismiss keyboard (and warn user)
+		DLog(@"Meemi NOT VALID in textFieldShouldReturn");
+		self.testLabel.text = NSLocalizedString(@"Please, select a valid user", @"");
+		[theTextField becomeFirstResponder];
+		return NO;
+	}
 }
 
 
@@ -143,9 +148,13 @@
 	[self restoreDefaults];
 	// if user was not tested, test it
 	if([[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"] == 0)
+	{
+		self.dismissButton.enabled = NO;
 		[self testLogin:nil];
+	}
 	else
 		self.dismissButton.enabled = YES;
+	self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated 

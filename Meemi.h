@@ -61,6 +61,7 @@ typedef enum
 #define kGotLocation @"gotLocation"
 #define kNowBusy @"nowBusy"
 #define kNowFree @"nowFree"
+#define kNewUser @"newUser"
 
 #define kMeemiDatesFormat @"EEE, dd MMM yyyy HH:mm:ss ZZZ"
 // #define kMeemiDatesFormat @"dd MMM yyyy HH:mm:ss ZZZ"

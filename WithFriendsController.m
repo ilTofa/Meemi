@@ -322,6 +322,11 @@
 -(void)loadMemePage
 {
 	DLog(@"loadMemePage called");
+	if(![Meemi isValid])
+	{
+		ALog(@"loadMemePage called with invalid session, abort loading");
+		return;
+	}
 	// reset nextPageToLoad, we want a complete retry
 	ourPersonalMeemi.nextPageToLoad = 1;
 	ourPersonalMeemi.delegate = self;
@@ -556,10 +561,6 @@
 	self.watermark = INT_MAX;
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
 	
-	// If no standard user push settings view
-	if(![[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
-		[self settingsView];
-	
 	// "Cache" the UIImages
 	imgCamera = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
 	[imgCamera retain];
@@ -698,6 +699,7 @@
 	// Add notifications observers
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsBusy:) name:kNowBusy object:nil];		
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meemiIsFree:) name:kNowFree object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMemePage) name:kNewUser object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeNewData:) name:NSManagedObjectContextDidSaveNotification object:nil];
 	// And register to be notified for shaking and busy/not busy of Meemi session
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceShaken:) name:@"deviceShaken" object:nil];
@@ -711,6 +713,9 @@
 	{
 		[self setupFetch];
 	}
+	// If no standard user push settings view
+	if(![[NSUserDefaults standardUserDefaults] integerForKey:@"userValidated"])
+		[self settingsView];
 }
 
 - (void)viewDidAppear:(BOOL)animated 
