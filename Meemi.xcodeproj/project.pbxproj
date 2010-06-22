@@ -16,6 +16,7 @@
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
+		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
 		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
 		C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */; };
 		C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */; };
@@ -101,6 +102,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		64A973E411D119970082F60E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64A973E911D119C00082F60E /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockForSegmented.png; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 				C0CE759E11771F3900A6BBC3 /* PostMeme.xib */,
 				6443B081116B824200C16EEF /* MemeCell.xib */,
 				C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */,
+				64A973E711D119B50082F60E /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -438,6 +442,13 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Meemi" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				Italian,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Meemi */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -494,6 +505,7 @@
 				C0327FD911BBC450008A3591 /* ReshareSign.png in Resources */,
 				C032800F11BBD401008A3591 /* UserForSegmented.png in Resources */,
 				C032802211BBD83B008A3591 /* memeSemplice.png in Resources */,
+				64A973E811D119B50082F60E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +546,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		64A973E711D119B50082F60E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64A973E411D119970082F60E /* English */,
+				64A973E911D119C00082F60E /* Italian */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

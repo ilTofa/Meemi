@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64A973D511D114C70082F60E</string>
+						<string>64A973EC11D11A0F0082F60E</string>
 						<key>history</key>
 						<array>
 							<string>64A973C411D113770082F60E</string>
@@ -256,7 +256,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64A973D611D114C70082F60E</string>
+						<string>64A973ED11D11A0F0082F60E</string>
 						<key>history</key>
 						<array>
 							<string>64A973BA11D1104D0082F60E</string>
@@ -296,7 +296,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64A973D711D114C70082F60E</string>
+						<string>64A973EE11D11A0F0082F60E</string>
 						<key>history</key>
 						<array>
 							<string>640BB67D11B4281F00AEFF9A</string>
@@ -337,7 +337,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>64A973D811D114C70082F60E</string>
+						<string>64A973EF11D11A0F0082F60E</string>
 						<key>history</key>
 						<array>
 							<string>646B490D11CC1A3A009E23A7</string>
@@ -430,17 +430,19 @@
 										<string>C0E620161152E11A00E6C079</string>
 										<string>080E96DDFE201D6D7F000001</string>
 										<string>29B97317FDCFA39411CA2CEA</string>
+										<string>64A973E711D119B50082F60E</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>43</integer>
+											<integer>55</integer>
+											<integer>54</integer>
 											<integer>37</integer>
 											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 518}, {332, 342}}</string>
+									<string>{{0, 644}, {332, 342}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -648,9 +650,9 @@
 		<string>64DE33531188749B00828EA1</string>
 		<string>6439746211A7D98A000332CC</string>
 		<string>64A9732711D0F83C0082F60E</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>64A973C711D113D80082F60E</string>
 		<string>/Users/gt/Documents/Development/Meemi/Meemi.xcodeproj</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>930 349 349 428 0 0 1280 778 </string>
@@ -828,6 +830,8 @@
 							<string>392pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
