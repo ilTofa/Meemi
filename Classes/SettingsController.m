@@ -27,7 +27,7 @@
 	if([laRuota isAnimating])
 		[laRuota stopAnimating];
 	NSLog(@"Error: %@", error);
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 														message:[error localizedDescription]
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 
