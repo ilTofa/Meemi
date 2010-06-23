@@ -255,7 +255,7 @@ static int replyPageSize = 20;
 	{
 		ALog(@"Got an error in a request:\n%@", retText);
 		NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""), retText];
-		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 															message:theMessage
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
@@ -275,7 +275,7 @@ static int replyPageSize = 20;
 	NSError *error = [request error];
 	NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""),
 							[error localizedDescription]];
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 														message:theMessage
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 

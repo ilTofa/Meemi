@@ -341,8 +341,8 @@
 	thatsTheMemeKindChoice = NO;
 	UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Mark Memes Read?", @"")
 														   delegate:self 
-												  cancelButtonTitle:@"Cancel"
-											 destructiveButtonTitle:@"Mark"
+												  cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+											 destructiveButtonTitle:NSLocalizedString(@"Mark", @"")
 												  otherButtonTitles:nil]
 							   autorelease];
 	[chooseIt showFromToolbar:self.navigationController.toolbar];
@@ -452,11 +452,11 @@
 	{
 		// Make user choose if (s)he wants to reply with text or image
 		thatsTheMemeKindChoice = YES;
-		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Reply with?" 
+		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Reply with?", @"")
 															   delegate:self 
-													  cancelButtonTitle:@"Cancel"
+													  cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
 												 destructiveButtonTitle:nil
-													  otherButtonTitles:@"Text", @"Image", nil]
+													  otherButtonTitles:NSLocalizedString(@"Text", @""), NSLocalizedString(@"Image", @""), nil]
 								   autorelease];
 		[chooseIt showFromToolbar:self.navigationController.toolbar];
 	}
@@ -1037,8 +1037,8 @@
 			else
 			{
 				// tell user that the video cannot be shown
-				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-																	message:@"This video cannot be shown on this device"
+				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+																	message:NSLocalizedString(@"This video cannot be shown on this device", @"")
 																   delegate:nil
 														  cancelButtonTitle:@"OK" 
 														  otherButtonTitles:nil] 

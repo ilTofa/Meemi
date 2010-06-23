@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FirstViewController.h"
 
 @interface MemeOnWeb : UIViewController <UIWebViewDelegate>
 {
