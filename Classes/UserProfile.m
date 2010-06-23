@@ -75,15 +75,16 @@
 			[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 			birthday = [dateFormatter stringFromDate:theUser.birth];
 			[dateFormatter release];			
-			info.text = [NSString stringWithFormat:@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@",
+			info.text = [NSString stringWithFormat:NSLocalizedString(@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@", @""),
 						 birthday,
 						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],
-						 [theUser.follow_you boolValue] ? @"He/She follows you" : @"He/she don't follow you",
-						 [theUser.you_follow boolValue] ? @"You follow him/her" : @"You don't follow him/her"];
+						 [theUser.follow_you boolValue] ? NSLocalizedString(@"He/She follows you", @"") : NSLocalizedString(@"He/she don't follow you", @""),
+						 [theUser.you_follow boolValue] ? NSLocalizedString(@"You follow him/her", @"") : NSLocalizedString(@"You don't follow him/her", @"")];
 			info.textAlignment = UITextAlignmentCenter;
 			followButton.hidden = NO;
-			[followButton setTitle:[theUser.you_follow boolValue] ? @"Unfollow" : @"Follow" forState:UIControlStateNormal];
+			[followButton setTitle:[theUser.you_follow boolValue] ? NSLocalizedString(@"Unfollow", @"") : NSLocalizedString(@"Follow", @"") forState:UIControlStateNormal];
 			messageButton.hidden = NO;
+			[messageButton setTitle:NSLocalizedString(@"Send a Meme", @"") forState:UIControlStateNormal];
 			break;
 	}
 }
@@ -119,8 +120,8 @@
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
 {
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-														message:@"Error loading data, please try again later"
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+														message:NSLocalizedString(@"Error loading data, please try again later", @"")
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil] 

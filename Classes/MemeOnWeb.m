@@ -35,7 +35,7 @@
 	// Ignore NSAsyncLoadCancelled, because it seems an overkill to tell user of it.
 	if([error code] != -999)
 	{
-		UIAlertView *noWay = [[UIAlertView alloc] initWithTitle:@"ERROR"
+		UIAlertView *noWay = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 														message:[error localizedDescription]
 													   delegate:self
 											  cancelButtonTitle:@"OK"
