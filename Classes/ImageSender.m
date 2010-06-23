@@ -31,7 +31,7 @@
 	if([laRuota isAnimating])
 		[laRuota stopAnimating];
 	NSLog(@"Error: %@", error);
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 														message:[error localizedDescription]
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 
@@ -46,7 +46,7 @@
 	// if error, tell user.
 	if(result != MmPostOK)
 	{
-		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 															message:[Meemi getResponseDescription:result]
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
@@ -194,11 +194,11 @@
 		// if both, allow the user to choose between camera and library
 		if(library && camera)
 		{
-			UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:@"Image from?" 
+			UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Image from?", @"")
 																   delegate:self 
-														  cancelButtonTitle:@"Camera"
+														  cancelButtonTitle:NSLocalizedString(@"Camera", @"")
 													 destructiveButtonTitle:nil
-														  otherButtonTitles:@"Library", nil]
+														  otherButtonTitles:NSLocalizedString(@"Library", @""), nil]
 									   autorelease];
 			[chooseIt showInView:self.view];
 		}
