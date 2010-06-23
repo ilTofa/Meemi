@@ -24,6 +24,7 @@
 		C01AEDC311D2C098007009AD /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEDC211D2C098007009AD /* SettingsController.xib */; };
 		C01AEE0E11D2C40F007009AD /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE0D11D2C40F007009AD /* ImageSender.xib */; };
 		C01AEE2611D2C615007009AD /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE2511D2C615007009AD /* TextSender.xib */; };
+		C01AEE2C11D2C6AC007009AD /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE2B11D2C6AC007009AD /* AboutBox.xib */; };
 		C0256C8F11A8037900DF4706 /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = C0256C8E11A8037900DF4706 /* Nothing.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
 		C0327FD611BBC450008A3591 /* FavoriteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD211BBC450008A3591 /* FavoriteButton.png */; };
@@ -35,7 +36,6 @@
 		C033E31311B32B5400233505 /* BlackFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = C033E31111B32B5400233505 /* BlackFlag.png */; };
 		C033E31411B32B5400233505 /* WhiteFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = C033E31211B32B5400233505 /* WhiteFlag.png */; };
 		C03E6448115A560600CF2B91 /* AboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E6446115A560600CF2B91 /* AboutBox.m */; };
-		C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03E6447115A560600CF2B91 /* AboutBox.xib */; };
 		C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C045116F43DA00BEDCCC /* camera-verysmall.png */; };
 		C045C04C116F453000BEDCCC /* video-verysmall.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C04B116F453000BEDCCC /* video-verysmall.png */; };
 		C045C066116F57C300BEDCCC /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = C045C065116F57C300BEDCCC /* 02-redo.png */; };
@@ -111,6 +111,7 @@
 		C01AEDC411D2C0A0007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/SettingsController.xib; sourceTree = "<group>"; };
 		C01AEE0F11D2C416007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/ImageSender.xib; sourceTree = "<group>"; };
 		C01AEE2711D2C61C007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/TextSender.xib; sourceTree = "<group>"; };
+		C01AEE2D11D2C6B3007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/AboutBox.xib; sourceTree = "<group>"; };
 		C0256C8E11A8037900DF4706 /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
@@ -124,7 +125,7 @@
 		C033E31211B32B5400233505 /* WhiteFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteFlag.png; sourceTree = "<group>"; };
 		C03E6445115A560600CF2B91 /* AboutBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutBox.h; sourceTree = "<group>"; };
 		C03E6446115A560600CF2B91 /* AboutBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutBox.m; sourceTree = "<group>"; };
-		C03E6447115A560600CF2B91 /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Classes/AboutBox.xib; sourceTree = "<group>"; };
+		C03E6447115A560600CF2B91 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Classes/English.lproj/AboutBox.xib; sourceTree = "<group>"; };
 		C045C045116F43DA00BEDCCC /* camera-verysmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-verysmall.png"; sourceTree = "<group>"; };
 		C045C04B116F453000BEDCCC /* video-verysmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-verysmall.png"; sourceTree = "<group>"; };
 		C045C065116F57C300BEDCCC /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
@@ -288,7 +289,7 @@
 				C0D67CC311592559009EA92B /* iTunesArtwork */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
 				C0D67CBE11592261009EA92B /* Entitlements.plist */,
-				C03E6447115A560600CF2B91 /* AboutBox.xib */,
+				C01AEE2B11D2C6AC007009AD /* AboutBox.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				C01AEDC211D2C098007009AD /* SettingsController.xib */,
 				C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */,
@@ -472,7 +473,7 @@
 				C01AEE2611D2C615007009AD /* TextSender.xib in Resources */,
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
 				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
-				C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */,
+				C01AEE2C11D2C6AC007009AD /* AboutBox.xib in Resources */,
 				C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */,
 				6443B082116B824200C16EEF /* MemeCell.xib in Resources */,
 				C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */,
@@ -579,6 +580,15 @@
 				C01AEE2711D2C61C007009AD /* Italian */,
 			);
 			name = TextSender.xib;
+			sourceTree = "<group>";
+		};
+		C01AEE2B11D2C6AC007009AD /* AboutBox.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C03E6447115A560600CF2B91 /* English */,
+				C01AEE2D11D2C6B3007009AD /* Italian */,
+			);
+			name = AboutBox.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
