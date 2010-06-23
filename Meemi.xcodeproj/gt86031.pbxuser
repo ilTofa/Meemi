@@ -185,8 +185,8 @@
 	64A973E411D119970082F60E /* English */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1026, 981}}";
-			sepNavSelRange = "{1046, 0}";
-			sepNavVisRange = "{0, 1046}";
+			sepNavSelRange = "{1137, 0}";
+			sepNavVisRange = "{0, 1137}";
 		};
 	};
 	64A973E911D119C00082F60E /* Italian */ = {
@@ -267,7 +267,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 11";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 266;
 		vrLoc = 0;
@@ -317,7 +317,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 14";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 389;
 		vrLoc = 0;
@@ -357,7 +357,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 15";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 420;
 		vrLoc = 0;
@@ -447,7 +447,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 21";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -511,7 +511,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 21";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -598,7 +598,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 21";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -612,7 +612,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 23";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 702;
 		vrLoc = 0;
@@ -632,7 +632,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -682,7 +682,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -716,7 +716,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -766,7 +766,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -816,7 +816,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -846,7 +846,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -916,7 +916,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 28";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -950,7 +950,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 31";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 1046;
 		vrLoc = 0;
@@ -980,7 +980,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 31";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 1046;
 		vrLoc = 0;
@@ -990,7 +990,7 @@
 		fRef = 64A973E411D119970082F60E /* English */;
 		name = "Localizable.strings: 31";
 		rLen = 0;
-		rLoc = 1046;
+		rLoc = 1137;
 		rType = 0;
 		vrLen = 1046;
 		vrLoc = 0;
@@ -1709,8 +1709,8 @@
 	C0FB56831157B5DD003932F3 /* TextSender.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1171, 2054}}";
-			sepNavSelRange = "{3350, 54}";
-			sepNavVisRange = "{460, 2594}";
+			sepNavSelRange = "{3748, 43}";
+			sepNavVisRange = "{0, 2526}";
 			sepNavWindowFrame = "{{170, 68}, {1230, 1088}}";
 		};
 	};

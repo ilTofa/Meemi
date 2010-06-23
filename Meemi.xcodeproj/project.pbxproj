@@ -23,6 +23,7 @@
 		C00DDAA411AD649000363B95 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C00DDAA311AD649000363B95 /* RegexKitLite.m */; };
 		C01AEDC311D2C098007009AD /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEDC211D2C098007009AD /* SettingsController.xib */; };
 		C01AEE0E11D2C40F007009AD /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE0D11D2C40F007009AD /* ImageSender.xib */; };
+		C01AEE2611D2C615007009AD /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE2511D2C615007009AD /* TextSender.xib */; };
 		C0256C8F11A8037900DF4706 /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = C0256C8E11A8037900DF4706 /* Nothing.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
 		C0327FD611BBC450008A3591 /* FavoriteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C0327FD211BBC450008A3591 /* FavoriteButton.png */; };
@@ -84,7 +85,6 @@
 		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
 		C0F33EEE11A696B400510AEE /* TableBreak.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F33EED11A696B400510AEE /* TableBreak.png */; };
 		C0FB56851157B5DD003932F3 /* TextSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FB56831157B5DD003932F3 /* TextSender.m */; };
-		C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FB56841157B5DD003932F3 /* TextSender.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +110,7 @@
 		C00DDAA311AD649000363B95 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		C01AEDC411D2C0A0007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/SettingsController.xib; sourceTree = "<group>"; };
 		C01AEE0F11D2C416007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/ImageSender.xib; sourceTree = "<group>"; };
+		C01AEE2711D2C61C007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/TextSender.xib; sourceTree = "<group>"; };
 		C0256C8E11A8037900DF4706 /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
 		C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWindowThatDetectsShakes.m; sourceTree = "<group>"; };
@@ -195,7 +196,7 @@
 		C0F33EED11A696B400510AEE /* TableBreak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableBreak.png; sourceTree = "<group>"; };
 		C0FB56821157B5DD003932F3 /* TextSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSender.h; sourceTree = "<group>"; };
 		C0FB56831157B5DD003932F3 /* TextSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSender.m; sourceTree = "<group>"; };
-		C0FB56841157B5DD003932F3 /* TextSender.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TextSender.xib; path = Classes/TextSender.xib; sourceTree = "<group>"; };
+		C0FB56841157B5DD003932F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Classes/English.lproj/TextSender.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,7 +293,7 @@
 				C01AEDC211D2C098007009AD /* SettingsController.xib */,
 				C045C164116F6C8400BEDCCC /* MemeOnWeb.xib */,
 				C01AEE0D11D2C40F007009AD /* ImageSender.xib */,
-				C0FB56841157B5DD003932F3 /* TextSender.xib */,
+				C01AEE2511D2C615007009AD /* TextSender.xib */,
 				C045C221116F74F900BEDCCC /* UserDetail.xib */,
 				C045C276116F798600BEDCCC /* UserProfile.xib */,
 				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
@@ -468,7 +469,7 @@
 				C0918611115431C600C2C5A4 /* 20-gear2.png in Resources */,
 				C0918626115438A000C2C5A4 /* Default.png in Resources */,
 				C01AEE0E11D2C40F007009AD /* ImageSender.xib in Resources */,
-				C0FB56861157B5DD003932F3 /* TextSender.xib in Resources */,
+				C01AEE2611D2C615007009AD /* TextSender.xib in Resources */,
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
 				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
 				C03E6449115A560600CF2B91 /* AboutBox.xib in Resources */,
@@ -569,6 +570,15 @@
 				C01AEE0F11D2C416007009AD /* Italian */,
 			);
 			name = ImageSender.xib;
+			sourceTree = "<group>";
+		};
+		C01AEE2511D2C615007009AD /* TextSender.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0FB56841157B5DD003932F3 /* English */,
+				C01AEE2711D2C61C007009AD /* Italian */,
+			);
+			name = TextSender.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

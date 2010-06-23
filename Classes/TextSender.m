@@ -18,7 +18,7 @@
 	if([laRuota isAnimating])
 		[laRuota stopAnimating];
 	NSLog(@"Error: %@", error);
-	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+	UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 														message:[error localizedDescription]
 													   delegate:nil
 											  cancelButtonTitle:@"OK" 
@@ -33,8 +33,8 @@
 	// if error, tell user.
 	if(result != MmPostOK)
 	{
-		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
-															message:[Meemi  getResponseDescription:result]
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+															message:[Meemi getResponseDescription:result]
 														   delegate:nil
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil] 
