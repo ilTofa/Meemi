@@ -1317,10 +1317,10 @@ static int replyPageSize = 20;
 	// We're only looking for one.
 	[request setFetchLimit:1];
 	NSError *error;
-	NSString *urlString;
 	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
 	if (fetchResults != nil && [fetchResults count] != 0)
 	{
+		NSString *urlString;
 		Meme *theOne = [fetchResults objectAtIndex:0];
 		if([theOne.is_reshare boolValue])
 		{
@@ -1342,27 +1342,27 @@ static int replyPageSize = 20;
 			else 
 				DLog(@"  %@", [error userInfo]);
 		}
+		NSURL *url = [NSURL URLWithString:urlString];
+		DLog(@"In toggleMemeReshare. Sending %@", urlString);
+		ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
+		// build the password using SHA-256
+		unsigned char hashedChars[32];
+		CC_SHA256([[Meemi password] UTF8String],
+				  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+				  hashedChars);
+		NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
+		hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
+		[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
+		[netRequest setPostValue:hashedData forKey:@"pwd"];
+		[netRequest setPostValue:kAPIKey forKey:@"app_key"];
+		[netRequest setDelegate:self];
+		[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
+		[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
+		[netRequest startAsynchronous];			
 	}	
 	[request release];
-	NSURL *url = [NSURL URLWithString:urlString];
-	DLog(@"In toggleMemeReshare. Sending %@", urlString);
-	ASIFormDataRequest *netRequest = [ASIFormDataRequest requestWithURL:url];
-	// build the password using SHA-256
-	unsigned char hashedChars[32];
-	CC_SHA256([[Meemi password] UTF8String],
-			  [[Meemi password] lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-			  hashedChars);
-	NSString *hashedData = [[NSData dataWithBytes:hashedChars length:32] description];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@" " withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@"<" withString:@""];
-    hashedData = [hashedData stringByReplacingOccurrencesOfString:@">" withString:@""];	
-	[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
-	[netRequest setPostValue:hashedData forKey:@"pwd"];
-	[netRequest setPostValue:kAPIKey forKey:@"app_key"];
-	[netRequest setDelegate:self];
-	[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
-	[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
-	[netRequest startAsynchronous];			
 }
 
 +(void)toggleMemeFavorite:(NSNumber *)memeID
@@ -1520,8 +1520,8 @@ static int replyPageSize = 20;
 				DLog(@"  %@", [error userInfo]);
 		}
 		[self reallyMarkRead:param];
-		[param release];
 	}
+	[param release];
 	[request release];
 }
 

@@ -99,6 +99,20 @@
 	[self.tableView reloadData];
 }
 
+-(void)resetHeader
+{
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+	[UIView commitAnimations];	
+	[self.laRuota stopAnimating];
+	[self.laPiccolaRuota stopAnimating];
+	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]]
+								   forState:UIControlStateNormal];
+	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
+	self.headerArrow.text = @"☟";
+}
+
 -(void)mergeNewData:(NSNotification *)note
 {
 	DLog(@"Calling mergeChangesFromContextDidSaveNotification: on Meemi context");
@@ -209,7 +223,7 @@
 	// Get (and add) search parameters if we have a search running
 	if(![self.searchString isEqualToString:@""])
 	{
-		NSString *tempString;
+		NSString *tempString = nil;
 		if(self.searchScope == 0)
 		{
 			DLog(@"searching on sender");
@@ -392,7 +406,6 @@
 	if(request == MMGetNewReplies)
 	{
 		DLog(@"got replies");
-//		[[Meemi sharedSession] updateAvatars];
 	}
 	// If pvt received, call pvtSent...
 	if(request == MMGetNewPvt)
@@ -415,7 +428,6 @@
 		// Get new private replies
 		[mentionFetchMeemi getNewPersonalReplies];
 	}
-	//	[self.tableView reloadData];
 }
 
 #pragma mark ImageSenderControllerDelegate & TextSenderControllerDelegate
@@ -720,8 +732,10 @@
 
 - (void)viewDidAppear:(BOOL)animated 
 {
+	DLog(@"viewDidAppear");
     [super viewDidAppear:animated];
 	specialThread = NO;
+	[self resetHeader];
 	[self.tableView reloadData];
 }
 

@@ -95,11 +95,11 @@
 		 Check the error message to determine what the actual problem was.
 		 */
 		NSString *message = [NSString stringWithFormat:@"Unrecoverable error: %@\nOK to exit and then restart app.", [[error userInfo] objectForKey:@"reason"]];
-		UIAlertView *fankulo = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
+		UIAlertView *fankulo = [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
 														  message:message
 														 delegate:self 
 												cancelButtonTitle:@"OK"
-												otherButtonTitles:nil];
+												 otherButtonTitles:nil] autorelease];
 		[fankulo show];
 		[self removeCoreDataStore];
 	}
