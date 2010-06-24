@@ -48,7 +48,6 @@
 		C045C278116F798600BEDCCC /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C045C276116F798600BEDCCC /* UserProfile.xib */; };
 		C05188F111A016F700BA6F52 /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05188F011A016F700BA6F52 /* headerView.xib */; };
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
-		C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */; };
 		C0574FBA11A67BD700572B73 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FB911A67BD700572B73 /* Checkmark.png */; };
 		C0574FC411A67CD300572B73 /* StartForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FC311A67CD300572B73 /* StartForSegmented.png */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
@@ -85,6 +84,7 @@
 		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
 		C0F33EEE11A696B400510AEE /* TableBreak.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F33EED11A696B400510AEE /* TableBreak.png */; };
 		C0FB56851157B5DD003932F3 /* TextSender.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FB56831157B5DD003932F3 /* TextSender.m */; };
+		C0FCF60111D3AC6F0006879C /* WithFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FCF60011D3AC6F0006879C /* WithFriendsController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,7 +142,7 @@
 		C05188F011A016F700BA6F52 /* headerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = headerView.xib; path = Classes/headerView.xib; sourceTree = "<group>"; };
 		C053D3C71165DA91001AC0B6 /* WithFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithFriendsController.h; path = ../WithFriendsController.h; sourceTree = "<group>"; };
 		C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithFriendsController.m; path = ../WithFriendsController.m; sourceTree = "<group>"; };
-		C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithFriendsController.xib; sourceTree = "<group>"; };
+		C053D3C91165DA91001AC0B6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WithFriendsController.xib; sourceTree = "<group>"; };
 		C0574FB911A67BD700572B73 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		C0574FC311A67CD300572B73 /* StartForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartForSegmented.png; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -198,6 +198,7 @@
 		C0FB56821157B5DD003932F3 /* TextSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSender.h; sourceTree = "<group>"; };
 		C0FB56831157B5DD003932F3 /* TextSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSender.m; sourceTree = "<group>"; };
 		C0FB56841157B5DD003932F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Classes/English.lproj/TextSender.xib; sourceTree = "<group>"; };
+		C0FCF60211D3AC750006879C /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Italian.lproj/WithFriendsController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +297,7 @@
 				C01AEE2511D2C615007009AD /* TextSender.xib */,
 				C045C221116F74F900BEDCCC /* UserDetail.xib */,
 				C045C276116F798600BEDCCC /* UserProfile.xib */,
-				C053D3C91165DA91001AC0B6 /* WithFriendsController.xib */,
+				C0FCF60011D3AC6F0006879C /* WithFriendsController.xib */,
 				C05188F011A016F700BA6F52 /* headerView.xib */,
 				C0CE759E11771F3900A6BBC3 /* PostMeme.xib */,
 				6443B081116B824200C16EEF /* MemeCell.xib */,
@@ -474,7 +475,7 @@
 				C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */,
 				C0D67CC411592559009EA92B /* iTunesArtwork in Resources */,
 				C01AEE2C11D2C6AC007009AD /* AboutBox.xib in Resources */,
-				C053D3CB1165DA91001AC0B6 /* WithFriendsController.xib in Resources */,
+				C0FCF60111D3AC6F0006879C /* WithFriendsController.xib in Resources */,
 				6443B082116B824200C16EEF /* MemeCell.xib in Resources */,
 				C045C046116F43DA00BEDCCC /* camera-verysmall.png in Resources */,
 				C045C04C116F453000BEDCCC /* video-verysmall.png in Resources */,
@@ -589,6 +590,15 @@
 				C01AEE2D11D2C6B3007009AD /* Italian */,
 			);
 			name = AboutBox.xib;
+			sourceTree = "<group>";
+		};
+		C0FCF60011D3AC6F0006879C /* WithFriendsController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C053D3C91165DA91001AC0B6 /* English */,
+				C0FCF60211D3AC750006879C /* Italian */,
+			);
+			name = WithFriendsController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
