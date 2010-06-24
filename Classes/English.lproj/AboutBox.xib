@@ -162,7 +162,7 @@
 					<object class="IBUITextView" id="88654735">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 236}, {280, 55}}</string>
+						<string key="NSFrame">{{20, 231}, {280, 55}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -188,7 +188,7 @@
 					<object class="IBUITextView" id="473233409">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 323}, {280, 72}}</string>
+						<string key="NSFrame">{{20, 299}, {280, 96}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -200,9 +200,10 @@
 						<bool key="IBUICanCancelContentTouches">NO</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
 						<string type="base64-UTF8" key="IBUIText">TWVlbWkgaXMgwqkyMDA3LTIwMTAgaHR0cDovL21lZW1pLmNvbS4KVGhpcyBhcHBsaWNhdGlvbiBpcyDC
-qTIwMTAgR2lhY29tbyBUdWZhbm8gKGd0QGlsVG9mYS5pdCkKU29tZSBpY29ucyBhcmUgYnkgSm9zZXBo
-IFdhaW4gLyBnbHlwaGlzaC5jb20KUmV2ZXJzZSBnZW9sb2NhbGl6YXRpb24gaXMgdmlhIEdlb05hbWVz
-IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
+qTIwMTAgR2lhY29tbyBUdWZhbm8gKGd0QGlsVG9mYS5pdCkKQ29udGFpbnMgUmVnZXhLaXRMaXRlIC0g
+wqkgMjAwOC0yMDEwLCBKb2huIEVuZ2VsaGFydApTb21lIGljb25zIGFyZSBieSBKb3NlcGggV2FpbiAv
+IGdseXBoaXNoLmNvbQpSZXZlcnNlIGdlb2xvY2FsaXphdGlvbiBpcyB2aWEgR2VvTmFtZXMgKGh0dHA6
+Ly9nZW9uYW1lcy5vcmcpIHdlYnNlcnZpY2VzLg</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">10</double>
@@ -673,7 +674,7 @@ IChodHRwOi8vZ2VvbmFtZXMub3JnKSB3ZWJzZXJ2aWNlcy4</string>
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../Meemi.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../Meemi.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<bool key="EncodedWithXMLCoder">YES</bool>
