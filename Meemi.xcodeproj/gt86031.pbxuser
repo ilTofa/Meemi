@@ -31,7 +31,8 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = "Ad-Hoc";
+		activeArchitecturePreference = armv7;
+		activeBuildConfigurationName = Distribution;
 		activeExecutable = C01D86FB115141A100608D7E /* Meemi */;
 		activeSDKPreference = iphoneos4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
@@ -56,12 +57,8 @@
 			info,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 299089029;
-			PBXWorkspaceStateSaveDate = 299089029;
-		};
-		perUserProjectItems = {
-			C029AC3F11D3BEA9009E1B5C /* PBXTextBookmark */ = C029AC3F11D3BEA9009E1B5C /* PBXTextBookmark */;
-			C09E41BD11D3BC5800EC12A7 /* PBXTextBookmark */ = C09E41BD11D3BC5800EC12A7 /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 299178698;
+			PBXWorkspaceStateSaveDate = 299178698;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -190,16 +187,6 @@
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 		symbolName = malloc_error_break;
-	};
-	C029AC3F11D3BEA9009E1B5C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 738";
-		rLen = 0;
-		rLoc = 25937;
-		rType = 0;
-		vrLen = 2644;
-		vrLoc = 24603;
 	};
 	C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {
 		uiCtxt = {
@@ -340,9 +327,9 @@
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1300, 15145}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1300, 15223}}";
 			sepNavSelRange = "{25937, 0}";
-			sepNavVisRange = "{24603, 2644}";
+			sepNavVisRange = "{24605, 2642}";
 			sepNavWindowFrame = "{{265, 67}, {1085, 1109}}";
 		};
 	};
@@ -480,16 +467,6 @@
 		modificationTime = 299088728.423442;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
-	};
-	C09E41BD11D3BC5800EC12A7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 738";
-		rLen = 0;
-		rLoc = 25937;
-		rType = 0;
-		vrLen = 2605;
-		vrLoc = 24599;
 	};
 	C0B51D8711B94B22007C6662 /* UIImage+RoundedCorner.h */ = {
 		uiCtxt = {
