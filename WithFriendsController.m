@@ -529,9 +529,7 @@
 {
 	if(!barPresent)
 	{
-		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
-							  atScrollPosition:UITableViewScrollPositionTop 
-									  animated:NO];
+		[self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		self.tableView.tableHeaderView = self.theSearchBar;
 		barPresent = YES;
 		[self.theSearchBar becomeFirstResponder];
