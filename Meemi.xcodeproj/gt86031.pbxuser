@@ -34,7 +34,7 @@
 		activeArchitecturePreference = armv7;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = C01D86FB115141A100608D7E /* Meemi */;
-		activeSDKPreference = iphonesimulator4.0;
+		activeSDKPreference = iphonesimulator4.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Meemi */,
@@ -57,12 +57,12 @@
 			info,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 299805955;
-			PBXWorkspaceStateSaveDate = 299805955;
+			PBXPerProjectTemplateStateSaveDate = 307294704;
+			PBXWorkspaceStateSaveDate = 307294704;
 		};
 		perUserProjectItems = {
-			C0CA169E11DEACD1002E65FF /* PBXTextBookmark */ = C0CA169E11DEACD1002E65FF /* PBXTextBookmark */;
-			C0CA16D611DEB108002E65FF /* PBXTextBookmark */ = C0CA16D611DEB108002E65FF /* PBXTextBookmark */;
+			C070FF8E11ECC3B600E49C5E /* PBXTextBookmark */ = C070FF8E11ECC3B600E49C5E /* PBXTextBookmark */;
+			C0A42CD312511AD000FB5A3F /* PBXTextBookmark */ = C0A42CD312511AD000FB5A3F /* PBXTextBookmark */;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -331,9 +331,9 @@
 	};
 	C053D3C81165DA91001AC0B6 /* WithFriendsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1026, 15756}}";
-			sepNavSelRange = "{12885, 0}";
-			sepNavVisRange = "{10774, 2381}";
+			sepNavIntBoundsRect = "{{0, 0}, {1076, 15613}}";
+			sepNavSelRange = "{29426, 458}";
+			sepNavVisRange = "{27860, 2751}";
 			sepNavWindowFrame = "{{220, 69}, {1085, 1109}}";
 		};
 	};
@@ -351,9 +351,19 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = Meemi;
-		modificationTime = 299806931.211564;
+		modificationTime = 299806931.2115638;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
+	};
+	C070FF8E11ECC3B600E49C5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 866";
+		rLen = 458;
+		rLoc = 29426;
+		rType = 0;
+		vrLen = 2752;
+		vrLoc = 27859;
 	};
 	C078B4A911BE8EB20048BC70 /* Meme.h */ = {
 		uiCtxt = {
@@ -361,6 +371,11 @@
 			sepNavSelRange = "{430, 16}";
 			sepNavVisRange = "{0, 1910}";
 			sepNavWindowFrame = "{{15, 64}, {1085, 1109}}";
+		};
+	};
+	C07ED92B1151429000311726 /* Icon.png */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{71, 187}, {1088, 986}}";
 		};
 	};
 	C07ED9311151431800311726 /* MeemiWebAppController.m */ = {
@@ -381,9 +396,9 @@
 	};
 	C07ED93B1151470A00311726 /* SettingsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1166, 2535}}";
-			sepNavSelRange = "{881, 0}";
-			sepNavVisRange = "{3979, 1760}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 2535}}";
+			sepNavSelRange = "{3043, 8}";
+			sepNavVisRange = "{2202, 1610}";
 			sepNavWindowFrame = "{{107, 108}, {1225, 1040}}";
 		};
 	};
@@ -471,6 +486,16 @@
 		modificationTime = 299806931.211828;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
+	};
+	C0A42CD312511AD000FB5A3F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
+		name = "WithFriendsController.m: 866";
+		rLen = 458;
+		rLoc = 29426;
+		rType = 0;
+		vrLen = 2751;
+		vrLoc = 27860;
 	};
 	C0B51D8711B94B22007C6662 /* UIImage+RoundedCorner.h */ = {
 		uiCtxt = {
@@ -654,26 +679,6 @@
 			sepNavWindowFrame = "{{127, 62}, {1099, 1107}}";
 		};
 	};
-	C0CA169E11DEACD1002E65FF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 383";
-		rLen = 0;
-		rLoc = 12885;
-		rType = 0;
-		vrLen = 2249;
-		vrLoc = 11683;
-	};
-	C0CA16D611DEB108002E65FF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */;
-		name = "WithFriendsController.m: 383";
-		rLen = 0;
-		rLoc = 12885;
-		rType = 0;
-		vrLen = 2381;
-		vrLoc = 10774;
-	};
 	C0D67CBE11592261009EA92B /* Entitlements.plist */ = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 66}, {1099, 1107}}";
@@ -753,9 +758,9 @@
 	};
 	C0E620421152E36800E6C079 /* Meemi.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 24232}}";
-			sepNavSelRange = "{28598, 28}";
-			sepNavVisRange = "{27097, 2757}";
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 25532}}";
+			sepNavSelRange = "{4143, 118}";
+			sepNavVisRange = "{3132, 1776}";
 			sepNavWindowFrame = "{{146, 65}, {1191, 1112}}";
 		};
 	};

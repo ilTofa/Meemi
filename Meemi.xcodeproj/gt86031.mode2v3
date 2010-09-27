@@ -289,10 +289,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>C0CA16D611DEB108002E65FF</string>
+						<string>C0A42CD312511AD000FB5A3F</string>
 						<key>history</key>
 						<array>
-							<string>C0CA169E11DEACD1002E65FF</string>
+							<string>C070FF8E11ECC3B600E49C5E</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -388,13 +388,11 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>59</integer>
-											<integer>58</integer>
 											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 409}, {433, 611}}</string>
+									<string>{{0, 0}, {433, 611}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -417,7 +415,7 @@
 									<real>43</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>1457 481 450 697 0 0 1920 1178 </string>
+								<string>1448 456 450 697 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -556,8 +554,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>C0CA16B411DEAD08002E65FF</string>
-				<string>C0CA16B511DEAD08002E65FF</string>
+				<string>C0A42C851250F20A00FB5A3F</string>
+				<string>C0A42C861250F20A00FB5A3F</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -577,7 +575,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>299806984.24733502</real>
+	<real>307305168.07804602</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -594,16 +592,13 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>C0CA16C811DEAE79002E65FF</string>
-		<string>C0CA16BE11DEAD08002E65FF</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi.xcodeproj</string>
 		<string>C046AF1711DE32CD00AE90B2</string>
+		<string>/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>1457 481 450 697 0 0 1920 1178 </string>
+	<string>1448 456 450 697 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -817,7 +812,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>C0CA16B211DEAD08002E65FF</string>
+				<string>C0A42C881250F20A00FB5A3F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -939,13 +934,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>C0CA16B711DEAD08002E65FF</string>
+				<string>C0A42C9C1251179F00FB5A3F</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>C0CA16B811DEAD08002E65FF</string>
-				<string>C0CA16B911DEAD08002E65FF</string>
-				<string>C0CA16BA11DEAD08002E65FF</string>
-				<string>C0CA16BB11DEAD08002E65FF</string>
-				<string>C0CA16BC11DEAD08002E65FF</string>
+				<string>C0A42C9D1251179F00FB5A3F</string>
+				<string>C0A42C9E1251179F00FB5A3F</string>
+				<string>C0A42C9F1251179F00FB5A3F</string>
+				<string>C0A42CA01251179F00FB5A3F</string>
+				<string>C0A42CA11251179F00FB5A3F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -972,12 +967,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>&lt;No Editor&gt;</string>
+										<string>Meemi.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1033,8 +1030,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>C01AEDA711D2BF51007009AD</string>
-				<string>C01AEDA811D2BF51007009AD</string>
+				<string>C0FF501E11EB76A000353206</string>
+				<string>C0FF501F11EB76A000353206</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1043,7 +1040,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
