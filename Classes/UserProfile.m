@@ -97,7 +97,13 @@
 	location.text = theUser.current_location;
 	info.text = theUser.info;
 	// Image
-	[theAvatar setBackgroundImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
+	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theUser.avatar] CGImage]
+													scale:[[UIScreen mainScreen] scale]
+											  orientation:UIImageOrientationUp];
+	DLog(@"profile image scale: %f", tempImage.scale);
+	[theAvatar setBackgroundImage:tempImage forState:UIControlStateNormal];
+	[tempImage release];
+//	[theAvatar setBackgroundImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
 	[self infoSwapped];
 }
 

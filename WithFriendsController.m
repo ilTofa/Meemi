@@ -16,6 +16,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RegexKitLite.h"
 
+#import "GANTracker.h"
+
 @implementation WithFriendsController
 
 @synthesize memeCell, predicateString, replyTo, replyScreenName, replyQuantity;
@@ -78,7 +80,7 @@
 	self.headerArrow.text = @" ";
 	[UIView commitAnimations];	
 	[self.laRuota startAnimating];
-	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]]
+	[self.reloadButtonInBreakTable setImage:[UIImage imageNamed:@"Nothing"]
 								   forState:UIControlStateNormal];
 	[self.laPiccolaRuota startAnimating];
 }
@@ -92,7 +94,7 @@
 	[UIView commitAnimations];	
 	[self.laRuota stopAnimating];
 	[self.laPiccolaRuota stopAnimating];
-	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]]
+	[self.reloadButtonInBreakTable setImage:[UIImage imageNamed:@"02-redo"]
 								   forState:UIControlStateNormal];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
@@ -107,7 +109,7 @@
 	[UIView commitAnimations];	
 	[self.laRuota stopAnimating];
 	[self.laPiccolaRuota stopAnimating];
-	[self.reloadButtonInBreakTable setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"02-redo" ofType:@"png"]]
+	[self.reloadButtonInBreakTable setImage:[UIImage imageNamed:@"02-redo"]
 								   forState:UIControlStateNormal];
 	self.headerLabel.text = NSLocalizedString(@"Pull down to Reload", @"");
 	self.headerArrow.text = @"☟";
@@ -527,8 +529,10 @@
 
 -(IBAction)searchClicked:(id)sender
 {
+	NSError *error;
 	if(!barPresent)
 	{
+		[[GANTracker sharedTracker] trackPageview:@"/search_in" withError:&error];
 		[self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		self.tableView.tableHeaderView = self.theSearchBar;
 		barPresent = YES;
@@ -548,9 +552,12 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	NSError *error;
 	DLog(@"searchBarSearchButtonClicked here");
 	DLog(@"text to search: \"%@\"", searchBar.text);
 	DLog(@"Scope is %d", searchBar.selectedScopeButtonIndex);
+	NSString *temp = [NSString stringWithFormat:@"searched_%d", searchBar.selectedScopeButtonIndex];
+	[[GANTracker sharedTracker] trackPageview:temp withError:&error];
 	self.searchString = searchBar.text;
 	self.searchScope = searchBar.selectedScopeButtonIndex;
 	[searchBar resignFirstResponder];
@@ -572,23 +579,23 @@
 	DLog(@"nib loaded. headerView is now: %@", self.headerView);
 	
 	// "Cache" the UIImages
-	imgCamera = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera-verysmall" ofType:@"png"]];
+	imgCamera = [UIImage imageNamed:@"camera-verysmall"];
 	[imgCamera retain];
-	imgVideo = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"video-verysmall" ofType:@"png"]];
+	imgVideo = [UIImage imageNamed:@"video-verysmall"];
 	[imgVideo retain];
-	imgLink= [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"link-verysmall" ofType:@"png"]];
+	imgLink= [UIImage imageNamed:@"link-verysmall"];
 	[imgLink retain];
-	imgBlackFlag = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BlackFlag" ofType:@"png"]];
+	imgBlackFlag = [UIImage imageNamed:@"BlackFlag"];
 	[imgBlackFlag retain];
-	imgWhiteFlag = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WhiteFlag" ofType:@"png"]];
+	imgWhiteFlag = [UIImage imageNamed:@"WhiteFlag"];
 	[imgWhiteFlag retain];
-	imgSemplice = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"memeSemplice" ofType:@"png"]];
+	imgSemplice = [UIImage imageNamed:@"memeSemplice"];
 	[imgSemplice retain];
-	imgNothing = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Nothing" ofType:@"png"]];
+	imgNothing = [UIImage imageNamed:@"Nothing"];
 	[imgNothing retain];
-	imgLock = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-lock2" ofType:@"png"]];
+	imgLock = [UIImage imageNamed:@"icon-lock2"];
 	[imgLock retain];
-	imgStar = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"star" ofType:@"png"]];
+	imgStar = [UIImage imageNamed:@"star"];
 	[imgStar retain];
 	
 	// Setup the Meemi "agent"
@@ -609,27 +616,27 @@
 		[self loadMemePage];
 		
 		// Add a left button for the settings
-		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"20-gear2" ofType:@"png"]] 
+		UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"20-gear2"] 
 																		 style:UIBarButtonItemStylePlain 
 																		target:self 
 																		action:@selector(settingsView)];
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
-		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Checkmark" ofType:@"png"]] 
+		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Checkmark"] 
 																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(markReadMemes)];
 		[readB setWidth:kButtonWidth];
-		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"magnifying-glass" ofType:@"png"]] 
+		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"magnifying-glass"] 
 																  style:UIBarButtonItemStylePlain 
 																 target:self 
 																 action:@selector(searchClicked:)];
 		[srchB setWidth:kButtonWidth];
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		NSArray *tempStrings = [NSArray arrayWithObjects:
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HomeForSegmented" ofType:@"png"]],
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LockForSegmented" ofType:@"png"]],
-								[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserForSegmented" ofType:@"png"]]
+								[UIImage imageNamed:@"HomeForSegmented"],
+								[UIImage imageNamed:@"LockForSegmented"],
+								[UIImage imageNamed:@"UserForSegmented"]
 								, nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -664,17 +671,17 @@
 		// Toolbar buttons (only if not private)
 #define kThreadButtonWidth 75.0
 		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StartForSegmented" ofType:@"png"]] 
+		UIBarButtonItem *specialB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"StartForSegmented"] 
 																   style:UIBarButtonItemStylePlain 
 																  target:self
 																  action:@selector(toggleSpecial:)];
 		[specialB setWidth:kThreadButtonWidth];
-		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FavoriteButton" ofType:@"png"]] 
+		UIBarButtonItem *favB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FavoriteButton"] 
 																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(toggleFavorite:)];
 		[favB setWidth:kThreadButtonWidth];
-		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ReshareButton" ofType:@"png"]] 
+		UIBarButtonItem *shareB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReshareButton"] 
 																  style:UIBarButtonItemStylePlain 
 																 target:self
 																 action:@selector(toggleReshare:)];
@@ -875,7 +882,11 @@
 	
 	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
-	[tempButton setBackgroundImage:[UIImage imageWithData:theFetchedMeme.user.avatar_44] forState:UIControlStateNormal];
+	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedMeme.user.avatar_44] CGImage] 
+													scale:[[UIScreen mainScreen] scale]
+											  orientation:UIImageOrientationUp];
+	[tempButton setBackgroundImage:tempImage forState:UIControlStateNormal];
+	[tempImage release];
 	[tempButton setTitle:[NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row] forState:UIControlStateNormal];
 	
 	// Reply and disclosure
@@ -1003,10 +1014,12 @@
 
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	[Meemi markMemeRead:selectedMeme.id];
-		
+	
+	NSError *error;	
 	// if we are at a meme list level (we need it for reply) just push another controller, same kind of this one. :)
 	if(self.replyTo == nil)
 	{
+		[[GANTracker sharedTracker] trackPageview:@"/enter_detail" withError:&error];
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
 		controller.replyScreenName = selectedMeme.screen_name;
@@ -1020,6 +1033,7 @@
 		// If meme is a link, simply push a browser Windows on it.
 		if([selectedMeme.meme_type isEqualToString:@"link"])
 		{
+			[[GANTracker sharedTracker] trackPageview:@"/follow_link" withError:&error];
 			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 			controller.urlToBeLoaded = [selectedMeme.link stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
@@ -1028,6 +1042,7 @@
 		}
 		else if([selectedMeme.meme_type isEqualToString:@"image"])
 		{
+			[[GANTracker sharedTracker] trackPageview:@"/see_image" withError:&error];
 			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 			controller.urlToBeLoaded = [selectedMeme.image_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
@@ -1040,6 +1055,7 @@
 			// Check if the URl is valid
 			if([NSURL URLWithString:selectedMeme.video])
 			{	// URL is valid
+				[[GANTracker sharedTracker] trackPageview:@"/see_video" withError:&error];
 				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 				controller.urlToBeLoaded = [selectedMeme.video stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 				[self.navigationController pushViewController:controller animated:YES];
@@ -1048,6 +1064,7 @@
 			}
 			else
 			{
+				[[GANTracker sharedTracker] trackPageview:@"/cannot_show_video" withError:&error];
 				// tell user that the video cannot be shown
 				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 																	message:NSLocalizedString(@"This video cannot be shown on this device", @"")
@@ -1064,6 +1081,7 @@
 			NSString *urlRegex = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";	
 			if([selectedMeme.content isMatchedByRegex:urlRegex])
 			{
+				[[GANTracker sharedTracker] trackPageview:@"/enter_via_regex" withError:&error];
 				NSArray *matchedURLsArray = [selectedMeme.content componentsMatchedByRegex:urlRegex];
 				DLog(@"matchedURLsArray: %@", matchedURLsArray);
 				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];

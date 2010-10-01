@@ -18,7 +18,7 @@
 {
 	// Create a graphics image context
 	CGSize newSize = CGSizeMake(sideSize, sideSize);
-	UIGraphicsBeginImageContext(newSize);
+	UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
 	// Tell the old image to draw in this new context, with the desired size
 	[self drawInRect:CGRectMake(0, 0, sideSize, sideSize)];
 	// Get the new image from the context
@@ -31,10 +31,11 @@
 -(UIImage *)squaredThumbnail:(int)sideSize
 {
 	// Create a graphics image context
-	CGSize newSize = CGSizeMake(sideSize, sideSize);
-	UIGraphicsBeginImageContext(newSize);
+//	CGSize newSize = CGSizeMake(sideSize, sideSize);
+	CGSize newSize = CGSizeMake(sideSize * [UIScreen mainScreen].scale, sideSize * [UIScreen mainScreen].scale);
+	UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
 	// Tell the old image to draw in this new context, with the desired size
-	[self drawInRect:CGRectMake(0, 0, sideSize, sideSize)];
+	[self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
 	// Get the new image from the context
 	UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
 	// End the context
@@ -48,8 +49,11 @@
 - (UIImage *)roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize 
 {
     // If the image does not have an alpha layer, add one
-    UIImage *image = [self imageWithAlpha];
-    
+//    UIImage *image = [self imageWithAlpha];
+    UIImage *image = self;
+
+	DLog(@"image size: %f, %f", image.size.width, image.size.height);
+	
     // Build a context that's the same dimensions as the new size
     CGContextRef context = CGBitmapContextCreate(NULL,
                                                  image.size.width,
@@ -76,7 +80,8 @@
     CGContextRelease(context);
     
     // Create a UIImage from the CGImage
-    UIImage *roundedImage = [UIImage imageWithCGImage:clippedImage];
+    UIImage *roundedImage;
+	roundedImage = [UIImage imageWithCGImage:clippedImage scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
     CGImageRelease(clippedImage);
     
     return roundedImage;
@@ -131,8 +136,10 @@
     
     // The bitsPerComponent and bitmapInfo values are hard-coded to prevent an "unsupported parameter combination" error
     CGContextRef offscreenContext = CGBitmapContextCreate(NULL,
-                                                          width,
-                                                          height,
+//														  width * [UIScreen mainScreen].scale,
+//														  height * [UIScreen mainScreen].scale,
+														  width,
+														  height,
                                                           8,
                                                           0,
                                                           CGImageGetColorSpace(imageRef),
@@ -141,7 +148,8 @@
     // Draw the image into the context and retrieve the new image, which will now have an alpha layer
     CGContextDrawImage(offscreenContext, CGRectMake(0, 0, width, height), imageRef);
     CGImageRef imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext);
-    UIImage *imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha];
+    UIImage *imageWithAlpha;
+	imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
     
     // Clean up
     CGContextRelease(offscreenContext);

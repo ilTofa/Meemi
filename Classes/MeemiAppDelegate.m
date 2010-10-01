@@ -8,7 +8,7 @@
 
 #import "MeemiAppDelegate.h"
 #import "WithFriendsController.h"
-// #import "FlurryAPI.h"
+#import "GANTracker.h"
 
 @implementation MeemiAppDelegate
 
@@ -183,9 +183,23 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
-//	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-//	[FlurryAPI startSession:@"K26CYXQMYFKM84B13825"];
-//	
+	[[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-1498393-6"
+										   dispatchPeriod:30
+												 delegate:nil];
+	NSError *error;
+	if (![[GANTracker sharedTracker] trackEvent:@"Meemi"
+										 action:@"app_startup"
+										  label:nil
+										  value:-1
+									  withError:&error]) {
+		NSLog(@"Error in [GANTracker sharedTracker] trackEvent:");
+	}
+	
+	if (![[GANTracker sharedTracker] trackPageview:@"/meemi_entry_point"
+										 withError:&error]) 
+	{
+		NSLog(@"Error in GANTracker trackPageview");
+	}	
     
     [window addSubview:[navigationController view]];
 	
@@ -245,6 +259,8 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)dealloc 
 {
+	[[GANTracker sharedTracker] stopTracker];
+
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];

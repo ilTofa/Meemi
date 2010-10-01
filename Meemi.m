@@ -978,8 +978,12 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
-				theOne.avatar_44 = UIImagePNGRepresentation([[[UIImage imageWithData:[netRequest responseData]] 
-															  squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
+				UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
+																scale:[[UIScreen mainScreen] scale]
+														  orientation:UIImageOrientationUp];
+				theOne.avatar_44 = UIImagePNGRepresentation([[tempImage squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
+				DLog(@"1->image size: %f, %f. Scale: %f", tempImage.size.width, tempImage.size.height, tempImage.scale);
+				[tempImage release];
 			}		
 			else {
 				ALog(@"Error %@ in getting %@", [error localizedDescription], temp);
@@ -1034,8 +1038,11 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
-				theOne.avatar_44 = UIImagePNGRepresentation([[[UIImage imageWithData:[netRequest responseData]] 
-															  squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
+				UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
+																scale:[[UIScreen mainScreen] scale]
+														  orientation:UIImageOrientationUp];				
+				theOne.avatar_44 = UIImagePNGRepresentation([[tempImage squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
+				[tempImage release];
 			}		
 			else {
 				ALog(@"Error %@ in getting %@", [error localizedDescription], theOne.avatar_url);
