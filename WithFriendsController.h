@@ -69,6 +69,7 @@ typedef enum {
 -(IBAction)doNothing:(id)sender;
 
 -(void)loadMemePage;
+-(void)markReadMemes;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *memeCell;
 @property (nonatomic, assign) IBOutlet UIView *headerView;

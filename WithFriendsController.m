@@ -11,6 +11,7 @@
 #import "Meme.h"
 #import "MemeOnWeb.h"
 #import "UserProfile.h"
+#import "UserDetail.h"
 #import "SettingsController.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -147,6 +148,13 @@
 			[detailViewController release];		
 		}
 	}
+}
+
+-(void)loadUserList
+{
+	UserDetail *userListController = [[UserDetail alloc] initWithNibName:@"UserDetail" bundle:nil];
+	[self.navigationController pushViewController:userListController animated:YES];
+	[userListController release];
 }
 
 -(IBAction)doNothing:(id)sender
@@ -349,6 +357,7 @@
 	if(self.replyTo != nil)
 		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName total:[self.replyQuantity intValue]];
 	else 
+		// TODO: reload the "right thing"
 		[ourPersonalMeemi getMemes];
 }
 
@@ -622,10 +631,10 @@
 																		action:@selector(settingsView)];
 		self.navigationItem.leftBarButtonItem = reloadButton;
 		[reloadButton release];
-		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Checkmark"] 
+		UIBarButtonItem *readB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UsersList"] 
 																  style:UIBarButtonItemStylePlain 
 																 target:self
-																 action:@selector(markReadMemes)];
+																 action:@selector(loadUserList)];
 		[readB setWidth:kButtonWidth];
 		UIBarButtonItem *srchB = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"magnifying-glass"] 
 																  style:UIBarButtonItemStylePlain 
@@ -648,11 +657,11 @@
 			[theSegment setWidth:kButtonWidth forSegmentAtIndex:i];
 		[theSegment addTarget:self action:@selector(filterSelected) forControlEvents:UIControlEventValueChanged];
 		NSArray *toolbarItems = [NSArray arrayWithObjects:
-								 readB,
+								 srchB,
 								 spacer,
 								 [[[UIBarButtonItem alloc] initWithCustomView:theSegment] autorelease], 
 								 spacer,
-								 srchB,
+								 readB,
 								 nil];
 		self.toolbarItems = toolbarItems;
 		[theSegment release];

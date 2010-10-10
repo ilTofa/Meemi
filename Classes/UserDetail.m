@@ -28,8 +28,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-	self.view.backgroundColor = [UIColor colorWithRed:0.67188 green:0.81641 blue:0.95703 alpha:1.0];
-
+	self.title = @"Meemers";
+	self.parentViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondino.png"]];
+	self.tableView.backgroundColor = [UIColor clearColor];	
+	
 	NSManagedObjectContext *context = [Meemi managedObjectContext];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Configure the request's entity, and optionally its predicate.
@@ -61,7 +63,6 @@
 		[theAlert show];
 	}
 }
-
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -136,7 +137,11 @@
     }
     User *theFetchedUser = [theUserList objectAtIndexPath:indexPath];
 
-    cell.imageView.image = [UIImage imageWithData:theFetchedUser.avatar];
+	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedUser.avatar] CGImage] 
+													scale:[[UIScreen mainScreen] scale]
+											  orientation:UIImageOrientationUp];
+    cell.imageView.image = tempImage;
+	[tempImage release];
 	cell.textLabel.text = theFetchedUser.screen_name;
 	cell.detailTextLabel.text = theFetchedUser.real_name;
     
@@ -217,9 +222,12 @@
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload 
+{
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+	theUserList.delegate = nil;
+	[theUserList release];
+	theUserList = nil;
 }
 
 
