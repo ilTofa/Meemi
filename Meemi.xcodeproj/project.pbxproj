@@ -54,6 +54,8 @@
 		C053D3CA1165DA91001AC0B6 /* WithFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053D3C81165DA91001AC0B6 /* WithFriendsController.m */; };
 		C0574FBA11A67BD700572B73 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FB911A67BD700572B73 /* Checkmark.png */; };
 		C0574FC411A67CD300572B73 /* StartForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C0574FC311A67CD300572B73 /* StartForSegmented.png */; };
+		C05D2BE712622B370080416C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05D2BE312622AF60080416C /* Security.framework */; };
+		C05D2C1112622C770080416C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05D2C1012622C770080416C /* logo@2x.png */; };
 		C06512531161F4E300B68198 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06512521161F4E300B68198 /* CoreData.framework */; };
 		C078B4AB11BE8EB20048BC70 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = C078B4AA11BE8EB20048BC70 /* Meme.m */; };
 		C07ED92C1151429000311726 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ED92B1151429000311726 /* Icon.png */; };
@@ -100,7 +102,6 @@
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
 		C0DDFCCE11CFAA2400C2AEA2 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */; };
-		C0DDFCD411CFAD2600C2AEA2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DDFCD311CFAD2600C2AEA2 /* Security.framework */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -181,6 +182,8 @@
 		C053D3C91165DA91001AC0B6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WithFriendsController.xib; sourceTree = "<group>"; };
 		C0574FB911A67BD700572B73 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		C0574FC311A67CD300572B73 /* StartForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartForSegmented.png; sourceTree = "<group>"; };
+		C05D2BE312622AF60080416C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C05D2C1012622C770080416C /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		C06512521161F4E300B68198 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C078B4A911BE8EB20048BC70 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
 		C078B4AA11BE8EB20048BC70 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
@@ -235,7 +238,6 @@
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		C0DDFCCC11CFAA2400C2AEA2 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
-		C0DDFCD311CFAD2600C2AEA2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/iphoneos3.1/System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -278,9 +280,9 @@
 				C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */,
 				C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */,
 				C06512531161F4E300B68198 /* CoreData.framework in Frameworks */,
-				C0DDFCD411CFAD2600C2AEA2 /* Security.framework in Frameworks */,
 				C025575D125642C500FE2956 /* libGoogleAnalytics.a in Frameworks */,
 				C02557661256432500FE2956 /* libsqlite3.0.dylib in Frameworks */,
+				C05D2BE712622B370080416C /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +338,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C02557651256432500FE2956 /* libsqlite3.0.dylib */,
 			);
 			name = Meemi;
 			sourceTree = "<group>";
@@ -376,7 +377,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0DDFCD311CFAD2600C2AEA2 /* Security.framework */,
+				C05D2BE312622AF60080416C /* Security.framework */,
+				C02557651256432500FE2956 /* libsqlite3.0.dylib */,
 				C06512521161F4E300B68198 /* CoreData.framework */,
 				C0A1D54F11582F1200071314 /* CoreLocation.framework */,
 				C0E620491152E4E100E6C079 /* MobileCoreServices.framework */,
@@ -461,6 +463,7 @@
 				C091860E11542EC400C2C5A4 /* ToolBar-Meemi.png */,
 				C0A42CA21251198C00FB5A3F /* ToolBar-Meemi@2x.png */,
 				C091860A11542D0D00C2C5A4 /* logo.png */,
+				C05D2C1012622C770080416C /* logo@2x.png */,
 				C07ED92B1151429000311726 /* Icon.png */,
 				C0A42C8E1251174100FB5A3F /* Icon-Small-50.png */,
 				C0A42C8F1251174100FB5A3F /* Icon-Small.png */,
@@ -645,6 +648,7 @@
 				C0A42CCC12511A4700FB5A3F /* UserForSegmented@2x.png in Resources */,
 				C03A6C771261BF9B0009557D /* UsersList.png in Resources */,
 				C03A6C781261BF9B0009557D /* UsersList@2x.png in Resources */,
+				C05D2C1112622C770080416C /* logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

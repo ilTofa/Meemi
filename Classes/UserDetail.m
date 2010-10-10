@@ -10,6 +10,8 @@
 #import "User.h"
 #import "UserProfile.h"
 
+#import "GANTracker.h"
+
 @implementation UserDetail
 
 
@@ -20,9 +22,11 @@
 {
 	if(!reloadInProgress)
 	{
+		NSError *error;
 		DLog(@"starting avatar update");
 		reloadInProgress = YES;
 		[ourPersonalMeemi allAvatarsReload];
+		[[GANTracker sharedTracker] trackPageview:@"/avatarsReloaded" withError:&error];
 	}
 	else 
 	{
@@ -253,13 +257,16 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
     // Navigation logic may go here. Create and push another view controller.
 	
 	UserProfile *detailViewController = [[UserProfile alloc] initWithNibName:@"UserProfile" bundle:nil];
 	detailViewController.theUser = [theUserList objectAtIndexPath:indexPath];
 	// Pass the selected object to the new view controller.
 	[self.navigationController pushViewController:detailViewController animated:YES];
+	NSError *error;
+	[[GANTracker sharedTracker] trackPageview:@"/userFromList" withError:&error];
 	[detailViewController release];	
 }
 
