@@ -69,12 +69,17 @@
 			break;
 		default:
 			// dates...
-			dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setLocale:[NSLocale currentLocale]];
-			[dateFormatter setDateStyle:NSDateFormatterLongStyle];
-			[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-			birthday = [dateFormatter stringFromDate:theUser.birth];
-			[dateFormatter release];			
+			if(theUser.birth)
+			{
+				dateFormatter = [[NSDateFormatter alloc] init];
+				[dateFormatter setLocale:[NSLocale currentLocale]];
+				[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+				[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+				birthday = [dateFormatter stringFromDate:theUser.birth];
+				[dateFormatter release];			
+			}
+			else
+				birthday = @"";
 			info.text = [NSString stringWithFormat:NSLocalizedString(@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@", @""),
 						 birthday,
 						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],

@@ -22,7 +22,7 @@
 	{
 		DLog(@"starting avatar update");
 		reloadInProgress = YES;
-		[ourPersonalMeemi updateAvatars:YES];
+		[ourPersonalMeemi allAvatarsReload];
 	}
 	else 
 	{

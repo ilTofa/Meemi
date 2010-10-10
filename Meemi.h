@@ -194,6 +194,7 @@ typedef enum
 -(void)unfollowUser:(NSString *)user;
 
 -(BOOL)parse:(NSData *)responseData;
+-(void)allAvatarsReload;
 -(void)updateAvatars:(BOOL)forcedReload;
 -(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID;
 

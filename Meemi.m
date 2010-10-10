@@ -626,7 +626,10 @@ static int replyPageSize = 20;
 	if([elementName isEqualToString:@"current_location"])
 		theUser.current_location = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if([elementName isEqualToString:@"real_name"])
+	{
 		theUser.real_name = [currentStringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		DLog(@"Real name loaded: %@", theUser.real_name);
+	}
 	if([elementName isEqualToString:@"birth"])
 	{
 		NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -1087,7 +1090,7 @@ static int replyPageSize = 20;
 	[theQueue setMaxConcurrentOperationCount:1];
 	DLog(@"Loading NSOperationQueue in updateAvatars:%@", (forcedReload) ? @"YES" : @"NO");
 	[self nowBusy];
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	for(NSString *newUser in newUsersQueue)
 	{
 		NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
@@ -1108,6 +1111,30 @@ static int replyPageSize = 20;
 		[newUsersQueue release];
 		newUsersQueue = nil;
 	}
+}
+
+-(void)allAvatarsReload
+{
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	NSError *error;
+	NSArray *fetchResults = [managedObjectContext executeFetchRequest:request error:&error];
+	if (fetchResults != nil && [fetchResults count] != 0)
+	{
+		// Load all screen_names in newUserQueue (so to force update as they were new)
+		if(newUsersQueue)
+		{
+			[newUsersQueue release];
+			newUsersQueue = nil;
+		}
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:[fetchResults count]];		
+		for (User *theOne in fetchResults) 
+			[newUsersQueue addObject:theOne.screen_name];
+	}
+	[request release];
+	// now load them
+	[self updateAvatars:YES];
 }
 
 -(void)loadAvatar:(NSString *)screen_name
