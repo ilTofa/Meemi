@@ -7,7 +7,6 @@
 //
 
 #import "UserDetail.h"
-#import "Meemi.h"
 #import "User.h"
 #import "UserProfile.h"
 
@@ -17,6 +16,46 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (void)reloadAvatars
+{
+	if(!reloadInProgress)
+	{
+		DLog(@"starting avatar update");
+		reloadInProgress = YES;
+		[ourPersonalMeemi updateAvatars:YES];
+	}
+	else 
+	{
+		DLog(@"reloadAvatars still in progress. Request ignored.");
+	}
+
+}
+
+#pragma mark MeemiDelegate
+
+-(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
+{
+	if(error != nil)
+	{
+		NSString *theMessage = [NSString stringWithFormat:NSLocalizedString(@"Error loading data: %@. Please try again later", @""),
+								[error localizedDescription]];
+		UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:@"Error"
+															message:theMessage
+														   delegate:nil
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil] 
+								 autorelease];
+		[theAlert show];
+	}
+	DLog(@"Avatar update terminated *with errors*");
+	reloadInProgress = NO;
+}
+
+-(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result
+{
+	DLog(@"Avatar update terminated");
+	reloadInProgress = NO;
+}
 
 - (void)viewDidLoad
 {
@@ -62,6 +101,18 @@
 								 autorelease];
 		[theAlert show];
 	}
+	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+																				  target:self 
+																				  action:@selector(reloadAvatars)];
+	self.navigationItem.rightBarButtonItem = reloadButton;
+	[reloadButton release];
+
+	// Setup the Meemi "agent"
+	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
+	if(!ourPersonalMeemi)
+		ALog(@"Meemi session init failed. Shit...");
+	ourPersonalMeemi.delegate = self;
+	reloadInProgress = NO;
 }
 
 /*
@@ -134,10 +185,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     User *theFetchedUser = [theUserList objectAtIndexPath:indexPath];
 
-	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedUser.avatar] CGImage] 
+	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedUser.avatar_44] CGImage] 
 													scale:[[UIScreen mainScreen] scale]
 											  orientation:UIImageOrientationUp];
     cell.imageView.image = tempImage;
@@ -228,6 +280,10 @@
 	theUserList.delegate = nil;
 	[theUserList release];
 	theUserList = nil;
+	
+	ourPersonalMeemi.delegate = nil;
+	[ourPersonalMeemi release];
+	ourPersonalMeemi = nil;
 }
 
 

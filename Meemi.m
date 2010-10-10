@@ -591,7 +591,7 @@ static int replyPageSize = 20;
 		// now call update avatars (if needed, else get back to delegate)
 		[self nowFree];
 		if([newUsersQueue count] != 0)
-			[self updateAvatars];
+			[self updateAvatars:NO];
 		else // get back with watermark, before mark session free and release all.
 		{
 			[localManagedObjectContext release];
@@ -946,7 +946,7 @@ static int replyPageSize = 20;
 	[self nowFree];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	// OK. Now get avatar images.
-	[self updateAvatars];
+	[self updateAvatars:NO];
 }
 
 -(void)getAvatarImageIfNeeded:(NSString *)userScreenName
@@ -1082,16 +1082,17 @@ static int replyPageSize = 20;
 	[self.delegate meemi:self.currentRequest didFinishWithResult:MmOperationOK];
 }
 
--(void)updateAvatars
+-(void)updateAvatars:(BOOL)forcedReload
 {
 	[theQueue setMaxConcurrentOperationCount:1];
-	DLog(@"Loading NSOperationQueue in updateAvatars");
+	DLog(@"Loading NSOperationQueue in updateAvatars:%@", (forcedReload) ? @"YES" : @"NO");
 	[self nowBusy];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	for(NSString *newUser in newUsersQueue)
 	{
 		NSInvocationOperation *theOp = [[[NSInvocationOperation alloc] initWithTarget:self 
-																			 selector:@selector(getAvatarImageIfNeeded:) 
+																			 selector:(forcedReload) ? @selector(getAvatarImage:)
+																									 : @selector(getAvatarImageIfNeeded:)
 																			   object:newUser] autorelease];
 		[theQueue addOperation:theOp];
 	}

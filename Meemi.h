@@ -194,7 +194,7 @@ typedef enum
 -(void)unfollowUser:(NSString *)user;
 
 -(BOOL)parse:(NSData *)responseData;
--(void)updateAvatars;
+-(void)updateAvatars:(BOOL)forcedReload;
 -(BOOL)isMemeAlreadyExisting:(NSNumber *)memeID;
 
 @end
@@ -203,6 +203,8 @@ typedef enum
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error;
 -(void)meemi:(MeemiRequest)request didFinishWithResult:(MeemiResult)result;
+
+@optional
 -(void)setWatermark:(int)watermark;
 
 @end

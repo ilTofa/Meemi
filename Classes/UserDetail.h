@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Meemi.h"
 
-@interface UserDetail : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface UserDetail : UITableViewController <NSFetchedResultsControllerDelegate, MeemiDelegate>
 {
 	NSFetchedResultsController *theUserList;
+	Meemi *ourPersonalMeemi;
+	BOOL reloadInProgress;
 }
 
 @end
