@@ -102,6 +102,8 @@
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
 		C0DDFCCE11CFAA2400C2AEA2 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */; };
+		C0E305311262725500B041B5 /* Compass.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E3052F1262725500B041B5 /* Compass.png */; };
+		C0E305321262725500B041B5 /* Compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E305301262725500B041B5 /* Compass@2x.png */; };
 		C0E620261152E12A00E6C079 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */; };
 		C0E620271152E12A00E6C079 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201A1152E12A00E6C079 /* ASIFormDataRequest.m */; };
 		C0E620281152E12A00E6C079 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E6201C1152E12A00E6C079 /* ASIHTTPRequest.m */; };
@@ -238,6 +240,8 @@
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		C0DDFCCC11CFAA2400C2AEA2 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		C0DDFCCD11CFAA2400C2AEA2 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		C0E3052F1262725500B041B5 /* Compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Compass.png; sourceTree = "<group>"; };
+		C0E305301262725500B041B5 /* Compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass@2x.png"; sourceTree = "<group>"; };
 		C0E620171152E12A00E6C079 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = connections/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		C0E620181152E12A00E6C079 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = connections/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		C0E620191152E12A00E6C079 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIFormDataRequest.h; path = connections/ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -454,6 +458,8 @@
 				C0A42CAD125119B700FB5A3F /* link-verysmall@2x.png */,
 				C045C065116F57C300BEDCCC /* 02-redo.png */,
 				C0A42CAB125119B000FB5A3F /* 02-redo@2x.png */,
+				C0E3052F1262725500B041B5 /* Compass.png */,
+				C0E305301262725500B041B5 /* Compass@2x.png */,
 				C045C04B116F453000BEDCCC /* video-verysmall.png */,
 				C0A42CA6125119A300FB5A3F /* video-verysmall@2x.png */,
 				C045C045116F43DA00BEDCCC /* camera-verysmall.png */,
@@ -649,6 +655,8 @@
 				C03A6C771261BF9B0009557D /* UsersList.png in Resources */,
 				C03A6C781261BF9B0009557D /* UsersList@2x.png in Resources */,
 				C05D2C1112622C770080416C /* logo@2x.png in Resources */,
+				C0E305311262725500B041B5 /* Compass.png in Resources */,
+				C0E305321262725500B041B5 /* Compass@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

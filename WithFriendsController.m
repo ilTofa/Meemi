@@ -50,8 +50,9 @@
 -(void)deviceShaken:(NSNotification *)note
 {
 	DLog(@"SHAKED!");
-	// If session is not busy, reload.
-	[self loadMemePage];
+	// Ask if mark read (only if not in a detail view).
+	if(self.replyTo == nil)
+		[self markReadMemes];
 }
 
 -(IBAction)loadMore:(id)sender

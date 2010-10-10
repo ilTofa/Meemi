@@ -12,6 +12,12 @@
 
 @synthesize theView, laRuota, urlToBeLoaded;
 
+- (void)loadInSafari
+{
+	[[UIApplication sharedApplication] openURL:self.theView.request.URL];
+	
+}
+
 #pragma mark UIWebViewDelegate
 
 // TODO: look into http://www.quackit.com/css/properties/css_table-layout.cfm
@@ -78,6 +84,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	UIBarButtonItem *safariButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Compass"] 
+																	 style:UIBarButtonItemStylePlain 
+																	target:self 
+																	action:@selector(loadInSafari)];
+	self.navigationItem.rightBarButtonItem = safariButton;
+	[safariButton release];	
 }
 
 -(void)viewDidAppear:(BOOL)animated
