@@ -25,7 +25,6 @@
 		C01AEE0E11D2C40F007009AD /* ImageSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE0D11D2C40F007009AD /* ImageSender.xib */; };
 		C01AEE2611D2C615007009AD /* TextSender.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE2511D2C615007009AD /* TextSender.xib */; };
 		C01AEE2C11D2C6AC007009AD /* AboutBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AEE2B11D2C6AC007009AD /* AboutBox.xib */; };
-		C025575D125642C500FE2956 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C025575C125642C500FE2956 /* libGoogleAnalytics.a */; };
 		C02557661256432500FE2956 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C02557651256432500FE2956 /* libsqlite3.0.dylib */; };
 		C0256C8F11A8037900DF4706 /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = C0256C8E11A8037900DF4706 /* Nothing.png */; };
 		C02AF12D11747FC500E76A8A /* AWindowThatDetectsShakes.m in Sources */ = {isa = PBXBuildFile; fileRef = C02AF12C11747FC500E76A8A /* AWindowThatDetectsShakes.m */; };
@@ -98,6 +97,7 @@
 		C0A9C4E711A535CC0057F082 /* LoadAgainMemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A9C4E611A535CC0057F082 /* LoadAgainMemeCell.xib */; };
 		C0B51D8B11B94B22007C6662 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D8811B94B22007C6662 /* UIImage+RoundedCorner.m */; };
 		C0B51D9711B957CF007C6662 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B51D9611B957CF007C6662 /* User.m */; };
+		C0B85EC51264C7F0002D8F33 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B85EC41264C7F0002D8F33 /* libGoogleAnalytics.a */; };
 		C0BD043B11649D3800391138 /* Meme.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C0BD043A11649D3800391138 /* Meme.xcdatamodel */; };
 		C0D67CBF11592261009EA92B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CBE11592261009EA92B /* Entitlements.plist */; };
 		C0D67CC411592559009EA92B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = C0D67CC311592559009EA92B /* iTunesArtwork */; };
@@ -146,8 +146,6 @@
 		C01AEE0F11D2C416007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/ImageSender.xib; sourceTree = "<group>"; };
 		C01AEE2711D2C61C007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/TextSender.xib; sourceTree = "<group>"; };
 		C01AEE2D11D2C6B3007009AD /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Classes/Italian.lproj/AboutBox.xib; sourceTree = "<group>"; };
-		C025575B125642C500FE2956 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
-		C025575C125642C500FE2956 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		C02557651256432500FE2956 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C0256C8E11A8037900DF4706 /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		C02AF12B11747FC500E76A8A /* AWindowThatDetectsShakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWindowThatDetectsShakes.h; sourceTree = "<group>"; };
@@ -235,6 +233,8 @@
 		C0B51D8811B94B22007C6662 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		C0B51D9511B957CF007C6662 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C0B51D9611B957CF007C6662 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C0B85EC31264C7F0002D8F33 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		C0B85EC41264C7F0002D8F33 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		C0BD043A11649D3800391138 /* Meme.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Meme.xcdatamodel; sourceTree = "<group>"; };
 		C0D67CBE11592261009EA92B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C0D67CC311592559009EA92B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -284,9 +284,9 @@
 				C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */,
 				C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */,
 				C06512531161F4E300B68198 /* CoreData.framework in Frameworks */,
-				C025575D125642C500FE2956 /* libGoogleAnalytics.a in Frameworks */,
 				C02557661256432500FE2956 /* libsqlite3.0.dylib in Frameworks */,
 				C05D2BE712622B370080416C /* Security.framework in Frameworks */,
+				C0B85EC51264C7F0002D8F33 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,7 +331,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
-				C0255757125642AA00FE2956 /* Google Analytics */,
+				C0B85EC21264C7F0002D8F33 /* Google Analytics */,
 				C0B51D8211B94B22007C6662 /* UIImage-categories */,
 				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
@@ -404,16 +404,6 @@
 			);
 			name = RegexKitLite;
 			sourceTree = "<group>";
-		};
-		C0255757125642AA00FE2956 /* Google Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				C025575B125642C500FE2956 /* GANTracker.h */,
-				C025575C125642C500FE2956 /* libGoogleAnalytics.a */,
-			);
-			name = "Google Analytics";
-			path = /Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi;
-			sourceTree = "<absolute>";
 		};
 		C0881B5711650E2800A83951 /* Images */ = {
 			isa = PBXGroup;
@@ -514,6 +504,16 @@
 			);
 			path = "UIImage-categories";
 			sourceTree = "<group>";
+		};
+		C0B85EC21264C7F0002D8F33 /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				C0B85EC31264C7F0002D8F33 /* GANTracker.h */,
+				C0B85EC41264C7F0002D8F33 /* libGoogleAnalytics.a */,
+			);
+			name = "Google Analytics";
+			path = "../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library";
+			sourceTree = SOURCE_ROOT;
 		};
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;
@@ -770,7 +770,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
+					"\"/Users/gt86031/Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
 				);
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = Meemi;
@@ -791,7 +791,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
+					"\"/Users/gt86031/Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
 				);
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -859,7 +859,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
+					"\"/Users/gt86031/Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
 				);
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5FD5166C-6A5F-4E76-8619-4BD0358005F6";
@@ -898,7 +898,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
+					"\"/Users/gt86031/Dropbox/iPhone/Libraries/Google Analytics SDK/Library\"",
 				);
 				PRODUCT_NAME = Meemi;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

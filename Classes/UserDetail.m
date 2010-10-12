@@ -283,6 +283,7 @@
 
 - (void)viewDidUnload 
 {
+	ALog(@"[UserDetail viewDidUnload] called");
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	theUserList.delegate = nil;
 	[theUserList release];
@@ -294,8 +295,11 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc 
+{
     [super dealloc];
+	if(theUserList)
+		theUserList.delegate = nil;
 }
 
 

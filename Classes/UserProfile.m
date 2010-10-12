@@ -115,18 +115,16 @@
 -(void)loadUser:(NSNotification *)note
 {
 	DLog(@"Now loading user info");
-	[Meemi sharedSession].delegate = self;
-	[[Meemi sharedSession] getUser:theUser.screen_name];
+	[ourPersonalMeemi getUser:theUser.screen_name];
 }
 
 -(IBAction)followUnfollow:(id)sender
 {
 	DLog(@"Now %@ user", [theUser.you_follow boolValue] ? @"unfollowing" : @"following");
-	[Meemi sharedSession].delegate = self;
 	if([theUser.you_follow boolValue])
-		[[Meemi sharedSession] unfollowUser:theUser.screen_name];	
+		[ourPersonalMeemi unfollowUser:theUser.screen_name];	
 	else
-		[[Meemi sharedSession] followUser:theUser.screen_name];	
+		[ourPersonalMeemi followUser:theUser.screen_name];	
 }
 
 -(void)meemi:(MeemiRequest)request didFailWithError:(NSError *)error
@@ -159,8 +157,7 @@
 	{ //update and reload avatar, just in case...
 		DLog(@"didFinishWithResult in UserProfile: MMGetNewUser");
 		[self performSelectorOnMainThread:@selector(loadTextInView) withObject:nil waitUntilDone:YES];
-		[Meemi sharedSession].delegate;
-		[[Meemi sharedSession] loadAvatar:theUser.screen_name];
+		[ourPersonalMeemi loadAvatar:theUser.screen_name];
 	}
 	// It could be MmGetNewUsers (then load the text, and do it on the main thread!).
 	if(request == MmGetNewUsers)
@@ -179,6 +176,11 @@
 {
     [super viewDidLoad];
 	[self loadTextInView];
+	// Setup the Meemi "agent"
+	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
+	if(!ourPersonalMeemi)
+		ALog(@"Meemi session init failed. Shit...");
+	ourPersonalMeemi.delegate = self;	
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -223,8 +225,6 @@
 {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	if([Meemi sharedSession].delegate == self)
-		[Meemi sharedSession].delegate = nil;
 }
 
 /*
@@ -244,8 +244,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	ourPersonalMeemi.delegate = nil;
+	[ourPersonalMeemi release];
+	ourPersonalMeemi = nil;
 }
 
 

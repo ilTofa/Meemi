@@ -13,6 +13,7 @@
 
 @interface UserProfile : UIViewController <MeemiDelegate, TextSenderControllerDelegate>
 {
+	Meemi *ourPersonalMeemi;
 	User *theUser;
 	UIButton *theAvatar;
 	UILabel *screenName, *realName, *birth, *location;
