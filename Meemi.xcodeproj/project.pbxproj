@@ -331,7 +331,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
-				C0B85EC21264C7F0002D8F33 /* Google Analytics */,
+				C0B85EC21264C7F0002D8F33 /* Library */,
 				C0B51D8211B94B22007C6662 /* UIImage-categories */,
 				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
@@ -505,15 +505,15 @@
 			path = "UIImage-categories";
 			sourceTree = "<group>";
 		};
-		C0B85EC21264C7F0002D8F33 /* Google Analytics */ = {
+		C0B85EC21264C7F0002D8F33 /* Library */ = {
 			isa = PBXGroup;
 			children = (
 				C0B85EC31264C7F0002D8F33 /* GANTracker.h */,
 				C0B85EC41264C7F0002D8F33 /* libGoogleAnalytics.a */,
 			);
-			name = "Google Analytics";
-			path = "../../../Dropbox/iPhone/Libraries/Google Analytics SDK/Library";
-			sourceTree = SOURCE_ROOT;
+			name = Library;
+			path = "/Users/gt86031/Dropbox/iPhone/Libraries/Google Analytics SDK/Library";
+			sourceTree = "<absolute>";
 		};
 		C0E620161152E11A00E6C079 /* Meemi API */ = {
 			isa = PBXGroup;

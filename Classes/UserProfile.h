@@ -21,7 +21,6 @@
 	UISegmentedControl *theSegment;
 	UIButton *followButton;
 	UIButton *messageButton;
-	Meemi *ourPersonalMeemi;
 }
 
 @property (nonatomic, retain) User *theUser;

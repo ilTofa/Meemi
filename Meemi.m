@@ -215,8 +215,9 @@ static int replyPageSize = 20;
 {
 	activeSessionsCount--;
 	DLog(@"An I/O session ended: count is %d", activeSessionsCount);
-	if(activeSessionsCount == 0)
+	if(activeSessionsCount <= 0)
 	{
+		activeSessionsCount = 0;
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		DLog(@"Notify the world that we are now free...");
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNowFree object:self]];

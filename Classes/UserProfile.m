@@ -176,19 +176,11 @@
 {
     [super viewDidLoad];
 	[self loadTextInView];
-<<<<<<< .mine
-	// Setup the Meemi "agent"
-	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
-	if(!ourPersonalMeemi)
-		ALog(@"Meemi session init failed. Shit...");
-	ourPersonalMeemi.delegate = self;
-=======
 	// Setup the Meemi "agent"
 	ourPersonalMeemi = [[Meemi alloc] initFromUserDefault];
 	if(!ourPersonalMeemi)
 		ALog(@"Meemi session init failed. Shit...");
 	ourPersonalMeemi.delegate = self;	
->>>>>>> .r249
 }
 
 - (void)viewWillAppear:(BOOL)animated 
