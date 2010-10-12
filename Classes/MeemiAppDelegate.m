@@ -230,6 +230,26 @@ void uncaughtExceptionHandler(NSException *exception)
 	}
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+	NSError *error;
+	if (![[GANTracker sharedTracker] trackPageview:@"/resign_active"
+										 withError:&error]) 
+	{
+		NSLog(@"Error in GANTracker trackPageview");
+	}
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	NSError *error;
+	if (![[GANTracker sharedTracker] trackPageview:@"/become_active"
+										 withError:&error]) 
+	{
+		NSLog(@"Error in GANTracker trackPageview");
+	}
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application 
 {	
     NSError *error;
