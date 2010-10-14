@@ -32,7 +32,7 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = armv7;
-		activeBuildConfigurationName = "Ad-Hoc";
+		activeBuildConfigurationName = Distribution;
 		activeExecutable = C01D86FB115141A100608D7E /* Meemi */;
 		activeSDKPreference = iphoneos4.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Meemi */;
@@ -80,12 +80,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 308664437;
-			PBXWorkspaceStateSaveDate = 308664437;
-		};
-		perUserProjectItems = {
-			C095A86E1265139A00676E16 = C095A86E1265139A00676E16 /* PBXBookmark */;
-			C095A87F1265164E00676E16 = C095A87F1265164E00676E16 /* PlistBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 308769267;
+			PBXWorkspaceStateSaveDate = 308769267;
 		};
 		sourceControlManager = C01D8705115141AA00608D7E /* Source Control */;
 		userBuildSettings = {
@@ -486,22 +482,6 @@
 			sepNavVisRange = "{1864, 2064}";
 			sepNavWindowFrame = "{{254, 77}, {1060, 1094}}";
 		};
-	};
-	C095A86E1265139A00676E16 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Meemi-Info.plist */;
-	};
-	C095A87F1265164E00676E16 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Meemi-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			LSRequiresIPhoneOS,
-		);
-		name = "/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
 	};
 	C09E1E1F11AAB592004FEEE6 /* SettingsController.m:75 */ = {
 		isa = PBXFileBreakpoint;
