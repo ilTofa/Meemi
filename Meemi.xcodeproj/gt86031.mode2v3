@@ -515,8 +515,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>C0F5D9D312760C0C0041F4AD</string>
-				<string>C0F5D9D412760C0C0041F4AD</string>
+				<string>C0D5BFE0127C877300F8EC56</string>
+				<string>C0D5BFE1127C877300F8EC56</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -536,7 +536,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>309726220.83399999</real>
+	<real>310151257.40433699</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -553,6 +553,7 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>/Users/gt86031/Documents/gtPrj/MacBuilds/iPhone/WorkingCopy/Meemi/Meemi.xcodeproj</string>
 	</array>
@@ -771,7 +772,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>C0F5D9D512760C0C0041F4AD</string>
+				<string>C0D5BFE2127C877300F8EC56</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -893,13 +894,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>C01A2FA31267722A00240D4C</string>
+				<string>C0D5BFE7127C885900F8EC56</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>C01A2FA41267722A00240D4C</string>
-				<string>C01A2FA51267722A00240D4C</string>
-				<string>C01A2FA61267722A00240D4C</string>
-				<string>C01A2FA71267722A00240D4C</string>
-				<string>C01A2FA81267722A00240D4C</string>
+				<string>C0D5BFE8127C885900F8EC56</string>
+				<string>C0D5BFE9127C885900F8EC56</string>
+				<string>C0D5BFEA127C885900F8EC56</string>
+				<string>C0D5BFEB127C885900F8EC56</string>
+				<string>C0D5BFEC127C885900F8EC56</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
