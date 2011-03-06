@@ -343,7 +343,6 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
-				643303D413230ABD00527AF4 /* MapKit.framework */,
 				C0B51D8211B94B22007C6662 /* UIImage-categories */,
 				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
@@ -393,6 +392,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				643303D413230ABD00527AF4 /* MapKit.framework */,
 				C05D2BE312622AF60080416C /* Security.framework */,
 				C02557651256432500FE2956 /* libsqlite3.0.dylib */,
 				C06512521161F4E300B68198 /* CoreData.framework */,
