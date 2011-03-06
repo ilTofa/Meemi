@@ -152,7 +152,7 @@ static int replyPageSize = 20;
 // init routine for use by sharedSession
 -(id) init
 {
-	if(self = [super init])
+	if((self = [super init]))
 	{
 		valid = NO;
 		needLocation = YES;
@@ -171,7 +171,7 @@ static int replyPageSize = 20;
 
 -(id)initFromUserDefault
 {
-	if(self = [super init])
+	if((self = [super init]))
 	{
 		valid = NO;
 		needLocation = YES;
@@ -1778,8 +1778,6 @@ static int replyPageSize = 20;
 			[manager stopUpdatingLocation];
 		}
 		
-		// Pass location to Flurry
-//		[FlurryAPI setLocation:newLocation];
 		needLocation = NO;
 		// init a safe value, if void and if we don't have a reverse location
 		if([[Meemi nearbyPlaceName] isEqualToString:@""])
@@ -1806,17 +1804,13 @@ static int replyPageSize = 20;
 		if(needG13N)
 		{
 			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
-			if(theReverseGeoConnection != nil)
+			if(theReverseGeocoder != nil)
 				return;
-			
-			NSString *urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPlaceName?lat=%+.6f&lng=%+.6f",
-								   newLocation.coordinate.latitude, newLocation.coordinate.longitude];
-			ALog(@"Starting reverse geolocation via <%@>", urlString);
-			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
-														cachePolicy:NSURLRequestReturnCacheDataElseLoad
-													timeoutInterval:30];
-			xmlData = nil;
-			theReverseGeoConnection = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+
+			theReverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+            theReverseGeocoder.delegate = self;
+            ALog(@"Starting reverse geolocation");
+            [theReverseGeocoder start];
 		}
     }
 }
@@ -1836,51 +1830,38 @@ static int replyPageSize = 20;
 	}
 }
 
-#pragma mark NSURLConnection delegates
+#pragma mark NSReverseGeocoderDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
-	if(xmlData == nil)
-	{
-		xmlData = [NSMutableData dataWithCapacity:10];
-		[xmlData retain];
-	}
-	[xmlData appendData:data];
+    ALog(@"Reverse geolocation failed with error: '%@'", [error localizedDescription]);
+    [theReverseGeocoder release];
+    theReverseGeocoder = nil;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
-//	NSString* aStr = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
-//	DLog(@"Answer received from geolocation service: %@", aStr);
-//	[aStr release];
-    if (addressParser) // addressParser is an NSXMLParser instance variable
-        [addressParser release];
-	addressParser = [[NSXMLParser alloc] initWithData:xmlData];
-	[addressParser setDelegate:self];
-    [addressParser setShouldResolveExternalEntities:YES];
-    if([addressParser parse])
-	{
-		// Also trims strings
-		[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
-								[self.placeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-								[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
-								locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
-								locationManager.location.horizontalAccuracy]];
-		ALog(@"Got a full localization: %@", [Meemi nearbyPlaceName]);
-		needG13N = NO;
-		// Notify the world that we have found ourselves
-		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
-	}
-	[xmlData release];
-	theReverseGeoConnection = nil;
+    DLog(@"Got a placemark!");
+    DLog(@"thoroughfare: %@", placemark.thoroughfare);
+    DLog(@"subThoroughfare: %@", placemark.subThoroughfare);
+    DLog(@"postalCode: %@", placemark.postalCode);
+    DLog(@"subLocality: %@", placemark.subLocality);
+    DLog(@"locality: %@", placemark.locality);
+    DLog(@"subAdministrativeArea: %@", placemark.subAdministrativeArea);
+    DLog(@"administrativeArea: %@", placemark.administrativeArea);
+    DLog(@"country: %@", placemark.country);
+    self.placeName = [NSString stringWithFormat:@"%@", placemark.locality];
+    self.state = [NSString stringWithFormat:@"%@, %@", placemark.administrativeArea, placemark.country];
+    [Meemi setNearbyPlaceName:[NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
+                               self.placeName, self.state,
+                               locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
+                               locationManager.location.horizontalAccuracy]];
+    ALog(@"Got a full localization: %@", [Meemi nearbyPlaceName]);
+    needG13N = NO;
+    // Notify the world that we have found ourselves
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
+    [theReverseGeocoder release];
+    theReverseGeocoder = nil;
 }
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-	DLog(@"connection didFailWithError");
-	if(xmlData != nil)
-		[xmlData release];
-}
-
 
 @end

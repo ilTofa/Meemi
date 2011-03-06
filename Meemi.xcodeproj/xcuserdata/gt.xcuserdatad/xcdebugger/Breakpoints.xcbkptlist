@@ -27,6 +27,20 @@
          startingLineNumber = "166"
          endingLineNumber = "166">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Meemi.m"
+         timestampString = "321064907.859568"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1855"
+         endingLineNumber = "1855"
+         landmarkName = "-reverseGeocoder:didFindPlacemark:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
    <SymbolicBreakpoints>
       <SymbolicBreakpoint

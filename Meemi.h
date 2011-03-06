@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 #import "Meme.h"
 #import "User.h"
 
@@ -70,9 +71,9 @@ typedef enum
 #define kAvatar44 44
 
 #ifdef __IPHONE_4_0
-@interface Meemi : NSObject <CLLocationManagerDelegate, NSXMLParserDelegate>
+@interface Meemi : NSObject <CLLocationManagerDelegate, NSXMLParserDelegate, MKReverseGeocoderDelegate>
 #else
-@interface Meemi : NSObject <CLLocationManagerDelegate>
+@interface Meemi : NSObject <CLLocationManagerDelegate, MKReverseGeocoderDelegate>
 #endif
 {
 	id<MeemiDelegate,NSObject> delegate;
@@ -88,6 +89,8 @@ typedef enum
 	User *theUser;
 
 	NSURLConnection *theReverseGeoConnection;
+    MKReverseGeocoder *theReverseGeocoder;
+    
 	// How Many times have been denied Location use?
 	double distance;
 	BOOL needLocation, needG13N;

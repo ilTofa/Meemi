@@ -21,6 +21,7 @@
 		640EF4A51323002E003D2F1F /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EF4981323002E003D2F1F /* ASIHTTPRequest.m */; };
 		640EF4A61323002E003D2F1F /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EF49C1323002E003D2F1F /* ASIInputStream.m */; };
 		640EF4A71323002E003D2F1F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EF49E1323002E003D2F1F /* ASINetworkQueue.m */; };
+		643303D513230ABD00527AF4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643303D413230ABD00527AF4 /* MapKit.framework */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
 		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
@@ -153,6 +154,7 @@
 		640EF49D1323002E003D2F1F /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = connections/ASINetworkQueue.h; sourceTree = "<group>"; };
 		640EF49E1323002E003D2F1F /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = connections/ASINetworkQueue.m; sourceTree = "<group>"; };
 		640EF49F1323002E003D2F1F /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = connections/ASIProgressDelegate.h; sourceTree = "<group>"; };
+		643303D413230ABD00527AF4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		64A973E411D119970082F60E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643303D513230ABD00527AF4 /* MapKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -340,6 +343,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
+				643303D413230ABD00527AF4 /* MapKit.framework */,
 				C0B51D8211B94B22007C6662 /* UIImage-categories */,
 				C00DDA9911AD647900363B95 /* RegexKitLite */,
 				C0A1BFFB117BC4EB0064AF2A /* Libs */,
