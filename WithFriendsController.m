@@ -651,7 +651,8 @@
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
 		// That's 138, 176, 218 "meemi chiaro"
-		theSegment.tintColor = [UIColor colorWithRed:0.54118 green:0.6902 blue:0.8549 alpha:1.0];
+        
+		theSegment.tintColor = [UIColor colorWithRed:0.78125 green:0.81641 blue:0.85547 alpha:1.0];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 3; i++)
@@ -774,7 +775,7 @@
 	// It happens that we don't need any callback from Meemi anymore.
 	if([Meemi sharedSession].delegate == self)
 		[Meemi sharedSession].delegate = nil;
-	if(ourPersonalMeemi.delegate = self)
+	if(ourPersonalMeemi.delegate == self)
 		ourPersonalMeemi.delegate = nil;
 }
 
