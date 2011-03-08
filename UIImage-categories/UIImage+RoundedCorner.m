@@ -48,8 +48,6 @@
 // Original author: Björn Sållarp. Used with permission. See: http://blog.sallarp.com/iphone-uiimage-round-corners/
 - (UIImage *)roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize 
 {
-    // If the image does not have an alpha layer, add one
-//    UIImage *image = [self imageWithAlpha];
     UIImage *image = self;
 
 	DLog(@"image size: %f, %f", image.size.width, image.size.height);
@@ -136,8 +134,6 @@
     
     // The bitsPerComponent and bitmapInfo values are hard-coded to prevent an "unsupported parameter combination" error
     CGContextRef offscreenContext = CGBitmapContextCreate(NULL,
-//														  width * [UIScreen mainScreen].scale,
-//														  height * [UIScreen mainScreen].scale,
 														  width,
 														  height,
                                                           8,

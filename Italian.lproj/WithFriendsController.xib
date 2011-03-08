@@ -48,14 +48,13 @@
 						<string key="NSFrameSize">{320, 88}</string>
 						<reference key="NSSuperview" ref="873029372"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<int key="IBUIContentMode">3</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBPlaceholder">Inerisci cosa cercare</string>
 						<bool key="IBShowsCancelButton">YES</bool>
 						<object class="NSColor" key="IBTintColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC43ODQzMTM3MjU1IDAuODE5NjA3ODQzMSAwLjg1ODgyMzUyOTQAA</bytes>
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC43MDU4ODIzNTI5IDAuNzM3MjU0OTAyIDAuNzYwNzg0MzEzNwA</bytes>
 						</object>
 						<object class="IBUITextInputTraits" key="IBTextInputTraits">
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

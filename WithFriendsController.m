@@ -649,10 +649,8 @@
 								[UIImage imageNamed:@"UserForSegmented"]
 								, nil];
 		UISegmentedControl *theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
-		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-		// That's 138, 176, 218 "meemi chiaro"
-        
-		theSegment.tintColor = [UIColor colorWithRed:0.78125 green:0.81641 blue:0.85547 alpha:1.0];
+		theSegment.segmentedControlStyle = UISegmentedControlStyleBar;        
+		theSegment.tintColor = [UIColor colorWithRed:0.70313 green:0.73477 blue:0.75938 alpha:1.0];
 		theSegment.momentary = NO;
 		theSegment.selectedSegmentIndex = 0;
 		for (int i = 0; i < 3; i++)
@@ -856,6 +854,7 @@
 #define kTextWidth 271.0f
 #define kHeigthBesideText 85.0f
 #define kExtraHeightForReload 50.0f
+#define kMaxHeight 150.0f
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

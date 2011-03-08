@@ -9,6 +9,7 @@
 #import "MeemiAppDelegate.h"
 #import "WithFriendsController.h"
 #import "GANTracker.h"
+#import "Appirater.h"
 
 @implementation MeemiAppDelegate
 
@@ -228,6 +229,7 @@ void uncaughtExceptionHandler(NSException *exception)
 			[Meemi purgeOldMemes];
 		}
 	}
+    [Appirater appLaunched:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -262,6 +264,11 @@ void uncaughtExceptionHandler(NSException *exception)
 			exit(-1);  // Fail
 		} 
    }
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [Appirater appEnteredForeground:YES];
 }
 
 /*

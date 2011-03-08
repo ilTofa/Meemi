@@ -24,6 +24,7 @@
 		643303D513230ABD00527AF4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643303D413230ABD00527AF4 /* MapKit.framework */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
+		649A0F461326A1E500AB187C /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 649A0F451326A1E500AB187C /* Appirater.m */; };
 		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
 		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
 		64CB5BFB1323019100D99508 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */; };
@@ -157,6 +158,8 @@
 		643303D413230ABD00527AF4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		649A0F441326A1E500AB187C /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		649A0F451326A1E500AB187C /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		64A973E411D119970082F60E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64A973E911D119C00082F60E /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 		C0A1BFFB117BC4EB0064AF2A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				649A0F441326A1E500AB187C /* Appirater.h */,
+				649A0F451326A1E500AB187C /* Appirater.m */,
 				64CB5BF91323019100D99508 /* GANTracker.h */,
 				64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */,
 				640EF48C1323002E003D2F1F /* ASIAuthenticationDialog.h */,
@@ -705,6 +710,7 @@
 				640EF4A51323002E003D2F1F /* ASIHTTPRequest.m in Sources */,
 				640EF4A61323002E003D2F1F /* ASIInputStream.m in Sources */,
 				640EF4A71323002E003D2F1F /* ASINetworkQueue.m in Sources */,
+				649A0F461326A1E500AB187C /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +807,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Meemi_Prefix.pch;
 				INFOPLIST_FILE = "Meemi-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/connections\"",
