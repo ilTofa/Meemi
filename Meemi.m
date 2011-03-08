@@ -156,7 +156,6 @@ static int replyPageSize = 20;
 	{
 		valid = NO;
 		needLocation = YES;
-		needG13N = YES;
 		[Meemi setNearbyPlaceName:@""];
 		// At the moment, user have not denied anything
 		self.lcDenied = NO;
@@ -175,7 +174,6 @@ static int replyPageSize = 20;
 	{
 		valid = NO;
 		needLocation = YES;
-		needG13N = YES;
 		[Meemi setNearbyPlaceName:@""];
 		// At the moment, user have not denied anything
 		self.lcDenied = NO;
@@ -1757,7 +1755,7 @@ static int replyPageSize = 20;
 	locationManager.distanceFilter = 100;
 	
 	// We want a full service :)
-	needLocation = needG13N = YES;
+	needLocation = YES;
 	
 	[locationManager startUpdatingLocation];	
 }
@@ -1784,10 +1782,10 @@ static int replyPageSize = 20;
 		{
 			[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"lat %+.4f, lon %+.4f ±%.0fm",
 									newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy]];
-			ALog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still unknown.",
+			DLog(@"Got a position: lat %+.4f, lon %+.4f ±%.0fm\nPlacename still unknown.",
 				 newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy);
 		}
-			// Set the new position, in case we already have a reverse geolocation, but we have a new position
+        // Set the new position, in case we already have a reverse geolocation, but we have a new position
 		if(self.placeName != nil && self.state != nil)
 		{
 			[Meemi setNearbyPlaceName:[NSString stringWithFormat:@"%@, %@ (lat %+.4f, lon %+.4f ±%.0fm)",
@@ -1795,23 +1793,22 @@ static int replyPageSize = 20;
 									[self.state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
 									locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
 									locationManager.location.horizontalAccuracy]];
-			ALog(@"Got a new position (reverse geoloc already in place): %@", [Meemi nearbyPlaceName]);
+			DLog(@"Got a new position (reverse geoloc already in place): %@", [Meemi nearbyPlaceName]);
 		}
 			
 		// Notify the world that we have found ourselves
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
-		// Do we need reverse geolocation?
-		if(needG13N)
-		{
-			// protect ourselves from parallel connections... if this pointer is not nil another connection is running
-			if(theReverseGeocoder != nil)
-				return;
-
-			theReverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+		// Look for reverse geolocation (only if query is not pending)
+        if(!theReverseGeocoder.isQuerying)
+        {
+            DLog(@"Starting reverse geolocation query");
+            if(theReverseGeocoder == nil)
+                theReverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+            else
+                [theReverseGeocoder initWithCoordinate:newLocation.coordinate];
             theReverseGeocoder.delegate = self;
-            ALog(@"Starting reverse geolocation");
             [theReverseGeocoder start];
-		}
+        }
     }
 }
 
@@ -1835,8 +1832,6 @@ static int replyPageSize = 20;
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     ALog(@"Reverse geolocation failed with error: '%@'", [error localizedDescription]);
-    [theReverseGeocoder release];
-    theReverseGeocoder = nil;
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
@@ -1857,7 +1852,6 @@ static int replyPageSize = 20;
                                locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude, 
                                locationManager.location.horizontalAccuracy]];
     ALog(@"Got a full localization: %@", [Meemi nearbyPlaceName]);
-    needG13N = NO;
     // Notify the world that we have found ourselves
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
     [theReverseGeocoder release];
