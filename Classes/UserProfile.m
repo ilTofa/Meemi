@@ -80,16 +80,28 @@
 			}
 			else
 				birthday = @"";
-			info.text = [NSString stringWithFormat:NSLocalizedString(@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@", @""),
-						 birthday,
-						 [theUser.qta_followings intValue], [theUser.qta_followers intValue],
-						 [theUser.follow_you boolValue] ? NSLocalizedString(@"He/She follows you", @"") : NSLocalizedString(@"He/she don't follow you", @""),
-						 [theUser.you_follow boolValue] ? NSLocalizedString(@"You follow him/her", @"") : NSLocalizedString(@"You don't follow him/her", @"")];
-			info.textAlignment = UITextAlignmentCenter;
-			followButton.hidden = NO;
-			[followButton setTitle:[theUser.you_follow boolValue] ? NSLocalizedString(@"Unfollow", @"") : NSLocalizedString(@"Follow", @"") forState:UIControlStateNormal];
-			messageButton.hidden = NO;
-			[messageButton setTitle:NSLocalizedString(@"Send a Meme", @"") forState:UIControlStateNormal];
+            if(![[Meemi screenName] isEqualToString:theUser.screen_name])
+            {
+                info.text = [NSString stringWithFormat:NSLocalizedString(@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@", @""),
+                             birthday,
+                             [theUser.qta_followings intValue], [theUser.qta_followers intValue],
+                             [theUser.follow_you boolValue] ? NSLocalizedString(@"He/She follows you", @"") : NSLocalizedString(@"He/she don't follow you", @""),
+                             [theUser.you_follow boolValue] ? NSLocalizedString(@"You follow him/her", @"") : NSLocalizedString(@"You don't follow him/her", @"")];
+                info.textAlignment = UITextAlignmentCenter;
+                self.followButton.hidden = NO;
+                [followButton setTitle:[theUser.you_follow boolValue] ? NSLocalizedString(@"Unfollow", @"") : NSLocalizedString(@"Follow", @"") forState:UIControlStateNormal];
+                self.messageButton.hidden = NO;
+                [messageButton setTitle:NSLocalizedString(@"Send a Meme", @"") forState:UIControlStateNormal];
+            }
+            else
+            {
+                info.text = [NSString stringWithFormat:NSLocalizedString(@"\nBorn %@\n\nFollows: %d\nFollowed: %d\n\n%@\n%@", @""),
+                             birthday,
+                             [theUser.qta_followings intValue], [theUser.qta_followers intValue],
+                             @"", @""];
+                info.textAlignment = UITextAlignmentCenter;
+                self.followButton.hidden = self.messageButton.hidden = YES;
+            }
 			break;
 	}
 }
@@ -98,14 +110,16 @@
 {
 	// Text
 	screenName.text = theUser.screen_name;
-	realName.text = theUser.real_name;
+    if([[Meemi screenName] isEqualToString:theUser.screen_name])
+        realName.text = NSLocalizedString(@"That's you!", @"");
+    else
+        realName.text = theUser.real_name;
 	location.text = theUser.current_location;
 	info.text = theUser.info;
 	// Image
 	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theUser.avatar] CGImage]
 													scale:[[UIScreen mainScreen] scale]
 											  orientation:UIImageOrientationUp];
-	DLog(@"profile image scale: %f", tempImage.scale);
 	[theAvatar setBackgroundImage:tempImage forState:UIControlStateNormal];
 	[tempImage release];
 //	[theAvatar setBackgroundImage:[UIImage imageWithData:theUser.avatar] forState:UIControlStateNormal];
@@ -191,8 +205,7 @@
 	NSArray *tempStrings = [NSArray arrayWithObjects:@"Info", @"Profile", @"Extra", nil];
 	self.theSegment = [[UISegmentedControl alloc] initWithItems:tempStrings];
 	self.theSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-	// That's 138, 176, 218 "meemi chiaro"
-	theSegment.tintColor = [UIColor colorWithRed:0.54118 green:0.6902 blue:0.8549 alpha:1.0];
+    theSegment.tintColor = [UIColor colorWithRed:0.70313 green:0.73477 blue:0.75938 alpha:1.0];
 	self.theSegment.momentary = NO;
 	self.theSegment.selectedSegmentIndex = 0;
 	for (int i = 0; i < 3; i++)
