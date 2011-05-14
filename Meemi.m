@@ -393,13 +393,14 @@ static int replyPageSize = 20;
 		{
 			DLog(@"*** Got an already read meme: %@", newMemeID);
 		}
-		// If it's a new mention or a new reply, mark it special (even if it's a "old one")
+		// If it's a new mention or a new reply or a personal or a favorite mark it special (even if it's a "old one")
 		if(self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies ||
            self.currentRequest == MMGetNewPersonals || self.currentRequest == MMGetNewFavorites)
 		{
 			DLog(@"Marking special the meme: %@", newMemeID);
 			theMeme.special = [NSNumber numberWithBool:YES];
-			if(!currentMemeIsNew)
+            // if the meme is not new but comes from a "newmentions" or "newreplies" mark it as "with new replies"
+			if(!currentMemeIsNew && (self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies))
 			{
 				theMeme.new_replies = [NSNumber numberWithBool:YES];
 				DLog(@"Marking with new replies the already read meme: %@", newMemeID);
@@ -1287,7 +1288,7 @@ static int replyPageSize = 20;
 	self.currentRequest = MMGetNewPersonals;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@", [Meemi screenName]]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@/limit_%d", [Meemi screenName], pageSize]];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	
@@ -1299,7 +1300,7 @@ static int replyPageSize = 20;
 	self.currentRequest = MMGetNewFavorites;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@/favourites", [Meemi screenName]]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@/favourites/limit_%d", [Meemi screenName], pageSize]];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	

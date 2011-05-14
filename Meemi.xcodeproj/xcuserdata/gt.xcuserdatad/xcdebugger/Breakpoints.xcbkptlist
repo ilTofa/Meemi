@@ -33,11 +33,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Meemi.m"
-         timestampString = "327071951.518108"
+         timestampString = "327074351.95159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1877"
-         endingLineNumber = "1877"
+         startingLineNumber = "1878"
+         endingLineNumber = "1878"
          landmarkName = "-reverseGeocoder:didFindPlacemark:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -89,11 +89,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Meemi.m"
-         timestampString = "327071951.518108"
+         timestampString = "327074351.95159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1286"
-         endingLineNumber = "1286"
+         startingLineNumber = "1287"
+         endingLineNumber = "1287"
          landmarkName = "-getNewPersonals"
          landmarkType = "5">
       </FileBreakpoint>
@@ -103,11 +103,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Meemi.m"
-         timestampString = "327071951.518108"
+         timestampString = "327074351.95159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1298"
-         endingLineNumber = "1298"
+         startingLineNumber = "1299"
+         endingLineNumber = "1299"
          landmarkName = "-getNewFavorites"
          landmarkType = "5">
       </FileBreakpoint>
@@ -117,11 +117,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WithFriendsController.m"
-         timestampString = "327071220.947606"
+         timestampString = "327073618.559643"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "449"
-         endingLineNumber = "449"
+         startingLineNumber = "468"
+         endingLineNumber = "468"
          landmarkName = "-meemi:didFinishWithResult:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -131,26 +131,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WithFriendsController.m"
-         timestampString = "327071140.935081"
+         timestampString = "327073618.559643"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "382"
-         endingLineNumber = "382"
+         startingLineNumber = "401"
+         endingLineNumber = "401"
          landmarkName = "-meemi:didFailWithError:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Meemi.m"
-         timestampString = "327071951.518108"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "557"
-         endingLineNumber = "557"
-         landmarkName = "-parseElementsForMemes:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

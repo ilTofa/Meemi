@@ -355,11 +355,30 @@
 	// reset nextPageToLoad, we want a complete retry
 	ourPersonalMeemi.nextPageToLoad = 1;
 	ourPersonalMeemi.delegate = self;
-	if(self.replyTo != nil)
+	if(self.replyTo != nil) // Reload the "private" page
 		[ourPersonalMeemi getMemeRepliesOf:self.replyTo screenName:self.replyScreenName total:[self.replyQuantity intValue]];
 	else 
-		// TODO: reload the "right thing"
-		[ourPersonalMeemi getMemes];
+    {
+        // Reload the "personal" pages...
+        if(currentFetch == FTSpecial)
+        {
+            // Setup the Meemi "agent"
+            // If already existing, a query is still running, leave it alone
+            if(mentionFetchMeemi == nil)
+            {
+                mentionFetchMeemi = [[Meemi alloc] initFromUserDefault];
+                if(!mentionFetchMeemi)
+                    ALog(@"Meemi mentionFetch session init failed. Shit...");
+                else
+                {
+                    mentionFetchMeemi.delegate = self;
+                    [mentionFetchMeemi getNewMentions];
+                }
+            }
+        }
+        else // "normal" reload
+            [ourPersonalMeemi getMemes];
+    }
 }
 
 -(void)markReadMemes
