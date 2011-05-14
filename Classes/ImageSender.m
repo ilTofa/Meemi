@@ -91,10 +91,7 @@
 	}
 	CGSize newSize = CGSizeMake(scaledWidth, scaledHeight);
 	// Create a graphics image context
-    if ([[[UIDevice currentDevice] systemVersion] intValue] >= 4)
-		UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
-	else
-		UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContext(newSize);
 	// Tell the old image to draw in this new context, with the desired size
 	[self.theImage drawInRect:CGRectMake(0, 0, scaledWidth, scaledHeight)];
 	// Get the new image from the context
@@ -107,10 +104,7 @@
 -(void)removeOrientation
 {
 	// Create a graphics image context
-    if ([[[UIDevice currentDevice] systemVersion] intValue] >= 4)
-		UIGraphicsBeginImageContextWithOptions(self.theImage.size, NO, [[UIScreen mainScreen] scale]);
-	else
-		UIGraphicsBeginImageContext(self.theImage.size);
+    UIGraphicsBeginImageContext(self.theImage.size);
 	// Tell the old image to draw in this new context, with the desired size
 	[self.theImage drawInRect:CGRectMake(0, 0, self.theImage.size.width, self.theImage.size.height)];
 	// Get the new image from the context
@@ -151,6 +145,7 @@
 	}
 	// Send "edited" localization to session
 	[Meemi setNearbyPlaceName:self.locationLabel.text];
+    NSLog(@"image size: %.0fx%.0f", self.theThumbnail.size.height, self.theThumbnail.size.width);
 	if(self.replyScreenName == nil)
 		[[Meemi sharedSession] postImageAsMeme:self.theThumbnail withDescription:self.description.text withLocalization:canBeLocalized];
 	else

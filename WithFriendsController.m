@@ -476,7 +476,12 @@
 	{
 		// Make user choose if (s)he wants to reply with text or image
 		thatsTheMemeKindChoice = YES;
-		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Reply with?", @"")
+        NSString *sheetTitle;
+        if(self.replyScreenName == nil)
+            sheetTitle = NSLocalizedString(@"Write a meme with?", @"");
+        else
+            sheetTitle = NSLocalizedString(@"Reply with?", @"");
+		UIActionSheet *chooseIt = [[[UIActionSheet alloc] initWithTitle:sheetTitle
 															   delegate:self 
 													  cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
 												 destructiveButtonTitle:nil
