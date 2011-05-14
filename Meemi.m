@@ -21,7 +21,7 @@
 // for SHA-256
 #include <CommonCrypto/CommonDigest.h>
 
-//#define XMLLOG 1
+// #define XMLLOG 1
 
 #ifdef XMLLOG
 #    define XLog(...) NSLog(__VA_ARGS__)
@@ -394,7 +394,8 @@ static int replyPageSize = 20;
 			DLog(@"*** Got an already read meme: %@", newMemeID);
 		}
 		// If it's a new mention or a new reply, mark it special (even if it's a "old one")
-		if(self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
+		if(self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies ||
+           self.currentRequest == MMGetNewPersonals || self.currentRequest == MMGetNewFavorites)
 		{
 			DLog(@"Marking special the meme: %@", newMemeID);
 			theMeme.special = [NSNumber numberWithBool:YES];
@@ -677,7 +678,7 @@ static int replyPageSize = 20;
 	XLog(@"Element Start: <%@>", elementName);
 	NSEnumerator *enumerator = [attributeDict keyEnumerator];
 	id key;
-	while (key = [enumerator nextObject]) 
+	while ((key = [enumerator nextObject])) 
 	{
 		XLog(@"attribute \"%@\" is \"%@\"", key, [attributeDict objectForKey:key]);
 	}
@@ -723,7 +724,8 @@ static int replyPageSize = 20;
 	// parse memes
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
 	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
-	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
+	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies ||
+       self.currentRequest == MMGetNewPersonals || self.currentRequest == MMGetNewFavorites)
 	{
 		// Zero meme count in reply, to start counting
 		if([elementName isEqualToString:@"memes"] || [elementName isEqualToString:@"replies"])
@@ -770,7 +772,8 @@ static int replyPageSize = 20;
 	// new_memes processing 
 	if(self.currentRequest == MmGetNew || self.currentRequest == MMGetNewPvt || 
 	   self.currentRequest == MMGetNewPvtSent || self.currentRequest == MMGetNewReplies ||
-	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies)
+	   self.currentRequest == MMGetNewMentions || self.currentRequest == MMGetNewPersonalReplies ||
+       self.currentRequest == MMGetNewPersonals || self.currentRequest == MMGetNewFavorites)
 		[self parseElementsForMemes:elementName];
 	
     if ([elementName isEqualToString:@"name"])
@@ -1273,6 +1276,30 @@ static int replyPageSize = 20;
 	if(newUsersQueue == nil)
 		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
 	NSURL *url = [NSURL URLWithString:@"http://meemi.com/api3/p/only_new_replies"];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
+-(void)getNewPersonals
+{ 
+	NSAssert([Meemi isValid], @"getNewPersonals: called without valid session");
+	self.currentRequest = MMGetNewPersonals;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@", [Meemi screenName]]];
+	DLog(@"Now calling %@", url);
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[self startRequestToMeemi:request];	
+}
+
+-(void)getNewFavorites
+{ 
+	NSAssert([Meemi isValid], @"getNewFavorites: called without valid session");
+	self.currentRequest = MMGetNewFavorites;
+	if(newUsersQueue == nil)
+		newUsersQueue = [[NSMutableArray alloc] initWithCapacity:10];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://meemi.com/api3/%@/favourites", [Meemi screenName]]];
 	DLog(@"Now calling %@", url);
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[self startRequestToMeemi:request];	

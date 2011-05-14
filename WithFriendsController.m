@@ -399,16 +399,27 @@
 		[privateFetchMeemi release];
 		privateFetchMeemi = nil;
 	} 
-	if(request == MMGetNewPersonalReplies)
-	{
-		mentionFetchMeemi.delegate = nil;
-		[mentionFetchMeemi release];
-		mentionFetchMeemi = nil;
-	}
+    // That's the "personal list sequence"
 	if(request == MMGetNewMentions)
 	{
 		// Get new private replies
 		[mentionFetchMeemi getNewPersonalReplies];
+	}
+	if(request == MMGetNewPersonalReplies)
+    {
+        // Get new "personal"
+        [mentionFetchMeemi getNewPersonals];
+    }
+	if(request == MMGetNewPersonals)
+    {
+        // Get new "favourites"
+        [mentionFetchMeemi getNewFavorites];
+    }
+    if(request == MMGetNewFavorites)
+	{
+		mentionFetchMeemi.delegate = nil;
+		[mentionFetchMeemi release];
+		mentionFetchMeemi = nil;
 	}
 }	
 
@@ -429,16 +440,27 @@
 		[privateFetchMeemi release];
 		privateFetchMeemi = nil;
 	}
-	if(request == MMGetNewPersonalReplies)
-	{
-		mentionFetchMeemi.delegate = nil;
-		[mentionFetchMeemi release];
-		mentionFetchMeemi = nil;
-	}
+    // That's the "personal list sequence"
 	if(request == MMGetNewMentions)
 	{
 		// Get new private replies
 		[mentionFetchMeemi getNewPersonalReplies];
+	}
+	if(request == MMGetNewPersonalReplies)
+    {
+        // Get new "personal"
+        [mentionFetchMeemi getNewPersonals];
+    }
+	if(request == MMGetNewPersonals)
+    {
+        // Get new "favourites"
+        [mentionFetchMeemi getNewFavorites];
+    }
+    if(request == MMGetNewFavorites)
+	{
+		mentionFetchMeemi.delegate = nil;
+		[mentionFetchMeemi release];
+		mentionFetchMeemi = nil;
 	}
 }
 
