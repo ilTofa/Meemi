@@ -1629,14 +1629,13 @@ static int replyPageSize = 20;
 
 +(void)purgeOldMemes
 {
-	// TODO: mettere a posto...
 	NSAssert([Meemi isValid], @"purgeOldMemes: called without valid session");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	// We're looking for all the new ones.
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Meme" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entity];
-	NSTimeInterval normalDaysBefore = -5.0 * 24.0 * 60.0 * 60.0;	// 5 days in seconds: 432.000 seconds
-	NSTimeInterval specialDaysBefore = 10.0 * normalDaysBefore;		// 50 days for "specials"
+	NSTimeInterval normalDaysBefore = -7.0 * 24.0 * 60.0 * 60.0;	// 7 days in seconds: 432.000 seconds
+	NSTimeInterval specialDaysBefore = 50.0 * normalDaysBefore;		// 350 days for "specials"
 	NSDate *normalDate = [NSDate dateWithTimeIntervalSinceNow:normalDaysBefore];
 	NSDate *specialDate = [NSDate dateWithTimeIntervalSinceNow:specialDaysBefore];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dt_last_movement < %@ AND special == NO AND private_meme = NO) OR (dt_last_movement < %@)", normalDate, specialDate];

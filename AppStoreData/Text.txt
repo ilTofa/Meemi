@@ -4,24 +4,26 @@ meemi, social network, networking, share, text, photo, video, friends, links, co
 Meemi è un client gratuito per il social network Meemi. Il modo più semplice per condividere e collezionare i tuoi testi, le tue citazioni, le tue immagini, i tuoi link preferiti, organizzare i tuoi eventi con i tuoi amici oppure collezionare i tuoi video preferiti. È totalmente gratis, semplice e veloce. Permette di conoscere nuovi amici e di seguire la loro presenza nel "rumore di fondo" di ogni giorno, scoprendo i loro gusti e la loro personalità attraverso le loro condivisioni.
 meemi, social network, rete, rete sociale, condividi, testo, foto, video, amici, link, collezione, meme
 
-- New in this version (1.2.3)
+- New in this version (1.3)
+New and richer "personal" view content
+Some bug fixes
+- From 1.2.3
 New graphics
 Better multitasking support (iOS4+)
 Localization fixes
-Various bug fixes
 - From 1.1
 Retina display support.
 User list.
 iOS4 now fully supported.
-Bug fixes.
 
-- Nuovo in questa versione (1.2.3)
+- Novità in questa versione (1.3)
+Nuovo e più ricco contenuto della vista "personale"
+Correzioni d'errore
+- Dalla 1.2.3
 Nuova veste grafica
 Miglior supporto per il multitasking (iOS4+)
 Problemi di localizzazione risolti
-Varie correzioni d'errore
 - Dalla 1.1
 Supporto al Retina Display di iPhone 4.
 Lista utenti.
 Supporto completo per iOS4.
-Correzione di problemi.
