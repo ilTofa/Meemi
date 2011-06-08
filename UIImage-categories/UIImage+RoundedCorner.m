@@ -18,7 +18,12 @@
 {
 	// Create a graphics image context
 	CGSize newSize = CGSizeMake(sideSize, sideSize);
-	UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if(UIGraphicsBeginImageContextWithOptions != NULL)
+		UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
+	else
+#endif
+		UIGraphicsBeginImageContext(newSize);
 	// Tell the old image to draw in this new context, with the desired size
 	[self drawInRect:CGRectMake(0, 0, sideSize, sideSize)];
 	// Get the new image from the context
@@ -31,9 +36,20 @@
 -(UIImage *)squaredThumbnail:(int)sideSize
 {
 	// Create a graphics image context
-//	CGSize newSize = CGSizeMake(sideSize, sideSize);
-	CGSize newSize = CGSizeMake(sideSize * [UIScreen mainScreen].scale, sideSize * [UIScreen mainScreen].scale);
-	UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
+	CGSize newSize;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+		newSize = CGSizeMake(sideSize * [UIScreen mainScreen].scale, sideSize * [UIScreen mainScreen].scale);
+	else
+#endif
+		newSize = CGSizeMake(sideSize, sideSize);
+		
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if(UIGraphicsBeginImageContextWithOptions != NULL)
+		UIGraphicsBeginImageContextWithOptions(newSize, NO, [[UIScreen mainScreen] scale]);
+	else
+#endif
+		UIGraphicsBeginImageContext(newSize);
 	// Tell the old image to draw in this new context, with the desired size
 	[self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
 	// Get the new image from the context
@@ -79,7 +95,13 @@
     
     // Create a UIImage from the CGImage
     UIImage *roundedImage;
-	roundedImage = [UIImage imageWithCGImage:clippedImage scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+		roundedImage = [UIImage imageWithCGImage:clippedImage scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
+	else
+#endif
+		roundedImage = [UIImage imageWithCGImage:clippedImage];
+		
     CGImageRelease(clippedImage);
     
     return roundedImage;
@@ -145,7 +167,12 @@
     CGContextDrawImage(offscreenContext, CGRectMake(0, 0, width, height), imageRef);
     CGImageRef imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext);
     UIImage *imageWithAlpha;
-	imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+		imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha scale:[[UIScreen mainScreen] scale] orientation: UIImageOrientationUp];
+	else
+#endif
+		imageWithAlpha = [UIImage imageWithCGImage:imageRefWithAlpha];
     
     // Clean up
     CGContextRelease(offscreenContext);

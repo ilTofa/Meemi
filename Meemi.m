@@ -880,7 +880,10 @@ static int replyPageSize = 20;
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
 	[request setDelegate:self];
-    [request setShouldContinueWhenAppEntersBackground:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([request respondsToSelector:@selector(setShouldContinueWhenAppEntersBackground)])	
+		[request setShouldContinueWhenAppEntersBackground:YES];
+#endif
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	[self nowBusy];
 	[request startAsynchronous];			
@@ -985,11 +988,17 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
-				UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
-																scale:[[UIScreen mainScreen] scale]
-														  orientation:UIImageOrientationUp];
+				UIImage *tempImage;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+				if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+					tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
+														   scale:[[UIScreen mainScreen] scale]
+													 orientation:UIImageOrientationUp];
+				else
+#endif
+					tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage]];
 				theOne.avatar_44 = UIImagePNGRepresentation([[tempImage squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
-				DLog(@"1->image size: %f, %f. Scale: %f", tempImage.size.width, tempImage.size.height, tempImage.scale);
+//				DLog(@"1->image size: %f, %f. Scale: %f", tempImage.size.width, tempImage.size.height, tempImage.scale);
 				[tempImage release];
 			}		
 			else {
@@ -1045,9 +1054,15 @@ static int replyPageSize = 20;
 			error = [netRequest error];
 			if (!error) {
 				theOne.avatar = [netRequest responseData];
-				UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
-																scale:[[UIScreen mainScreen] scale]
-														  orientation:UIImageOrientationUp];				
+				UIImage *tempImage;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+				if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+					tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage] 
+														   scale:[[UIScreen mainScreen] scale]
+													 orientation:UIImageOrientationUp];
+				else
+#endif
+					tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:[netRequest responseData]] CGImage]]; 
 				theOne.avatar_44 = UIImagePNGRepresentation([[tempImage squaredThumbnail:kAvatar44] roundedCornerImage:6 borderSize:1]);
 				[tempImage release];
 			}		
@@ -1420,7 +1435,10 @@ static int replyPageSize = 20;
 		[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
 		[netRequest setPostValue:hashedData forKey:@"pwd"];
 		[netRequest setPostValue:kAPIKey forKey:@"app_key"];
-        [netRequest setShouldContinueWhenAppEntersBackground:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+		if([netRequest respondsToSelector:@selector(setShouldContinueWhenAppEntersBackground)])	
+			[netRequest setShouldContinueWhenAppEntersBackground:YES];
+#endif
 		[netRequest setDelegate:self];
 		[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
 		[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
@@ -1472,7 +1490,10 @@ static int replyPageSize = 20;
 		[netRequest setPostValue:[Meemi screenName] forKey:@"meemi_id"];
 		[netRequest setPostValue:hashedData forKey:@"pwd"];
 		[netRequest setPostValue:kAPIKey forKey:@"app_key"];
-        [netRequest setShouldContinueWhenAppEntersBackground:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+		if([netRequest respondsToSelector:@selector(setShouldContinueWhenAppEntersBackground)])	
+			[netRequest setShouldContinueWhenAppEntersBackground:YES];
+#endif
 		[netRequest setDelegate:self];
 		[netRequest setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
 		[netRequest setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];
@@ -1508,7 +1529,10 @@ static int replyPageSize = 20;
 	[request setPostValue:[Meemi screenName] forKey:@"meemi_id"];
 	[request setPostValue:hashedData forKey:@"pwd"];
 	[request setPostValue:kAPIKey forKey:@"app_key"];
-    [request setShouldContinueWhenAppEntersBackground:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([request respondsToSelector:@selector(setShouldContinueWhenAppEntersBackground)])	
+		[request setShouldContinueWhenAppEntersBackground:YES];
+#endif
 	[request setDelegate:self];
 	[request setDidFinishSelector:@selector(returnOKFromRequestReturningStatus:)];
 	[request setDidFailSelector:@selector(returnFailedFromRequestReturningStatus:)];

@@ -938,9 +938,15 @@
 	
 	// avatar clickable image (this one assumes all user in section 0) screen_name is passed in transparent text.
 	UIButton *tempButton = (UIButton *)[cell viewWithTag:6];
-	UIImage *tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedMeme.user.avatar_44] CGImage] 
-													scale:[[UIScreen mainScreen] scale]
-											  orientation:UIImageOrientationUp];
+	UIImage *tempImage;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+		tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedMeme.user.avatar_44] CGImage] 
+											   scale:[[UIScreen mainScreen] scale]
+										 orientation:UIImageOrientationUp];
+	else
+#endif
+		tempImage = [[UIImage alloc] initWithCGImage:[[UIImage imageWithData:theFetchedMeme.user.avatar_44] CGImage]];
 	[tempButton setBackgroundImage:tempImage forState:UIControlStateNormal];
 	[tempImage release];
 	[tempButton setTitle:[NSString stringWithFormat: @"%lu", (unsigned long) indexPath.row] forState:UIControlStateNormal];

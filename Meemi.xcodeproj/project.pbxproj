@@ -10,8 +10,8 @@
 		1D3623260D0F684500981E51 /* MeemiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MeemiAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		640EF4A01323002E003D2F1F /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EF48D1323002E003D2F1F /* ASIAuthenticationDialog.m */; };
 		640EF4A11323002E003D2F1F /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EF4901323002E003D2F1F /* ASIDataCompressor.m */; };
@@ -27,7 +27,7 @@
 		649A0F461326A1E500AB187C /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 649A0F451326A1E500AB187C /* Appirater.m */; };
 		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
 		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
-		64CB5BFB1323019100D99508 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */; };
+		64CB5BFB1323019100D99508 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */; };
 		C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */; };
 		C00C6C3311B5C3FD00F55726 /* fondino.png in Resources */ = {isa = PBXBuildFile; fileRef = C00C6C3211B5C3FD00F55726 /* fondino.png */; };
@@ -828,7 +828,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -844,7 +848,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -860,7 +868,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E5877AB8-51CB-4A4D-A0F2-E83B4AB53046";
 				SDKROOT = iphoneos;
@@ -898,7 +910,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
