@@ -32,7 +32,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>412</integer>
+=======
 					<integer>269</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -144,27 +148,51 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>352</integer>
+=======
 					<integer>17</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>353</integer>
+=======
 					<integer>18</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>356</integer>
+=======
 					<integer>19</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>361</integer>
+=======
 					<integer>20</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>391</integer>
+=======
 					<integer>21</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>392</integer>
+=======
 					<integer>22</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -276,19 +304,35 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>66</integer>
+=======
 					<integer>129</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>70</integer>
+=======
 					<integer>183</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>74</integer>
+=======
 					<integer>191</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>77</integer>
+=======
 					<integer>14</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -382,6 +426,10 @@
 				<key>CF$UID</key>
 				<integer>13</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.string</key>
+			<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi.m</string>
+=======
 			<key>NS.objects</key>
 			<array>
 				<dict>
@@ -389,6 +437,7 @@
 					<integer>38</integer>
 				</dict>
 			</array>
+>>>>>>> .r279
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -499,7 +548,20 @@
 				<key>CF$UID</key>
 				<integer>13</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.string</key>
+			<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi.h</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+			<key>NS.keys</key>
+=======
 			<key>NS.objects</key>
+>>>>>>> .r279
 			<array>
 				<dict>
 					<key>CF$UID</key>
@@ -579,36 +641,76 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>59</integer>
+=======
 					<integer>56</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>60</integer>
+=======
 					<integer>57</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>61</integer>
+=======
 					<integer>58</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>62</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>59</integer>
+					<integer>63</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>64</integer>
+=======
 					<integer>129</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>155</integer>
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>65</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>PrimaryDocumentTimestamp</string>
+		<string>PrimaryDocumentVisibleCharacterRange</string>
+		<string>HideAllIssues</string>
+		<string>PrimaryDocumentSelectedCharacterRange</string>
+		<real>328649415.79813999</real>
+		<string>{52871, 2576}</string>
+		<string>{62048, 0}</string>
+=======
 		<string>EditorLayout_StateSavingStateDictionaries</string>
 		<string>EditorLayout_Selected</string>
 		<string>EditorLayout_Geometry</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -619,8 +721,27 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>67</integer>
+=======
 					<integer>60</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>68</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>69</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<dict>
@@ -649,42 +770,77 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>71</integer>
+=======
 					<integer>65</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>72</integer>
+=======
 					<integer>66</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>67</integer>
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>73</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>75</integer>
+=======
 					<integer>68</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>76</integer>
+=======
 					<integer>69</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>74</integer>
+					<integer>42</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>43</integer>
+=======
 					<integer>150</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>44</integer>
+=======
 					<integer>150</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>45</integer>
+=======
 					<integer>151</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -692,6 +848,11 @@
 				</dict>
 			</array>
 		</dict>
+<<<<<<< .mine
+		<real>327189027.24310797</real>
+		<string>{6519, 886}</string>
+		<string>{5861, 66}</string>
+=======
 		<string>FileDataType</string>
 		<string>ArchivableRepresentation</string>
 		<string>EditorState</string>
@@ -700,13 +861,61 @@
 		<string>DocumentExtensionIdentifier</string>
 		<string>DocumentURL</string>
 		<string>com.apple.xcode.project</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>46</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>42</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>43</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>44</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>45</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>82</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>83</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>84</integer>
+				</dict>
+			</array>
+		</dict>
+		<real>328317178.91683</real>
+		<string>{3641, 2339}</string>
+		<string>{4963, 3}</string>
+		<dict>
+			<key>$class</key>
+=======
 			<key>DocumentLocation</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
 				<integer>42</integer>
@@ -739,23 +948,75 @@
 					<key>CF$UID</key>
 					<integer>71</integer>
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>94</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>96</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>IDE_PLIST_EDITOR_SELECTION_KEY</string>
+		<string>IDE_PLIST_EDITOR_EXPANSION_KEY</string>
+		<string>IDE_PLIST_EDITOR_VISIBLERECT_KEY</string>
+=======
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>40</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>NSArray</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>NSArray</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+=======
 			<key>Identifier</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>95</integer>
+=======
 				<integer>72</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<string>Meemi</string>
 		<integer>9223372036854775807</integer>
 		<dict>
+<<<<<<< .mine
+			<key>$classes</key>
+			<array>
+				<string>NSMutableSet</string>
+				<string>NSSet</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>NSMutableSet</string>
+		</dict>
+		<string>{{0, 0}, {1430, 925}}</string>
+		<dict>
+=======
+>>>>>>> .r279
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
@@ -1095,7 +1356,19 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>136</integer>
+=======
 					<integer>129</integer>
+>>>>>>> .r279
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>136</integer>
+=======
+					<integer>129</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -1103,20 +1376,29 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>129</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>349</integer>
+=======
 					<integer>130</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>Xcode3BuildSettingsEditorMode</string>
+=======
 		<string>Collapsed Build Property Categories</string>
+>>>>>>> .r279
 		<string>Selected Build Properties</string>
 		<string>Xcode3BuildSettingsEditorDisplayMode</string>
 		<string>Xcode3BuildPropertyValueDisplayMode</string>
-		<string>Xcode3BuildSettingsEditorMode</string>
+<<<<<<< .mine
+		<string>Collapsed Build Property Categories</string>
 		<string>Xcode3BuildPropertyNameDisplayMode</string>
+		<integer>0</integer>
+=======
+		<string>Xcode3BuildPropertyNameDisplayMode</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1129,9 +1411,39 @@
 					<key>CF$UID</key>
 					<integer>115</integer>
 				</dict>
+<<<<<<< .mine
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Architectures||SDKROOT</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>118</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+=======
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>140</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>141</integer>
+=======
 					<integer>116</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2886,10 +3198,13 @@
 					<key>CF$UID</key>
 					<integer>286</integer>
 				</dict>
+<<<<<<< .mine
+=======
 				<dict>
 					<key>CF$UID</key>
 					<integer>297</integer>
 				</dict>
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
 					<integer>334</integer>
@@ -3907,7 +4222,198 @@
 				<key>CF$UID</key>
 				<integer>94</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNINITIALIZED_AUTOS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNKNOWN_PRAGMAS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNUSED_FUNCTION</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNUSED_LABEL</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNUSED_PARAMETER</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNUSED_VALUE</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_UNUSED_VARIABLE</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>GCC 4.2 - Warnings||GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_FLATTEN_NIBS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_OTHER_FLAGS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_OVERRIDING_PLUGINS_AND_FRAMEWORKS_DIR</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_PLUGIN_SEARCH_PATHS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_PLUGINS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_ERRORS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_NOTICES</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>Interface Builder XIB Compiler - Options||IBC_WARNINGS</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>23</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>User-Defined||PREBINDING</string>
+		</dict>
+		<integer>1</integer>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>Xcode3ProjectDocumentLocation</string>
+				<string>DVTDocumentLocation</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>Xcode3ProjectDocumentLocation</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+=======
+>>>>>>> .r279
 			<key>NS.keys</key>
+<<<<<<< .mine
+			<array/>
+			<key>NS.objects</key>
+			<array/>
+		</dict>
+		<integer>0</integer>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+			<key>NS.keys</key>
+=======
+>>>>>>> .r279
 			<array>
 				<dict>
 					<key>CF$UID</key>
@@ -3919,32 +4425,65 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>356</integer>
+					<integer>357</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>357</integer>
+					<integer>358</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>358</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
 					<integer>359</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>212</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>360</integer>
 				</dict>
+				<dict>
+					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>362</integer>
+=======
+					<integer>212</integer>
+>>>>>>> .r279
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>363</integer>
+=======
+					<integer>360</integer>
+>>>>>>> .r279
+				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>364</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>365</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>390</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>372</integer>
+				</dict>
+			</array>
+=======
+>>>>>>> .r279
 		</dict>
 		<string>PrimaryDocumentTimestamp</string>
 		<string>PrimaryDocumentVisibleCharacterRange</string>
@@ -3963,39 +4502,82 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>366</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>373</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>376</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>381</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>367</integer>
+=======
 					<integer>362</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>368</integer>
+=======
 					<integer>363</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>369</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>370</integer>
+=======
 					<integer>364</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>371</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>372</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>327939061.22780001</real>
@@ -4011,39 +4593,85 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>367</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>368</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>369</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>374</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>375</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>127</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>366</integer>
-				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>367</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>212</integer>
+					<integer>368</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>368</integer>
+<<<<<<< .mine
+					<integer>369</integer>
+=======
+					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
+				<dict>
+					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>377</integer>
+=======
+					<integer>368</integer>
+>>>>>>> .r279
+				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>378</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>379</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>327939011.53643602</real>
@@ -4053,45 +4681,103 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>380</integer>
+=======
 				<integer>94</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>367</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>382</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>383</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>369</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>384</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>385</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>386</integer>
+=======
 					<integer>370</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>349</integer>
+=======
 					<integer>371</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>387</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>389</integer>
+=======
 					<integer>149</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>349</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>349</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>327939383.494147</real>
@@ -4100,45 +4786,111 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>388</integer>
+=======
 				<integer>94</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.keys</key>
 			<array>
+<<<<<<< .mine
+				<string>NSDate</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>NSDate</string>
+		</dict>
+		<string>14/05/11 at 15:59</string>
+		<integer>106</integer>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>118</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+=======
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
 					<integer>354</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>393</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>395</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>397</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>399</integer>
+=======
 					<integer>373</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>401</integer>
+=======
 					<integer>374</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>403</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>404</integer>
+=======
 					<integer>375</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>406</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>408</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>410</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>327939308.08563399</real>
@@ -4150,14 +4902,199 @@
 				<key>CF$UID</key>
 				<integer>94</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>394</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>396</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>398</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Classes/MeemiAppDelegate.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>400</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/WithFriendsController.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>402</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi-Info.plist</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>121</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>405</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Italian.lproj/Localizable.strings</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>407</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/English.lproj/Localizable.strings</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>409</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/Classes/ImageSender.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>24</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>411</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/gt/Documents/dev/Meemi/main.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+=======
+>>>>>>> .r279
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+=======
 					<integer>354</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+>>>>>>> .r279
 					<integer>355</integer>
 				</dict>
 				<dict>
@@ -4168,73 +5105,220 @@
 					<key>CF$UID</key>
 					<integer>357</integer>
 				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>418</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>419</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>420</integer>
+				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>421</integer>
+=======
 					<integer>377</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>422</integer>
+=======
 					<integer>378</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>423</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>15</integer>
+=======
 					<integer>379</integer>
+>>>>>>> .r279
+				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>3</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>415</integer>
+				</dict>
+=======
+>>>>>>> .r279
+				<dict>
+					<key>CF$UID</key>
+					<integer>433</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
 				</dict>
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>IDEWindowFrame</string>
+		<string>IDEOrderedWorkspaceTabControllers</string>
+		<string>IDEWorkspaceTabController_80BB9587-3FBB-4ECB-A421-A109A579EE32</string>
+		<string>IDEWindowInFullscreenMode</string>
+		<string>IDEWorkspaceWindowControllerUniqueIdentifier</string>
+		<string>IDEActiveWorkspaceTabController</string>
+		<string>IDEWindowToolbarIsVisible</string>
+		<string>IDEWindowTabBarIsVisible</string>
+		<string>{{4, 25}, {1276, 742}}</string>
+=======
 		<real>327939282.88268697</real>
 		<string>{4938, 2464}</string>
 		<string>{7189, 0}</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>93</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>415</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+=======
 				<integer>94</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>424</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>425</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>426</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>427</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>428</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>429</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>430</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>431</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>432</integer>
+=======
 					<integer>381</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>433</integer>
+=======
 					<integer>382</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>434</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>535</integer>
+=======
 					<integer>149</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>542</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>603</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>352</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>327939375.13036501</real>
@@ -4249,85 +5333,467 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>435</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>436</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>437</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>438</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>439</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>440</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>441</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>442</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>443</integer>
+=======
 					<integer>384</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>462</integer>
+=======
 					<integer>385</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>496</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>433</integer>
+=======
 					<integer>149</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>352</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>526</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>534</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>layoutTree</string>
+		<string>IDEEditorMode_Standard</string>
+		<string>IDEEDitorArea_DebugArea</string>
+		<string>IDEShowEditor</string>
+		<string>EditorMode</string>
+		<string>DebuggerSplitView</string>
+		<string>DefaultPersistentRepresentations</string>
+		<string>ShowDebuggerArea</string>
+=======
 		<real>327939415.028539</real>
 		<string>{22602, 4453}</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>461</integer>
+			</dict>
+			<key>geniusEditorContextNode</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>primaryEditorContextNode</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>444</integer>
+			</dict>
+			<key>rootLayoutTreeNode</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>458</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>460</integer>
+			</dict>
+			<key>children</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>contentType</key>
+			<integer>1</integer>
+			<key>documentArchivableRepresentation</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>445</integer>
+			</dict>
+			<key>orientation</key>
+			<integer>0</integer>
+			<key>parent</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>458</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>457</integer>
+			</dict>
+			<key>DocumentLocation</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>455</integer>
+			</dict>
+			<key>DomainIdentifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>446</integer>
+			</dict>
+			<key>IdentifierPath</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>447</integer>
+			</dict>
+			<key>IndexOfDocumentIdentifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>352</integer>
+			</dict>
+		</dict>
+		<string>Xcode.IDENavigableItemDomain.WorkspaceStructure</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>93</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>448</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>451</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>453</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>450</integer>
+			</dict>
+			<key>Identifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>449</integer>
+			</dict>
+		</dict>
+		<string>Meemi.m</string>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>IDEArchivableStringIndexPair</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>IDEArchivableStringIndexPair</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>450</integer>
+			</dict>
+			<key>Identifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>452</integer>
+			</dict>
+		</dict>
+		<string>Meemi API</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>450</integer>
+			</dict>
+			<key>Identifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>454</integer>
+			</dict>
+		</dict>
+		<string>Meemi</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>456</integer>
+			</dict>
+			<key>documentURL</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>30</integer>
+			</dict>
+			<key>timestamp</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>DVTDocumentLocation</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>DVTDocumentLocation</string>
+		</dict>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>IDENavigableItemArchivableRepresentation</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>IDENavigableItemArchivableRepresentation</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>460</integer>
+			</dict>
+			<key>children</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>459</integer>
+			</dict>
+			<key>contentType</key>
+			<integer>0</integer>
+			<key>documentArchivableRepresentation</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>orientation</key>
+			<integer>0</integer>
+			<key>parent</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>93</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>444</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>IDEWorkspaceTabControllerLayoutTreeNode</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>IDEWorkspaceTabControllerLayoutTreeNode</string>
+		</dict>
+		<dict>
+			<key>$classes</key>
+			<array>
+				<string>IDEWorkspaceTabControllerLayoutTree</string>
+				<string>NSObject</string>
+			</array>
+			<key>$classname</key>
+			<string>IDEWorkspaceTabControllerLayoutTree</string>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+=======
 				<integer>94</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>463</integer>
+=======
 					<integer>354</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>464</integer>
+=======
 					<integer>355</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>465</integer>
+=======
 					<integer>356</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>466</integer>
+=======
 					<integer>357</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
+<<<<<<< .mine
+		</dict>
+		<string>Main</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>115</integer>
+			</dict>
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>467</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>468</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>469</integer>
+				</dict>
+			</array>
+=======
+>>>>>>> .r279
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>470</integer>
+=======
 					<integer>387</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>352</integer>
+=======
 					<integer>388</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>494</integer>
+=======
 					<integer>212</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>471</integer>
+=======
 					<integer>389</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4344,42 +5810,128 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>472</integer>
+=======
 					<integer>391</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>473</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>474</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>475</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>476</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>477</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>478</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>479</integer>
+=======
 					<integer>393</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>480</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>486</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>490</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>449</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>491</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>492</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>457</integer>
+=======
 				<integer>154</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>455</integer>
+=======
 				<integer>0</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>446</integer>
+=======
 				<integer>392</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>481</integer>
+=======
 				<integer>44</integer>
+>>>>>>> .r279
 			</dict>
+<<<<<<< .mine
+			<key>IndexOfDocumentIdentifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>352</integer>
+			</dict>
+=======
 			<key>NS.string</key>
 			<string>file://localhost/Users/gt/Documents/dev/Meemi/connections/libGoogleAnalytics.a</string>
+>>>>>>> .r279
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -4391,15 +5943,30 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>482</integer>
+=======
 					<integer>394</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>483</integer>
+=======
 					<integer>395</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>484</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<string>SelectedDocumentLocations</string>
@@ -4407,8 +5974,21 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>450</integer>
+=======
 				<integer>13</integer>
+>>>>>>> .r279
 			</dict>
+<<<<<<< .mine
+			<key>Identifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>449</integer>
+			</dict>
+		</dict>
+		<dict>
+=======
 			<key>NS.objects</key>
 			<array>
 				<dict>
@@ -4418,16 +5998,45 @@
 			</array>
 		</dict>
 		<dict>
+>>>>>>> .r279
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>450</integer>
+=======
 				<integer>399</integer>
+>>>>>>> .r279
 			</dict>
 			<key>IDEQuickLookPageNumber</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>452</integer>
+=======
 				<integer>129</integer>
+>>>>>>> .r279
 			</dict>
+<<<<<<< .mine
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>450</integer>
+			</dict>
+			<key>Identifier</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>485</integer>
+			</dict>
+		</dict>
+		<string>Meemi</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+=======
 			<key>documentURL</key>
 			<dict>
 				<key>CF$UID</key>
@@ -4455,23 +6064,70 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+>>>>>>> .r279
 				<integer>94</integer>
 			</dict>
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>59</integer>
+=======
 					<integer>401</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>60</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>61</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>62</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>487</integer>
+=======
 					<integer>403</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>488</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>489</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<real>328649415.79970902</real>
+		<string>{52871, 2576}</string>
+		<string>{62048, 0}</string>
+		<string>+purgeOldMemes</string>
+		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
+=======
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4486,7 +6142,11 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>493</integer>
+=======
 				<integer>402</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<dict>
@@ -4495,9 +6155,23 @@
 				<key>CF$UID</key>
 				<integer>44</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>495</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.string</key>
 			<string>file://localhost/Users/gt/Documents/dev/Meemi/Classes/English.lproj/TextSender.xib</string>
+>>>>>>> .r279
 		</dict>
+<<<<<<< .mine
+		<string>{{0, 0}, {1016, 666}}</string>
+=======
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4508,45 +6182,108 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>497</integer>
+=======
 					<integer>404</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>498</integer>
+=======
 					<integer>405</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>499</integer>
+=======
 					<integer>406</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>500</integer>
+=======
 					<integer>407</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>501</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>502</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>349</integer>
+=======
 					<integer>408</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>503</integer>
+=======
 					<integer>411</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>505</integer>
+=======
 					<integer>407</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>349</integer>
+=======
 					<integer>412</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>509</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>520</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>LayoutFocusMode</string>
+		<string>console</string>
+		<string>variables</string>
+		<string>LayoutMode</string>
+		<string>IDEDebuggerAreaSplitView</string>
+		<string>IDEDebugArea_SplitView</string>
+=======
 		<string>IBDockViewController</string>
 		<string>SelectedObjectIDs</string>
 		<string>SelectionProvider</string>
 		<string>IBCanvasViewController</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4557,14 +6294,22 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>504</integer>
+=======
 					<integer>409</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>352</integer>
+=======
 					<integer>410</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4576,11 +6321,80 @@
 				<key>CF$UID</key>
 				<integer>93</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>506</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>507</integer>
+				</dict>
+			</array>
+=======
+>>>>>>> .r279
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>349</integer>
+=======
 					<integer>130</integer>
+>>>>>>> .r279
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>508</integer>
+				</dict>
+			</array>
+		</dict>
+<<<<<<< .mine
+		<string>VariablesViewSelectedScope</string>
+		<string>DBGVariablesViewFilterMode</string>
+		<integer>2</integer>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>510</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>511</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>DVTSplitViewItems</string>
+=======
+>>>>>>> .r279
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>94</integer>
+			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>512</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>517</integer>
 				</dict>
 			</array>
 		</dict>
@@ -4588,28 +6402,46 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>94</integer>
+				<integer>115</integer>
 			</dict>
+=======
+>>>>>>> .r279
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>413</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>414</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>515</integer>
+=======
 					<integer>415</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>516</integer>
+=======
 					<integer>416</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4622,21 +6454,66 @@
 				<integer>94</integer>
 			</dict>
 			<key>NS.keys</key>
+<<<<<<< .mine
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>513</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>514</integer>
+				</dict>
+			</array>
+=======
 			<array/>
+>>>>>>> .r279
 			<key>NS.objects</key>
+<<<<<<< .mine
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>518</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>519</integer>
+				</dict>
+			</array>
+=======
 			<array/>
+>>>>>>> .r279
 		</dict>
+<<<<<<< .mine
+		<string>ConsoleArea</string>
+		<real>641</real>
+=======
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>93</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>510</integer>
+				</dict>
+			</array>
+=======
+>>>>>>> .r279
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>521</integer>
+=======
 					<integer>130</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4646,19 +6523,62 @@
 				<key>CF$UID</key>
 				<integer>94</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>522</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>524</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>115</integer>
+			</dict>
+=======
+>>>>>>> .r279
 			<key>NS.keys</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>418</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>514</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>515</integer>
+=======
 					<integer>419</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>523</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<string>IDENameString</string>
@@ -4673,29 +6593,49 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>421</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>422</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>518</integer>
+=======
 					<integer>423</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>525</integer>
+=======
 					<integer>424</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
+<<<<<<< .mine
+		<real>641</real>
+=======
 		<string>IDEDeviceLocation</string>
 		<string>IDEDeviceArchitecture</string>
 		<string>dvtdevice-iphone:b2168c8d855a22e83e5a3f8d3fd00d201d61680f</string>
 		<string>armv7</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4706,12 +6646,32 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>510</integer>
+=======
 					<integer>426</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>527</integer>
+=======
 					<integer>427</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>118</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+=======
 				<dict>
 					<key>CF$UID</key>
 					<integer>428</integer>
@@ -4723,13 +6683,22 @@
 					<key>CF$UID</key>
 					<integer>429</integer>
 				</dict>
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>528</integer>
+=======
 					<integer>455</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>531</integer>
+=======
 					<integer>456</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4746,19 +6715,35 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>430</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>437</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>529</integer>
+=======
 					<integer>441</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>530</integer>
+=======
 					<integer>446</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -4772,18 +6757,49 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>431</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>432</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>532</integer>
+=======
 					<integer>433</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>533</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
+<<<<<<< .mine
+			<array/>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+			<key>NS.keys</key>
+			<array>
+=======
 			<array>
 				<dict>
 					<key>CF$UID</key>
@@ -4817,24 +6833,41 @@
 					<key>CF$UID</key>
 					<integer>431</integer>
 				</dict>
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>510</integer>
+=======
 					<integer>432</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>536</integer>
+=======
 					<integer>433</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>537</integer>
+=======
 					<integer>438</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>540</integer>
+=======
 					<integer>439</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -4855,31 +6888,82 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>431</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>432</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>538</integer>
+=======
 					<integer>433</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>539</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
+<<<<<<< .mine
+		</dict>
+		<string></string>
+		<real>428</real>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>115</integer>
+			</dict>
+			<key>NS.keys</key>
+=======
 			<key>NS.objects</key>
+>>>>>>> .r279
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>513</integer>
+=======
 					<integer>442</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>514</integer>
+=======
 					<integer>443</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>538</integer>
+=======
 					<integer>444</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>541</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
 		<real>1</real>
@@ -4913,12 +6997,61 @@
 		<dict>
 			<key>$classes</key>
 			<array>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>543</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>544</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>545</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>546</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>547</integer>
+				</dict>
+=======
 				<string>NSMutableData</string>
 				<string>NSData</string>
 				<string>NSObject</string>
+>>>>>>> .r279
 			</array>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>548</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>569</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>573</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>543</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>586</integer>
+				</dict>
+			</array>
+=======
 			<key>$classname</key>
 			<string>NSMutableData</string>
+>>>>>>> .r279
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -4930,34 +7063,69 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>549</integer>
+=======
 					<integer>431</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>550</integer>
+=======
 					<integer>447</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>551</integer>
+=======
 					<integer>448</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>552</integer>
+=======
 					<integer>433</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>553</integer>
+=======
 					<integer>449</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>554</integer>
+=======
 					<integer>450</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>555</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>556</integer>
+=======
 					<integer>451</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -4965,7 +7133,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>557</integer>
+=======
 					<integer>452</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -4977,20 +7149,46 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>559</integer>
+=======
 					<integer>130</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+				<dict>
+					<key>CF$UID</key>
+					<integer>562</integer>
+				</dict>
+=======
+>>>>>>> .r279
 			</array>
 		</dict>
+<<<<<<< .mine
+		<string>IDEVisibleRect</string>
+		<string>IDEUnsavedDocumentFilteringEnabled</string>
+		<string>IDENavigatorExpandedItemsBeforeFilteringSet</string>
+		<string>IDERecentDocumentFilteringEnabled</string>
+		<string>IDESCMStatusFilteringEnabled</string>
+		<string>IDESelectedObjects</string>
+		<string>IDEExpandedItemsSet</string>
+		<string>{{0, 93}, {259, 622}}</string>
+=======
 		<string>IDEActivityReportStringSegmentType</string>
 		<string>IDEActivityReportStringSegmentDate</string>
 		<string>IDEActivityReportStringSegmentDateStyle</string>
 		<string>IDEActivityReportStringSegmentTimeStyle</string>
 		<real>3</real>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>558</integer>
+=======
 				<integer>453</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.time</key>
 			<real>327940298.73865002</real>
@@ -5017,7 +7215,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>560</integer>
+=======
 					<integer>2</integer>
+>>>>>>> .r279
 				</dict>
 			</array>
 		</dict>
@@ -5031,62 +7233,188 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>561</integer>
+=======
 					<integer>459</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>452</integer>
+=======
 					<integer>460</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>449</integer>
+=======
 					<integer>462</integer>
+>>>>>>> .r279
 				</dict>
+<<<<<<< .mine
+			</array>
+		</dict>
+		<string>Meemi</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>558</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+=======
+>>>>>>> .r279
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>563</integer>
+=======
 					<integer>464</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>564</integer>
+=======
 					<integer>466</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>566</integer>
+=======
 					<integer>468</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>567</integer>
+=======
 					<integer>470</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>561</integer>
+=======
 					<integer>472</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>561</integer>
+=======
 					<integer>474</integer>
+>>>>>>> .r279
 				</dict>
 				<dict>
 					<key>CF$UID</key>
+<<<<<<< .mine
+					<integer>565</integer>
+=======
 					<integer>476</integer>
+>>>>>>> .r279
+				</dict>
+			</array>
+		</dict>
+<<<<<<< .mine
+		<string>Classes</string>
+=======
+>>>>>>> .r279
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>154</integer>
+			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>561</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>452</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>154</integer>
-			</dict>
+=======
 			<key>NS.base</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>561</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>568</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>Resources</string>
+		<dict>
+			<key>$class</key>
+=======
 			<key>NS.relative</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
 				<integer>98</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>570</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>571</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>572</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>508</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>136</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+			</array>
+=======
+>>>>>>> .r279
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -5094,15 +7422,99 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>574</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>575</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>576</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>577</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>578</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>579</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>580</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>136</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>113</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>581</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>582</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>136</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>584</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>IDEBatchFindNavigatorScrollPosition</string>
+		<string>IDEBatchFindNavigatorShowsOptions</string>
+		<string>IDEBatchFindNavigatorReplaceString</string>
+		<string>IDEBatchFindNavigatorFindString</string>
+		<string>IDEBatchFindNavigatorSelectedRowIndexes</string>
+		<string>IDEBatchFindNavigatorFindMode</string>
+		<string>IDEBatchFindNavigatorCollapsedGroups</string>
+		<string>nowFree</string>
+		<dict>
+			<key>$class</key>
+=======
 			<key>NS.base</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>583</integer>
+=======
 				<integer>0</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>585</integer>
+=======
 				<integer>461</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/RegexKitLite.m</string>
@@ -5112,15 +7524,126 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>587</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>588</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>589</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>590</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>591</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>592</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>593</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>594</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>595</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>596</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>597</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>598</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>599</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>600</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>601</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>15</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>602</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>IDEErrorFilteringEnabled</string>
+		<string>IDEVisibleRect</string>
+		<string>IDECollapsedFiles</string>
+		<string>IDEExpandedIssues</string>
+		<string>IDESelectedNavigables</string>
+		<string>IDEShowsByType</string>
+		<string>IDESchemeFilteringEnabled</string>
+		<string>IDECollapsedTypes</string>
+		<string>IDERecentFilteringEnabled</string>
+		<string>IDECollapsedGroups</string>
+		<string>{{0, 0}, {259, 1150}}</string>
+		<dict>
+			<key>$class</key>
+=======
 			<key>NS.base</key>
+>>>>>>> .r279
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>95</integer>
+=======
 				<integer>0</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>95</integer>
+=======
 				<integer>463</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/RegexKitLite.h</string>
@@ -5133,12 +7656,20 @@
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>95</integer>
+=======
 				<integer>0</integer>
+>>>>>>> .r279
 			</dict>
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
+<<<<<<< .mine
+				<integer>95</integer>
+=======
 				<integer>465</integer>
+>>>>>>> .r279
 			</dict>
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/connections/ASIHTTPRequestConfig.h</string>
@@ -5148,6 +7679,22 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>510</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>604</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
@@ -5158,6 +7705,7 @@
 				<key>CF$UID</key>
 				<integer>467</integer>
 			</dict>
+>>>>>>> .r279
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/WithFriendsController.m</string>
 		<dict>
@@ -5166,6 +7714,23 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>605</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>607</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>609</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
@@ -5176,6 +7741,7 @@
 				<key>CF$UID</key>
 				<integer>469</integer>
 			</dict>
+>>>>>>> .r279
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/UIImage-categories/UIImage+RoundedCorner.m</string>
 		<dict>
@@ -5184,6 +7750,30 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>513</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>514</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>428</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>606</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
@@ -5194,6 +7784,7 @@
 				<key>CF$UID</key>
 				<integer>471</integer>
 			</dict>
+>>>>>>> .r279
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/Meemi.m</string>
 		<dict>
@@ -5202,6 +7793,30 @@
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>513</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>514</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>426</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>608</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
@@ -5212,14 +7827,43 @@
 				<key>CF$UID</key>
 				<integer>473</integer>
 			</dict>
+>>>>>>> .r279
 		</dict>
+<<<<<<< .mine
+		<real>1016</real>
+=======
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/connections/ASIHTTPRequest.h</string>
+>>>>>>> .r279
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>154</integer>
 			</dict>
+<<<<<<< .mine
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>513</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>514</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>610</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>611</integer>
+				</dict>
+			</array>
+=======
 			<key>NS.base</key>
 			<dict>
 				<key>CF$UID</key>
@@ -5230,8 +7874,11 @@
 				<key>CF$UID</key>
 				<integer>475</integer>
 			</dict>
+>>>>>>> .r279
 		</dict>
 		<string>file://localhost/Users/gt/Documents/dev/Meemi/connections/ASIAuthenticationDialog.m</string>
+<<<<<<< .mine
+=======
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5250,6 +7897,7 @@
 			</dict>
 		</dict>
 		<string>file://localhost/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/AvailabilityInternal.h</string>
+>>>>>>> .r279
 	</array>
 	<key>$top</key>
 	<dict>
