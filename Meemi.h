@@ -12,6 +12,9 @@
 #import "Meme.h"
 #import "User.h"
 
+#define kAPIKey @"dd51e68acb28da24c221c8b1627be7e69c577985"
+// define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b" // standard
+
 @class ASINetworkQueue;
 
 @protocol MeemiDelegate;
