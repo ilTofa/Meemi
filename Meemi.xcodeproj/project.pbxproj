@@ -27,7 +27,6 @@
 		649A0F461326A1E500AB187C /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 649A0F451326A1E500AB187C /* Appirater.m */; };
 		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
 		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
-		64CB5BFB1323019100D99508 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C00ACDAE119F2F3B002C5CC0 /* LockForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */; };
 		C00ACDCE119F31CC002C5CC0 /* HomeForSegmented.png in Resources */ = {isa = PBXBuildFile; fileRef = C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */; };
 		C00C6C3311B5C3FD00F55726 /* fondino.png in Resources */ = {isa = PBXBuildFile; fileRef = C00C6C3211B5C3FD00F55726 /* fondino.png */; };
@@ -160,11 +159,10 @@
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		649A0F441326A1E500AB187C /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		649A0F451326A1E500AB187C /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		649BEEF914237E9500C530DD /* INDEX.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = INDEX.md; sourceTree = "<group>"; };
 		64A973E411D119970082F60E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64A973E911D119C00082F60E /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
-		64CB5BF91323019100D99508 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = connections/GANTracker.h; sourceTree = "<group>"; };
-		64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = connections/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Meemi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meemi-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C00ACDAD119F2F3B002C5CC0 /* LockForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockForSegmented.png; sourceTree = "<group>"; };
 		C00ACDCD119F31CC002C5CC0 /* HomeForSegmented.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeForSegmented.png; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				C06512531161F4E300B68198 /* CoreData.framework in Frameworks */,
 				C02557661256432500FE2956 /* libsqlite3.0.dylib in Frameworks */,
 				C05D2BE712622B370080416C /* Security.framework in Frameworks */,
-				64CB5BFB1323019100D99508 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +369,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				649BEEF914237E9500C530DD /* INDEX.md */,
 				C0D67CC311592559009EA92B /* iTunesArtwork */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
 				C0D67CBE11592261009EA92B /* Entitlements.plist */,
@@ -492,8 +490,6 @@
 			children = (
 				649A0F441326A1E500AB187C /* Appirater.h */,
 				649A0F451326A1E500AB187C /* Appirater.m */,
-				64CB5BF91323019100D99508 /* GANTracker.h */,
-				64CB5BFA1323019100D99508 /* libGoogleAnalytics.a */,
 				640EF48C1323002E003D2F1F /* ASIAuthenticationDialog.h */,
 				640EF48D1323002E003D2F1F /* ASIAuthenticationDialog.m */,
 				640EF48E1323002E003D2F1F /* ASICacheDelegate.h */,
