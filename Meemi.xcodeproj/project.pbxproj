@@ -161,7 +161,7 @@
 		6496CA9514238606007C5DCF /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
 		649A0F441326A1E500AB187C /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		649A0F451326A1E500AB187C /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		649BEEF914237E9500C530DD /* INDEX.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = INDEX.md; sourceTree = "<group>"; };
+		649BEEF914237E9500C530DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		64A973E411D119970082F60E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64A973E911D119C00082F60E /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64BA4A6C11B580A3003EE522 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				649BEEF914237E9500C530DD /* INDEX.md */,
+				649BEEF914237E9500C530DD /* README.md */,
 				6496CA94142384B1007C5DCF /* LICENSE */,
 				C0D67CC311592559009EA92B /* iTunesArtwork */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
