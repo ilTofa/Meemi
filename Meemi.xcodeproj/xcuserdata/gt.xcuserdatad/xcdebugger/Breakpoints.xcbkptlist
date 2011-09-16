@@ -9,36 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/ImageSender.m"
-         timestampString = "298914954.631853"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "22"
-         endingLineNumber = "22">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/MeemiAppDelegate.m"
-         timestampString = "321298971.511013"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Meemi.m"
-         timestampString = "327074351.95159"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1878"
-         endingLineNumber = "1878"
-         landmarkName = "-reverseGeocoder:didFindPlacemark:"
+         startingLineNumber = "24"
+         endingLineNumber = "24"
+         landmarkName = "-textFieldShouldReturn:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -46,12 +22,40 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Classes/UserProfile.m"
-         timestampString = "321320879.904195"
+         filePath = "Classes/MeemiAppDelegate.m"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
+         landmarkName = "-markReadMemes"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Meemi.m"
+         timestampString = "337872413.371271"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1880"
+         endingLineNumber = "1880"
+         landmarkName = "@implementation Meemi"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/UserProfile.m"
+         timestampString = "337873714.999537"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
          landmarkName = "-infoSwapped"
          landmarkType = "5">
       </FileBreakpoint>
@@ -61,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/UserProfile.m"
-         timestampString = "321320888.788122"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
          landmarkName = "-infoSwapped"
          landmarkType = "5">
       </FileBreakpoint>
@@ -75,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/ImageSender.m"
-         timestampString = "327058664.862865"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-sendIt:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -89,12 +93,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Meemi.m"
-         timestampString = "327074351.95159"
+         timestampString = "337872413.371271"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1287"
-         endingLineNumber = "1287"
-         landmarkName = "-getNewPersonals"
+         startingLineNumber = "1289"
+         endingLineNumber = "1289"
+         landmarkName = "-getNewPersonalReplies"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -103,12 +107,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Meemi.m"
-         timestampString = "327074351.95159"
+         timestampString = "337872413.371271"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1299"
-         endingLineNumber = "1299"
-         landmarkName = "-getNewFavorites"
+         startingLineNumber = "1301"
+         endingLineNumber = "1301"
+         landmarkName = "-getNewPersonals"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -117,7 +121,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WithFriendsController.m"
-         timestampString = "327073618.559643"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "468"
@@ -131,7 +135,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "WithFriendsController.m"
-         timestampString = "327073618.559643"
+         timestampString = "337873714.999537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "401"

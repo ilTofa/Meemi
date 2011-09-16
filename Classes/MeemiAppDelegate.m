@@ -3,12 +3,13 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 17/03/10.
-//  Copyright Giacomo Tufano (gt@ilTofa.it) 2010. All rights reserved.
+//
+//  Copyright 2011, Giacomo Tufano (gt@ilTofa.it)
+//  Licensed under MIT license. See LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //
 
 #import "MeemiAppDelegate.h"
 #import "WithFriendsController.h"
-#import "GANTracker.h"
 #import "Appirater.h"
 
 @implementation MeemiAppDelegate
@@ -149,14 +150,6 @@
 }
 
 #pragma mark -
-#pragma mark Exception Handler
-void uncaughtExceptionHandler(NSException *exception) 
-{
-//	[FlurryAPI logError:@"Uncaught exception." message:@"Crash!" exception:exception];
-}                                       
-
-
-#pragma mark -
 #pragma mark Meemi Actions
 
 -(void)reloadMemes
@@ -184,24 +177,6 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
-	[[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-1498393-6"
-										   dispatchPeriod:30
-												 delegate:nil];
-	NSError *error;
-	if (![[GANTracker sharedTracker] trackEvent:@"Meemi"
-										 action:@"app_startup"
-										  label:nil
-										  value:-1
-									  withError:&error]) {
-		NSLog(@"Error in [GANTracker sharedTracker] trackEvent:");
-	}
-	
-	if (![[GANTracker sharedTracker] trackPageview:@"/meemi_entry_point"
-										 withError:&error]) 
-	{
-		NSLog(@"Error in GANTracker trackPageview");
-	}	
-    
     [window addSubview:[navigationController view]];
 	
 	// Start location request
@@ -234,22 +209,10 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-	NSError *error;
-	if (![[GANTracker sharedTracker] trackPageview:@"/resign_active"
-										 withError:&error]) 
-	{
-		NSLog(@"Error in GANTracker trackPageview");
-	}
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	NSError *error;
-	if (![[GANTracker sharedTracker] trackPageview:@"/become_active"
-										 withError:&error]) 
-	{
-		NSLog(@"Error in GANTracker trackPageview");
-	}
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 
@@ -286,8 +249,6 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)dealloc 
 {
-	[[GANTracker sharedTracker] stopTracker];
-
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];

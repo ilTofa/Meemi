@@ -24,6 +24,7 @@
 		643303D513230ABD00527AF4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643303D413230ABD00527AF4 /* MapKit.framework */; };
 		6443B082116B824200C16EEF /* MemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6443B081116B824200C16EEF /* MemeCell.xib */; };
 		6467C6BD11907D3D00F86F0E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6467C6BC11907D3D00F86F0E /* star.png */; };
+		6496CA9614238606007C5DCF /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6496CA9514238606007C5DCF /* libz.1.dylib */; };
 		649A0F461326A1E500AB187C /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 649A0F451326A1E500AB187C /* Appirater.m */; };
 		64A973E811D119B50082F60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A973E711D119B50082F60E /* Localizable.strings */; };
 		64BA4A6D11B580A3003EE522 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BA4A6C11B580A3003EE522 /* magnifying-glass.png */; };
@@ -116,7 +117,6 @@
 		C0E6202C1152E12A00E6C079 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620251152E12A00E6C079 /* Reachability.m */; };
 		C0E6202E1152E13E00E6C079 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6202D1152E13E00E6C079 /* CFNetwork.framework */; };
 		C0E620301152E14300E6C079 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6202F1152E14300E6C079 /* SystemConfiguration.framework */; };
-		C0E620321152E15000E6C079 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620311152E15000E6C079 /* libz.1.2.3.dylib */; };
 		C0E620431152E36800E6C079 /* Meemi.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E620421152E36800E6C079 /* Meemi.m */; };
 		C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E620491152E4E100E6C079 /* MobileCoreServices.framework */; };
 		C0F33EEE11A696B400510AEE /* TableBreak.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F33EED11A696B400510AEE /* TableBreak.png */; };
@@ -157,6 +157,8 @@
 		643303D413230ABD00527AF4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6443B081116B824200C16EEF /* MemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemeCell.xib; sourceTree = "<group>"; };
 		6467C6BC11907D3D00F86F0E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		6496CA94142384B1007C5DCF /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6496CA9514238606007C5DCF /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
 		649A0F441326A1E500AB187C /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		649A0F451326A1E500AB187C /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		649BEEF914237E9500C530DD /* INDEX.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = INDEX.md; sourceTree = "<group>"; };
@@ -287,13 +289,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6496CA9614238606007C5DCF /* libz.1.dylib in Frameworks */,
 				643303D513230ABD00527AF4 /* MapKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
 				C0E6202E1152E13E00E6C079 /* CFNetwork.framework in Frameworks */,
 				C0E620301152E14300E6C079 /* SystemConfiguration.framework in Frameworks */,
-				C0E620321152E15000E6C079 /* libz.1.2.3.dylib in Frameworks */,
 				C0E6204A1152E4E100E6C079 /* MobileCoreServices.framework in Frameworks */,
 				C0A1D55011582F1200071314 /* CoreLocation.framework in Frameworks */,
 				C06512531161F4E300B68198 /* CoreData.framework in Frameworks */,
@@ -343,9 +345,7 @@
 		29B97314FDCFA39411CA2CEA /* Meemi */ = {
 			isa = PBXGroup;
 			children = (
-				C0B51D8211B94B22007C6662 /* UIImage-categories */,
-				C00DDA9911AD647900363B95 /* RegexKitLite */,
-				C0A1BFFB117BC4EB0064AF2A /* Libs */,
+				6496CA93142383FF007C5DCF /* External */,
 				C0E620161152E11A00E6C079 /* Meemi API */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -370,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				649BEEF914237E9500C530DD /* INDEX.md */,
+				6496CA94142384B1007C5DCF /* LICENSE */,
 				C0D67CC311592559009EA92B /* iTunesArtwork */,
 				8D1107310486CEB800E47090 /* Meemi-Info.plist */,
 				C0D67CBE11592261009EA92B /* Entitlements.plist */,
@@ -393,6 +394,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6496CA9514238606007C5DCF /* libz.1.dylib */,
 				643303D413230ABD00527AF4 /* MapKit.framework */,
 				C05D2BE312622AF60080416C /* Security.framework */,
 				C02557651256432500FE2956 /* libsqlite3.0.dylib */,
@@ -407,6 +409,16 @@
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6496CA93142383FF007C5DCF /* External */ = {
+			isa = PBXGroup;
+			children = (
+				C0B51D8211B94B22007C6662 /* UIImage-categories */,
+				C00DDA9911AD647900363B95 /* RegexKitLite */,
+				C0A1BFFB117BC4EB0064AF2A /* Libs */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 		C00DDA9911AD647900363B95 /* RegexKitLite */ = {

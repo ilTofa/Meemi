@@ -25,6 +25,7 @@ Meemi makes use of some OSS libraries and frameworks:
 * [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/) (for network I/O)
 * [RegexKitLite](http://regexkit.sourceforge.net/) by John Engelhart for regex.
 * Some category on UIImage, initially by Trevor Harmon and heavily modified.
+* the icons derive from the free kit of [Joseph Wain](http://glyphish.com/)
 
 ***
 **Things to do**

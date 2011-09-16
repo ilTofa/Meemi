@@ -3,7 +3,9 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 02/04/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//
+//  Copyright 2011, Giacomo Tufano (gt@ilTofa.it)
+//  Licensed under MIT license. See LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //
 
 #import "WithFriendsController.h"
@@ -16,8 +18,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "RegexKitLite.h"
-
-#import "GANTracker.h"
 
 @implementation WithFriendsController
 
@@ -585,10 +585,8 @@
 
 -(IBAction)searchClicked:(id)sender
 {
-	NSError *error;
 	if(!barPresent)
 	{
-		[[GANTracker sharedTracker] trackPageview:@"/search_in" withError:&error];
 		[self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		self.tableView.tableHeaderView = self.theSearchBar;
 		barPresent = YES;
@@ -608,12 +606,9 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-	NSError *error;
 	DLog(@"searchBarSearchButtonClicked here");
 	DLog(@"text to search: \"%@\"", searchBar.text);
 	DLog(@"Scope is %d", searchBar.selectedScopeButtonIndex);
-	NSString *temp = [NSString stringWithFormat:@"searched_%d", searchBar.selectedScopeButtonIndex];
-	[[GANTracker sharedTracker] trackPageview:temp withError:&error];
 	self.searchString = searchBar.text;
 	self.searchScope = searchBar.selectedScopeButtonIndex;
 	[searchBar resignFirstResponder];
@@ -1077,11 +1072,9 @@
 	Meme *selectedMeme = ((Meme *)[theMemeList objectAtIndexPath:indexPath]);
 	[Meemi markMemeRead:selectedMeme.id];
 	
-	NSError *error;	
 	// if we are at a meme list level (we need it for reply) just push another controller, same kind of this one. :)
 	if(self.replyTo == nil)
 	{
-		[[GANTracker sharedTracker] trackPageview:@"/enter_detail" withError:&error];
 		WithFriendsController *controller = [[WithFriendsController alloc] initWithNibName:@"WithFriendsController" bundle:nil];
 		controller.replyTo = selectedMeme.id;
 		controller.replyScreenName = selectedMeme.screen_name;
@@ -1095,7 +1088,6 @@
 		// If meme is a link, simply push a browser Windows on it.
 		if([selectedMeme.meme_type isEqualToString:@"link"])
 		{
-			[[GANTracker sharedTracker] trackPageview:@"/follow_link" withError:&error];
 			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 			controller.urlToBeLoaded = [selectedMeme.link stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
@@ -1104,7 +1096,6 @@
 		}
 		else if([selectedMeme.meme_type isEqualToString:@"image"])
 		{
-			[[GANTracker sharedTracker] trackPageview:@"/see_image" withError:&error];
 			MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 			controller.urlToBeLoaded = [selectedMeme.image_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			[self.navigationController pushViewController:controller animated:YES];
@@ -1117,7 +1108,6 @@
 			// Check if the URl is valid
 			if([NSURL URLWithString:selectedMeme.video])
 			{	// URL is valid
-				[[GANTracker sharedTracker] trackPageview:@"/see_video" withError:&error];
 				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];
 				controller.urlToBeLoaded = [selectedMeme.video stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 				[self.navigationController pushViewController:controller animated:YES];
@@ -1126,7 +1116,6 @@
 			}
 			else
 			{
-				[[GANTracker sharedTracker] trackPageview:@"/cannot_show_video" withError:&error];
 				// tell user that the video cannot be shown
 				UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
 																	message:NSLocalizedString(@"This video cannot be shown on this device", @"")
@@ -1143,7 +1132,6 @@
 			NSString *urlRegex = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";	
 			if([selectedMeme.content isMatchedByRegex:urlRegex])
 			{
-				[[GANTracker sharedTracker] trackPageview:@"/enter_via_regex" withError:&error];
 				NSArray *matchedURLsArray = [selectedMeme.content componentsMatchedByRegex:urlRegex];
 				DLog(@"matchedURLsArray: %@", matchedURLsArray);
 				MemeOnWeb *controller = [[MemeOnWeb alloc] initWithNibName:@"MemeOnWeb" bundle:nil];

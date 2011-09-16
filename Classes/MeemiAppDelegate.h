@@ -3,7 +3,9 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 17/03/10.
-//  Copyright Giacomo Tufano (gt@ilTofa.it) 2010. All rights reserved.
+//
+//  Copyright 2011, Giacomo Tufano (gt@ilTofa.it)
+//  Licensed under MIT license. See LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //
 
 #import <UIKit/UIKit.h>

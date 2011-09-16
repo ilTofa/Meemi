@@ -3,7 +3,9 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 18/03/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//
+//  Copyright 2011, Giacomo Tufano (gt@ilTofa.it)
+//  Licensed under MIT license. See LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //
 
 #import <Foundation/Foundation.h>
@@ -12,8 +14,8 @@
 #import "Meme.h"
 #import "User.h"
 
-#define kAPIKey @"dd51e68acb28da24c221c8b1627be7e69c577985"
-// define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b" // standard
+// #define kAPIKey @"dd51e68acb28da24c221c8b1627be7e69c577985"
+#define kAPIKey @"cf5557e9e1ed41683e1408aefaeeb4c6ee23096b" // standard
 
 @class ASINetworkQueue;
 

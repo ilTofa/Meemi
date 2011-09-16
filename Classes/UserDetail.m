@@ -3,14 +3,14 @@
 //  Meemi
 //
 //  Created by Giacomo Tufano on 09/04/10.
-//  Copyright 2010 Giacomo Tufano (gt@ilTofa.it). All rights reserved.
+//
+//  Copyright 2011, Giacomo Tufano (gt@ilTofa.it)
+//  Licensed under MIT license. See LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //
 
 #import "UserDetail.h"
 #import "User.h"
 #import "UserProfile.h"
-
-#import "GANTracker.h"
 
 @implementation UserDetail
 
@@ -22,11 +22,9 @@
 {
 	if(!reloadInProgress)
 	{
-		NSError *error;
 		DLog(@"starting avatar update");
 		reloadInProgress = YES;
 		[ourPersonalMeemi allAvatarsReload];
-		[[GANTracker sharedTracker] trackPageview:@"/avatarsReloaded" withError:&error];
 	}
 	else 
 	{
@@ -265,8 +263,6 @@
 	detailViewController.theUser = [theUserList objectAtIndexPath:indexPath];
 	// Pass the selected object to the new view controller.
 	[self.navigationController pushViewController:detailViewController animated:YES];
-	NSError *error;
-	[[GANTracker sharedTracker] trackPageview:@"/userFromList" withError:&error];
 	[detailViewController release];	
 }
 
